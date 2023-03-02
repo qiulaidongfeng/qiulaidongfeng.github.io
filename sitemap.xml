@@ -2,6 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://qiulaidongfeng.github.io/en/mmap-error/</loc>
+    
+    <lastmod>2023-03-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://qiulaidongfeng.github.io/zh-cn/mmap%E9%94%99%E8%AF%AF/</loc>
+    
+    <lastmod>2023-03-02</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://qiulaidongfeng.github.io/zh-cn/one/</loc>
     
     <lastmod>2023-03-02</lastmod>
@@ -27,6 +45,13 @@
     <priority>1.0</priority>
   </url>
 
+  
+  <url>
+    <loc>https://qiulaidongfeng.github.io/tags/go-go1-21/</loc>
+    <lastmod>2023-03-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
   
 
   

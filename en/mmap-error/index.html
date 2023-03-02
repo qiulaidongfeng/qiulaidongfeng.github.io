@@ -4,18 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>First blog | 秋来冬风的博客</title>
+  <title>mmap_error | 秋来冬风的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Software translationOn March 1, 2023, I published this blog">
+  <meta name="description" content="Go1.21 forward-lookingSoftware translation Windows allows handling exception page errorsGo1.21 is under development, draft release note Mention that it is expected to be released in August 2023 Accord">
 <meta property="og:type" content="article">
-<meta property="og:title" content="First blog">
-<meta property="og:url" content="https://qiulaidongfeng.github.io/en/one/index.html">
+<meta property="og:title" content="mmap_error">
+<meta property="og:url" content="https://qiulaidongfeng.github.io/en/mmap-error/index.html">
 <meta property="og:site_name" content="秋来冬风的博客">
-<meta property="og:description" content="Software translationOn March 1, 2023, I published this blog">
+<meta property="og:description" content="Go1.21 forward-lookingSoftware translation Windows allows handling exception page errorsGo1.21 is under development, draft release note Mention that it is expected to be released in August 2023 Accord">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-03-02T10:45:27.188Z">
-<meta property="article:modified_time" content="2023-03-02T10:49:39.897Z">
+<meta property="article:published_time" content="2023-03-02T13:00:49.000Z">
+<meta property="article:modified_time" content="2023-03-02T13:06:23.528Z">
 <meta property="article:author" content="秋来冬风">
+<meta property="article:tag" content="go - go1.21">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="../../atom.xml" title="秋来冬风的博客" type="application/atom+xml">
@@ -73,10 +74,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-one" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-mmap-error" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="" class="article-date">
-  <time class="dt-published" datetime="2023-03-02T10:45:27.188Z" itemprop="datePublished">2023-03-02</time>
+  <time class="dt-published" datetime="2023-03-02T13:00:49.000Z" itemprop="datePublished">2023-03-02</time>
 </a>
     
   </div>
@@ -87,7 +88,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      First blog
+      mmap_error
     </h1>
   
 
@@ -95,34 +96,34 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>Software translation<br>On March 1, 2023, I published this blog</p>
+        <h1 id="Go1-21-forward-looking"><a href="#Go1-21-forward-looking" class="headerlink" title="Go1.21 forward-looking"></a>Go1.21 forward-looking</h1><p>Software translation</p>
+<h2 id="Windows-allows-handling-exception-page-errors"><a href="#Windows-allows-handling-exception-page-errors" class="headerlink" title="Windows allows handling exception page errors"></a>Windows allows handling exception page errors</h2><p>Go1.21 is under development, <a target="_blank" rel="noopener" href="https://tip.golang.org/doc/go1.21">draft release note</a> Mention that it is expected to be released in August 2023</p>
+<p>According to the submitted information <a target="_blank" rel="noopener" href="https://github.com/golang/go/commit/e03ee85ef434f307500a71927dfb3e876161847a">runtime: Allow handling of EXCEPTION_IN_PAGE_ERROR</a> Go1.21 allows you to handle the access failure of the memory-mapped file through debug.SetPanicOnFault in Windows (for example, the drive where the memory-mapped file is located is ejected)</p>
+<p>For example, it comes from <a target="_blank" rel="noopener" href="https://github.com/golang/go/issues/58457">golang&#x2F;go#58457</a> Example of</p>
+<p>Memory mapping files on external disks (using CreateFileMapping&#x2F;MapViewOfFile)<br>Call debug. SetPanicOnFault (true)<br>Eject external disk<br>Attempt to read from memory map<br>What do you see?<br>The runtime faults (Exception 0xc0000006 0x0 …)</p>
+<p>This is not a panic and cannot be recovered through recover</p>
+<p>Go1.21 should be the panic</p>
+<p>According to <a target="_blank" rel="noopener" href="https://pkg.go.dev/runtime/debug#SetPanicOnFault">SetPanicOnFault document</a> In this case, when debugging. SetPanicOnFault (true) is called, a program using a memory mapping file or an unsafe memory operation may cause a non-zero address error; SetPanicOnFault allows such a program to request to trigger panic only once when running. According to <a target="_blank" rel="noopener" href="https://github.com/golang/go/issues/58457">golang&#x2F;go#58457</a> At least that was not the case in go1.19. As of the release, we did not see that the official go plans to reverse migrate the repair submission to the next minor version of go1.20 and go1.19</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://qiulaidongfeng.github.io/en/one/" data-id="cler4v3c00003ecr5d5pn83u0" data-title="First blog" class="article-share-link">Share</a>
+      <a data-url="https://qiulaidongfeng.github.io/en/mmap-error/" data-id="cler4v3c20004ecr5cna14x9e" data-title="mmap_error" class="article-share-link">Share</a>
       
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/go-go1-21/" rel="tag">go - go1.21</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="../../zh-cn/mmap%E9%94%99%E8%AF%AF/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          mmap错误
-        
-      </div>
-    </a>
   
-  
-    <a href="../../zh-cn/one/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="../../zh-cn/mmap%E9%94%99%E8%AF%AF/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">第一个博客</div>
+      <div class="article-nav-title">mmap错误</div>
     </a>
   
 </nav>
@@ -174,7 +175,7 @@
       <ul>
         
           <li>
-            <a href="../mmap-error/">mmap_error</a>
+            <a href="">mmap_error</a>
           </li>
         
           <li>
@@ -182,7 +183,7 @@
           </li>
         
           <li>
-            <a href="">First blog</a>
+            <a href="../one/">First blog</a>
           </li>
         
           <li>
