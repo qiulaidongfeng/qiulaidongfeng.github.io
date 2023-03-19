@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>乘法还是解引用 | 秋来冬风的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="乘法还是解引用在 U语言项目 中 ，实现了一个基于分隔符的词法分析器，文档在 词法分析器设计文档 ，当前 * 将被分析为乘号，在没有指针时，这样没有问题。现在准备给这个项目增加指针，如果按其他语言一样使用 * 解引用，有两种方案  在构建抽象语法树时处理 * 既可以是乘号又可以解引用的二义性  在词法分析节点处理 *  既可以是乘号又可以解引用的二义性   如何解决 * 二义性当编译器看到 一个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="乘法还是解引用">
+<meta property="og:url" content="https://qiulaidongfeng.github.io/zh-cn/%E4%B9%98%E6%B3%95%E8%BF%98%E6%98%AF%E8%A7%A3%E5%BC%95%E7%94%A8-md/index.html">
+<meta property="og:site_name" content="秋来冬风的博客">
+<meta property="og:description" content="乘法还是解引用在 U语言项目 中 ，实现了一个基于分隔符的词法分析器，文档在 词法分析器设计文档 ，当前 * 将被分析为乘号，在没有指针时，这样没有问题。现在准备给这个项目增加指针，如果按其他语言一样使用 * 解引用，有两种方案  在构建抽象语法树时处理 * 既可以是乘号又可以解引用的二义性  在词法分析节点处理 *  既可以是乘号又可以解引用的二义性   如何解决 * 二义性当编译器看到 一个">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-03-18T06:56:40.090Z">
+<meta property="article:modified_time" content="2023-03-19T13:57:38.475Z">
+<meta property="article:author" content="秋来冬风">
+<meta property="article:tag" content="ulang">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="../../atom.xml" title="秋来冬风的博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="../../favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+  
+    
+<link rel="stylesheet" href="../../fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">秋来冬风的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="../../index.html">Home</a>
+        
+          <a class="main-nav-link" href="../../archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://qiulaidongfeng.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-乘法还是解引用-md" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="" class="article-date">
+  <time class="dt-published" datetime="2023-03-18T06:56:40.090Z" itemprop="datePublished">2023-03-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      乘法还是解引用
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="乘法还是解引用"><a href="#乘法还是解引用" class="headerlink" title="乘法还是解引用"></a>乘法还是解引用</h1><p>在 <a target="_blank" rel="noopener" href="https://gitee.com/u-language/u-language">U语言项目</a> 中 ，实现了一个基于分隔符的词法分析器，文档在 <a target="_blank" rel="noopener" href="https://gitee.com/u-language/u-language/blob/master/pkg/lex/README.md">词法分析器设计文档</a> ，当前 * 将被分析为乘号，在没有指针时，这样没有问题。现在准备给这个项目增加指针，如果按其他语言一样使用 * 解引用，有两种方案</p>
+<ol>
+<li><p>在构建抽象语法树时处理 * 既可以是乘号又可以解引用的二义性</p>
+</li>
+<li><p>在词法分析节点处理 *  既可以是乘号又可以解引用的二义性</p>
+</li>
+</ol>
+<h2 id="如何解决-二义性"><a href="#如何解决-二义性" class="headerlink" title="如何解决 * 二义性"></a>如何解决 * 二义性</h2><p>当编译器看到 一个 * 处理既可以是乘号又可以解引用的二义性，首先没有直接解释为乘号或解引用一种语义的方法，枚举证明</p>
+<ul>
+<li>如果直接解释为 乘号 ，对于 *ptr&#x3D;1 的 *ptr是解引用ptr指针，现在被错误的解释成乘ptr</li>
+<li>如果直接解释为 解引用 ， 对于 c &#x3D;a*b 的 *b是乘b，现在被错误的解释成解引用b</li>
+</ul>
+<p>所以需要根据不同情况解释 * ，对于 *</p>
+<ul>
+<li>如果在开头，因为乘法需要两个操作数，在开头表示左边没有操作数，所以可以解释为解引用</li>
+<li>如果不在开头，如果 * 前面不是符号，比如 a+*ptr，因为左边不是操作数，所以可以解释为解引用</li>
+<li>如果不在开头，如果 * 是符号，比如 a*b，因为左边是操作数，所以可以解释为乘号</li>
+</ul>
+<p>上述处理方法在词法分析或构建抽象语法树，都可以，但是在词法分析的时候通过一个布尔变量，在发现乘号时设置为true,在末尾判断如果布尔变量为true则按上述方法处理乘号，对于没有乘号的部分只增加一次判断的开销。</p>
+<h2 id="更简单的办法"><a href="#更简单的办法" class="headerlink" title="更简单的办法"></a>更简单的办法</h2><p>如果* 有二义性，除了处理二义性还可以找一个没有二义性的符号，比如@，然后编译器看到@就可以直接的识别为解引用，只不过这样和主流做法有区别，可能增加学习成本</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://qiulaidongfeng.github.io/zh-cn/%E4%B9%98%E6%B3%95%E8%BF%98%E6%98%AF%E8%A7%A3%E5%BC%95%E7%94%A8-md/" data-id="clffho1ko0008ckr5byzpbxpu" data-title="乘法还是解引用" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/ulang/" rel="tag">ulang</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="../../en/Multiplication-or-dereference-md/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Multiplication_or_dereference
+        
+      </div>
+    </a>
+  
+  
+    <a href="../../en/mmap-error/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">mmap_error</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/go-go1-21/" rel="tag">go - go1.21</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ulang/" rel="tag">ulang</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/go-go1-21/" style="font-size: 10px;">go - go1.21</a> <a href="../../tags/ulang/" style="font-size: 10px;">ulang</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/03/">三月 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="../../en/Multiplication-or-dereference-md/">Multiplication_or_dereference</a>
+          </li>
+        
+          <li>
+            <a href="">乘法还是解引用</a>
+          </li>
+        
+          <li>
+            <a href="../../en/mmap-error/">mmap_error</a>
+          </li>
+        
+          <li>
+            <a href="../mmap%E9%94%99%E8%AF%AF/">mmap错误</a>
+          </li>
+        
+          <li>
+            <a href="../../en/one/">First blog</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 秋来冬风<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="../../js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="../../fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

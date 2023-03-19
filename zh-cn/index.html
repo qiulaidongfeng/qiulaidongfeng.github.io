@@ -71,6 +71,66 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-乘法还是解引用-md" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="%E4%B9%98%E6%B3%95%E8%BF%98%E6%98%AF%E8%A7%A3%E5%BC%95%E7%94%A8-md/" class="article-date">
+  <time class="dt-published" datetime="2023-03-18T06:56:40.090Z" itemprop="datePublished">2023-03-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="%E4%B9%98%E6%B3%95%E8%BF%98%E6%98%AF%E8%A7%A3%E5%BC%95%E7%94%A8-md/">乘法还是解引用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="乘法还是解引用"><a href="#乘法还是解引用" class="headerlink" title="乘法还是解引用"></a>乘法还是解引用</h1><p>在 <a target="_blank" rel="noopener" href="https://gitee.com/u-language/u-language">U语言项目</a> 中 ，实现了一个基于分隔符的词法分析器，文档在 <a target="_blank" rel="noopener" href="https://gitee.com/u-language/u-language/blob/master/pkg/lex/README.md">词法分析器设计文档</a> ，当前 * 将被分析为乘号，在没有指针时，这样没有问题。现在准备给这个项目增加指针，如果按其他语言一样使用 * 解引用，有两种方案</p>
+<ol>
+<li><p>在构建抽象语法树时处理 * 既可以是乘号又可以解引用的二义性</p>
+</li>
+<li><p>在词法分析节点处理 *  既可以是乘号又可以解引用的二义性</p>
+</li>
+</ol>
+<h2 id="如何解决-二义性"><a href="#如何解决-二义性" class="headerlink" title="如何解决 * 二义性"></a>如何解决 * 二义性</h2><p>当编译器看到 一个 * 处理既可以是乘号又可以解引用的二义性，首先没有直接解释为乘号或解引用一种语义的方法，枚举证明</p>
+<ul>
+<li>如果直接解释为 乘号 ，对于 *ptr&#x3D;1 的 *ptr是解引用ptr指针，现在被错误的解释成乘ptr</li>
+<li>如果直接解释为 解引用 ， 对于 c &#x3D;a*b 的 *b是乘b，现在被错误的解释成解引用b</li>
+</ul>
+<p>所以需要根据不同情况解释 * ，对于 *</p>
+<ul>
+<li>如果在开头，因为乘法需要两个操作数，在开头表示左边没有操作数，所以可以解释为解引用</li>
+<li>如果不在开头，如果 * 前面不是符号，比如 a+*ptr，因为左边不是操作数，所以可以解释为解引用</li>
+<li>如果不在开头，如果 * 是符号，比如 a*b，因为左边是操作数，所以可以解释为乘号</li>
+</ul>
+<p>上述处理方法在词法分析或构建抽象语法树，都可以，但是在词法分析的时候通过一个布尔变量，在发现乘号时设置为true,在末尾判断如果布尔变量为true则按上述方法处理乘号，对于没有乘号的部分只增加一次判断的开销。</p>
+<h2 id="更简单的办法"><a href="#更简单的办法" class="headerlink" title="更简单的办法"></a>更简单的办法</h2><p>如果* 有二义性，除了处理二义性还可以找一个没有二义性的符号，比如@，然后编译器看到@就可以直接的识别为解引用，只不过这样和主流做法有区别，可能增加学习成本</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://qiulaidongfeng.github.io/zh-cn/%E4%B9%98%E6%B3%95%E8%BF%98%E6%98%AF%E8%A7%A3%E5%BC%95%E7%94%A8-md/" data-id="clffho1ko0008ckr5byzpbxpu" data-title="乘法还是解引用" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/ulang/" rel="tag">ulang</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-mmap错误" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="mmap%E9%94%99%E8%AF%AF/" class="article-date">
@@ -103,7 +163,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://qiulaidongfeng.github.io/zh-cn/mmap%E9%94%99%E8%AF%AF/" data-id="cler4v3b30000ecr5038afu5v" data-title="mmap错误" class="article-share-link">Share</a>
+      <a data-url="https://qiulaidongfeng.github.io/zh-cn/mmap%E9%94%99%E8%AF%AF/" data-id="clffho1kk0004ckr5guwvfbgr" data-title="mmap错误" class="article-share-link">Share</a>
       
       
       
@@ -144,7 +204,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://qiulaidongfeng.github.io/zh-cn/one/" data-id="cler4v3bn0001ecr5bqw419el" data-title="第一个博客" class="article-share-link">Share</a>
+      <a data-url="https://qiulaidongfeng.github.io/zh-cn/one/" data-id="clffho1km0005ckr59ys00xyt" data-title="第一个博客" class="article-share-link">Share</a>
       
       
       
@@ -169,7 +229,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../tags/go-go1-21/" rel="tag">go - go1.21</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../tags/go-go1-21/" rel="tag">go - go1.21</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ulang/" rel="tag">ulang</a></li></ul>
     </div>
   </div>
 
@@ -179,7 +239,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../tags/go-go1-21/" style="font-size: 10px;">go - go1.21</a>
+      <a href="../tags/go-go1-21/" style="font-size: 10px;">go - go1.21</a> <a href="../tags/ulang/" style="font-size: 10px;">ulang</a>
     </div>
   </div>
 
@@ -201,6 +261,14 @@
       <ul>
         
           <li>
+            <a href="../en/Multiplication-or-dereference-md/">Multiplication_or_dereference</a>
+          </li>
+        
+          <li>
+            <a href="%E4%B9%98%E6%B3%95%E8%BF%98%E6%98%AF%E8%A7%A3%E5%BC%95%E7%94%A8-md/">乘法还是解引用</a>
+          </li>
+        
+          <li>
             <a href="../en/mmap-error/">mmap_error</a>
           </li>
         
@@ -210,10 +278,6 @@
         
           <li>
             <a href="../en/one/">First blog</a>
-          </li>
-        
-          <li>
-            <a href="one/">第一个博客</a>
           </li>
         
       </ul>

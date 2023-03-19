@@ -1,6 +1,9 @@
+https://qiulaidongfeng.github.io/en/Multiplication-or-dereference-md/
+https://qiulaidongfeng.github.io/zh-cn/%E4%B9%98%E6%B3%95%E8%BF%98%E6%98%AF%E8%A7%A3%E5%BC%95%E7%94%A8-md/
 https://qiulaidongfeng.github.io/en/mmap-error/
 https://qiulaidongfeng.github.io/zh-cn/mmap%E9%94%99%E8%AF%AF/
 https://qiulaidongfeng.github.io/zh-cn/one/
 https://qiulaidongfeng.github.io/en/one/
 https://qiulaidongfeng.github.io/
+https://qiulaidongfeng.github.io/tags/ulang/
 https://qiulaidongfeng.github.io/tags/go-go1-21/
