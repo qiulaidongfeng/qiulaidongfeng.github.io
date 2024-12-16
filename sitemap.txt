@@ -1,3 +1,4 @@
+https://qiulaidongfeng.github.io/zh-cn/go1-24rc1%E5%8F%91%E5%B8%83/
 https://qiulaidongfeng.github.io/en/HowDoesTheMetricsPackageRecordTheNumberOfNonDefaultBehaviorOccurrences-md/
 https://qiulaidongfeng.github.io/zh-cn/metrics%E5%8C%85%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BD%95%E9%9D%9E%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%8F%91%E7%94%9F%E6%AC%A1%E6%95%B0-md/
 https://qiulaidongfeng.github.io/en/Multiplication-or-dereference-md/
@@ -7,5 +8,6 @@ https://qiulaidongfeng.github.io/zh-cn/mmap%E9%94%99%E8%AF%AF/
 https://qiulaidongfeng.github.io/zh-cn/one/
 https://qiulaidongfeng.github.io/en/one/
 https://qiulaidongfeng.github.io/
-https://qiulaidongfeng.github.io/tags/go-go1-21/
 https://qiulaidongfeng.github.io/tags/ulang/
+https://qiulaidongfeng.github.io/tags/go-go1-21/
+https://qiulaidongfeng.github.io/tags/go-go1-24/

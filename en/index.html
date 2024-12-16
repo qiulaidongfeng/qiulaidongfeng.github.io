@@ -71,6 +71,111 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Multiplication-or-dereference-md" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="Multiplication-or-dereference-md/" class="article-date">
+  <time class="dt-published" datetime="2023-10-19T08:56:14.038Z" itemprop="datePublished">2023-10-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="Multiplication-or-dereference-md/">Multiplication_or_dereference</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Multiplication-or-dereference"><a href="#Multiplication-or-dereference" class="headerlink" title="Multiplication or dereference"></a>Multiplication or dereference</h1><p>Software translation</p>
+<p>In the <a target="_blank" rel="noopener" href="https://gitee.com/u-language/u-language">U Language Project</a> A separator based lexical analyzer is implemented in the <a target="_blank" rel="noopener" href="https://gitee.com/u-language/u-language/blob/master/pkg/lex/README.md">Lexical Analyzer Design Document</a> “The current * will be parsed as a multiplication sign, and when there is no pointer, there is no problem.”. Now we are ready to add pointers to this project. If you use * to dereference as in other languages, there are two options</p>
+<ol>
+<li><p>When constructing an abstract syntax tree, handle ambiguity where * can be both a multiplication sign and a dereference</p>
+</li>
+<li><p>At the lexical analysis node, handle ambiguity where * can be both a multiplication sign and a dereference</p>
+</li>
+</ol>
+<h2 id="How-to-solve-ambiguity"><a href="#How-to-solve-ambiguity" class="headerlink" title="How to solve * ambiguity"></a>How to solve * ambiguity</h2><p>When the compiler sees an ambiguity where * processing can be both a multiplication sign and a dereference, it first does not directly interpret it as a semantic method of multiplication sign or dereference. Enumeration proves that</p>
+<ul>
+<li><p>If it is directly interpreted as a multiplication sign, * ptr with * ptr&#x3D;1 is a dereference ptr pointer, which is now incorrectly interpreted as a multiplication ptr</p>
+</li>
+<li><p>If it is directly interpreted as dereference, the * b of c&#x3D;a * b is multiplied by b. It is now incorrectly interpreted as dereference b</p>
+</li>
+</ul>
+<p>Therefore, it is necessary to explain * according to different situations*</p>
+<ul>
+<li><p>If at the beginning, because multiplication requires two operands, at the beginning, there is no operand on the left, so it can be interpreted as dereference</p>
+</li>
+<li><p>If it is not at the beginning, and if the * is not preceded by a symbol, such as a+* ptr, since the left side is not an operand, it can be interpreted as dereference</p>
+</li>
+<li><p>If it is not at the beginning, and if * is a symbol, such as a * b, because the left side is the operand, it can be interpreted as a multiplication sign</p>
+</li>
+</ul>
+<p>The above processing methods can be used in lexical analysis or building an abstract syntax tree, but during lexical analysis, a Boolean variable is used to set to true when a multiplication sign is found. If the Boolean variable is true, the multiplication sign is processed using the above method. For parts without a multiplication sign, the overhead of judging is only increased once.</p>
+<h2 id="A-simpler-approach"><a href="#A-simpler-approach" class="headerlink" title="A simpler approach"></a>A simpler approach</h2><p>If * has ambiguity, in addition to handling ambiguity, you can also find a symbol without ambiguity, such as @, and the compiler can directly identify @ as a dereference when it sees it. However, this is different from mainstream practices and may increase learning costs</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://qiulaidongfeng.github.io/en/Multiplication-or-dereference-md/" data-id="cm4r5l43s000020us4vt8642i" data-title="Multiplication_or_dereference" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/ulang/" rel="tag">ulang</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-one" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="one/" class="article-date">
+  <time class="dt-published" datetime="2023-10-19T08:56:14.038Z" itemprop="datePublished">2023-10-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="one/">First blog</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>Software translation<br>On March 1, 2023, I published this blog</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://qiulaidongfeng.github.io/en/one/" data-id="cm4r5l43w000320usf80f60td" data-title="First blog" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-HowDoesTheMetricsPackageRecordTheNumberOfNonDefaultBehaviorOccurrences-md" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="HowDoesTheMetricsPackageRecordTheNumberOfNonDefaultBehaviorOccurrences-md/" class="article-date">
@@ -129,76 +234,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://qiulaidongfeng.github.io/en/HowDoesTheMetricsPackageRecordTheNumberOfNonDefaultBehaviorOccurrences-md/" data-id="clg4qxerw0005asr58q370nak" data-title="How does the metrics package record the number of non default behavior occurrences" class="article-share-link">Share</a>
+      <a data-url="https://qiulaidongfeng.github.io/en/HowDoesTheMetricsPackageRecordTheNumberOfNonDefaultBehaviorOccurrences-md/" data-id="cm4r5l43x000420us1yq9a8e6" data-title="How does the metrics package record the number of non default behavior occurrences" class="article-share-link">Share</a>
       
       
       
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-Multiplication-or-dereference-md" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="Multiplication-or-dereference-md/" class="article-date">
-  <time class="dt-published" datetime="2023-03-19T13:52:12.656Z" itemprop="datePublished">2023-03-19</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="Multiplication-or-dereference-md/">Multiplication_or_dereference</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="Multiplication-or-dereference"><a href="#Multiplication-or-dereference" class="headerlink" title="Multiplication or dereference"></a>Multiplication or dereference</h1><p>Software translation</p>
-<p>In the <a target="_blank" rel="noopener" href="https://gitee.com/u-language/u-language">U Language Project</a> A separator based lexical analyzer is implemented in the <a target="_blank" rel="noopener" href="https://gitee.com/u-language/u-language/blob/master/pkg/lex/README.md">Lexical Analyzer Design Document</a> “The current * will be parsed as a multiplication sign, and when there is no pointer, there is no problem.”. Now we are ready to add pointers to this project. If you use * to dereference as in other languages, there are two options</p>
-<ol>
-<li><p>When constructing an abstract syntax tree, handle ambiguity where * can be both a multiplication sign and a dereference</p>
-</li>
-<li><p>At the lexical analysis node, handle ambiguity where * can be both a multiplication sign and a dereference</p>
-</li>
-</ol>
-<h2 id="How-to-solve-ambiguity"><a href="#How-to-solve-ambiguity" class="headerlink" title="How to solve * ambiguity"></a>How to solve * ambiguity</h2><p>When the compiler sees an ambiguity where * processing can be both a multiplication sign and a dereference, it first does not directly interpret it as a semantic method of multiplication sign or dereference. Enumeration proves that</p>
-<ul>
-<li><p>If it is directly interpreted as a multiplication sign, * ptr with * ptr&#x3D;1 is a dereference ptr pointer, which is now incorrectly interpreted as a multiplication ptr</p>
-</li>
-<li><p>If it is directly interpreted as dereference, the * b of c&#x3D;a * b is multiplied by b. It is now incorrectly interpreted as dereference b</p>
-</li>
-</ul>
-<p>Therefore, it is necessary to explain * according to different situations*</p>
-<ul>
-<li><p>If at the beginning, because multiplication requires two operands, at the beginning, there is no operand on the left, so it can be interpreted as dereference</p>
-</li>
-<li><p>If it is not at the beginning, and if the * is not preceded by a symbol, such as a+* ptr, since the left side is not an operand, it can be interpreted as dereference</p>
-</li>
-<li><p>If it is not at the beginning, and if * is a symbol, such as a * b, because the left side is the operand, it can be interpreted as a multiplication sign</p>
-</li>
-</ul>
-<p>The above processing methods can be used in lexical analysis or building an abstract syntax tree, but during lexical analysis, a Boolean variable is used to set to true when a multiplication sign is found. If the Boolean variable is true, the multiplication sign is processed using the above method. For parts without a multiplication sign, the overhead of judging is only increased once.</p>
-<h2 id="A-simpler-approach"><a href="#A-simpler-approach" class="headerlink" title="A simpler approach"></a>A simpler approach</h2><p>If * has ambiguity, in addition to handling ambiguity, you can also find a symbol without ambiguity, such as @, and the compiler can directly identify @ as a dereference when it sees it. However, this is different from mainstream practices and may increase learning costs</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://qiulaidongfeng.github.io/en/Multiplication-or-dereference-md/" data-id="clg4qxes20009asr53e5odslt" data-title="Multiplication_or_dereference" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/ulang/" rel="tag">ulang</a></li></ul>
-
     </footer>
   </div>
   
@@ -241,51 +280,12 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://qiulaidongfeng.github.io/en/mmap-error/" data-id="clg4qxes00008asr5gxvdare5" data-title="mmap_error" class="article-share-link">Share</a>
+      <a data-url="https://qiulaidongfeng.github.io/en/mmap-error/" data-id="cm4r5l43u000120us3m271fsu" data-title="mmap_error" class="article-share-link">Share</a>
       
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/go-go1-21/" rel="tag">go - go1.21</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-one" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="one/" class="article-date">
-  <time class="dt-published" datetime="2023-03-02T10:45:27.188Z" itemprop="datePublished">2023-03-02</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="one/">First blog</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Software translation<br>On March 1, 2023, I published this blog</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://qiulaidongfeng.github.io/en/one/" data-id="clg4qxes4000casr5dbxd77uy" data-title="First blog" class="article-share-link">Share</a>
-      
-      
-      
     </footer>
   </div>
   
@@ -307,7 +307,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../tags/go-go1-21/" rel="tag">go - go1.21</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ulang/" rel="tag">ulang</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../tags/go-go1-21/" rel="tag">go - go1.21</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/go-go1-24/" rel="tag">go - go1.24</a></li><li class="tag-list-item"><a class="tag-list-link" href="../tags/ulang/" rel="tag">ulang</a></li></ul>
     </div>
   </div>
 
@@ -317,7 +317,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../tags/go-go1-21/" style="font-size: 20px;">go - go1.21</a> <a href="../tags/ulang/" style="font-size: 10px;">ulang</a>
+      <a href="../tags/go-go1-21/" style="font-size: 20px;">go - go1.21</a> <a href="../tags/go-go1-24/" style="font-size: 10px;">go - go1.24</a> <a href="../tags/ulang/" style="font-size: 15px;">ulang</a>
     </div>
   </div>
 
@@ -326,7 +326,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2023/03/">March 2023</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2024/12/">December 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2023/10/">October 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2023/03/">March 2023</a></li></ul>
     </div>
   </div>
 
@@ -339,11 +339,7 @@
       <ul>
         
           <li>
-            <a href="HowDoesTheMetricsPackageRecordTheNumberOfNonDefaultBehaviorOccurrences-md/">How does the metrics package record the number of non default behavior occurrences</a>
-          </li>
-        
-          <li>
-            <a href="../zh-cn/metrics%E5%8C%85%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BD%95%E9%9D%9E%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%8F%91%E7%94%9F%E6%AC%A1%E6%95%B0-md/">metrics包如何记录非默认行为发生次数</a>
+            <a href="../zh-cn/go1-24rc1%E5%8F%91%E5%B8%83/">go1.24rc1发布</a>
           </li>
         
           <li>
@@ -351,11 +347,15 @@
           </li>
         
           <li>
-            <a href="../zh-cn/%E4%B9%98%E6%B3%95%E8%BF%98%E6%98%AF%E8%A7%A3%E5%BC%95%E7%94%A8-md/">乘法还是解引用</a>
+            <a href="one/">First blog</a>
           </li>
         
           <li>
-            <a href="mmap-error/">mmap_error</a>
+            <a href="../zh-cn/metrics%E5%8C%85%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BD%95%E9%9D%9E%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%8F%91%E7%94%9F%E6%AC%A1%E6%95%B0-md/">metrics包如何记录非默认行为发生次数</a>
+          </li>
+        
+          <li>
+            <a href="../zh-cn/mmap%E9%94%99%E8%AF%AF/">mmap错误</a>
           </li>
         
       </ul>
@@ -371,7 +371,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       
-      &copy; 2023 秋来冬风<br>
+      &copy; 2024 秋来冬风<br>
       Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

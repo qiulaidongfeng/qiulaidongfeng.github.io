@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://qiulaidongfeng.github.io/zh-cn/go1-24rc1%E5%8F%91%E5%B8%83/</loc>
+    
+    <lastmod>2024-12-16</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://qiulaidongfeng.github.io/en/HowDoesTheMetricsPackageRecordTheNumberOfNonDefaultBehaviorOccurrences-md/</loc>
     
     <lastmod>2023-04-06</lastmod>
@@ -76,22 +85,29 @@
 
   <url>
     <loc>https://qiulaidongfeng.github.io/</loc>
-    <lastmod>2023-04-06</lastmod>
+    <lastmod>2024-12-16</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>https://qiulaidongfeng.github.io/tags/go-go1-21/</loc>
-    <lastmod>2023-04-06</lastmod>
+    <loc>https://qiulaidongfeng.github.io/tags/ulang/</loc>
+    <lastmod>2024-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://qiulaidongfeng.github.io/tags/ulang/</loc>
-    <lastmod>2023-04-06</lastmod>
+    <loc>https://qiulaidongfeng.github.io/tags/go-go1-21/</loc>
+    <lastmod>2024-12-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://qiulaidongfeng.github.io/tags/go-go1-24/</loc>
+    <lastmod>2024-12-16</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>

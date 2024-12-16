@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>秋来冬风的博客</title>
+  
+  
+  <link href="https://qiulaidongfeng.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://qiulaidongfeng.github.io/"/>
+  <updated>2024-12-16T14:49:50.447Z</updated>
+  <id>https://qiulaidongfeng.github.io/</id>
+  
+  <author>
+    <name>秋来冬风</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>go1.24rc1发布</title>
+    <link href="https://qiulaidongfeng.github.io/zh-cn/go1-24rc1%E5%8F%91%E5%B8%83/"/>
+    <id>https://qiulaidongfeng.github.io/zh-cn/go1-24rc1%E5%8F%91%E5%B8%83/</id>
+    <published>2024-12-16T14:46:29.000Z</published>
+    <updated>2024-12-16T14:49:50.447Z</updated>
+    
+    <content type="html"><![CDATA[<p>go1.24rc1已经发布，值得注意的是</p><ul><li>抗量子密钥交换（crypto&#x2F;mlkem）</li><li>弱指针</li><li>通用哈希函数（我写的实现）</li><li>泛型类型别名</li><li>更快的终结器</li><li>CPU开销平均降低2-3%，改进包括新的map内置实现，更高效的小object内存分配，新的运行时内部互斥实现</li><li>实验性包testing&#x2F;synctest用来测试并发代码</li><li>sync.Map的新实现，提高了性能</li><li>os.Root用来在特定目录执行文件系统操作</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;go1.24rc1已经发布，值得注意的是&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;抗量子密钥交换（crypto&amp;#x2F;mlkem）&lt;/li&gt;
+&lt;li&gt;弱指针&lt;/li&gt;
+&lt;li&gt;通用哈希函数（我写的实现）&lt;/li&gt;
+&lt;li&gt;泛型类型别名&lt;/li&gt;
+&lt;li&gt;更快的终结器&lt;/li&gt;
+&lt;li</summary>
+      
+    
+    
+    
+    
+    <category term="go - go1.24" scheme="https://qiulaidongfeng.github.io/tags/go-go1-24/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Multiplication_or_dereference</title>
+    <link href="https://qiulaidongfeng.github.io/en/Multiplication-or-dereference-md/"/>
+    <id>https://qiulaidongfeng.github.io/en/Multiplication-or-dereference-md/</id>
+    <published>2023-10-19T08:56:14.038Z</published>
+    <updated>2023-03-19T13:57:42.260Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Multiplication-or-dereference"><a href="#Multiplication-or-dereference" class="headerlink" title="Multiplication or dereference"></a>Multiplication or dereference</h1><p>Software translation</p><p>In the <a href="https://gitee.com/u-language/u-language">U Language Project</a> A separator based lexical analyzer is implemented in the <a href="https://gitee.com/u-language/u-language/blob/master/pkg/lex/README.md">Lexical Analyzer Design Document</a> “The current * will be parsed as a multiplication sign, and when there is no pointer, there is no problem.”. Now we are ready to add pointers to this project. If you use * to dereference as in other languages, there are two options</p><ol><li><p>When constructing an abstract syntax tree, handle ambiguity where * can be both a multiplication sign and a dereference</p></li><li><p>At the lexical analysis node, handle ambiguity where * can be both a multiplication sign and a dereference</p></li></ol><h2 id="How-to-solve-ambiguity"><a href="#How-to-solve-ambiguity" class="headerlink" title="How to solve * ambiguity"></a>How to solve * ambiguity</h2><p>When the compiler sees an ambiguity where * processing can be both a multiplication sign and a dereference, it first does not directly interpret it as a semantic method of multiplication sign or dereference. Enumeration proves that</p><ul><li><p>If it is directly interpreted as a multiplication sign, * ptr with * ptr&#x3D;1 is a dereference ptr pointer, which is now incorrectly interpreted as a multiplication ptr</p></li><li><p>If it is directly interpreted as dereference, the * b of c&#x3D;a * b is multiplied by b. It is now incorrectly interpreted as dereference b</p></li></ul><p>Therefore, it is necessary to explain * according to different situations*</p><ul><li><p>If at the beginning, because multiplication requires two operands, at the beginning, there is no operand on the left, so it can be interpreted as dereference</p></li><li><p>If it is not at the beginning, and if the * is not preceded by a symbol, such as a+* ptr, since the left side is not an operand, it can be interpreted as dereference</p></li><li><p>If it is not at the beginning, and if * is a symbol, such as a * b, because the left side is the operand, it can be interpreted as a multiplication sign</p></li></ul><p>The above processing methods can be used in lexical analysis or building an abstract syntax tree, but during lexical analysis, a Boolean variable is used to set to true when a multiplication sign is found. If the Boolean variable is true, the multiplication sign is processed using the above method. For parts without a multiplication sign, the overhead of judging is only increased once.</p><h2 id="A-simpler-approach"><a href="#A-simpler-approach" class="headerlink" title="A simpler approach"></a>A simpler approach</h2><p>If * has ambiguity, in addition to handling ambiguity, you can also find a symbol without ambiguity, such as @, and the compiler can directly identify @ as a dereference when it sees it. However, this is different from mainstream practices and may increase learning costs</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Multiplication-or-dereference&quot;&gt;&lt;a href=&quot;#Multiplication-or-dereference&quot; class=&quot;headerlink&quot; title=&quot;Multiplication or dereference&quot;&gt;&lt;/a</summary>
+      
+    
+    
+    
+    
+    <category term="ulang" scheme="https://qiulaidongfeng.github.io/tags/ulang/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>First blog</title>
+    <link href="https://qiulaidongfeng.github.io/en/one/"/>
+    <id>https://qiulaidongfeng.github.io/en/one/</id>
+    <published>2023-10-19T08:56:14.038Z</published>
+    <updated>2023-03-02T10:49:39.897Z</updated>
+    
+    <content type="html"><![CDATA[<p>Software translation<br>On March 1, 2023, I published this blog</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Software translation&lt;br&gt;On March 1, 2023, I published this blog&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>metrics包如何记录非默认行为发生次数</title>
+    <link href="https://qiulaidongfeng.github.io/zh-cn/metrics%E5%8C%85%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BD%95%E9%9D%9E%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%8F%91%E7%94%9F%E6%AC%A1%E6%95%B0-md/"/>
+    <id>https://qiulaidongfeng.github.io/zh-cn/metrics%E5%8C%85%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BD%95%E9%9D%9E%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%8F%91%E7%94%9F%E6%AC%A1%E6%95%B0-md/</id>
+    <published>2023-10-19T08:56:14.038Z</published>
+    <updated>2023-04-06T06:34:36.238Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="go1-21前瞻"><a href="#go1-21前瞻" class="headerlink" title="go1.21前瞻"></a>go1.21前瞻</h1><h2 id="metrics包如何记录非默认行为发生次数"><a href="#metrics包如何记录非默认行为发生次数" class="headerlink" title="metrics包如何记录非默认行为发生次数"></a>metrics包如何记录非默认行为发生次数</h2><p>  go1.21正在开发中，<a href="https://tip.golang.org/doc/go1.21">发行说明草案</a> 提到预计2023年8月发布。</p><p>  在go1.21的<a href="https://github.com/golang/go">开发分支</a>中，<a href="https://pkg.go.dev/runtime/metrics@master">metrics</a> 包中，新增了一系列格式如同 &#x2F;godebug&#x2F;non-default-behavior&#x2F;(godebug-name):events的指标，(godebug-name)是GODEBUG环境变量的一系列键值对，某些键的名称，比如go1.19引入的execerrdot（以下简称<strong>godebug指标</strong>）。通过这些新增的指标，可以获取<strong>因为设置了这些环境变量导致非默认行为发生次数的数量</strong>，本文通过研究源代码来分析这是如何实现的。</p><p>  首先，本文使用的是go标准库源代码(通过gotip安装)，具体版本号（go version devel go1.21-8d68b388d4 Wed Apr 5 21:45:24 2023 +0000 windows&#x2F;amd64）。</p><hr><p>  在go标准库的internal&#x2F;godebug包有如下API:</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Setting <span class="keyword">struct</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">New</span><span class="params">(name <span class="type">string</span>)</span></span> *Setting</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(s *Setting)</span></span> IncNonDefault()</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(s *Setting)</span></span> Name() <span class="type">string</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(s *Setting)</span></span> String() <span class="type">string</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(s *Setting)</span></span> Value() <span class="type">string</span></span><br></pre></td></tr></table></figure><p>在Setting结构体中，有一个非默认行为计数器，类型是atomic.Uint64，这是一个在go1.19引入的原子类型，API如下</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Uint64 <span class="keyword">struct</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(x *Uint64)</span></span> Add(delta <span class="type">uint64</span>) (<span class="built_in">new</span> <span class="type">uint64</span>)</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(x *Uint64)</span></span> CompareAndSwap(old, <span class="built_in">new</span> <span class="type">uint64</span>) (swapped <span class="type">bool</span>)</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(x *Uint64)</span></span> Load() <span class="type">uint64</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(x *Uint64)</span></span> Store(val <span class="type">uint64</span>)</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(x *Uint64)</span></span> Swap(<span class="built_in">new</span> <span class="type">uint64</span>) (old <span class="type">uint64</span>)</span><br></pre></td></tr></table></figure><p>这个结构体的IncNonDefault方法每次调用时非默认行为计数器都会原子加1，在第一次调用时还会将非默认行为计数器的Load方法通过runtime包的godebug_registerMetric函数设置为获取godebug指标对应的值的函数。</p><p>这样通过每次非默认行为发生时都调用IncNonDefault方法，就可以在Setting结构体中记录非默认行为发生次数。</p><p>godebug_registerMetric函数签名如下：</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">godebug_registerMetric</span><span class="params">(name <span class="type">string</span>, read <span class="keyword">func</span>()</span></span> <span class="type">uint64</span>)</span><br></pre></td></tr></table></figure><p>这个函数将name参数的值表示的指标，获取指标对应的值的函数设置为read参数传递的参数。</p><p>metrics包获取godebug指标对应的值的能力来源于runtime包。</p><hr><p>这样，非默认行为发生次数被记录和获取的顺序是：</p><ul><li>go标准库的每个godebug选项都通过internal&#x2F;godebug包的New()函数创建，返回值包含非默认行为计数器。</li><li>每次非默认行为发生时都会调用Setting结构体的IncNonDefault方法。</li><li>IncNonDefault方法将获取godebug指标对应的值的函数设置为非默认行为计数器的Load方法。</li><li>IncNonDefault方法将非默认行为计数器原子加1。</li><li>每次godebug指标对应的值被获取，都会调用非默认行为计数器的Load方法，这样就实现了metrics包有记录非默认行为发生次数的现象（实际记录在Setting结构体，只是metrics包通过runtime包，runtime包通过调用Setting结构体的非默认行为计数器的Load方法展现出了这种现象）。</li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;go1-21前瞻&quot;&gt;&lt;a href=&quot;#go1-21前瞻&quot; class=&quot;headerlink&quot; title=&quot;go1.21前瞻&quot;&gt;&lt;/a&gt;go1.21前瞻&lt;/h1&gt;&lt;h2 id=&quot;metrics包如何记录非默认行为发生次数&quot;&gt;&lt;a href=&quot;#metrics包</summary>
+      
+    
+    
+    
+    
+    <category term="go - go1.21" scheme="https://qiulaidongfeng.github.io/tags/go-go1-21/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mmap错误</title>
+    <link href="https://qiulaidongfeng.github.io/zh-cn/mmap%E9%94%99%E8%AF%AF/"/>
+    <id>https://qiulaidongfeng.github.io/zh-cn/mmap%E9%94%99%E8%AF%AF/</id>
+    <published>2023-10-19T08:56:14.038Z</published>
+    <updated>2023-03-02T12:58:24.209Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="go1-21前瞻"><a href="#go1-21前瞻" class="headerlink" title="go1.21前瞻"></a>go1.21前瞻</h1><h2 id="windows允许处理异常页面错误"><a href="#windows允许处理异常页面错误" class="headerlink" title="windows允许处理异常页面错误"></a>windows允许处理异常页面错误</h2><p>go1.21正在开发中，<a href="https://tip.golang.org/doc/go1.21">发行说明草案</a> 提到预计2023年8月发布</p><p>根据提交信息 <a href="https://github.com/golang/go/commit/e03ee85ef434f307500a71927dfb3e876161847a">runtime: Allow handling of EXCEPTION_IN_PAGE_ERROR</a> go1.21允许在windows通过debug.SetPanicOnFault 处理内存映射文件的访问故障（例如，内存映射文件所在的驱动器被弹出）</p><p>例如来源于 <a href="https://github.com/golang/go/issues/58457">golang&#x2F;go#58457</a>的例子<br>内存映射外部磁盘上的文件(使用CreateFileMapping &#x2F; MapViewOfFile)<br>调用debug.SetPanicOnFault(true)<br>弹出外部磁盘<br>尝试从内存映射中读取</p><p>看到的是？<br>The runtime faults (Exception 0xc0000006 0x0 …)<br>这不是panic,不能通过recover恢复</p><p>go1.21应该是看到的 panic …</p><p>根据 <a href="https://pkg.go.dev/runtime/debug#SetPanicOnFault">SetPanicOnFault文档</a>这种情况当 调用debug.SetPanicOnFault(true) 后使用内存映射文件的程序或不安全的内存操作可能会导致非零地址出错；SetPanicOnFault允许这样的程序请求运行时只触发一次panic，根据<a href="https://github.com/golang/go/issues/58457">golang&#x2F;go#58457</a> 至少在go1.19不是这样，截至发布前，没看到go官方打算将修复的提交反向移植到go1.20和go1.19的下一个次要版本</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;go1-21前瞻&quot;&gt;&lt;a href=&quot;#go1-21前瞻&quot; class=&quot;headerlink&quot; title=&quot;go1.21前瞻&quot;&gt;&lt;/a&gt;go1.21前瞻&lt;/h1&gt;&lt;h2 id=&quot;windows允许处理异常页面错误&quot;&gt;&lt;a href=&quot;#windows允许处理异</summary>
+      
+    
+    
+    
+    
+    <category term="go - go1.21" scheme="https://qiulaidongfeng.github.io/tags/go-go1-21/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>第一个博客</title>
+    <link href="https://qiulaidongfeng.github.io/zh-cn/one/"/>
+    <id>https://qiulaidongfeng.github.io/zh-cn/one/</id>
+    <published>2023-10-19T08:56:14.038Z</published>
+    <updated>2023-03-02T11:11:09.346Z</updated>
+    
+    <content type="html"><![CDATA[<p>2023年3月1日，我公开了这个博客</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;2023年3月1日，我公开了这个博客&lt;/p&gt;
+</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>乘法还是解引用</title>
+    <link href="https://qiulaidongfeng.github.io/zh-cn/%E4%B9%98%E6%B3%95%E8%BF%98%E6%98%AF%E8%A7%A3%E5%BC%95%E7%94%A8-md/"/>
+    <id>https://qiulaidongfeng.github.io/zh-cn/%E4%B9%98%E6%B3%95%E8%BF%98%E6%98%AF%E8%A7%A3%E5%BC%95%E7%94%A8-md/</id>
+    <published>2023-10-19T08:56:14.038Z</published>
+    <updated>2023-03-19T13:57:38.475Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="乘法还是解引用"><a href="#乘法还是解引用" class="headerlink" title="乘法还是解引用"></a>乘法还是解引用</h1><p>在 <a href="https://gitee.com/u-language/u-language">U语言项目</a> 中 ，实现了一个基于分隔符的词法分析器，文档在 <a href="https://gitee.com/u-language/u-language/blob/master/pkg/lex/README.md">词法分析器设计文档</a> ，当前 * 将被分析为乘号，在没有指针时，这样没有问题。现在准备给这个项目增加指针，如果按其他语言一样使用 * 解引用，有两种方案</p><ol><li><p>在构建抽象语法树时处理 * 既可以是乘号又可以解引用的二义性</p></li><li><p>在词法分析节点处理 *  既可以是乘号又可以解引用的二义性</p></li></ol><h2 id="如何解决-二义性"><a href="#如何解决-二义性" class="headerlink" title="如何解决 * 二义性"></a>如何解决 * 二义性</h2><p>当编译器看到 一个 * 处理既可以是乘号又可以解引用的二义性，首先没有直接解释为乘号或解引用一种语义的方法，枚举证明</p><ul><li>如果直接解释为 乘号 ，对于 *ptr&#x3D;1 的 *ptr是解引用ptr指针，现在被错误的解释成乘ptr</li><li>如果直接解释为 解引用 ， 对于 c &#x3D;a*b 的 *b是乘b，现在被错误的解释成解引用b</li></ul><p>所以需要根据不同情况解释 * ，对于 *</p><ul><li>如果在开头，因为乘法需要两个操作数，在开头表示左边没有操作数，所以可以解释为解引用</li><li>如果不在开头，如果 * 前面不是符号，比如 a+*ptr，因为左边不是操作数，所以可以解释为解引用</li><li>如果不在开头，如果 * 是符号，比如 a*b，因为左边是操作数，所以可以解释为乘号</li></ul><p>上述处理方法在词法分析或构建抽象语法树，都可以，但是在词法分析的时候通过一个布尔变量，在发现乘号时设置为true,在末尾判断如果布尔变量为true则按上述方法处理乘号，对于没有乘号的部分只增加一次判断的开销。</p><h2 id="更简单的办法"><a href="#更简单的办法" class="headerlink" title="更简单的办法"></a>更简单的办法</h2><p>如果* 有二义性，除了处理二义性还可以找一个没有二义性的符号，比如@，然后编译器看到@就可以直接的识别为解引用，只不过这样和主流做法有区别，可能增加学习成本</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;乘法还是解引用&quot;&gt;&lt;a href=&quot;#乘法还是解引用&quot; class=&quot;headerlink&quot; title=&quot;乘法还是解引用&quot;&gt;&lt;/a&gt;乘法还是解引用&lt;/h1&gt;&lt;p&gt;在 &lt;a href=&quot;https://gitee.com/u-language/u-language</summary>
+      
+    
+    
+    
+    
+    <category term="ulang" scheme="https://qiulaidongfeng.github.io/tags/ulang/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>How does the metrics package record the number of non default behavior occurrences</title>
+    <link href="https://qiulaidongfeng.github.io/en/HowDoesTheMetricsPackageRecordTheNumberOfNonDefaultBehaviorOccurrences-md/"/>
+    <id>https://qiulaidongfeng.github.io/en/HowDoesTheMetricsPackageRecordTheNumberOfNonDefaultBehaviorOccurrences-md/</id>
+    <published>2023-04-06T06:19:16.000Z</published>
+    <updated>2023-04-06T06:34:50.548Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Go1-21-Forward-Looking"><a href="#Go1-21-Forward-Looking" class="headerlink" title="Go1.21 Forward Looking"></a>Go1.21 Forward Looking</h1><p>Software translation</p><h2 id="How-does-the-metrics-package-record-the-number-of-non-default-behavior-occurrences"><a href="#How-does-the-metrics-package-record-the-number-of-non-default-behavior-occurrences" class="headerlink" title="How does the metrics package record the number of non default behavior occurrences"></a>How does the metrics package record the number of non default behavior occurrences</h2><p>Go1.21 is currently under development, <a href="https://tip.golang.org/doc/go1.21">draft release note</a>It is mentioned that it is expected to be released in August 2023.</p><p>In the development branch of <a href="https://github.com/golang/go">go1.21</a> In, <a href="https://pkg.go.dev/runtime/metrics@master">metrics</a>  package, a series of indicators in the format &#x2F;godebug&#x2F;non-default-behavior&#x2F;(godebug-name):events ,(godebug name) is a series of key value pairs for GODEBUG environment variables, and the names of certain keys, such as the execerrdot introduced in go1.19 (hereinafter referred to as <strong>godebug indicator</strong>). <strong>Through these newly added indicators, the number of non default behavior occurrences caused by setting these environmental variables can be obtained.</strong> This article analyzes how this is achieved by studying the source code.</p><p>Firstly, this article uses the go standard library source code (installed through gotip), with a specific version number (go version devel go1.21-8d68b388d4 Wed Apr 5 21:45:24 2023+0000 windows&#x2F;amd64).</p><hr><p>The internal&#x2F;godebug package in the Go standard library has the following APIs:</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Setting <span class="keyword">struct</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">New</span><span class="params">(name <span class="type">string</span>)</span></span> *Setting</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *Setting)</span></span> IncNonDefault()</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *Setting)</span></span> Name() <span class="type">string</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *Setting)</span></span> String() <span class="type">string</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *Setting)</span></span> Value() <span class="type">string</span></span><br></pre></td></tr></table></figure><p>In the Setting structure, there is a non default behavior counter of type atomic.Uint64, which is an atomic type introduced in go1.19. The API is as follows</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Uint64 <span class="keyword">struct</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(x *Uint64)</span></span> Add(delta <span class="type">uint64</span>) (<span class="built_in">new</span> <span class="type">uint64</span>)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(x *Uint64)</span></span> CompareAndSwap(old, <span class="built_in">new</span> <span class="type">uint64</span>) (swapped <span class="type">bool</span>)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(x *Uint64)</span></span> Load() <span class="type">uint64</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(x *Uint64)</span></span> Store(val <span class="type">uint64</span>)</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(x *Uint64)</span></span> Swap(<span class="built_in">new</span> <span class="type">uint64</span>) (old <span class="type">uint64</span>)</span><br></pre></td></tr></table></figure><p>The IncNonDefault method of this structure will atomically add 1 to the non default behavior counter every time it is called. On the first call, the Load method of the non default behavior counter will also be debugged through the runtime package’s godebug_ The registerMetric function is set to obtain the value corresponding to the godebug indicator.</p><p>By calling the IncNonDefault method every time a non default behavior occurs, the number of non default behavior occurrences can be recorded in the Setting structure.</p><p>godebug_registerMetric The signature of the function is as follows:</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">godebug_registerMetric</span><span class="params">(name <span class="type">string</span>, read <span class="keyword">func</span>()</span></span> <span class="type">uint64</span>)</span><br></pre></td></tr></table></figure><p>This function sets the value of the name parameter to represent the indicator, and the function to obtain the corresponding value of the indicator as the parameter passed by the read parameter.</p><p>The ability of the metrics package to obtain the value corresponding to the godebug indicator comes from the runtime package.</p><hr><p>In this way, the order in which non default behavior occurrences are recorded and obtained is:</p><ul><li><p>Each godebug option in the go standard library is created through the New() function of the internal&#x2F;codebug package, and the return value contains non default behavior counters.</p></li><li><p>The IncNonDefault method of the Setting structure is called every time a non default behavior occurs.</p></li><li><p>The IncNonDefault method sets the function that obtains the value corresponding to the godebug indicator as the Load method of the non default behavior counter.</p></li><li><p>The IncNonDefault method Atomic plus 1 to the non default behavior counter atom.</p></li><li><p>Every time the value corresponding to the godebug indicator is obtained, the Load method of the non default behavior counter is called, which implements the phenomenon of the metrics package recording the number of non default behavior occurrences (actually recorded in the Setting structure, but the metrics package shows this phenomenon through the runtime package, which is demonstrated by calling the Load method of the non default behavior counter of the Setting structure).</p></li></ul>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Go1-21-Forward-Looking&quot;&gt;&lt;a href=&quot;#Go1-21-Forward-Looking&quot; class=&quot;headerlink&quot; title=&quot;Go1.21 Forward Looking&quot;&gt;&lt;/a&gt;Go1.21 Forward Looki</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>mmap_error</title>
+    <link href="https://qiulaidongfeng.github.io/en/mmap-error/"/>
+    <id>https://qiulaidongfeng.github.io/en/mmap-error/</id>
+    <published>2023-03-02T13:00:49.000Z</published>
+    <updated>2023-03-02T13:06:23.528Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="Go1-21-forward-looking"><a href="#Go1-21-forward-looking" class="headerlink" title="Go1.21 forward-looking"></a>Go1.21 forward-looking</h1><p>Software translation</p><h2 id="Windows-allows-handling-exception-page-errors"><a href="#Windows-allows-handling-exception-page-errors" class="headerlink" title="Windows allows handling exception page errors"></a>Windows allows handling exception page errors</h2><p>Go1.21 is under development, <a href="https://tip.golang.org/doc/go1.21">draft release note</a> Mention that it is expected to be released in August 2023</p><p>According to the submitted information <a href="https://github.com/golang/go/commit/e03ee85ef434f307500a71927dfb3e876161847a">runtime: Allow handling of EXCEPTION_IN_PAGE_ERROR</a> Go1.21 allows you to handle the access failure of the memory-mapped file through debug.SetPanicOnFault in Windows (for example, the drive where the memory-mapped file is located is ejected)</p><p>For example, it comes from <a href="https://github.com/golang/go/issues/58457">golang&#x2F;go#58457</a> Example of</p><p>Memory mapping files on external disks (using CreateFileMapping&#x2F;MapViewOfFile)<br>Call debug. SetPanicOnFault (true)<br>Eject external disk<br>Attempt to read from memory map<br>What do you see?<br>The runtime faults (Exception 0xc0000006 0x0 …)</p><p>This is not a panic and cannot be recovered through recover</p><p>Go1.21 should be the panic</p><p>According to <a href="https://pkg.go.dev/runtime/debug#SetPanicOnFault">SetPanicOnFault document</a> In this case, when debugging. SetPanicOnFault (true) is called, a program using a memory mapping file or an unsafe memory operation may cause a non-zero address error; SetPanicOnFault allows such a program to request to trigger panic only once when running. According to <a href="https://github.com/golang/go/issues/58457">golang&#x2F;go#58457</a> At least that was not the case in go1.19. As of the release, we did not see that the official go plans to reverse migrate the repair submission to the next minor version of go1.20 and go1.19</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;Go1-21-forward-looking&quot;&gt;&lt;a href=&quot;#Go1-21-forward-looking&quot; class=&quot;headerlink&quot; title=&quot;Go1.21 forward-looking&quot;&gt;&lt;/a&gt;Go1.21 forward-looki</summary>
+      
+    
+    
+    
+    
+    <category term="go - go1.21" scheme="https://qiulaidongfeng.github.io/tags/go-go1-21/"/>
+    
+  </entry>
+  
+</feed>
