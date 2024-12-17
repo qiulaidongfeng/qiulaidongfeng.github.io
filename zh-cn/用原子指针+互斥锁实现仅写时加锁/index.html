@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>用原子指针+互斥锁实现仅写时加锁 | 秋来冬风的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="此博客介绍我写arena的一个经验。 通常在访问共享资源时，简单的加互斥锁就够用，在读多写少时使用读写锁优化性能，在写arena等场景，为了极致的性能，需要别的方法。 回顾一些知识，说明为什么互斥锁和读写锁不适合用在需要极致性能时。为什么访问共享资源时需要加锁，因为如果不加锁，多个线程可能看到正在进行操作的中间状态，并基于此中间状态执行它自己的一些操作，导致错误结果。 一个简单的例子说明这一点：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用原子指针+互斥锁实现仅写时加锁">
+<meta property="og:url" content="https://qiulaidongfeng.github.io/zh-cn/%E7%94%A8%E5%8E%9F%E5%AD%90%E6%8C%87%E9%92%88+%E4%BA%92%E6%96%A5%E9%94%81%E5%AE%9E%E7%8E%B0%E4%BB%85%E5%86%99%E6%97%B6%E5%8A%A0%E9%94%81/index.html">
+<meta property="og:site_name" content="秋来冬风的博客">
+<meta property="og:description" content="此博客介绍我写arena的一个经验。 通常在访问共享资源时，简单的加互斥锁就够用，在读多写少时使用读写锁优化性能，在写arena等场景，为了极致的性能，需要别的方法。 回顾一些知识，说明为什么互斥锁和读写锁不适合用在需要极致性能时。为什么访问共享资源时需要加锁，因为如果不加锁，多个线程可能看到正在进行操作的中间状态，并基于此中间状态执行它自己的一些操作，导致错误结果。 一个简单的例子说明这一点：">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-12-17T12:00:37.000Z">
+<meta property="article:modified_time" content="2024-12-17T13:19:15.973Z">
+<meta property="article:author" content="秋来冬风">
+<meta property="article:tag" content="go">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="../../atom.xml" title="秋来冬风的博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="../../favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="../../css/style.css">
+
+  
+    
+<link rel="stylesheet" href="../../fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="../../index.html" id="logo">秋来冬风的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="../../index.html">Home</a>
+        
+          <a class="main-nav-link" href="../../archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="../../atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://qiulaidongfeng.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-用原子指针+互斥锁实现仅写时加锁" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="" class="article-date">
+  <time class="dt-published" datetime="2024-12-17T12:00:37.000Z" itemprop="datePublished">2024-12-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      用原子指针+互斥锁实现仅写时加锁
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>此博客介绍我写<a target="_blank" rel="noopener" href="https://github.com/qiulaidongfeng/arena">arena</a>的一个经验。</p>
+<p>通常在访问共享资源时，简单的加互斥锁就够用，在读多写少时使用读写锁优化性能，在写<a target="_blank" rel="noopener" href="https://github.com/qiulaidongfeng/arena">arena</a>等场景，为了极致的性能，需要别的方法。</p>
+<h2 id="回顾一些知识，说明为什么互斥锁和读写锁不适合用在需要极致性能时。"><a href="#回顾一些知识，说明为什么互斥锁和读写锁不适合用在需要极致性能时。" class="headerlink" title="回顾一些知识，说明为什么互斥锁和读写锁不适合用在需要极致性能时。"></a>回顾一些知识，说明为什么互斥锁和读写锁不适合用在需要极致性能时。</h2><p>为什么访问共享资源时需要加锁，因为如果不加锁，多个线程可能看到正在进行操作的中间状态，并基于此中间状态执行它自己的一些操作，导致错误结果。</p>
+<p>一个简单的例子说明这一点：</p>
+<p>如果对变量i进行加1，CPU的执行步骤是</p>
+<ol>
+<li>读取i的值到寄存器</li>
+<li>执行加1</li>
+<li>结果写回i</li>
+</ol>
+<p>如果两个线程直接对变量i加1，可能的执行步骤是</p>
+<ol>
+<li>两个线程读取i的值（i&#x3D;1）到寄存器</li>
+<li>执行加1,得到2</li>
+<li>结果写回i,结果i&#x3D;2</li>
+</ol>
+<p>这样导致i被加了两次1但是结果却不是正确的3。</p>
+<p>对于这种情况，CPU提供了原子操作，避免了这样因为看到其他线程操作的中间状态，导致错误结果。</p>
+<p>CPU提供的原子操作包括原子加，原子读，原子写，原子交换等，适用于很小的数据。在一些简单的场景，如记录网站访问量，这样简单的对一个整数作加法这种场景是足够的，但在更复杂的场景不够。</p>
+<p>对于更复杂的场景，基于原子操作产生了互斥锁。互斥锁有加锁和解锁两个操作，一把锁加锁了必须解锁才能再加锁，这样避免在更复杂的场景看到其他线程操作的中间状态。</p>
+<p>用伪代码表示，互斥锁通常这样使用</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lock Mutex</span><br><span class="line"></span><br><span class="line">lock.Lock()<span class="comment">//加锁</span></span><br><span class="line"><span class="comment">//复杂的操作</span></span><br><span class="line">lock.Unlock()<span class="comment">//解锁</span></span><br></pre></td></tr></table></figure>
+
+<p>因为互斥锁的特性（一把锁加锁了必须解锁才能再加锁），所以可以确保复杂的操作在锁的保护中，不会被看到它操作时的中间状态，从而避免了错误结果。</p>
+<p>简单的互斥锁用go语言写扣除空行，完整实现只需要5行代码</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> mutex</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;sync/atomic&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Mutex <span class="type">int32</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(lock *Mutex)</span></span> Lock() &#123;<span class="keyword">for</span> !atomic.CompareAndSwapInt32((*<span class="type">int32</span>)(lock), <span class="number">0</span>, <span class="number">1</span>) &#123;&#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(lock *Mutex)</span></span> Unlock() &#123;<span class="keyword">for</span> !atomic.CompareAndSwapInt32((*<span class="type">int32</span>)(lock), <span class="number">1</span>, <span class="number">0</span>) &#123;&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>很简单，就是一个整数，用原子操作，加锁就为0时改成1，解锁就为1时改成0。这样就可以实现了一个能用的互斥锁。</p>
+<p>因为读操作与写操作不同，读操作不会改变什么，它没有中间状态，它只需要不会写操作同时进行，就可以多个线程同时进行读操作。在读多写少的场景，使用互斥锁让可以同时进行的读操作分开进行，会降低性能，所以产生了读写锁。</p>
+<p>读写锁是这样的锁：</p>
+<ol>
+<li>有读锁和写锁。</li>
+<li>不能同时加读锁没解锁和加写锁没解锁，其中一种加锁要等待另一种加锁后解锁才能。</li>
+<li>写锁就像互斥锁。</li>
+<li>读锁可以加锁n次，但解锁也要n次，否则加写锁永远不会成功。</li>
+</ol>
+<p>用伪代码表示，读写锁通常这样使用</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lock RWMutex</span><br><span class="line"></span><br><span class="line"><span class="comment">//写操作</span></span><br><span class="line">lock.Lock()<span class="comment">//加写锁</span></span><br><span class="line"><span class="comment">//执行写操作</span></span><br><span class="line">lock.Unlock()<span class="comment">//解写锁</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//读操作</span></span><br><span class="line">lock.RLock()<span class="comment">//加读锁</span></span><br><span class="line"><span class="comment">//执行读操作</span></span><br><span class="line">lock.RUnlock()<span class="comment">//解读锁</span></span><br></pre></td></tr></table></figure>
+
+<p>这样因为读写锁的特性，所以写操作不会和读操作同时进行，多个读操作可以同时进行，比互斥锁提高了读多写少时的性能。</p>
+<p>互斥锁和读写锁都基于原子操作实现，并且是使用原子加等相对性能更差的原子操作实现，性能随着CPU核数增加反而可能更差，所以在需要极致性能时，不适合。</p>
+<h2 id="仅写时加锁"><a href="#仅写时加锁" class="headerlink" title="仅写时加锁"></a>仅写时加锁</h2><p>在写<a target="_blank" rel="noopener" href="https://github.com/qiulaidongfeng/arena">arena</a>时，存在读多写少的场景，并且读操作特别多。每次都加读锁不能达到极致的性能。</p>
+<p>在原子操作中，原子读相对性能更好。并且数据在内存中有内存地址，它可以进行原子读。</p>
+<p>所以可以将使用读写锁的代码，用原子指针+互斥锁（对内存地址进行原子操作的指针）改写成这样代码：</p>
+<p>一个伪代码展示通用的模版：</p>
+<p>使用读写时的代码</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lock RWMutex</span><br><span class="line"><span class="keyword">var</span> data []<span class="type">int</span> <span class="comment">//共享数据</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//写操作</span></span><br><span class="line">lock.Lock()<span class="comment">//加写锁</span></span><br><span class="line"><span class="comment">//执行写操作，例如</span></span><br><span class="line">data=<span class="built_in">make</span>([]<span class="type">int</span>,<span class="number">0</span>)</span><br><span class="line">lock.Unlock()<span class="comment">//解写锁</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//读操作</span></span><br><span class="line">lock.RLock()<span class="comment">//加读锁</span></span><br><span class="line"><span class="comment">//执行读操作，例如</span></span><br><span class="line">v:=data[<span class="number">0</span>]</span><br><span class="line">lock.RUnlock()<span class="comment">//解读锁</span></span><br></pre></td></tr></table></figure>
+
+<p>改写为用原子指针的代码：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ptr atomic.Pointer[[]<span class="type">int</span>]</span><br><span class="line"><span class="keyword">var</span> lock Mutex</span><br><span class="line"><span class="keyword">var</span> data []<span class="type">int</span> <span class="comment">//共享数据</span></span><br><span class="line">ptr.Store(&amp;data)</span><br><span class="line"></span><br><span class="line"><span class="comment">//写操作</span></span><br><span class="line">lock.Lock()<span class="comment">//加写锁</span></span><br><span class="line"><span class="comment">//执行写操作，例如创建一个新的[]int替换旧的</span></span><br><span class="line"><span class="built_in">new</span>=<span class="built_in">make</span>([]<span class="type">int</span>,<span class="number">0</span>)</span><br><span class="line">ptr.Store(&amp;<span class="built_in">new</span>)</span><br><span class="line">lock.Unlock()<span class="comment">//解写锁</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//读操作，例如读[]int</span></span><br><span class="line">v:=*ptr.Load()</span><br></pre></td></tr></table></figure>
+
+<p>这样仅写时加锁，进一步提高了读操作的性能。</p>
+<p><strong>注意采用这种办法，需要小心注意写操作的涉及的内存必须和读操作涉及的内存不相交，否则读操作和写操作可能同时对同一块内存进行，导致错误结果</strong></p>
+<p>这是一个用伪代码写的不正确的模版：</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ptr atomic.Pointer[[]<span class="type">int</span>]</span><br><span class="line"><span class="keyword">var</span> lock Mutex</span><br><span class="line"><span class="keyword">var</span> data []<span class="type">int</span> <span class="comment">//共享数据</span></span><br><span class="line">ptr.Store(&amp;data)</span><br><span class="line"></span><br><span class="line"><span class="comment">//写操作</span></span><br><span class="line">lock.Lock()<span class="comment">//加写锁</span></span><br><span class="line"><span class="comment">//执行写操作，例如创建一个新的[]int替换旧的</span></span><br><span class="line">v:=*ptr.Load()</span><br><span class="line">v[<span class="number">0</span>]=v[<span class="number">0</span>]+<span class="number">1</span></span><br><span class="line">lock.Unlock()<span class="comment">//解写锁</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//读操作，例如读[]int</span></span><br><span class="line">v:=*ptr.Load()</span><br><span class="line">i:=v[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
+<p>不正确在读操作和写操作对同一块内存（v[0]）可以同时进行。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://qiulaidongfeng.github.io/zh-cn/%E7%94%A8%E5%8E%9F%E5%AD%90%E6%8C%87%E9%92%88+%E4%BA%92%E6%96%A5%E9%94%81%E5%AE%9E%E7%8E%B0%E4%BB%85%E5%86%99%E6%97%B6%E5%8A%A0%E9%94%81/" data-id="cm4sgasrd0000awus6qig3s11" data-title="用原子指针+互斥锁实现仅写时加锁" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../../tags/go/" rel="tag">go</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="../go1-24rc1%E5%8F%91%E5%B8%83/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">go1.24rc1发布</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="../../tags/go/" rel="tag">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/go-go1-21/" rel="tag">go - go1.21</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/go-go1-24/" rel="tag">go - go1.24</a></li><li class="tag-list-item"><a class="tag-list-link" href="../../tags/ulang/" rel="tag">ulang</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="../../tags/go/" style="font-size: 10px;">go</a> <a href="../../tags/go-go1-21/" style="font-size: 20px;">go - go1.21</a> <a href="../../tags/go-go1-24/" style="font-size: 10px;">go - go1.24</a> <a href="../../tags/ulang/" style="font-size: 15px;">ulang</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2024/12/">十二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="../../archives/2023/03/">三月 2023</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="">用原子指针+互斥锁实现仅写时加锁</a>
+          </li>
+        
+          <li>
+            <a href="../go1-24rc1%E5%8F%91%E5%B8%83/">go1.24rc1发布</a>
+          </li>
+        
+          <li>
+            <a href="../../en/HowDoesTheMetricsPackageRecordTheNumberOfNonDefaultBehaviorOccurrences-md/">How does the metrics package record the number of non default behavior occurrences</a>
+          </li>
+        
+          <li>
+            <a href="../metrics%E5%8C%85%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BD%95%E9%9D%9E%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%8F%91%E7%94%9F%E6%AC%A1%E6%95%B0-md/">metrics包如何记录非默认行为发生次数</a>
+          </li>
+        
+          <li>
+            <a href="../../en/Multiplication-or-dereference-md/">Multiplication_or_dereference</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2024 秋来冬风<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="../../index.html" class="mobile-nav-link">Home</a>
+  
+    <a href="../../archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="../../js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="../../fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="../../js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
