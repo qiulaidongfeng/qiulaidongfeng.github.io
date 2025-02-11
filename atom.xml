@@ -6,7 +6,7 @@
   <link href="https://qiulaidongfeng.github.io/atom.xml" rel="self"/>
   
   <link href="https://qiulaidongfeng.github.io/"/>
-  <updated>2024-12-17T13:19:15.973Z</updated>
+  <updated>2025-02-11T13:16:19.383Z</updated>
   <id>https://qiulaidongfeng.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>go语言tls1.3密码套件修改研究</title>
+    <link href="https://qiulaidongfeng.github.io/zh-cn/go%E8%AF%AD%E8%A8%80tls1.3%E5%AF%86%E7%A0%81%E5%A5%97%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%A0%94%E7%A9%B6/"/>
+    <id>https://qiulaidongfeng.github.io/zh-cn/go%E8%AF%AD%E8%A8%80tls1.3%E5%AF%86%E7%A0%81%E5%A5%97%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%A0%94%E7%A9%B6/</id>
+    <published>2025-02-11T12:00:46.000Z</published>
+    <updated>2025-02-11T13:16:19.383Z</updated>
+    
+    <content type="html"><![CDATA[<p>有些浏览器可以看到tls的一些信息，例如<br><img src="/images/s.jpg"><br>笔者看到go语言默认用的aes128,其他tls1.3实现有默认用aes256的。</p><p>go语言的tls默认tls1.3使用下列密码套件按下列顺序<br>    TLS_AES_128_GCM_SHA256,<br>    TLS_AES_256_GCM_SHA384,<br>    TLS_CHACHA20_POLY1305_SHA256<br>并且文档中明确列出TLS 1.3 ciphersuites are not configurable(TLS 1.3密码套件是不可配置的)</p><p>笔者试了类似这个程序</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line"><span class="string">&quot;crypto/tls&quot;</span></span><br><span class="line"><span class="string">&quot;fmt&quot;</span></span><br><span class="line"><span class="string">&quot;net/http&quot;</span></span><br><span class="line">_ <span class="string">&quot;unsafe&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">//go:linkname defaultCipherSuitesTLS13 tls.defaultCipherSuitesTLS13</span></span><br><span class="line"><span class="keyword">var</span> defaultCipherSuitesTLS13 = []<span class="type">uint16</span>&#123;</span><br><span class="line">tls.TLS_AES_256_GCM_SHA384,</span><br><span class="line">tls.TLS_CHACHA20_POLY1305_SHA256,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">c := tls.Config&#123;</span><br><span class="line">MinVersion: tls.VersionTLS13,</span><br><span class="line">&#125;</span><br><span class="line">s := http.Server&#123;</span><br><span class="line">Addr:      <span class="string">&quot;:443&quot;</span>,</span><br><span class="line">TLSConfig: &amp;c,</span><br><span class="line">&#125;</span><br><span class="line">mux := http.NewServeMux()</span><br><span class="line">s.Handler = mux</span><br><span class="line">mux.HandleFunc(<span class="string">&quot;/&quot;</span>, <span class="function"><span class="keyword">func</span><span class="params">(w http.ResponseWriter, req *http.Request)</span></span> &#123;</span><br><span class="line">fmt.Fprintln(w, <span class="string">&quot;hello&quot;</span>)</span><br><span class="line">&#125;)</span><br><span class="line">err := s.ListenAndServeTLS(<span class="string">`cert_path`</span>, <span class="string">`key_path`</span>)</span><br><span class="line">fmt.Println(err)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>确实一般情况下无法配置。<br>研究确认，修改go语言tls包的defaults.go源文件中defaultCipherSuitesTLS13可以做到其他tls1.3实现的效果<br>只需将原本的</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> defaultCipherSuitesTLS13 = []<span class="type">uint16</span>&#123;</span><br><span class="line">TLS_AES_128_GCM_SHA256,</span><br><span class="line">TLS_AES_256_GCM_SHA384,</span><br><span class="line">TLS_CHACHA20_POLY1305_SHA256,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>改为</p><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> defaultCipherSuitesTLS13 = []<span class="type">uint16</span>&#123;</span><br><span class="line">TLS_AES_256_GCM_SHA384,</span><br><span class="line">TLS_CHACHA20_POLY1305_SHA256,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;有些浏览器可以看到tls的一些信息，例如&lt;br&gt;&lt;img src=&quot;/images/s.jpg&quot;&gt;&lt;br&gt;笔者看到go语言默认用的aes128,其他tls1.3实现有默认用aes256的。&lt;/p&gt;
+&lt;p&gt;go语言的tls默认tls1.3使用下列密码套件按下列顺序&lt;br&gt;  </summary>
+      
+    
+    
+    
+    
+    <category term="go" scheme="https://qiulaidongfeng.github.io/tags/go/"/>
+    
+  </entry>
   
   <entry>
     <title>用原子指针+互斥锁实现仅写时加锁</title>
