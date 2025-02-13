@@ -71,6 +71,86 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-在go标准库外实现比标准库更好的arena" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="%E5%9C%A8go%E6%A0%87%E5%87%86%E5%BA%93%E5%A4%96%E5%AE%9E%E7%8E%B0%E6%AF%94%E6%A0%87%E5%87%86%E5%BA%93%E6%9B%B4%E5%A5%BD%E7%9A%84arena/" class="article-date">
+  <time class="dt-published" datetime="2025-02-11T19:36:31.000Z" itemprop="datePublished">2025-02-12</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="%E5%9C%A8go%E6%A0%87%E5%87%86%E5%BA%93%E5%A4%96%E5%AE%9E%E7%8E%B0%E6%AF%94%E6%A0%87%E5%87%86%E5%BA%93%E6%9B%B4%E5%A5%BD%E7%9A%84arena/">在go标准库外实现比go标准库更好的arena</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>此博客介绍笔者是如何在go标准库外实现比go标准库更好的arena。</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>arena是一种内存管理方法，从中分配的内存可以被同时释放，适合在一组object的生命周期相同或相近的场景使用，以减少垃圾收集开销。</p>
+<p>go1.22在标准库引入了一个实验性的arena，在这个的<a target="_blank" rel="noopener" href="https://github.com/golang/go/issues/51317">issue</a>，发出来没多久笔者就看到了，其中看到“为多个goroutine使用同一个arena是非常低效的。当然，这通常也没有什么意义，因为在不同的goroutine中分配的object的生命周期可能非常不同”，这里笔者印象很深，因为当时读到，笔者立刻就想到了一个多goroutine使用同一个arena的场景，是编译器解析多个源文件成抽象语法树，所有的节点生命周期都是相同的，而且支持goroutine使用到底有多低效呢？所以笔者在go标准库外试着实现了一个支持多goroutine使用的arena.</p>
+<p>当这里写在go标准库外实现比go标准库更好的arena，指的是</p>
+<ul>
+<li>单goroutine使用性能更好</li>
+<li>支持多goroutine使用</li>
+</ul>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="基础实现"><a href="#基础实现" class="headerlink" title="基础实现"></a>基础实现</h3><p>首先，准备一个持有一块内存的切片，和一个索引，称为buf，分配就是加索引，然后如果索引不大于长度，就获取这个切片这个索引的元素分配给调用者，不然就自动扩容，分配代码类似这样</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">index = index + <span class="number">1</span></span><br><span class="line"><span class="keyword">if</span> index &lt; <span class="built_in">len</span> &#123;</span><br><span class="line">    realloc()</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> slice[index]</span><br></pre></td></tr></table></figure>
+<p>arena持有1个buf切片，最初里面有1个buf，它分配完就增加一个buf，以此类推，实现自动扩容。<br>一个简单的支持单goroutine的arena就是这么简单，后续就是在这基础上扩展。</p>
+<h3 id="分配一组object"><a href="#分配一组object" class="headerlink" title="分配一组object"></a>分配一组object</h3><p>go语言的切片类型可以表示一段内存，有n个T类型的object。<br>从arena分配一组object，利用这一点，可以比基础实现稍作修改，类似这样</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">index = index + num</span><br><span class="line"><span class="keyword">if</span> index &lt; <span class="built_in">len</span> &#123;</span><br><span class="line">    realloc()</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> slice[index-num:index]</span><br></pre></td></tr></table></figure>
+
+<h3 id="真正支持分配任意类型"><a href="#真正支持分配任意类型" class="headerlink" title="真正支持分配任意类型"></a>真正支持分配任意类型</h3><p>实现buf分配任意类型最简单的就是分配一个大的<code>[]uint8</code>，要几个字节索引就加几，然后对切片返回slice[oldindex]的地址，通过unsafe.Pointer返回对应地址的指针，就可以将这块内存当做任意类型的值来使用。一些其他人实现的arena可以极高效率的在单goroutine场景分配任意类型的秘诀正在于此。</p>
+<p>这样做有一个问题，go语言的gc会把<code>[]uint8</code>视作不含有指针的类型，所以，如果这里存有一个指针，它对gc隐藏起来了，在极端情况，可能一个object只有被隐藏的一个指针引用，这意味着gc可能将正在使用的内存回收，稍后发生use-after-free，程序可能因此崩溃。</p>
+<p>一种办法是分配<code>[]unsafe.pointer</code>，但是这样的buf只能分配全是指针的类型，否则gc看到指针类型的内存存着不是有效的指针，会引发程序崩溃。<br>得益于go1.18添加的泛型，可以分配一个<code>[]T</code>，T是任意类型，这样就可以像基础实现那样一个buf安全的分配一种类型的值。</p>
+<p>然后持有多个buf的变成一个类型的内存池，一个arena持有这些内存池，实现支持分配任意类型的支持单goroutine的arena。</p>
+<h3 id="高性能的支持多goroutine"><a href="#高性能的支持多goroutine" class="headerlink" title="高性能的支持多goroutine"></a>高性能的支持多goroutine</h3><p>支持多goroutine本身不难，任何只支持单goroutine的操作，加一个互斥锁就可以变成支持多gorutine的，但意味着只有CPU只有一个核被利用，很低效。</p>
+<p>简单的加一把读写锁也是不行的，从arena分配是写操作，读写锁适用于的是读多写少的场景。虽然arena获取特定类型的内存池，和从内存池获取多个buf的一个通常是最后一个正在使用的buf，在大多数时候是一个读操作，但注意，加读锁本身是通过原子加实现的，它是写操作，在多goroutine，随着竞争程度的增加，虽然因为使可以同时进行的读操作同时进行，性能比互斥锁更好，但还有提升的空间。</p>
+<p>原子写操作在多goroutine场景对性能的影响也是不可小觑的，一个例子就是arena获取特定类型的内存池时，比使用读写锁，采用笔者前段时间的博客 “用原子指针+互斥锁实现仅写时加锁” 里描述的方法，消除了热路径上的一个原子写操作，多goroutine性能提升了约30%。</p>
+<p>采用笔者前段时间的博客 “用原子指针+互斥锁实现仅写时加锁” 里描述的方法，程序根据是否大多数时候执行的代码路径，分为热路径和冷路径。</p>
+<p>热路径是不需要自动扩容时，顺利从内存池当前正在使用的buf分配的代码路径，热路径上只有一个原子写操作，是buf加索引时，目前没有办法消除这个原子写操作，热路径其他用到的同步就是原子读，所以确保了笔者实现的arena高性能的支持goroutine。</p>
+<h3 id="支持重用内存"><a href="#支持重用内存" class="headerlink" title="支持重用内存"></a>支持重用内存</h3><p>arena之所以能减少垃圾收集开销，在于它把一组生命周期相同或相似的object，一次全部释放，而这意味着有内存可以被立即重用，从而减少了gc运行的次数。顺带因此针对性实现，分配性能更好。如果只支持单gorutine，arena一次分配的性能开销可以压缩的一个加法，一个if判断，一个取地址，在大量分配小对象的场景，已经足以产生可观测的性能提升了。</p>
+<p>arena支持重用的内存，在于真正持有了一块连续内存的buf，go语言标准库提供的sync.Pool可以用来重用buf，可以把buf放进去，等需要时再取出实现重用内存。</p>
+<p>因为buf持有的内存大小不同，类型不同，所以将其放进sync.Pool，需要先找到同样类型的一些sync.Pool，在从中找到同样大小的sync.Pool，以确保安全的从同一个sync.Pool，得到的是同样类型持有同样大小内存的buf。</p>
+<p>依靠go语言标准库的sync.Map，可以高效的做到这一点<br>这是笔者写的做到上述做法的代码，其中的MemBlock和上文中的buf表示同样的含义。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> globarPool sync.Map</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getMemBlockPool</span><span class="params">(rtype <span class="type">uintptr</span>， bufSize <span class="type">int64</span>)</span></span> *sync.Pool &#123;</span><br><span class="line">	m， have := globarPool.Load(rtype)</span><br><span class="line">	<span class="keyword">if</span> !have &#123;</span><br><span class="line">		m = <span class="built_in">new</span>(sync.Map)</span><br><span class="line">		<span class="comment">//无论是否成功，都说明同样类型的内存块的sync.Map有了</span></span><br><span class="line">		m， _ = globarPool.LoadOrStore(rtype， m)</span><br><span class="line">	&#125;</span><br><span class="line">	typmap := m.(*sync.Map)</span><br><span class="line">	<span class="comment">// 上面拿到了 每个类型不同的 sync.map , 里面有每个类型不同大小内存块的sync.Pool</span></span><br><span class="line">	p， _ := typmap.Load(bufSize)</span><br><span class="line">	<span class="comment">// 上面尝试拿 放着同样类型同样大小内存块的 sync.Pool</span></span><br><span class="line">	blockp， have := p.(*sync.Pool)</span><br><span class="line">	<span class="keyword">if</span> !have &#123;</span><br><span class="line">		blockp = <span class="built_in">new</span>(sync.Pool)</span><br><span class="line">		p， _ = typmap.LoadOrStore(bufSize， blockp)</span><br><span class="line">		<span class="comment">// Note 这里的类型断言肯定成功，因为如果是写操作，得到的是刚刚的new(sync.Pool)，</span></span><br><span class="line">		<span class="comment">// 如果是读操作，读到的是其他goroutine写的new(sync.Pool)</span></span><br><span class="line">		blockp = p.(*sync.Pool)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 上面拿到了 放着同样类型相同大小内存块的 sync.Pool</span></span><br><span class="line">	<span class="keyword">return</span> blockp</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>给arena一个Free方法，当这个方法被调用时，将内存池的buf放入sync.Pool。<br>然后只需要再从arena分配时，要分配的类型的内存池首先尝试从sync.Pool获取buf，就实现了重用内存。</p>
+<h3 id="结构图"><a href="#结构图" class="headerlink" title="结构图"></a>结构图</h3><p>最终实现的arena结构如图所示<br><img src="/images/arena.png"></p>
+<h3 id="性能对比"><a href="#性能对比" class="headerlink" title="性能对比"></a>性能对比</h3><p>从arena分配一个int:</p>
+<p>笔者实现的：8.387 ns&#x2F;op<br>go标准库的：9.299 ns&#x2F;op</p>
+<p>从arena分配100个int再free：<br>笔者实现的：965.7 ns&#x2F;op<br>go标准库的：1079 ns&#x2F;op</p>
+<h2 id="未来的优化"><a href="#未来的优化" class="headerlink" title="未来的优化"></a>未来的优化</h2><h3 id="定制哈希表"><a href="#定制哈希表" class="headerlink" title="定制哈希表"></a>定制哈希表</h3><p>当前，arena通过map持有不同类型的内存池，通常map的简单实现是 <code>hash(key) % len</code>，然后通用的map为了处理各种情况，有线性探测，链地址法等各种方法。在arena这个场景，这不是最优的。</p>
+<p>针对arena的场景，key是一个指针，直接把这个指针转成整数，不需要哈希函数，直接，<code>uintptr(key) % len</code>，一条机器指令运算完成key变为index。而且因为基本查找都是成功，key的数量很少，简单的加上线性探测就可以。这样定制哈希表，可以提升性能。</p>
+<h3 id="分片"><a href="#分片" class="headerlink" title="分片"></a>分片</h3><p>分片是减少共享写操作为主的值的争用的一种有用且常用的方法。</p>
+<p>即使只是一个原子加，在多goroutine时对性能的影响也不可小觑，根据笔者尝试实现<a target="_blank" rel="noopener" href="https://github.com/golang/go/issues/18802#issuecomment-1868179680">分片</a>在go标准库的经验，同样的对int64加10000次1，如果所有的goroutine都在对同一个内存地址进行原子加，比所有的goroutine对8个不同的内存地址进行原子加，性能差了20多倍。仅仅是一个原子加，通过分片将对同一内存地址的争用分开，就有了显著的性能差异。</p>
+<p>当前实现的热路径上还有一个原子加，通过分片，可以消除这个原子加。提升多goroutine使用arena的性能。</p>
+<h3 id="不返回零值"><a href="#不返回零值" class="headerlink" title="不返回零值"></a>不返回零值</h3><p>go语言new一个值默认是零值，例如<code>new(int)</code>返回一个int指针，指向的int是0。<br>各种arena的实现基本也都维持了这个特性。<br>如果不需要默认零值的话，可以放弃默认零值，获得性能提升。<br>例如如果从arena分配出的内存总是马上被使用，就没有必要返回零值，可以直接将未清理的内存分配出去，稍后调用者使用会给内存赋值的。这样节省将内存设置为零值的开销</p>
+<p>源代码地址：<a target="_blank" rel="noopener" href="https://github.com/qiulaidongfeng/arena">https://github.com/qiulaidongfeng/arena</a><br>源代码地址：<a target="_blank" rel="noopener" href="https://gitee.com/qiulaidongfeng/arena">https://gitee.com/qiulaidongfeng/arena</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://qiulaidongfeng.github.io/zh-cn/%E5%9C%A8go%E6%A0%87%E5%87%86%E5%BA%93%E5%A4%96%E5%AE%9E%E7%8E%B0%E6%AF%94%E6%A0%87%E5%87%86%E5%BA%93%E6%9B%B4%E5%A5%BD%E7%9A%84arena/" data-id="cm72cz7uj0000lwusd78z2o18" data-title="在go标准库外实现比go标准库更好的arena" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="../tags/go/" rel="tag">go</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-go语言tls1.3密码套件修改研究" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="go%E8%AF%AD%E8%A8%80tls1.3%E5%AF%86%E7%A0%81%E5%A5%97%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%A0%94%E7%A9%B6/" class="article-date">
@@ -500,7 +580,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="../tags/go/" style="font-size: 15px;">go</a> <a href="../tags/go-go1-21/" style="font-size: 20px;">go - go1.21</a> <a href="../tags/go-go1-24/" style="font-size: 10px;">go - go1.24</a> <a href="../tags/ulang/" style="font-size: 15px;">ulang</a>
+      <a href="../tags/go/" style="font-size: 20px;">go</a> <a href="../tags/go-go1-21/" style="font-size: 20px;">go - go1.21</a> <a href="../tags/go-go1-24/" style="font-size: 10px;">go - go1.24</a> <a href="../tags/ulang/" style="font-size: 15px;">ulang</a>
     </div>
   </div>
 
@@ -522,6 +602,10 @@
       <ul>
         
           <li>
+            <a href="%E5%9C%A8go%E6%A0%87%E5%87%86%E5%BA%93%E5%A4%96%E5%AE%9E%E7%8E%B0%E6%AF%94%E6%A0%87%E5%87%86%E5%BA%93%E6%9B%B4%E5%A5%BD%E7%9A%84arena/">在go标准库外实现比go标准库更好的arena</a>
+          </li>
+        
+          <li>
             <a href="go%E8%AF%AD%E8%A8%80tls1.3%E5%AF%86%E7%A0%81%E5%A5%97%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%A0%94%E7%A9%B6/">go语言tls1.3密码套件修改研究</a>
           </li>
         
@@ -535,10 +619,6 @@
         
           <li>
             <a href="../en/HowDoesTheMetricsPackageRecordTheNumberOfNonDefaultBehaviorOccurrences-md/">How does the metrics package record the number of non default behavior occurrences</a>
-          </li>
-        
-          <li>
-            <a href="metrics%E5%8C%85%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BD%95%E9%9D%9E%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%8F%91%E7%94%9F%E6%AC%A1%E6%95%B0-md/">metrics包如何记录非默认行为发生次数</a>
           </li>
         
       </ul>
