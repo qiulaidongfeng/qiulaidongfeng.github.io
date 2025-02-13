@@ -11,7 +11,7 @@ https://qiulaidongfeng.github.io/zh-cn/go1-24rc1%E5%8F%91%E5%B8%83/
 https://qiulaidongfeng.github.io/en/HowDoesTheMetricsPackageRecordTheNumberOfNonDefaultBehaviorOccurrences-md/
 https://qiulaidongfeng.github.io/en/mmap-error/
 https://qiulaidongfeng.github.io/
-https://qiulaidongfeng.github.io/tags/go-go1-21/
 https://qiulaidongfeng.github.io/tags/ulang/
-https://qiulaidongfeng.github.io/tags/go/
 https://qiulaidongfeng.github.io/tags/go-go1-24/
+https://qiulaidongfeng.github.io/tags/go-go1-21/
+https://qiulaidongfeng.github.io/tags/go/
