@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   
   
-  <title>秋来冬风的博客</title>
+  <title>Archives: 2025/3 | 秋来冬风的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta property="og:type" content="website">
 <meta property="og:title" content="秋来冬风的博客">
-<meta property="og:url" content="https://qiulaidongfeng.github.io/page/2/index.html">
+<meta property="og:url" content="https://qiulaidongfeng.github.io/archives/2025/03/index.html">
 <meta property="og:site_name" content="秋来冬风的博客">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="秋来冬风">
@@ -75,136 +75,38 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-mmap错误" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/zh-cn/mmap%E9%94%99%E8%AF%AF/" class="article-date">
-  <time class="dt-published" datetime="2023-03-01T16:00:00.000Z" itemprop="datePublished">2023-03-02</time>
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2025" class="archive-year">2025</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/zh-cn/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AEtls%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9D%91%E7%82%B9/" class="archive-article-date">
+  <time class="dt-published" datetime="2025-03-19T11:22:51.000Z" itemprop="datePublished">3月 19</time>
 </a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+      
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/zh-cn/mmap%E9%94%99%E8%AF%AF/">mmap错误</a>
+      <a class="archive-article-title" href="/zh-cn/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AEtls%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9D%91%E7%82%B9/">数据库配置tls的几个坑点</a>
     </h1>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="go1-21前瞻"><a href="#go1-21前瞻" class="headerlink" title="go1.21前瞻"></a>go1.21前瞻</h1><h2 id="windows允许处理异常页面错误"><a href="#windows允许处理异常页面错误" class="headerlink" title="windows允许处理异常页面错误"></a>windows允许处理异常页面错误</h2><p>go1.21正在开发中，<a target="_blank" rel="noopener" href="https://tip.golang.org/doc/go1.21">发行说明草案</a> 提到预计2023年8月发布</p>
-<p>根据提交信息 <a target="_blank" rel="noopener" href="https://github.com/golang/go/commit/e03ee85ef434f307500a71927dfb3e876161847a">runtime: Allow handling of EXCEPTION_IN_PAGE_ERROR</a> go1.21允许在windows通过debug.SetPanicOnFault 处理内存映射文件的访问故障（例如，内存映射文件所在的驱动器被弹出）</p>
-<p>例如来源于 <a target="_blank" rel="noopener" href="https://github.com/golang/go/issues/58457">golang&#x2F;go#58457</a>的例子<br>内存映射外部磁盘上的文件(使用CreateFileMapping &#x2F; MapViewOfFile)<br>调用debug.SetPanicOnFault(true)<br>弹出外部磁盘<br>尝试从内存映射中读取</p>
-<p>看到的是？<br>The runtime faults (Exception 0xc0000006 0x0 …)<br>这不是panic,不能通过recover恢复</p>
-<p>go1.21应该是看到的 panic …</p>
-<p>根据 <a target="_blank" rel="noopener" href="https://pkg.go.dev/runtime/debug#SetPanicOnFault">SetPanicOnFault文档</a>这种情况当 调用debug.SetPanicOnFault(true) 后使用内存映射文件的程序或不安全的内存操作可能会导致非零地址出错；SetPanicOnFault允许这样的程序请求运行时只触发一次panic，根据<a target="_blank" rel="noopener" href="https://github.com/golang/go/issues/58457">golang&#x2F;go#58457</a> 至少在go1.19不是这样，截至发布前，没看到go官方打算将修复的提交反向移植到go1.20和go1.19的下一个次要版本</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://qiulaidongfeng.github.io/zh-cn/mmap%E9%94%99%E8%AF%AF/" data-id="cm73fmr72000cbkus8s0sf3kj" data-title="mmap错误" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-go1-21/" rel="tag">go - go1.21</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
 </article>
-
-
-
   
-    <article id="post-one" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/en/one/" class="article-date">
-  <time class="dt-published" datetime="2023-02-28T16:00:00.000Z" itemprop="datePublished">2023-03-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/en/one/">First blog</a>
-    </h1>
+    </div></section>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Software translation<br>On March 1, 2023, I published this blog</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://qiulaidongfeng.github.io/en/one/" data-id="cm73fmr6y0002bkusfwweeide" data-title="First blog" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-one" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/zh-cn/one/" class="article-date">
-  <time class="dt-published" datetime="2023-02-28T16:00:00.000Z" itemprop="datePublished">2023-03-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/zh-cn/one/">第一个博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>2023年3月1日，我公开了这个博客</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://qiulaidongfeng.github.io/zh-cn/one/" data-id="cm73fmr710009bkus95jc60et" data-title="第一个博客" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
 
 </section>
         

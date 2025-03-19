@@ -4,19 +4,18 @@
   <meta charset="utf-8">
   
   
-  <title>Multiplication_or_dereference | 秋来冬风的博客</title>
+  <title>数据库配置tls的几个坑点 | 秋来冬风的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Multiplication or dereferenceSoftware translation In the U Language Project A separator based lexical analyzer is implemented in the Lexical Analyzer Design Document “The current * will be parsed as a">
+  <meta name="description" content="用docker安装的redis，配置tls时，许多网上相关的内容都是讲的生成证书和改redis配置文件的tls部分，但是没讲如果docker安装在wsl2，还要修改redis配置文件的bind为0.0.0.0。 mongodb不支持tls1.3。 mongodb默认启用客户端证书验证，意味着默认只配置服务端证书验证还不能用tls连接mongodb。 一些网上讲用openssl自建ca签发tls证">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Multiplication_or_dereference">
-<meta property="og:url" content="https://qiulaidongfeng.github.io/en/Multiplication-or-dereference-md/index.html">
+<meta property="og:title" content="数据库配置tls的几个坑点">
+<meta property="og:url" content="https://qiulaidongfeng.github.io/zh-cn/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AEtls%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9D%91%E7%82%B9/index.html">
 <meta property="og:site_name" content="秋来冬风的博客">
-<meta property="og:description" content="Multiplication or dereferenceSoftware translation In the U Language Project A separator based lexical analyzer is implemented in the Lexical Analyzer Design Document “The current * will be parsed as a">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-03-18T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-12-16T15:02:18.662Z">
+<meta property="og:description" content="用docker安装的redis，配置tls时，许多网上相关的内容都是讲的生成证书和改redis配置文件的tls部分，但是没讲如果docker安装在wsl2，还要修改redis配置文件的bind为0.0.0.0。 mongodb不支持tls1.3。 mongodb默认启用客户端证书验证，意味着默认只配置服务端证书验证还不能用tls连接mongodb。 一些网上讲用openssl自建ca签发tls证">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-03-19T11:22:51.000Z">
+<meta property="article:modified_time" content="2025-03-19T12:25:06.030Z">
 <meta property="article:author" content="秋来冬风">
-<meta property="article:tag" content="ulang">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="秋来冬风的博客" type="application/atom+xml">
@@ -78,10 +77,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-Multiplication-or-dereference-md" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-数据库配置tls的几个坑点" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/en/Multiplication-or-dereference-md/" class="article-date">
-  <time class="dt-published" datetime="2023-03-18T16:00:00.000Z" itemprop="datePublished">2023-03-19</time>
+    <a href="/zh-cn/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AEtls%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9D%91%E7%82%B9/" class="article-date">
+  <time class="dt-published" datetime="2025-03-19T11:22:51.000Z" itemprop="datePublished">2025-03-19</time>
 </a>
     
   </div>
@@ -92,7 +91,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      Multiplication_or_dereference
+      数据库配置tls的几个坑点
     </h1>
   
 
@@ -100,61 +99,30 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="Multiplication-or-dereference"><a href="#Multiplication-or-dereference" class="headerlink" title="Multiplication or dereference"></a>Multiplication or dereference</h1><p>Software translation</p>
-<p>In the <a target="_blank" rel="noopener" href="https://gitee.com/u-language/u-language">U Language Project</a> A separator based lexical analyzer is implemented in the <a target="_blank" rel="noopener" href="https://gitee.com/u-language/u-language/blob/master/pkg/lex/README.md">Lexical Analyzer Design Document</a> “The current * will be parsed as a multiplication sign, and when there is no pointer, there is no problem.”. Now we are ready to add pointers to this project. If you use * to dereference as in other languages, there are two options</p>
-<ol>
-<li><p>When constructing an abstract syntax tree, handle ambiguity where * can be both a multiplication sign and a dereference</p>
-</li>
-<li><p>At the lexical analysis node, handle ambiguity where * can be both a multiplication sign and a dereference</p>
-</li>
+        <ol>
+<li>用docker安装的redis，配置tls时，许多网上相关的内容都是讲的生成证书和改redis配置文件的tls部分，但是没讲如果docker安装在wsl2，还要修改redis配置文件的bind为0.0.0.0。</li>
+<li>mongodb不支持tls1.3。</li>
+<li>mongodb默认启用客户端证书验证，意味着默认只配置服务端证书验证还不能用tls连接mongodb。</li>
+<li>一些网上讲用openssl自建ca签发tls证书的内容没有讲到证书SAN信息要包含服务端的域名或IP，不包含的话服务端使用这样的证书，客户端连接时会产生这样的错误Hostname&#x2F;IP does not match certificate’s altnames: IP: 127.0.0.1 is not in the cert’s list:</li>
 </ol>
-<h2 id="How-to-solve-ambiguity"><a href="#How-to-solve-ambiguity" class="headerlink" title="How to solve * ambiguity"></a>How to solve * ambiguity</h2><p>When the compiler sees an ambiguity where * processing can be both a multiplication sign and a dereference, it first does not directly interpret it as a semantic method of multiplication sign or dereference. Enumeration proves that</p>
-<ul>
-<li><p>If it is directly interpreted as a multiplication sign, * ptr with * ptr&#x3D;1 is a dereference ptr pointer, which is now incorrectly interpreted as a multiplication ptr</p>
-</li>
-<li><p>If it is directly interpreted as dereference, the * b of c&#x3D;a * b is multiplied by b. It is now incorrectly interpreted as dereference b</p>
-</li>
-</ul>
-<p>Therefore, it is necessary to explain * according to different situations*</p>
-<ul>
-<li><p>If at the beginning, because multiplication requires two operands, at the beginning, there is no operand on the left, so it can be interpreted as dereference</p>
-</li>
-<li><p>If it is not at the beginning, and if the * is not preceded by a symbol, such as a+* ptr, since the left side is not an operand, it can be interpreted as dereference</p>
-</li>
-<li><p>If it is not at the beginning, and if * is a symbol, such as a * b, because the left side is the operand, it can be interpreted as a multiplication sign</p>
-</li>
-</ul>
-<p>The above processing methods can be used in lexical analysis or building an abstract syntax tree, but during lexical analysis, a Boolean variable is used to set to true when a multiplication sign is found. If the Boolean variable is true, the multiplication sign is processed using the above method. For parts without a multiplication sign, the overhead of judging is only increased once.</p>
-<h2 id="A-simpler-approach"><a href="#A-simpler-approach" class="headerlink" title="A simpler approach"></a>A simpler approach</h2><p>If * has ambiguity, in addition to handling ambiguity, you can also find a symbol without ambiguity, such as @, and the compiler can directly identify @ as a dereference when it sees it. However, this is different from mainstream practices and may increase learning costs</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://qiulaidongfeng.github.io/en/Multiplication-or-dereference-md/" data-id="cm73fmr6w0001bkusaff9186c" data-title="Multiplication_or_dereference" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="https://qiulaidongfeng.github.io/zh-cn/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AEtls%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9D%91%E7%82%B9/" data-id="cm8fwb2p3000034us7vfr6yge" data-title="数据库配置tls的几个坑点" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ulang/" rel="tag">ulang</a></li></ul>
-
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/zh-cn/metrics%E5%8C%85%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BD%95%E9%9D%9E%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%8F%91%E7%94%9F%E6%AC%A1%E6%95%B0-md/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          metrics包如何记录非默认行为发生次数
-        
-      </div>
-    </a>
   
-  
-    <a href="/zh-cn/%E4%B9%98%E6%B3%95%E8%BF%98%E6%98%AF%E8%A7%A3%E5%BC%95%E7%94%A8-md/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/zh-cn/%E5%9C%A8go%E6%A0%87%E5%87%86%E5%BA%93%E5%A4%96%E5%AE%9E%E7%8E%B0%E6%AF%94%E6%A0%87%E5%87%86%E5%BA%93%E6%9B%B4%E5%A5%BD%E7%9A%84arena/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">乘法还是解引用</div>
+      <div class="article-nav-title">在go标准库外实现比go标准库更好的arena</div>
     </a>
   
 </nav>
