@@ -6,15 +6,15 @@
   
   <title>数据库配置tls的几个坑点 | 秋来冬风的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="用docker安装的redis，配置tls时，许多网上相关的内容都是讲的生成证书和改redis配置文件的tls部分，但是没讲如果docker安装在wsl2，还要修改redis配置文件的bind为0.0.0.0。 mongodb不支持tls1.3。 mongodb默认启用客户端证书验证，意味着默认只配置服务端证书验证还不能用tls连接mongodb。 一些网上讲用openssl自建ca签发tls证">
+  <meta name="description" content="用docker安装的redis，配置tls时，许多网上相关的内容都是讲的生成证书和改redis配置文件的tls部分，但是没讲如果docker安装在wsl2，还要修改redis配置文件的bind为0.0.0.0。 mongodb不支持tls1.3。 mongodb和redis默认在启用tls时启用客户端证书验证，意味着默认只配置服务端证书验证还不能用tls连接mongodb和redis。 一些网上">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库配置tls的几个坑点">
 <meta property="og:url" content="https://qiulaidongfeng.github.io/zh-cn/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AEtls%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9D%91%E7%82%B9/index.html">
 <meta property="og:site_name" content="秋来冬风的博客">
-<meta property="og:description" content="用docker安装的redis，配置tls时，许多网上相关的内容都是讲的生成证书和改redis配置文件的tls部分，但是没讲如果docker安装在wsl2，还要修改redis配置文件的bind为0.0.0.0。 mongodb不支持tls1.3。 mongodb默认启用客户端证书验证，意味着默认只配置服务端证书验证还不能用tls连接mongodb。 一些网上讲用openssl自建ca签发tls证">
+<meta property="og:description" content="用docker安装的redis，配置tls时，许多网上相关的内容都是讲的生成证书和改redis配置文件的tls部分，但是没讲如果docker安装在wsl2，还要修改redis配置文件的bind为0.0.0.0。 mongodb不支持tls1.3。 mongodb和redis默认在启用tls时启用客户端证书验证，意味着默认只配置服务端证书验证还不能用tls连接mongodb和redis。 一些网上">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-03-19T11:22:51.000Z">
-<meta property="article:modified_time" content="2025-03-19T12:25:06.030Z">
+<meta property="article:modified_time" content="2025-03-21T01:09:11.666Z">
 <meta property="article:author" content="秋来冬风">
 <meta name="twitter:card" content="summary">
   
@@ -102,7 +102,7 @@
         <ol>
 <li>用docker安装的redis，配置tls时，许多网上相关的内容都是讲的生成证书和改redis配置文件的tls部分，但是没讲如果docker安装在wsl2，还要修改redis配置文件的bind为0.0.0.0。</li>
 <li>mongodb不支持tls1.3。</li>
-<li>mongodb默认启用客户端证书验证，意味着默认只配置服务端证书验证还不能用tls连接mongodb。</li>
+<li>mongodb和redis默认在启用tls时启用客户端证书验证，意味着默认只配置服务端证书验证还不能用tls连接mongodb和redis。</li>
 <li>一些网上讲用openssl自建ca签发tls证书的内容没有讲到证书SAN信息要包含服务端的域名或IP，不包含的话服务端使用这样的证书，客户端连接时会产生这样的错误Hostname&#x2F;IP does not match certificate’s altnames: IP: 127.0.0.1 is not in the cert’s list:</li>
 </ol>
 
