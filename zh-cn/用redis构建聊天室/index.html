@@ -1,142 +1,110 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" dir="ltr">
 <head>
   <meta charset="utf-8">
-  
-  
-  <title>用redis构建聊天室 | 秋来冬风的博客</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="此博客记录我用redis构建聊天室的一个方案。 首先，要实现的功能是聊天室可以被多个用户进入，在里面互相发消息聊天，能显示在线id数，聊天室会在一段时间没人发消息后自动删除。 实现每个聊天室有一个名字，可以使用这个名字作为操作redis时的key。 如何保存历史消息性能太差不采用的redis的string可以保存历史消息，通过将所有消息序列化为json之类保存，这样性能最差，因为消息要被重复的序列">
-<meta property="og:type" content="article">
-<meta property="og:title" content="用redis构建聊天室">
-<meta property="og:url" content="https://qiulaidongfeng.github.io/zh-cn/%E7%94%A8redis%E6%9E%84%E5%BB%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/index.html">
-<meta property="og:site_name" content="秋来冬风的博客">
-<meta property="og:description" content="此博客记录我用redis构建聊天室的一个方案。 首先，要实现的功能是聊天室可以被多个用户进入，在里面互相发消息聊天，能显示在线id数，聊天室会在一段时间没人发消息后自动删除。 实现每个聊天室有一个名字，可以使用这个名字作为操作redis时的key。 如何保存历史消息性能太差不采用的redis的string可以保存历史消息，通过将所有消息序列化为json之类保存，这样性能最差，因为消息要被重复的序列">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-04-21T02:15:12.000Z">
-<meta property="article:modified_time" content="2025-04-22T14:58:14.663Z">
-<meta property="article:author" content="秋来冬风">
-<meta property="article:tag" content="数据库">
-<meta property="article:tag" content="redis">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="秋来冬风的博客" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+<meta name="viewport" content="width=device-width">
+<title>用redis构建聊天室 | 秋来冬风的博客</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 
-  
-  
-<link rel="stylesheet" href="/css/style.css">
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
-  
-  
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
-
-<meta name="generator" content="Hexo 6.3.0"></head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">秋来冬风的博客</a>
-      </h1>
-      
+</head>
+<body class="container-fluid" style="background-color: #ddd;">
+  <header>
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-auto">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/tags" class="nav-link">tags</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/atom.xml" class="nav-link">rss</a>
+                </li>
+                <li class="nav-item"></li>
+                    <a href="/about" class="nav-link">about</a>
+                </li>
+                <li class="nav-item"></li>
+                    <a href="/zh-cn" class="nav-link">所有中文内容</a>
+                </li>
+                <li class="nav-item"></li>
+                    <a href="/en" class="nav-link">所有英文内容</a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://qiulaidongfeng.github.io"></form>
-      </div>
+    <div class="row">
+        <div class="offset-lg-4 col-lg-4 offset-sm-3 col-sm-6">
+            <h1 class="h1 text-center">秋来冬风的博客</h1>
+        </div>
     </div>
   </div>
-</header>
-
-      <div class="outer">
-        <section id="main"><article id="post-用redis构建聊天室" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/zh-cn/%E7%94%A8redis%E6%9E%84%E5%BB%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/" class="article-date">
-  <time class="dt-published" datetime="2025-04-21T02:15:12.000Z" itemprop="datePublished">2025-04-21</time>
-</a>
+  </header>
+  <main>
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 class="p-name article-title" itemprop="headline name">
-      用redis构建聊天室
-    </h1>
-  
+  <small>2025-4-21</small>
 
-      </header>
+  <div style="background-color: white;" class="p-4">
     
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>此博客记录我用redis构建聊天室的一个方案。</p>
+    <h1>用redis构建聊天室</h1>
+    
+    <p>此博客记录我用redis构建聊天室的一个方案。</p>
 <p>首先，要实现的功能是聊天室可以被多个用户进入，在里面互相发消息聊天，能显示在线id数，聊天室会在一段时间没人发消息后自动删除。</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>每个聊天室有一个名字，可以使用这个名字作为操作redis时的key。</p>
-<h3 id="如何保存历史消息"><a href="#如何保存历史消息" class="headerlink" title="如何保存历史消息"></a>如何保存历史消息</h3><h4 id="性能太差不采用的"><a href="#性能太差不采用的" class="headerlink" title="性能太差不采用的"></a>性能太差不采用的</h4><p>redis的string可以保存历史消息，通过将所有消息序列化为json之类保存，这样性能最差，因为消息要被重复的序列化和反序列化，所以不采用。</p>
-<h4 id="不符合要求不采用的"><a href="#不符合要求不采用的" class="headerlink" title="不符合要求不采用的"></a>不符合要求不采用的</h4><p>redis的发布订阅，可以构建非常简单的聊天室，但不能保存历史消息，且无法确保消息一定会被接收，所以不采用。<br>redis的位图，地理位置索引，HyperLogLog不能实现保存消息，所以不采用。</p>
-<h4 id="实现更复杂不采用的"><a href="#实现更复杂不采用的" class="headerlink" title="实现更复杂不采用的"></a>实现更复杂不采用的</h4><p>redis的哈希可以通过key是聊天室第n条发出消息的n,value是消息实现聊天室，意味着需要一个不断递增的n，增加了实现的复杂性，所以不采用。<br>redis的集合和有序集合，可以通过，聊天室第n条发出消息的n+消息的字符串插入到集合实现聊天室，同样因为需要不断递增的n，所以不采用。<br>redis的流相对其他数据类型更复杂，所以不采用。</p>
-<h4 id="最终采用"><a href="#最终采用" class="headerlink" title="最终采用"></a>最终采用</h4><p>redis的列表支持保存历史消息，可以被定时删除，而且通过lrange改参数start和end，很方便实现分页显示，不需要不断递增的n，所以采用。</p>
-<h3 id="如何创建聊天室"><a href="#如何创建聊天室" class="headerlink" title="如何创建聊天室"></a>如何创建聊天室</h3><p>通过在redis插入一个表示聊天室的key，值为列表。</p>
+<h2 id="实现">实现</h2>
+<p>每个聊天室有一个名字，可以使用这个名字作为操作redis时的key。</p>
+<h3 id="如何保存历史消息">如何保存历史消息</h3>
+<h4 id="性能太差不采用的">性能太差不采用的</h4>
+<p>redis的string可以保存历史消息，通过将所有消息序列化为json之类保存，这样性能最差，因为消息要被重复的序列化和反序列化，所以不采用。</p>
+<h4 id="不符合要求不采用的">不符合要求不采用的</h4>
+<p>redis的发布订阅，可以构建非常简单的聊天室，但不能保存历史消息，且无法确保消息一定会被接收，所以不采用。
+redis的位图，地理位置索引，HyperLogLog不能实现保存消息，所以不采用。</p>
+<h4 id="实现更复杂不采用的">实现更复杂不采用的</h4>
+<p>redis的哈希可以通过key是聊天室第n条发出消息的n,value是消息实现聊天室，意味着需要一个不断递增的n，增加了实现的复杂性，所以不采用。
+redis的集合和有序集合，可以通过，聊天室第n条发出消息的n+消息的字符串插入到集合实现聊天室，同样因为需要不断递增的n，所以不采用。
+redis的流相对其他数据类型更复杂，所以不采用。</p>
+<h4 id="最终采用">最终采用</h4>
+<p>redis的列表支持保存历史消息，可以被定时删除，而且通过lrange改参数start和end，很方便实现分页显示，不需要不断递增的n，所以采用。</p>
+<h3 id="如何创建聊天室">如何创建聊天室</h3>
+<p>通过在redis插入一个表示聊天室的key，值为列表。</p>
 <p>首先，要使用watch命令监视在redis表示聊天室的key，然后调用exists命令。</p>
 <ul>
 <li>如果key已经存在，说明聊天室已经创建，调用unwatch命令结束。</li>
 <li>如果key不存在，则开启事务进行插入。</li>
 </ul>
-<p>首先，调用multi命令开启事务，然后，调用rpush命令插入key，值是一个列表，第一个值为空字符串（rpush key “”），然后调用expire命令设置过期时间实现自动删除，例如要两小时自动删除，则实际调用（expire key 7200），接着调用exec执行事务，不考虑网络异常等，如果事务执行成功，聊天室创建成功，否则说明聊天室被其他用户创建。</p>
-<h3 id="如何进入聊天室"><a href="#如何进入聊天室" class="headerlink" title="如何进入聊天室"></a>如何进入聊天室</h3><p>利用redis在非集群模式可以有多数据库，实现可以是历史消息在db0，用户id在db1。<br>使用hash可以把一个聊天室的所有id放到一起，并对id分别设置不同的过期时间，所以采用这个数据结构。</p>
+<p>首先，调用multi命令开启事务，然后，调用rpush命令插入key，值是一个列表，第一个值为空字符串（rpush key &ldquo;&quot;），然后调用expire命令设置过期时间实现自动删除，例如要两小时自动删除，则实际调用（expire key 7200），接着调用exec执行事务，不考虑网络异常等，如果事务执行成功，聊天室创建成功，否则说明聊天室被其他用户创建。</p>
+<h3 id="如何进入聊天室">如何进入聊天室</h3>
+<p>利用redis在非集群模式可以有多数据库，实现可以是历史消息在db0，用户id在db1。
+使用hash可以把一个聊天室的所有id放到一起，并对id分别设置不同的过期时间，所以采用这个数据结构。</p>
 <p>具体流程：</p>
 <ol>
 <li>随机生成一个id。</li>
-<li>使用hsetnx命令尝试插入用户id，命令的参数key是聊天室名，field是哈希的key是id，value是空字符串（hsetnx key id “”）。</li>
+<li>使用hsetnx命令尝试插入用户id，命令的参数key是聊天室名，field是哈希的key是id，value是空字符串（hsetnx key id &ldquo;&quot;）。</li>
 <li>如失败，说明id已经被使用，回到1重来。</li>
 <li>如成功，使用hexpireat命令设置id的过期时间，注意该命令在redis7.4.0开始才有，例如假设现在Uinx时间戳是100，过期时间是20秒，则实际调用(hexpireat key 120 FIELDS id)。</li>
 </ol>
 <p>因为只有2成功才能执行4，且2同时多个用户执行只有一个成功，所以这里不需要使用事务。</p>
 <p>注意这里不需要更新聊天室的过期时间，因为有人但无人发消息的聊天室是不活跃的，和本来就没人的聊天室一样可以定时删除。</p>
-<h3 id="如何发送文字消息到聊天室"><a href="#如何发送文字消息到聊天室" class="headerlink" title="如何发送文字消息到聊天室"></a>如何发送文字消息到聊天室</h3><p>把文字消息发送到聊天室，只需要把文字消息插入到列表尾部，并且更新id的过期时间。</p>
-<p>rpush命令虽然可以做到这一点，但在聊天室不存在时也不会失败，而是产生第一个字符串非空的列表，破坏创建聊天室时产生的不变量，会造成后续获取历史消息时不显示第一条消息。<br>虽然通过事务和exists命令配合rpush命令可以解决上面的问题，但性能更差。</p>
+<h3 id="如何发送文字消息到聊天室">如何发送文字消息到聊天室</h3>
+<p>把文字消息发送到聊天室，只需要把文字消息插入到列表尾部，并且更新id的过期时间。</p>
+<p>rpush命令虽然可以做到这一点，但在聊天室不存在时也不会失败，而是产生第一个字符串非空的列表，破坏创建聊天室时产生的不变量，会造成后续获取历史消息时不显示第一条消息。
+虽然通过事务和exists命令配合rpush命令可以解决上面的问题，但性能更差。</p>
 <p>rpushx命令在key不存在时不插入，解决了上面的问题，所以采用。</p>
-<p>具体流程：<br>在db0</p>
+<p>具体流程：
+在db0</p>
 <ol>
 <li>调用rpushx key 文字消息。</li>
 <li>调用expire更新聊天室过期时间。</li>
 </ol>
 <p>这里不需要事务，因为每条命令是原子操作就够了，即使前后调用多次expire，旧的调用后执行，最后结果也是，过期时间更新到当前时间+指定时长。</p>
 <p>在db1调用hexpireat更新id过期时间。</p>
-<h3 id="如何获取历史消息等信息"><a href="#如何获取历史消息等信息" class="headerlink" title="如何获取历史消息等信息"></a>如何获取历史消息等信息</h3><p>获取列表的所有元素即可获取历史消息，同时可以获取聊天室还有多久自动删除，以及在线id数。因为实践中，这样可以重复利用一个GET请求响应多个有关的数据，提升性能。</p>
-<p>具体流程：<br>在db0</p>
+<h3 id="如何获取历史消息等信息">如何获取历史消息等信息</h3>
+<p>获取列表的所有元素即可获取历史消息，同时可以获取聊天室还有多久自动删除，以及在线id数。因为实践中，这样可以重复利用一个GET请求响应多个有关的数据，提升性能。</p>
+<p>具体流程：
+在db0</p>
 <ol>
 <li>调用lrange key 1 -1，获取列表存的所有历史文字消息。</li>
 <li>调用ttl key获取聊天室还有多久自动删除。</li>
@@ -146,185 +114,99 @@
 <li>调用hexpireat更新id过期时间。</li>
 <li>调用hlen命令（hlen key）,获取在线id数。</li>
 </ol>
-<h3 id="如何退出聊天室"><a href="#如何退出聊天室" class="headerlink" title="如何退出聊天室"></a>如何退出聊天室</h3><p>在db1调用hdel key id即可。<br>可以客户端和服务端定时通信，客户端长时间无响应就自动退出聊天室。</p>
+<h3 id="如何退出聊天室">如何退出聊天室</h3>
+<p>在db1调用hdel key id即可。
+可以客户端和服务端定时通信，客户端长时间无响应就自动退出聊天室。</p>
 <p>注意不应立刻检查是否无用户在线，因为即使所有用户都不在，可能只是因为网络等原因意外下线，很快就回来，所以即使无人在线也不意味着可以删除聊天室。</p>
 <p>这样一个基本的聊天室就实现，可以优化。</p>
-<h3 id="优化：只获取新消息"><a href="#优化：只获取新消息" class="headerlink" title="优化：只获取新消息"></a>优化：只获取新消息</h3><p>在实践中，用户之间发消息，旧的消息已经在用户那里有了，不需要每次到重新获取，所以可以利用这一点优化。<br>只需要把上面“如何获取历史消息等信息”的在db0的流程2改为调用调用lrange 用户已获取的消息数 列表的长度即可。</p>
-<h3 id="手动删除聊天室"><a href="#手动删除聊天室" class="headerlink" title="手动删除聊天室"></a>手动删除聊天室</h3><p>只要在db0和db1执行del key就能实现。</p>
-<h3 id="支持发送多媒体消息"><a href="#支持发送多媒体消息" class="headerlink" title="支持发送多媒体消息"></a>支持发送多媒体消息</h3><p>在实践中，可能发送的消息不是文字而是图片之类的。<br>支持这一点的简单办法是之前列表的每个元素是一条文字消息，现在改为json字符串，消息在里面，类似{type:”text”,data:”message”}这样有两个字段的，当type是text，把data的值视为文字消息，当type是image时，把data视为base64编码后的图片数据，以此类推视频等。</p>
+<h3 id="优化只获取新消息">优化：只获取新消息</h3>
+<p>在实践中，用户之间发消息，旧的消息已经在用户那里有了，不需要每次到重新获取，所以可以利用这一点优化。
+只需要把上面“如何获取历史消息等信息”的在db0的流程2改为调用调用lrange 用户已获取的消息数 列表的长度即可。</p>
+<h3 id="手动删除聊天室">手动删除聊天室</h3>
+<p>只要在db0和db1执行del key就能实现。</p>
+<h3 id="支持发送多媒体消息">支持发送多媒体消息</h3>
+<p>在实践中，可能发送的消息不是文字而是图片之类的。
+支持这一点的简单办法是之前列表的每个元素是一条文字消息，现在改为json字符串，消息在里面，类似{type:&ldquo;text&rdquo;,data:&ldquo;message&rdquo;}这样有两个字段的，当type是text，把data的值视为文字消息，当type是image时，把data视为base64编码后的图片数据，以此类推视频等。</p>
 <p>这样做虽然可以支持发送图片、语音之类的，但有问题。</p>
 <ol>
 <li>因为redis是串行指行每条命令，所以如果一条命令执行太长时间，其他命令都会等待，造成后续所有操作响应时间增加，而文字消息通常不会很大，不用担心执行用时太长，但图片可能几MB，视频更大。</li>
 <li>这样无法利用cdn响应图片等数据，限制了优化减少源服务器流量使用。</li>
 </ol>
 <p>可以把json字符串改为当type是image时，把data视为图片的url，以此类推视频等。这样可以解决上面的问题，但要注意访问权限，避免发送到聊天室的内容有url就能访问（即检查用户id是否能在db1通过这个聊天室的key查到）。</p>
-<p>url可以按这个模板生成：<code>https://hostname/&#123;&#123;聊天室名&#125;&#125;/&#123;&#123;资源名&#125;&#125;</code></p>
-<h3 id="支持限制进入"><a href="#支持限制进入" class="headerlink" title="支持限制进入"></a>支持限制进入</h3><p>通过将聊天室名设置为一个复杂的字符串，例如bg3uReMsGpGTUY@W19，因为极不可能被猜到，已经有很好的限制聊天室进入的效果，但不够好，因为</p>
+<p>url可以按这个模板生成：<code>https://hostname/{{聊天室名}}/{{资源名}}</code></p>
+<h3 id="支持限制进入">支持限制进入</h3>
+<p>通过将聊天室名设置为一个复杂的字符串，例如bg3uReMsGpGTUY@W19，因为极不可能被猜到，已经有很好的限制聊天室进入的效果，但不够好，因为</p>
 <ol>
 <li>使聊天室名无意义了。</li>
 <li>无法限制进入的id。</li>
 </ol>
 <p>利用db0每个列表第一个元素都是可被用作其他通途的字符串，可以把它变成一个配置字符串，例如有一个配置结构体：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Config <span class="keyword">struct</span>&#123;</span><br><span class="line">    <span class="comment">// Password 设置进入聊天室的验证密码的哈希值。</span></span><br><span class="line">    Password <span class="type">string</span></span><br><span class="line">    <span class="comment">// MaxIdNum 设置进入聊天室的最大id数。</span></span><br><span class="line">    <span class="comment">// 为0表示不限制。</span></span><br><span class="line">    MaxIdNum <span class="type">int</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以把它序列化为json字符串，保存到列表第一个元素，然后进入聊天室时检查MaxIdNum，每次访问聊天室（发送消息，获取消息等）到要携带上密码的哈希值，服务器在进行操作前先检查密码哈希值是否一致，一致才执行操作，就实现了限制进入并解决上面的问题。</p>
-<h3 id="支持显示发送者昵称"><a href="#支持显示发送者昵称" class="headerlink" title="支持显示发送者昵称"></a>支持显示发送者昵称</h3><p>可以在配置结构体加一个字段：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Name 记录id到用户昵称的定义。</span></span><br><span class="line">Name <span class="keyword">map</span>[<span class="type">string</span>]<span class="type">string</span></span><br></pre></td></tr></table></figure>
-<p>消息json字符串加一个字段send，值为发送者id。<br>然后进入聊天室时要求用户设置昵称，之后获取消息后通过发送者id，可以利用配置结构体的Name字段查到发送者的昵称。</p>
-<h3 id="支持修改自动过期时间"><a href="#支持修改自动过期时间" class="headerlink" title="支持修改自动过期时间"></a>支持修改自动过期时间</h3><p>可以在配置结构体加一个字段：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TTL 表示多久没新消息删除聊天室。</span></span><br><span class="line">TTL time.Duration</span><br></pre></td></tr></table></figure>
-<p>然后每次有新消息时使用这个字段确定自动过期时间。</p>
-<h3 id="支持禁言"><a href="#支持禁言" class="headerlink" title="支持禁言"></a>支持禁言</h3><p>可以在配置结构体加一个字段：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Prohibit 记录被禁言的id。</span></span><br><span class="line">Prohibit []<span class="type">string</span></span><br></pre></td></tr></table></figure>
-<p>被禁言的id就加入这个字段。<br>然后发送消息时，先检查发送者id是否在配置结构体的Prohibit字段中，如果在，不准发送消息。<br>扩展这个字段为类似这样：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Prohibit 记录被禁言的id和禁言时间。</span></span><br><span class="line">Prohibit []<span class="keyword">struct</span>&#123;</span><br><span class="line">    <span class="comment">// Id 是被禁言的id。</span></span><br><span class="line">    Id <span class="type">string</span></span><br><span class="line">    <span class="comment">// End 是解除禁言时间。</span></span><br><span class="line">    <span class="comment">// End.IsZero() 返回true表示永久禁言</span></span><br><span class="line">    End time.Time</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>还可以实现只禁言一段时间。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Config</span> <span style="color:#66d9ef">struct</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Password 设置进入聊天室的验证密码的哈希值。</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Password</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// MaxIdNum 设置进入聊天室的最大id数。</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 为0表示不限制。</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">MaxIdNum</span> <span style="color:#66d9ef">int</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>可以把它序列化为json字符串，保存到列表第一个元素，然后进入聊天室时检查MaxIdNum，每次访问聊天室（发送消息，获取消息等）到要携带上密码的哈希值，服务器在进行操作前先检查密码哈希值是否一致，一致才执行操作，就实现了限制进入并解决上面的问题。</p>
+<h3 id="支持显示发送者昵称">支持显示发送者昵称</h3>
+<p>可以在配置结构体加一个字段：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>    <span style="color:#75715e">// Name 记录id到用户昵称的定义。</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Name</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>]<span style="color:#66d9ef">string</span>
+</span></span></code></pre></div><p>消息json字符串加一个字段send，值为发送者id。
+然后进入聊天室时要求用户设置昵称，之后获取消息后通过发送者id，可以利用配置结构体的Name字段查到发送者的昵称。</p>
+<h3 id="支持修改自动过期时间">支持修改自动过期时间</h3>
+<p>可以在配置结构体加一个字段：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>    <span style="color:#75715e">// TTL 表示多久没新消息删除聊天室。</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">TTL</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Duration</span>
+</span></span></code></pre></div><p>然后每次有新消息时使用这个字段确定自动过期时间。</p>
+<h3 id="支持禁言">支持禁言</h3>
+<p>可以在配置结构体加一个字段：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>    <span style="color:#75715e">// Prohibit 记录被禁言的id。</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Prohibit</span> []<span style="color:#66d9ef">string</span>
+</span></span></code></pre></div><p>被禁言的id就加入这个字段。
+然后发送消息时，先检查发送者id是否在配置结构体的Prohibit字段中，如果在，不准发送消息。
+扩展这个字段为类似这样：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>    <span style="color:#75715e">// Prohibit 记录被禁言的id和禁言时间。</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Prohibit</span> []<span style="color:#66d9ef">struct</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Id 是被禁言的id。</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Id</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// End 是解除禁言时间。</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// End.IsZero() 返回true表示永久禁言</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">End</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Time</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><p>还可以实现只禁言一段时间。</p>
 <p>这里故意不用redis的集合存被禁言的id，因为这样只要一条lrange命令就能获取所有消息和配置信息，用集合意味着需要执行的命令数翻倍。</p>
-<h3 id="支持撤回消息"><a href="#支持撤回消息" class="headerlink" title="支持撤回消息"></a>支持撤回消息</h3><p>由于redis原生不支持列表直接删除指定元素，所以需要用事务和一些命令模拟这一操作，可以实现，但性能差，所以不采用。</p>
-<p>redis的lset命令可以修改指定index的元素，可以通过（lset key index “”）实现撤回，所以采用。<br>注意“优化：只获取新消息”假设消息发出后不变，撤回消息打破了这一不变量。所以为了正确实现，需要再调用rpushx命令插入一条特殊的json字符串，例如{type:”change”,data:index}，用来告知客户端，某条消息撤回了，并且客户端必须检查每一条消息是否是空字符串，非空的才显示。</p>
-<p>如果要支持显示谁撤回了消息，可以通过实现撤回的lset命令，参数空字符串改为例如这样{type:”change”,data:”id”}，客户端需要相应更新来处理这样的json字符串。</p>
-<h3 id="支持redis集群"><a href="#支持redis集群" class="headerlink" title="支持redis集群"></a>支持redis集群</h3><p>redis命令是串行执行的，所以它的性能受限于单核是有上限的，尽管是内存数据库性能很高，但最高大约10万+rps(测set命令的数据)，开io多线程（用多个线程处理网络io,但命令还是一个线程执行）可以高一些，如果需要支持非常多人在线，需要使用redis集群。<br>redis集群将数据分布到多个redis实例提供性能，上面的方案需要改造来支持的是，因为redis集群只有一个数据库，之前的方案用了两个数据库。</p>
+<h3 id="支持撤回消息">支持撤回消息</h3>
+<p>由于redis原生不支持列表直接删除指定元素，所以需要用事务和一些命令模拟这一操作，可以实现，但性能差，所以不采用。</p>
+<p>redis的lset命令可以修改指定index的元素，可以通过（lset key index &ldquo;&quot;）实现撤回，所以采用。
+注意“优化：只获取新消息”假设消息发出后不变，撤回消息打破了这一不变量。所以为了正确实现，需要再调用rpushx命令插入一条特殊的json字符串，例如{type:&ldquo;change&rdquo;,data:index}，用来告知客户端，某条消息撤回了，并且客户端必须检查每一条消息是否是空字符串，非空的才显示。</p>
+<p>如果要支持显示谁撤回了消息，可以通过实现撤回的lset命令，参数空字符串改为例如这样{type:&ldquo;change&rdquo;,data:&ldquo;id&rdquo;}，客户端需要相应更新来处理这样的json字符串。</p>
+<h3 id="支持redis集群">支持redis集群</h3>
+<p>redis命令是串行执行的，所以它的性能受限于单核是有上限的，尽管是内存数据库性能很高，但最高大约10万+rps(测set命令的数据)，开io多线程（用多个线程处理网络io,但命令还是一个线程执行）可以高一些，如果需要支持非常多人在线，需要使用redis集群。
+redis集群将数据分布到多个redis实例提供性能，上面的方案需要改造来支持的是，因为redis集群只有一个数据库，之前的方案用了两个数据库。</p>
 <p>有两种改造方案：</p>
 <ol>
 <li>准备两个redis集群，之前db0的数据放到一个集群，db1的数据放到另一个集群。缺点是成本更高。</li>
 <li>db0和db1之前直接拿聊天室名作key，现在db0改0+聊天室名作key，db1改1+聊天室名作key。</li>
 </ol>
-<p>部分实现的源代码链接：<a target="_blank" rel="noopener noreferrer external" href="https://github.com/qiulaidongfeng/chatroom">https://github.com/qiulaidongfeng/chatroom</a></p>
+<p>部分实现的源代码链接：<!-- raw HTML omitted --><a href="https://github.com/qiulaidongfeng/chatroom">https://github.com/qiulaidongfeng/chatroom</a><!-- raw HTML omitted --></p>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://qiulaidongfeng.github.io/zh-cn/%E7%94%A8redis%E6%9E%84%E5%BB%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/" data-id="cm9sn8hdo000hukus4u686xd0" data-title="用redis构建聊天室" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
-
-    </footer>
   </div>
   
-    
-<nav id="article-nav">
-  
-  
-    <a href="/zh-cn/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AEtls%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9D%91%E7%82%B9/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">数据库配置tls的几个坑点</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-go1-21/" rel="tag">go - go1.21</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-go1-24/" rel="tag">go - go1.24</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ulang/" rel="tag">ulang</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
-    </div>
+  <div>
+    <div>Tags:</div>
+    <ul>
+        <li><a href="/tags/redis/">Redis</a></li>
+        <li><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li>
+    </ul>
   </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/go/" style="font-size: 20px;">go</a> <a href="/tags/go-go1-21/" style="font-size: 20px;">go - go1.21</a> <a href="/tags/go-go1-24/" style="font-size: 10px;">go - go1.24</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/ulang/" style="font-size: 15px;">ulang</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 15px;">数据库</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">四月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">三月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">二月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">十二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/zh-cn/%E7%94%A8redis%E6%9E%84%E5%BB%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/">用redis构建聊天室</a>
-          </li>
-        
-          <li>
-            <a href="/zh-cn/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AEtls%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9D%91%E7%82%B9/">数据库配置tls的几个坑点</a>
-          </li>
-        
-          <li>
-            <a href="/zh-cn/%E5%9C%A8go%E6%A0%87%E5%87%86%E5%BA%93%E5%A4%96%E5%AE%9E%E7%8E%B0%E6%AF%94%E6%A0%87%E5%87%86%E5%BA%93%E6%9B%B4%E5%A5%BD%E7%9A%84arena/">在go标准库外实现比go标准库更好的arena</a>
-          </li>
-        
-          <li>
-            <a href="/zh-cn/go%E8%AF%AD%E8%A8%80tls1.3%E5%AF%86%E7%A0%81%E5%A5%97%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%A0%94%E7%A9%B6/">go语言tls1.3密码套件修改研究</a>
-          </li>
-        
-          <li>
-            <a href="/zh-cn/%E7%94%A8%E5%8E%9F%E5%AD%90%E6%8C%87%E9%92%88+%E4%BA%92%E6%96%A5%E9%94%81%E5%AE%9E%E7%8E%B0%E4%BB%85%E5%86%99%E6%97%B6%E5%8A%A0%E9%94%81/">用原子指针+互斥锁实现仅写时加锁</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2025 秋来冬风<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.6.4.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
+  </main>
+  <footer>
+    <p>Copyright 2023-2025 秋来冬风. All rights reserved.</p>
+<p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> and <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a></p>
+  </footer>
 </body>
 </html>

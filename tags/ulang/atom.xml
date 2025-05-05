@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ulang on 秋来冬风的博客</title>
+    <link>https://qiulaidongfeng.github.io/tags/ulang/</link>
+    <description>Recent content in Ulang on 秋来冬风的博客</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 19 Mar 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://qiulaidongfeng.github.io/tags/ulang/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Multiplication_or_dereference</title>
+      <link>https://qiulaidongfeng.github.io/en/multiplication-or-dereference-md/</link>
+      <pubDate>Sun, 19 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>https://qiulaidongfeng.github.io/en/multiplication-or-dereference-md/</guid>
+      <description>&lt;h1 id=&#34;multiplication-or-dereference&#34;&gt;Multiplication or dereference&lt;/h1&gt;&#xA;&lt;p&gt;Software translation&lt;/p&gt;&#xA;&lt;p&gt;In the &lt;a href=&#34;https://gitee.com/u-language/u-language&#34;&gt;U Language Project&lt;/a&gt; A separator based lexical analyzer is implemented in the &lt;a href=&#34;https://gitee.com/u-language/u-language/blob/master/pkg/lex/README.md&#34;&gt;Lexical Analyzer Design Document&lt;/a&gt; &amp;ldquo;The current * will be parsed as a multiplication sign, and when there is no pointer, there is no problem.&amp;rdquo;. Now we are ready to add pointers to this project. If you use * to dereference as in other languages, there are two options&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;When constructing an abstract syntax tree, handle ambiguity where * can be both a multiplication sign and a dereference&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>乘法还是解引用</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/%E4%B9%98%E6%B3%95%E8%BF%98%E6%98%AF%E8%A7%A3%E5%BC%95%E7%94%A8-md/</link>
+      <pubDate>Sun, 19 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/%E4%B9%98%E6%B3%95%E8%BF%98%E6%98%AF%E8%A7%A3%E5%BC%95%E7%94%A8-md/</guid>
+      <description>&lt;h1 id=&#34;乘法还是解引用&#34;&gt;乘法还是解引用&lt;/h1&gt;&#xA;&lt;p&gt;在 &lt;a href=&#34;https://gitee.com/u-language/u-language&#34;&gt;U语言项目&lt;/a&gt; 中 ，实现了一个基于分隔符的词法分析器，文档在 &lt;a href=&#34;https://gitee.com/u-language/u-language/blob/master/pkg/lex/README.md&#34;&gt;词法分析器设计文档&lt;/a&gt; ，当前 * 将被分析为乘号，在没有指针时，这样没有问题。现在准备给这个项目增加指针，如果按其他语言一样使用 * 解引用，有两种方案&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;在构建抽象语法树时处理 * 既可以是乘号又可以解引用的二义性&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;在词法分析节点处理 *  既可以是乘号又可以解引用的二义性&lt;/p&gt;&#xA;&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;h2 id=&#34;如何解决--二义性&#34;&gt;如何解决 * 二义性&lt;/h2&gt;&#xA;&lt;p&gt;当编译器看到 一个 * 处理既可以是乘号又可以解引用的二义性，首先没有直接解释为乘号或解引用一种语义的方法，枚举证明&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;如果直接解释为 乘号 ，对于 *ptr=1 的 *ptr是解引用ptr指针，现在被错误的解释成乘ptr&lt;/li&gt;&#xA;&lt;li&gt;如果直接解释为 解引用 ， 对于 c =a*b 的 *b是乘b，现在被错误的解释成解引用b&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;所以需要根据不同情况解释 * ，对于 *&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;如果在开头，因为乘法需要两个操作数，在开头表示左边没有操作数，所以可以解释为解引用&lt;/li&gt;&#xA;&lt;li&gt;如果不在开头，如果 * 前面不是符号，比如 a+*ptr，因为左边不是操作数，所以可以解释为解引用&lt;/li&gt;&#xA;&lt;li&gt;如果不在开头，如果 * 是符号，比如 a*b，因为左边是操作数，所以可以解释为乘号&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;上述处理方法在词法分析或构建抽象语法树，都可以，但是在词法分析的时候通过一个布尔变量，在发现乘号时设置为true,在末尾判断如果布尔变量为true则按上述方法处理乘号，对于没有乘号的部分只增加一次判断的开销。&lt;/p&gt;&#xA;&lt;h2 id=&#34;更简单的办法&#34;&gt;更简单的办法&lt;/h2&gt;&#xA;&lt;p&gt;如果* 有二义性，除了处理二义性还可以找一个没有二义性的符号，比如@，然后编译器看到@就可以直接的识别为解引用，只不过这样和主流做法有区别，可能增加学习成本&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

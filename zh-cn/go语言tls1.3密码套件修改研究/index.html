@@ -1,259 +1,125 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" dir="ltr">
 <head>
   <meta charset="utf-8">
-  
-  
-  <title>go语言tls1.3密码套件修改研究 | 秋来冬风的博客</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="有些浏览器可以看到tls的一些信息，例如笔者看到go语言默认用的aes128,其他tls1.3实现有默认用aes256的。 go语言的tls默认tls1.3使用下列密码套件按下列顺序    TLS_AES_128_GCM_SHA256,    TLS_AES_256_GCM_SHA384,    TLS_CHACHA20_POLY1305_SHA256并且文档中明确列出TLS 1.3 cipher">
-<meta property="og:type" content="article">
-<meta property="og:title" content="go语言tls1.3密码套件修改研究">
-<meta property="og:url" content="https://qiulaidongfeng.github.io/zh-cn/go%E8%AF%AD%E8%A8%80tls1.3%E5%AF%86%E7%A0%81%E5%A5%97%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%A0%94%E7%A9%B6/index.html">
-<meta property="og:site_name" content="秋来冬风的博客">
-<meta property="og:description" content="有些浏览器可以看到tls的一些信息，例如笔者看到go语言默认用的aes128,其他tls1.3实现有默认用aes256的。 go语言的tls默认tls1.3使用下列密码套件按下列顺序    TLS_AES_128_GCM_SHA256,    TLS_AES_256_GCM_SHA384,    TLS_CHACHA20_POLY1305_SHA256并且文档中明确列出TLS 1.3 cipher">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://qiulaidongfeng.github.io/images/s.jpg">
-<meta property="article:published_time" content="2025-02-11T12:00:46.000Z">
-<meta property="article:modified_time" content="2025-02-11T13:16:19.383Z">
-<meta property="article:author" content="秋来冬风">
-<meta property="article:tag" content="go">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://qiulaidongfeng.github.io/images/s.jpg">
-  
-    <link rel="alternate" href="/atom.xml" title="秋来冬风的博客" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+<meta name="viewport" content="width=device-width">
+<title>go语言tls1.3密码套件修改研究 | 秋来冬风的博客</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 
-  
-  
-<link rel="stylesheet" href="/css/style.css">
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
-  
-  
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
-
-<meta name="generator" content="Hexo 6.3.0"></head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">秋来冬风的博客</a>
-      </h1>
-      
+</head>
+<body class="container-fluid" style="background-color: #ddd;">
+  <header>
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-auto">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/tags" class="nav-link">tags</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/atom.xml" class="nav-link">rss</a>
+                </li>
+                <li class="nav-item"></li>
+                    <a href="/about" class="nav-link">about</a>
+                </li>
+                <li class="nav-item"></li>
+                    <a href="/zh-cn" class="nav-link">所有中文内容</a>
+                </li>
+                <li class="nav-item"></li>
+                    <a href="/en" class="nav-link">所有英文内容</a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://qiulaidongfeng.github.io"></form>
-      </div>
+    <div class="row">
+        <div class="offset-lg-4 col-lg-4 offset-sm-3 col-sm-6">
+            <h1 class="h1 text-center">秋来冬风的博客</h1>
+        </div>
     </div>
   </div>
-</header>
-
-      <div class="outer">
-        <section id="main"><article id="post-go语言tls1.3密码套件修改研究" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/zh-cn/go%E8%AF%AD%E8%A8%80tls1.3%E5%AF%86%E7%A0%81%E5%A5%97%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%A0%94%E7%A9%B6/" class="article-date">
-  <time class="dt-published" datetime="2025-02-11T12:00:46.000Z" itemprop="datePublished">2025-02-11</time>
-</a>
+  </header>
+  <main>
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 class="p-name article-title" itemprop="headline name">
-      go语言tls1.3密码套件修改研究
-    </h1>
-  
+  <small>2025-2-11</small>
 
-      </header>
+  <div style="background-color: white;" class="p-4">
     
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>有些浏览器可以看到tls的一些信息，例如<br><img src="/images/s.jpg"><br>笔者看到go语言默认用的aes128,其他tls1.3实现有默认用aes256的。</p>
-<p>go语言的tls默认tls1.3使用下列密码套件按下列顺序<br>    TLS_AES_128_GCM_SHA256,<br>    TLS_AES_256_GCM_SHA384,<br>    TLS_CHACHA20_POLY1305_SHA256<br>并且文档中明确列出TLS 1.3 ciphersuites are not configurable(TLS 1.3密码套件是不可配置的)</p>
+    <h1>go语言tls1.3密码套件修改研究</h1>
+    
+    <p>有些浏览器可以看到tls的一些信息，例如
+<img src="/images/s.jpg" alt="">
+笔者看到go语言默认用的aes128,其他tls1.3实现有默认用aes256的。</p>
+<p>go语言的tls默认tls1.3使用下列密码套件按下列顺序
+TLS_AES_128_GCM_SHA256,
+TLS_AES_256_GCM_SHA384,
+TLS_CHACHA20_POLY1305_SHA256
+并且文档中明确列出TLS 1.3 ciphersuites are not configurable(TLS 1.3密码套件是不可配置的)</p>
 <p>笔者试了类似这个程序</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;crypto/tls&quot;</span></span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;net/http&quot;</span></span><br><span class="line">	_ <span class="string">&quot;unsafe&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">//go:linkname defaultCipherSuitesTLS13 tls.defaultCipherSuitesTLS13</span></span><br><span class="line"><span class="keyword">var</span> defaultCipherSuitesTLS13 = []<span class="type">uint16</span>&#123;</span><br><span class="line">	tls.TLS_AES_256_GCM_SHA384,</span><br><span class="line">	tls.TLS_CHACHA20_POLY1305_SHA256,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	c := tls.Config&#123;</span><br><span class="line">		MinVersion: tls.VersionTLS13,</span><br><span class="line">	&#125;</span><br><span class="line">	s := http.Server&#123;</span><br><span class="line">		Addr:      <span class="string">&quot;:443&quot;</span>,</span><br><span class="line">		TLSConfig: &amp;c,</span><br><span class="line">	&#125;</span><br><span class="line">	mux := http.NewServeMux()</span><br><span class="line">	s.Handler = mux</span><br><span class="line">	mux.HandleFunc(<span class="string">&quot;/&quot;</span>, <span class="function"><span class="keyword">func</span><span class="params">(w http.ResponseWriter, req *http.Request)</span></span> &#123;</span><br><span class="line">		fmt.Fprintln(w, <span class="string">&quot;hello&quot;</span>)</span><br><span class="line">	&#125;)</span><br><span class="line">	err := s.ListenAndServeTLS(<span class="string">`cert_path`</span>, <span class="string">`key_path`</span>)</span><br><span class="line">	fmt.Println(err)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>确实一般情况下无法配置。<br>研究确认，修改go语言tls包的defaults.go源文件中defaultCipherSuitesTLS13可以做到其他tls1.3实现的效果<br>只需将原本的</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> defaultCipherSuitesTLS13 = []<span class="type">uint16</span>&#123;</span><br><span class="line">	TLS_AES_128_GCM_SHA256,</span><br><span class="line">	TLS_AES_256_GCM_SHA384,</span><br><span class="line">	TLS_CHACHA20_POLY1305_SHA256,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>改为</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> defaultCipherSuitesTLS13 = []<span class="type">uint16</span>&#123;</span><br><span class="line">	TLS_AES_256_GCM_SHA384,</span><br><span class="line">	TLS_CHACHA20_POLY1305_SHA256,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://qiulaidongfeng.github.io/zh-cn/go%E8%AF%AD%E8%A8%80tls1.3%E5%AF%86%E7%A0%81%E5%A5%97%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%A0%94%E7%A9%B6/" data-id="cm9sn8hda0003ukusdjub99wr" data-title="go语言tls1.3密码套件修改研究" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/" rel="tag">go</a></li></ul>
-
-    </footer>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;crypto/tls&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;net/http&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">_</span> <span style="color:#e6db74">&#34;unsafe&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//go:linkname defaultCipherSuitesTLS13 tls.defaultCipherSuitesTLS13</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">defaultCipherSuitesTLS13</span> = []<span style="color:#66d9ef">uint16</span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">tls</span>.<span style="color:#a6e22e">TLS_AES_256_GCM_SHA384</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">tls</span>.<span style="color:#a6e22e">TLS_CHACHA20_POLY1305_SHA256</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">tls</span>.<span style="color:#a6e22e">Config</span>{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">MinVersion</span>: <span style="color:#a6e22e">tls</span>.<span style="color:#a6e22e">VersionTLS13</span>,
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">s</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Server</span>{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Addr</span>:      <span style="color:#e6db74">&#34;:443&#34;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">TLSConfig</span>: <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">c</span>,
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">mux</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">NewServeMux</span>()
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">Handler</span> = <span style="color:#a6e22e">mux</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">mux</span>.<span style="color:#a6e22e">HandleFunc</span>(<span style="color:#e6db74">&#34;/&#34;</span>, <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">w</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">ResponseWriter</span>, <span style="color:#a6e22e">req</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Request</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Fprintln</span>(<span style="color:#a6e22e">w</span>, <span style="color:#e6db74">&#34;hello&#34;</span>)
+</span></span><span style="display:flex;"><span>	})
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">s</span>.<span style="color:#a6e22e">ListenAndServeTLS</span>(<span style="color:#e6db74">`cert_path`</span>, <span style="color:#e6db74">`key_path`</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>确实一般情况下无法配置。
+研究确认，修改go语言tls包的defaults.go源文件中defaultCipherSuitesTLS13可以做到其他tls1.3实现的效果
+只需将原本的</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">defaultCipherSuitesTLS13</span> = []<span style="color:#66d9ef">uint16</span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">TLS_AES_128_GCM_SHA256</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">TLS_AES_256_GCM_SHA384</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">TLS_CHACHA20_POLY1305_SHA256</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>改为</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">defaultCipherSuitesTLS13</span> = []<span style="color:#66d9ef">uint16</span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">TLS_AES_256_GCM_SHA384</span>,
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">TLS_CHACHA20_POLY1305_SHA256</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
   </div>
   
-    
-<nav id="article-nav">
-  
-    <a href="/zh-cn/%E5%9C%A8go%E6%A0%87%E5%87%86%E5%BA%93%E5%A4%96%E5%AE%9E%E7%8E%B0%E6%AF%94%E6%A0%87%E5%87%86%E5%BA%93%E6%9B%B4%E5%A5%BD%E7%9A%84arena/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          在go标准库外实现比go标准库更好的arena
-        
-      </div>
-    </a>
-  
-  
-    <a href="/zh-cn/%E7%94%A8%E5%8E%9F%E5%AD%90%E6%8C%87%E9%92%88+%E4%BA%92%E6%96%A5%E9%94%81%E5%AE%9E%E7%8E%B0%E4%BB%85%E5%86%99%E6%97%B6%E5%8A%A0%E9%94%81/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">用原子指针+互斥锁实现仅写时加锁</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-go1-21/" rel="tag">go - go1.21</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-go1-24/" rel="tag">go - go1.24</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ulang/" rel="tag">ulang</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
-    </div>
+  <div>
+    <div>Tags:</div>
+    <ul>
+        <li><a href="/tags/go/">Go</a></li>
+    </ul>
   </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/go/" style="font-size: 20px;">go</a> <a href="/tags/go-go1-21/" style="font-size: 20px;">go - go1.21</a> <a href="/tags/go-go1-24/" style="font-size: 10px;">go - go1.24</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/ulang/" style="font-size: 15px;">ulang</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 15px;">数据库</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">四月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">三月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">二月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">十二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/zh-cn/%E7%94%A8redis%E6%9E%84%E5%BB%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/">用redis构建聊天室</a>
-          </li>
-        
-          <li>
-            <a href="/zh-cn/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AEtls%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9D%91%E7%82%B9/">数据库配置tls的几个坑点</a>
-          </li>
-        
-          <li>
-            <a href="/zh-cn/%E5%9C%A8go%E6%A0%87%E5%87%86%E5%BA%93%E5%A4%96%E5%AE%9E%E7%8E%B0%E6%AF%94%E6%A0%87%E5%87%86%E5%BA%93%E6%9B%B4%E5%A5%BD%E7%9A%84arena/">在go标准库外实现比go标准库更好的arena</a>
-          </li>
-        
-          <li>
-            <a href="/zh-cn/go%E8%AF%AD%E8%A8%80tls1.3%E5%AF%86%E7%A0%81%E5%A5%97%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%A0%94%E7%A9%B6/">go语言tls1.3密码套件修改研究</a>
-          </li>
-        
-          <li>
-            <a href="/zh-cn/%E7%94%A8%E5%8E%9F%E5%AD%90%E6%8C%87%E9%92%88+%E4%BA%92%E6%96%A5%E9%94%81%E5%AE%9E%E7%8E%B0%E4%BB%85%E5%86%99%E6%97%B6%E5%8A%A0%E9%94%81/">用原子指针+互斥锁实现仅写时加锁</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2025 秋来冬风<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.6.4.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
+  </main>
+  <footer>
+    <p>Copyright 2023-2025 秋来冬风. All rights reserved.</p>
+<p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> and <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a></p>
+  </footer>
 </body>
 </html>

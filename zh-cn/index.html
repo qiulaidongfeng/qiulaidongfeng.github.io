@@ -1,850 +1,181 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" dir="ltr">
 <head>
   <meta charset="utf-8">
-  
-  
-  <title>秋来冬风的博客</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="秋来冬风的博客">
-<meta property="og:url" content="https://qiulaidongfeng.github.io/zh-cn/index.html">
-<meta property="og:site_name" content="秋来冬风的博客">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="秋来冬风">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="秋来冬风的博客" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+<meta name="viewport" content="width=device-width">
+<title>Zh-Cns | 秋来冬风的博客</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 
-  
-  
-<link rel="stylesheet" href="/css/style.css">
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
-  
-  
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
-
-<meta name="generator" content="Hexo 6.3.0"></head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">秋来冬风的博客</a>
-      </h1>
-      
+</head>
+<body class="container-fluid" style="background-color: #ddd;">
+  <header>
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-auto">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/tags" class="nav-link">tags</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/atom.xml" class="nav-link">rss</a>
+                </li>
+                <li class="nav-item"></li>
+                    <a href="/about" class="nav-link">about</a>
+                </li>
+                <li class="nav-item"></li>
+                    <a href="/zh-cn" class="nav-link">所有中文内容</a>
+                </li>
+                <li class="nav-item"></li>
+                    <a href="/en" class="nav-link">所有英文内容</a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://qiulaidongfeng.github.io"></form>
-      </div>
+    <div class="row">
+        <div class="offset-lg-4 col-lg-4 offset-sm-3 col-sm-6">
+            <h1 class="h1 text-center">秋来冬风的博客</h1>
+        </div>
     </div>
   </div>
-</header>
-
-      <div class="outer">
-        <section id="main">
+  </header>
+  <main>
+    
+  <h1>所有中文内容</h1>
   
-    <article id="post-用redis构建聊天室" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/zh-cn/%E7%94%A8redis%E6%9E%84%E5%BB%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/" class="article-date">
-  <time class="dt-published" datetime="2025-04-21T02:15:12.000Z" itemprop="datePublished">2025-04-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
+  <div class="row">
     
     
-      <header class="article-header">
+        <div class="card col-lg-4 col-sm-12">
+    <div class="card-body">
+        <h5 class="card-title">用redis构建聊天室</h5>
+        <p class="card-text">记录我用redis构建聊天室的一个方案。</p>
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/zh-cn/%E7%94%A8redis%E6%9E%84%E5%BB%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/">用redis构建聊天室</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>此博客记录我用redis构建聊天室的一个方案。</p>
-<p>首先，要实现的功能是聊天室可以被多个用户进入，在里面互相发消息聊天，能显示在线id数，聊天室会在一段时间没人发消息后自动删除。</p>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>每个聊天室有一个名字，可以使用这个名字作为操作redis时的key。</p>
-<h3 id="如何保存历史消息"><a href="#如何保存历史消息" class="headerlink" title="如何保存历史消息"></a>如何保存历史消息</h3><h4 id="性能太差不采用的"><a href="#性能太差不采用的" class="headerlink" title="性能太差不采用的"></a>性能太差不采用的</h4><p>redis的string可以保存历史消息，通过将所有消息序列化为json之类保存，这样性能最差，因为消息要被重复的序列化和反序列化，所以不采用。</p>
-<h4 id="不符合要求不采用的"><a href="#不符合要求不采用的" class="headerlink" title="不符合要求不采用的"></a>不符合要求不采用的</h4><p>redis的发布订阅，可以构建非常简单的聊天室，但不能保存历史消息，且无法确保消息一定会被接收，所以不采用。<br>redis的位图，地理位置索引，HyperLogLog不能实现保存消息，所以不采用。</p>
-<h4 id="实现更复杂不采用的"><a href="#实现更复杂不采用的" class="headerlink" title="实现更复杂不采用的"></a>实现更复杂不采用的</h4><p>redis的哈希可以通过key是聊天室第n条发出消息的n,value是消息实现聊天室，意味着需要一个不断递增的n，增加了实现的复杂性，所以不采用。<br>redis的集合和有序集合，可以通过，聊天室第n条发出消息的n+消息的字符串插入到集合实现聊天室，同样因为需要不断递增的n，所以不采用。<br>redis的流相对其他数据类型更复杂，所以不采用。</p>
-<h4 id="最终采用"><a href="#最终采用" class="headerlink" title="最终采用"></a>最终采用</h4><p>redis的列表支持保存历史消息，可以被定时删除，而且通过lrange改参数start和end，很方便实现分页显示，不需要不断递增的n，所以采用。</p>
-<h3 id="如何创建聊天室"><a href="#如何创建聊天室" class="headerlink" title="如何创建聊天室"></a>如何创建聊天室</h3><p>通过在redis插入一个表示聊天室的key，值为列表。</p>
-<p>首先，要使用watch命令监视在redis表示聊天室的key，然后调用exists命令。</p>
-<ul>
-<li>如果key已经存在，说明聊天室已经创建，调用unwatch命令结束。</li>
-<li>如果key不存在，则开启事务进行插入。</li>
-</ul>
-<p>首先，调用multi命令开启事务，然后，调用rpush命令插入key，值是一个列表，第一个值为空字符串（rpush key “”），然后调用expire命令设置过期时间实现自动删除，例如要两小时自动删除，则实际调用（expire key 7200），接着调用exec执行事务，不考虑网络异常等，如果事务执行成功，聊天室创建成功，否则说明聊天室被其他用户创建。</p>
-<h3 id="如何进入聊天室"><a href="#如何进入聊天室" class="headerlink" title="如何进入聊天室"></a>如何进入聊天室</h3><p>利用redis在非集群模式可以有多数据库，实现可以是历史消息在db0，用户id在db1。<br>使用hash可以把一个聊天室的所有id放到一起，并对id分别设置不同的过期时间，所以采用这个数据结构。</p>
-<p>具体流程：</p>
-<ol>
-<li>随机生成一个id。</li>
-<li>使用hsetnx命令尝试插入用户id，命令的参数key是聊天室名，field是哈希的key是id，value是空字符串（hsetnx key id “”）。</li>
-<li>如失败，说明id已经被使用，回到1重来。</li>
-<li>如成功，使用hexpireat命令设置id的过期时间，注意该命令在redis7.4.0开始才有，例如假设现在Uinx时间戳是100，过期时间是20秒，则实际调用(hexpireat key 120 FIELDS id)。</li>
-</ol>
-<p>因为只有2成功才能执行4，且2同时多个用户执行只有一个成功，所以这里不需要使用事务。</p>
-<p>注意这里不需要更新聊天室的过期时间，因为有人但无人发消息的聊天室是不活跃的，和本来就没人的聊天室一样可以定时删除。</p>
-<h3 id="如何发送文字消息到聊天室"><a href="#如何发送文字消息到聊天室" class="headerlink" title="如何发送文字消息到聊天室"></a>如何发送文字消息到聊天室</h3><p>把文字消息发送到聊天室，只需要把文字消息插入到列表尾部，并且更新id的过期时间。</p>
-<p>rpush命令虽然可以做到这一点，但在聊天室不存在时也不会失败，而是产生第一个字符串非空的列表，破坏创建聊天室时产生的不变量，会造成后续获取历史消息时不显示第一条消息。<br>虽然通过事务和exists命令配合rpush命令可以解决上面的问题，但性能更差。</p>
-<p>rpushx命令在key不存在时不插入，解决了上面的问题，所以采用。</p>
-<p>具体流程：<br>在db0</p>
-<ol>
-<li>调用rpushx key 文字消息。</li>
-<li>调用expire更新聊天室过期时间。</li>
-</ol>
-<p>这里不需要事务，因为每条命令是原子操作就够了，即使前后调用多次expire，旧的调用后执行，最后结果也是，过期时间更新到当前时间+指定时长。</p>
-<p>在db1调用hexpireat更新id过期时间。</p>
-<h3 id="如何获取历史消息等信息"><a href="#如何获取历史消息等信息" class="headerlink" title="如何获取历史消息等信息"></a>如何获取历史消息等信息</h3><p>获取列表的所有元素即可获取历史消息，同时可以获取聊天室还有多久自动删除，以及在线id数。因为实践中，这样可以重复利用一个GET请求响应多个有关的数据，提升性能。</p>
-<p>具体流程：<br>在db0</p>
-<ol>
-<li>调用lrange key 1 -1，获取列表存的所有历史文字消息。</li>
-<li>调用ttl key获取聊天室还有多久自动删除。</li>
-</ol>
-<p>在db1</p>
-<ol>
-<li>调用hexpireat更新id过期时间。</li>
-<li>调用hlen命令（hlen key）,获取在线id数。</li>
-</ol>
-<h3 id="如何退出聊天室"><a href="#如何退出聊天室" class="headerlink" title="如何退出聊天室"></a>如何退出聊天室</h3><p>在db1调用hdel key id即可。<br>可以客户端和服务端定时通信，客户端长时间无响应就自动退出聊天室。</p>
-<p>注意不应立刻检查是否无用户在线，因为即使所有用户都不在，可能只是因为网络等原因意外下线，很快就回来，所以即使无人在线也不意味着可以删除聊天室。</p>
-<p>这样一个基本的聊天室就实现，可以优化。</p>
-<h3 id="优化：只获取新消息"><a href="#优化：只获取新消息" class="headerlink" title="优化：只获取新消息"></a>优化：只获取新消息</h3><p>在实践中，用户之间发消息，旧的消息已经在用户那里有了，不需要每次到重新获取，所以可以利用这一点优化。<br>只需要把上面“如何获取历史消息等信息”的在db0的流程2改为调用调用lrange 用户已获取的消息数 列表的长度即可。</p>
-<h3 id="手动删除聊天室"><a href="#手动删除聊天室" class="headerlink" title="手动删除聊天室"></a>手动删除聊天室</h3><p>只要在db0和db1执行del key就能实现。</p>
-<h3 id="支持发送多媒体消息"><a href="#支持发送多媒体消息" class="headerlink" title="支持发送多媒体消息"></a>支持发送多媒体消息</h3><p>在实践中，可能发送的消息不是文字而是图片之类的。<br>支持这一点的简单办法是之前列表的每个元素是一条文字消息，现在改为json字符串，消息在里面，类似{type:”text”,data:”message”}这样有两个字段的，当type是text，把data的值视为文字消息，当type是image时，把data视为base64编码后的图片数据，以此类推视频等。</p>
-<p>这样做虽然可以支持发送图片、语音之类的，但有问题。</p>
-<ol>
-<li>因为redis是串行指行每条命令，所以如果一条命令执行太长时间，其他命令都会等待，造成后续所有操作响应时间增加，而文字消息通常不会很大，不用担心执行用时太长，但图片可能几MB，视频更大。</li>
-<li>这样无法利用cdn响应图片等数据，限制了优化减少源服务器流量使用。</li>
-</ol>
-<p>可以把json字符串改为当type是image时，把data视为图片的url，以此类推视频等。这样可以解决上面的问题，但要注意访问权限，避免发送到聊天室的内容有url就能访问（即检查用户id是否能在db1通过这个聊天室的key查到）。</p>
-<p>url可以按这个模板生成：<code>https://hostname/&#123;&#123;聊天室名&#125;&#125;/&#123;&#123;资源名&#125;&#125;</code></p>
-<h3 id="支持限制进入"><a href="#支持限制进入" class="headerlink" title="支持限制进入"></a>支持限制进入</h3><p>通过将聊天室名设置为一个复杂的字符串，例如bg3uReMsGpGTUY@W19，因为极不可能被猜到，已经有很好的限制聊天室进入的效果，但不够好，因为</p>
-<ol>
-<li>使聊天室名无意义了。</li>
-<li>无法限制进入的id。</li>
-</ol>
-<p>利用db0每个列表第一个元素都是可被用作其他通途的字符串，可以把它变成一个配置字符串，例如有一个配置结构体：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Config <span class="keyword">struct</span>&#123;</span><br><span class="line">    <span class="comment">// Password 设置进入聊天室的验证密码的哈希值。</span></span><br><span class="line">    Password <span class="type">string</span></span><br><span class="line">    <span class="comment">// MaxIdNum 设置进入聊天室的最大id数。</span></span><br><span class="line">    <span class="comment">// 为0表示不限制。</span></span><br><span class="line">    MaxIdNum <span class="type">int</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以把它序列化为json字符串，保存到列表第一个元素，然后进入聊天室时检查MaxIdNum，每次访问聊天室（发送消息，获取消息等）到要携带上密码的哈希值，服务器在进行操作前先检查密码哈希值是否一致，一致才执行操作，就实现了限制进入并解决上面的问题。</p>
-<h3 id="支持显示发送者昵称"><a href="#支持显示发送者昵称" class="headerlink" title="支持显示发送者昵称"></a>支持显示发送者昵称</h3><p>可以在配置结构体加一个字段：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Name 记录id到用户昵称的定义。</span></span><br><span class="line">Name <span class="keyword">map</span>[<span class="type">string</span>]<span class="type">string</span></span><br></pre></td></tr></table></figure>
-<p>消息json字符串加一个字段send，值为发送者id。<br>然后进入聊天室时要求用户设置昵称，之后获取消息后通过发送者id，可以利用配置结构体的Name字段查到发送者的昵称。</p>
-<h3 id="支持修改自动过期时间"><a href="#支持修改自动过期时间" class="headerlink" title="支持修改自动过期时间"></a>支持修改自动过期时间</h3><p>可以在配置结构体加一个字段：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// TTL 表示多久没新消息删除聊天室。</span></span><br><span class="line">TTL time.Duration</span><br></pre></td></tr></table></figure>
-<p>然后每次有新消息时使用这个字段确定自动过期时间。</p>
-<h3 id="支持禁言"><a href="#支持禁言" class="headerlink" title="支持禁言"></a>支持禁言</h3><p>可以在配置结构体加一个字段：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Prohibit 记录被禁言的id。</span></span><br><span class="line">Prohibit []<span class="type">string</span></span><br></pre></td></tr></table></figure>
-<p>被禁言的id就加入这个字段。<br>然后发送消息时，先检查发送者id是否在配置结构体的Prohibit字段中，如果在，不准发送消息。<br>扩展这个字段为类似这样：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Prohibit 记录被禁言的id和禁言时间。</span></span><br><span class="line">Prohibit []<span class="keyword">struct</span>&#123;</span><br><span class="line">    <span class="comment">// Id 是被禁言的id。</span></span><br><span class="line">    Id <span class="type">string</span></span><br><span class="line">    <span class="comment">// End 是解除禁言时间。</span></span><br><span class="line">    <span class="comment">// End.IsZero() 返回true表示永久禁言</span></span><br><span class="line">    End time.Time</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>还可以实现只禁言一段时间。</p>
-<p>这里故意不用redis的集合存被禁言的id，因为这样只要一条lrange命令就能获取所有消息和配置信息，用集合意味着需要执行的命令数翻倍。</p>
-<h3 id="支持撤回消息"><a href="#支持撤回消息" class="headerlink" title="支持撤回消息"></a>支持撤回消息</h3><p>由于redis原生不支持列表直接删除指定元素，所以需要用事务和一些命令模拟这一操作，可以实现，但性能差，所以不采用。</p>
-<p>redis的lset命令可以修改指定index的元素，可以通过（lset key index “”）实现撤回，所以采用。<br>注意“优化：只获取新消息”假设消息发出后不变，撤回消息打破了这一不变量。所以为了正确实现，需要再调用rpushx命令插入一条特殊的json字符串，例如{type:”change”,data:index}，用来告知客户端，某条消息撤回了，并且客户端必须检查每一条消息是否是空字符串，非空的才显示。</p>
-<p>如果要支持显示谁撤回了消息，可以通过实现撤回的lset命令，参数空字符串改为例如这样{type:”change”,data:”id”}，客户端需要相应更新来处理这样的json字符串。</p>
-<h3 id="支持redis集群"><a href="#支持redis集群" class="headerlink" title="支持redis集群"></a>支持redis集群</h3><p>redis命令是串行执行的，所以它的性能受限于单核是有上限的，尽管是内存数据库性能很高，但最高大约10万+rps(测set命令的数据)，开io多线程（用多个线程处理网络io,但命令还是一个线程执行）可以高一些，如果需要支持非常多人在线，需要使用redis集群。<br>redis集群将数据分布到多个redis实例提供性能，上面的方案需要改造来支持的是，因为redis集群只有一个数据库，之前的方案用了两个数据库。</p>
-<p>有两种改造方案：</p>
-<ol>
-<li>准备两个redis集群，之前db0的数据放到一个集群，db1的数据放到另一个集群。缺点是成本更高。</li>
-<li>db0和db1之前直接拿聊天室名作key，现在db0改0+聊天室名作key，db1改1+聊天室名作key。</li>
-</ol>
-<p>部分实现的源代码链接：<a target="_blank" rel="noopener noreferrer external" href="https://github.com/qiulaidongfeng/chatroom">https://github.com/qiulaidongfeng/chatroom</a></p>
-
-      
+        
+        <p class="card-text">2025-4-21<p>
+        
+        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/%E7%94%A8redis%E6%9E%84%E5%BB%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/&#34;)">阅读</button>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://qiulaidongfeng.github.io/zh-cn/%E7%94%A8redis%E6%9E%84%E5%BB%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/" data-id="cm9sn8hdo000hukus4u686xd0" data-title="用redis构建聊天室" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-数据库配置tls的几个坑点" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/zh-cn/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AEtls%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9D%91%E7%82%B9/" class="article-date">
-  <time class="dt-published" datetime="2025-03-19T11:22:51.000Z" itemprop="datePublished">2025-03-19</time>
-</a>
+</div>
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+        <div class="card col-lg-4 col-sm-12">
+    <div class="card-body">
+        <h5 class="card-title">数据库配置tls的几个坑点</h5>
+        <p class="card-text">记录我配置数据库连接使用tls遇到的一些常见网络教程未介绍的坑点</p>
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/zh-cn/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AEtls%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9D%91%E7%82%B9/">数据库配置tls的几个坑点</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <ol>
-<li>用docker安装的redis，配置tls时，许多网上相关的内容都是讲的生成证书和改redis配置文件的tls部分，但是没讲如果docker安装在wsl2，还要修改redis配置文件的bind为0.0.0.0。</li>
-<li>mongodb不支持tls1.3。</li>
-<li>mongodb和redis默认在启用tls时启用客户端证书验证，意味着默认只配置服务端证书验证还不能用tls连接mongodb和redis。</li>
-<li>一些网上讲用openssl自建ca签发tls证书的内容没有讲到证书SAN信息要包含服务端的域名或IP，不包含的话服务端使用这样的证书，客户端连接时会产生这样的错误Hostname&#x2F;IP does not match certificate’s altnames: IP: 127.0.0.1 is not in the cert’s list:</li>
-</ol>
-
-      
+        
+        <p class="card-text">2025-3-19<p>
+        
+        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AEtls%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9D%91%E7%82%B9/&#34;)">阅读</button>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://qiulaidongfeng.github.io/zh-cn/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AEtls%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9D%91%E7%82%B9/" data-id="cm9sn8hdk000bukus90k36aqs" data-title="数据库配置tls的几个坑点" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-在go标准库外实现比标准库更好的arena" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/zh-cn/%E5%9C%A8go%E6%A0%87%E5%87%86%E5%BA%93%E5%A4%96%E5%AE%9E%E7%8E%B0%E6%AF%94%E6%A0%87%E5%87%86%E5%BA%93%E6%9B%B4%E5%A5%BD%E7%9A%84arena/" class="article-date">
-  <time class="dt-published" datetime="2025-02-11T19:36:31.000Z" itemprop="datePublished">2025-02-12</time>
-</a>
+</div>
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+        <div class="card col-lg-4 col-sm-12">
+    <div class="card-body">
+        <h5 class="card-title">在go标准库外实现比go标准库更好的arena</h5>
+        <p class="card-text">记录我如何在go标准库外实现比go标准库更好的arena。</p>
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/zh-cn/%E5%9C%A8go%E6%A0%87%E5%87%86%E5%BA%93%E5%A4%96%E5%AE%9E%E7%8E%B0%E6%AF%94%E6%A0%87%E5%87%86%E5%BA%93%E6%9B%B4%E5%A5%BD%E7%9A%84arena/">在go标准库外实现比go标准库更好的arena</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>此博客介绍笔者是如何在go标准库外实现比go标准库更好的arena。</p>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>arena是一种内存管理方法，从中分配的内存可以被同时释放，适合在一组object的生命周期相同或相近的场景使用，以减少垃圾收集开销。</p>
-<p>go1.22在标准库引入了一个实验性的arena，在这个的<a target="_blank" rel="noopener" href="https://github.com/golang/go/issues/51317">issue</a>，发出来没多久笔者就看到了，其中看到“为多个goroutine使用同一个arena是非常低效的。当然，这通常也没有什么意义，因为在不同的goroutine中分配的object的生命周期可能非常不同”，这里笔者印象很深，因为当时读到，笔者立刻就想到了一个多goroutine使用同一个arena的场景，是编译器解析多个源文件成抽象语法树，所有的节点生命周期都是相同的，而且支持goroutine使用到底有多低效呢？所以笔者在go标准库外试着实现了一个支持多goroutine使用的arena.</p>
-<p>当这里写在go标准库外实现比go标准库更好的arena，指的是</p>
-<ul>
-<li>单goroutine使用性能更好</li>
-<li>支持多goroutine使用</li>
-</ul>
-<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="基础实现"><a href="#基础实现" class="headerlink" title="基础实现"></a>基础实现</h3><p>首先，准备一个持有一块内存的切片，和一个索引，称为buf，分配就是加索引，然后如果索引不大于长度，就获取这个切片这个索引的元素分配给调用者，不然就自动扩容，分配代码类似这样</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">index = index + <span class="number">1</span></span><br><span class="line"><span class="keyword">if</span> index &lt; <span class="built_in">len</span> &#123;</span><br><span class="line">    realloc()</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> slice[index]</span><br></pre></td></tr></table></figure>
-<p>arena持有1个buf切片，最初里面有1个buf，它分配完就增加一个buf，以此类推，实现自动扩容。<br>一个简单的支持单goroutine的arena就是这么简单，后续就是在这基础上扩展。</p>
-<h3 id="分配一组object"><a href="#分配一组object" class="headerlink" title="分配一组object"></a>分配一组object</h3><p>go语言的切片类型可以表示一段内存，有n个T类型的object。<br>从arena分配一组object，利用这一点，可以比基础实现稍作修改，类似这样</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">index = index + num</span><br><span class="line"><span class="keyword">if</span> index &lt; <span class="built_in">len</span> &#123;</span><br><span class="line">    realloc()</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> slice[index-num:index]</span><br></pre></td></tr></table></figure>
-
-<h3 id="真正支持分配任意类型"><a href="#真正支持分配任意类型" class="headerlink" title="真正支持分配任意类型"></a>真正支持分配任意类型</h3><p>实现buf分配任意类型最简单的就是分配一个大的<code>[]uint8</code>，要几个字节索引就加几，然后对切片返回slice[oldindex]的地址，通过unsafe.Pointer返回对应地址的指针，就可以将这块内存当做任意类型的值来使用。一些其他人实现的arena可以极高效率的在单goroutine场景分配任意类型的秘诀正在于此。</p>
-<p>这样做有一个问题，go语言的gc会把<code>[]uint8</code>视作不含有指针的类型，所以，如果这里存有一个指针，它对gc隐藏起来了，在极端情况，可能一个object只有被隐藏的一个指针引用，这意味着gc可能将正在使用的内存回收，稍后发生use-after-free，程序可能因此崩溃。</p>
-<p>一种办法是分配<code>[]unsafe.pointer</code>，但是这样的buf只能分配全是指针的类型，否则gc看到指针类型的内存存着不是有效的指针，会引发程序崩溃。<br>得益于go1.18添加的泛型，可以分配一个<code>[]T</code>，T是任意类型，这样就可以像基础实现那样一个buf安全的分配一种类型的值。</p>
-<p>然后持有多个buf的变成一个类型的内存池，一个arena持有这些内存池，实现支持分配任意类型的支持单goroutine的arena。</p>
-<h3 id="高性能的支持多goroutine"><a href="#高性能的支持多goroutine" class="headerlink" title="高性能的支持多goroutine"></a>高性能的支持多goroutine</h3><p>支持多goroutine本身不难，任何只支持单goroutine的操作，加一个互斥锁就可以变成支持多gorutine的，但意味着只有CPU只有一个核被利用，很低效。</p>
-<p>简单的加一把读写锁也是不行的，从arena分配是写操作，读写锁适用于的是读多写少的场景。虽然arena获取特定类型的内存池，和从内存池获取多个buf的一个通常是最后一个正在使用的buf，在大多数时候是一个读操作，但注意，加读锁本身是通过原子加实现的，它是写操作，在多goroutine，随着竞争程度的增加，虽然因为使可以同时进行的读操作同时进行，性能比互斥锁更好，但还有提升的空间。</p>
-<p>原子写操作在多goroutine场景对性能的影响也是不可小觑的，一个例子就是arena获取特定类型的内存池时，比使用读写锁，采用笔者前段时间的博客 “用原子指针+互斥锁实现仅写时加锁” 里描述的方法，消除了热路径上的一个原子写操作，多goroutine性能提升了约30%。</p>
-<p>采用笔者前段时间的博客 “用原子指针+互斥锁实现仅写时加锁” 里描述的方法，程序根据是否大多数时候执行的代码路径，分为热路径和冷路径。</p>
-<p>热路径是不需要自动扩容时，顺利从内存池当前正在使用的buf分配的代码路径，热路径上只有一个原子写操作，是buf加索引时，目前没有办法消除这个原子写操作，热路径其他用到的同步就是原子读，所以确保了笔者实现的arena高性能的支持goroutine。</p>
-<h3 id="支持重用内存"><a href="#支持重用内存" class="headerlink" title="支持重用内存"></a>支持重用内存</h3><p>arena之所以能减少垃圾收集开销，在于它把一组生命周期相同或相似的object，一次全部释放，而这意味着有内存可以被立即重用，从而减少了gc运行的次数。顺带因此针对性实现，分配性能更好。如果只支持单gorutine，arena一次分配的性能开销可以压缩的一个加法，一个if判断，一个取地址，在大量分配小对象的场景，已经足以产生可观测的性能提升了。</p>
-<p>arena支持重用的内存，在于真正持有了一块连续内存的buf，go语言标准库提供的sync.Pool可以用来重用buf，可以把buf放进去，等需要时再取出实现重用内存。</p>
-<p>因为buf持有的内存大小不同，类型不同，所以将其放进sync.Pool，需要先找到同样类型的一些sync.Pool，在从中找到同样大小的sync.Pool，以确保安全的从同一个sync.Pool，得到的是同样类型持有同样大小内存的buf。</p>
-<p>依靠go语言标准库的sync.Map，可以高效的做到这一点<br>这是笔者写的做到上述做法的代码，其中的MemBlock和上文中的buf表示同样的含义。</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> globarPool sync.Map</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">getMemBlockPool</span><span class="params">(rtype <span class="type">uintptr</span>， bufSize <span class="type">int64</span>)</span></span> *sync.Pool &#123;</span><br><span class="line">	m， have := globarPool.Load(rtype)</span><br><span class="line">	<span class="keyword">if</span> !have &#123;</span><br><span class="line">		m = <span class="built_in">new</span>(sync.Map)</span><br><span class="line">		<span class="comment">//无论是否成功，都说明同样类型的内存块的sync.Map有了</span></span><br><span class="line">		m， _ = globarPool.LoadOrStore(rtype， m)</span><br><span class="line">	&#125;</span><br><span class="line">	typmap := m.(*sync.Map)</span><br><span class="line">	<span class="comment">// 上面拿到了 每个类型不同的 sync.map , 里面有每个类型不同大小内存块的sync.Pool</span></span><br><span class="line">	p， _ := typmap.Load(bufSize)</span><br><span class="line">	<span class="comment">// 上面尝试拿 放着同样类型同样大小内存块的 sync.Pool</span></span><br><span class="line">	blockp， have := p.(*sync.Pool)</span><br><span class="line">	<span class="keyword">if</span> !have &#123;</span><br><span class="line">		blockp = <span class="built_in">new</span>(sync.Pool)</span><br><span class="line">		p， _ = typmap.LoadOrStore(bufSize， blockp)</span><br><span class="line">		<span class="comment">// Note 这里的类型断言肯定成功，因为如果是写操作，得到的是刚刚的new(sync.Pool)，</span></span><br><span class="line">		<span class="comment">// 如果是读操作，读到的是其他goroutine写的new(sync.Pool)</span></span><br><span class="line">		blockp = p.(*sync.Pool)</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 上面拿到了 放着同样类型相同大小内存块的 sync.Pool</span></span><br><span class="line">	<span class="keyword">return</span> blockp</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>给arena一个Free方法，当这个方法被调用时，将内存池的buf放入sync.Pool。<br>然后只需要再从arena分配时，要分配的类型的内存池首先尝试从sync.Pool获取buf，就实现了重用内存。</p>
-<h3 id="结构图"><a href="#结构图" class="headerlink" title="结构图"></a>结构图</h3><p>最终实现的arena结构如图所示<br><img src="/images/arena.png"></p>
-<h3 id="性能对比"><a href="#性能对比" class="headerlink" title="性能对比"></a>性能对比</h3><p>从arena分配一个int:</p>
-<p>笔者实现的：8.387 ns&#x2F;op<br>go标准库的：9.299 ns&#x2F;op</p>
-<p>从arena分配100个int再free：<br>笔者实现的：965.7 ns&#x2F;op<br>go标准库的：1079 ns&#x2F;op</p>
-<h2 id="未来的优化"><a href="#未来的优化" class="headerlink" title="未来的优化"></a>未来的优化</h2><h3 id="定制哈希表"><a href="#定制哈希表" class="headerlink" title="定制哈希表"></a>定制哈希表</h3><p>当前，arena通过map持有不同类型的内存池，通常map的简单实现是 <code>hash(key) % len</code>，然后通用的map为了处理各种情况，有线性探测，链地址法等各种方法。在arena这个场景，这不是最优的。</p>
-<p>针对arena的场景，key是一个指针，直接把这个指针转成整数，不需要哈希函数，直接，<code>uintptr(key) % len</code>，一条机器指令运算完成key变为index。而且因为基本查找都是成功，key的数量很少，简单的加上线性探测就可以。这样定制哈希表，可以提升性能。</p>
-<h3 id="分片"><a href="#分片" class="headerlink" title="分片"></a>分片</h3><p>分片是减少共享写操作为主的值的争用的一种有用且常用的方法。</p>
-<p>即使只是一个原子加，在多goroutine时对性能的影响也不可小觑，根据笔者尝试实现<a target="_blank" rel="noopener" href="https://github.com/golang/go/issues/18802#issuecomment-1868179680">分片</a>在go标准库的经验，同样的对int64加10000次1，如果所有的goroutine都在对同一个内存地址进行原子加，比所有的goroutine对8个不同的内存地址进行原子加，性能差了20多倍。仅仅是一个原子加，通过分片将对同一内存地址的争用分开，就有了显著的性能差异。</p>
-<p>当前实现的热路径上还有一个原子加，通过分片，可以消除这个原子加。提升多goroutine使用arena的性能。</p>
-<h3 id="不返回零值"><a href="#不返回零值" class="headerlink" title="不返回零值"></a>不返回零值</h3><p>go语言new一个值默认是零值，例如<code>new(int)</code>返回一个int指针，指向的int是0。<br>各种arena的实现基本也都维持了这个特性。<br>如果不需要默认零值的话，可以放弃默认零值，获得性能提升。<br>例如如果从arena分配出的内存总是马上被使用，就没有必要返回零值，可以直接将未清理的内存分配出去，稍后调用者使用会给内存赋值的。这样节省将内存设置为零值的开销</p>
-<p>源代码地址：<a target="_blank" rel="noopener" href="https://github.com/qiulaidongfeng/arena">https://github.com/qiulaidongfeng/arena</a><br>源代码地址：<a target="_blank" rel="noopener" href="https://gitee.com/qiulaidongfeng/arena">https://gitee.com/qiulaidongfeng/arena</a></p>
-
-      
+        
+        <p class="card-text">2025-2-12<p>
+        
+        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/%E5%9C%A8go%E6%A0%87%E5%87%86%E5%BA%93%E5%A4%96%E5%AE%9E%E7%8E%B0%E6%AF%94%E6%A0%87%E5%87%86%E5%BA%93%E6%9B%B4%E5%A5%BD%E7%9A%84arena/&#34;)">阅读</button>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://qiulaidongfeng.github.io/zh-cn/%E5%9C%A8go%E6%A0%87%E5%87%86%E5%BA%93%E5%A4%96%E5%AE%9E%E7%8E%B0%E6%AF%94%E6%A0%87%E5%87%86%E5%BA%93%E6%9B%B4%E5%A5%BD%E7%9A%84arena/" data-id="cm9sn8hdi0009ukusea5ra1in" data-title="在go标准库外实现比go标准库更好的arena" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/" rel="tag">go</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-go语言tls1.3密码套件修改研究" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/zh-cn/go%E8%AF%AD%E8%A8%80tls1.3%E5%AF%86%E7%A0%81%E5%A5%97%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%A0%94%E7%A9%B6/" class="article-date">
-  <time class="dt-published" datetime="2025-02-11T12:00:46.000Z" itemprop="datePublished">2025-02-11</time>
-</a>
+</div>
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+        <div class="card col-lg-4 col-sm-12">
+    <div class="card-body">
+        <h5 class="card-title">go语言tls1.3密码套件修改研究</h5>
+        <p class="card-text">记录研究如何让go标准库的tls1.3默认密码套件用AES256的</p>
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/zh-cn/go%E8%AF%AD%E8%A8%80tls1.3%E5%AF%86%E7%A0%81%E5%A5%97%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%A0%94%E7%A9%B6/">go语言tls1.3密码套件修改研究</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>有些浏览器可以看到tls的一些信息，例如<br><img src="/images/s.jpg"><br>笔者看到go语言默认用的aes128,其他tls1.3实现有默认用aes256的。</p>
-<p>go语言的tls默认tls1.3使用下列密码套件按下列顺序<br>    TLS_AES_128_GCM_SHA256,<br>    TLS_AES_256_GCM_SHA384,<br>    TLS_CHACHA20_POLY1305_SHA256<br>并且文档中明确列出TLS 1.3 ciphersuites are not configurable(TLS 1.3密码套件是不可配置的)</p>
-<p>笔者试了类似这个程序</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;crypto/tls&quot;</span></span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line">	<span class="string">&quot;net/http&quot;</span></span><br><span class="line">	_ <span class="string">&quot;unsafe&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="comment">//go:linkname defaultCipherSuitesTLS13 tls.defaultCipherSuitesTLS13</span></span><br><span class="line"><span class="keyword">var</span> defaultCipherSuitesTLS13 = []<span class="type">uint16</span>&#123;</span><br><span class="line">	tls.TLS_AES_256_GCM_SHA384,</span><br><span class="line">	tls.TLS_CHACHA20_POLY1305_SHA256,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	c := tls.Config&#123;</span><br><span class="line">		MinVersion: tls.VersionTLS13,</span><br><span class="line">	&#125;</span><br><span class="line">	s := http.Server&#123;</span><br><span class="line">		Addr:      <span class="string">&quot;:443&quot;</span>,</span><br><span class="line">		TLSConfig: &amp;c,</span><br><span class="line">	&#125;</span><br><span class="line">	mux := http.NewServeMux()</span><br><span class="line">	s.Handler = mux</span><br><span class="line">	mux.HandleFunc(<span class="string">&quot;/&quot;</span>, <span class="function"><span class="keyword">func</span><span class="params">(w http.ResponseWriter, req *http.Request)</span></span> &#123;</span><br><span class="line">		fmt.Fprintln(w, <span class="string">&quot;hello&quot;</span>)</span><br><span class="line">	&#125;)</span><br><span class="line">	err := s.ListenAndServeTLS(<span class="string">`cert_path`</span>, <span class="string">`key_path`</span>)</span><br><span class="line">	fmt.Println(err)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>确实一般情况下无法配置。<br>研究确认，修改go语言tls包的defaults.go源文件中defaultCipherSuitesTLS13可以做到其他tls1.3实现的效果<br>只需将原本的</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> defaultCipherSuitesTLS13 = []<span class="type">uint16</span>&#123;</span><br><span class="line">	TLS_AES_128_GCM_SHA256,</span><br><span class="line">	TLS_AES_256_GCM_SHA384,</span><br><span class="line">	TLS_CHACHA20_POLY1305_SHA256,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>改为</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> defaultCipherSuitesTLS13 = []<span class="type">uint16</span>&#123;</span><br><span class="line">	TLS_AES_256_GCM_SHA384,</span><br><span class="line">	TLS_CHACHA20_POLY1305_SHA256,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
+        
+        <p class="card-text">2025-2-11<p>
+        
+        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/go%E8%AF%AD%E8%A8%80tls1.3%E5%AF%86%E7%A0%81%E5%A5%97%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%A0%94%E7%A9%B6/&#34;)">阅读</button>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://qiulaidongfeng.github.io/zh-cn/go%E8%AF%AD%E8%A8%80tls1.3%E5%AF%86%E7%A0%81%E5%A5%97%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%A0%94%E7%A9%B6/" data-id="cm9sn8hda0003ukusdjub99wr" data-title="go语言tls1.3密码套件修改研究" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/" rel="tag">go</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-用原子指针+互斥锁实现仅写时加锁" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/zh-cn/%E7%94%A8%E5%8E%9F%E5%AD%90%E6%8C%87%E9%92%88+%E4%BA%92%E6%96%A5%E9%94%81%E5%AE%9E%E7%8E%B0%E4%BB%85%E5%86%99%E6%97%B6%E5%8A%A0%E9%94%81/" class="article-date">
-  <time class="dt-published" datetime="2024-12-17T12:00:37.000Z" itemprop="datePublished">2024-12-17</time>
-</a>
+</div>
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+        <div class="card col-lg-4 col-sm-12">
+    <div class="card-body">
+        <h5 class="card-title">用原子指针&#43;互斥锁实现仅写时加锁</h5>
+        <p class="card-text">记录我写arena的一个经验</p>
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/zh-cn/%E7%94%A8%E5%8E%9F%E5%AD%90%E6%8C%87%E9%92%88+%E4%BA%92%E6%96%A5%E9%94%81%E5%AE%9E%E7%8E%B0%E4%BB%85%E5%86%99%E6%97%B6%E5%8A%A0%E9%94%81/">用原子指针+互斥锁实现仅写时加锁</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>此博客介绍我写<a target="_blank" rel="noopener" href="https://github.com/qiulaidongfeng/arena">arena</a>的一个经验。</p>
-<p>通常在访问共享资源时，简单的加互斥锁就够用，在读多写少时使用读写锁优化性能，在写<a target="_blank" rel="noopener" href="https://github.com/qiulaidongfeng/arena">arena</a>等场景，为了极致的性能，需要别的方法。</p>
-<h2 id="回顾一些知识，说明为什么互斥锁和读写锁不适合用在需要极致性能时。"><a href="#回顾一些知识，说明为什么互斥锁和读写锁不适合用在需要极致性能时。" class="headerlink" title="回顾一些知识，说明为什么互斥锁和读写锁不适合用在需要极致性能时。"></a>回顾一些知识，说明为什么互斥锁和读写锁不适合用在需要极致性能时。</h2><p>为什么访问共享资源时需要加锁，因为如果不加锁，多个线程可能看到正在进行操作的中间状态，并基于此中间状态执行它自己的一些操作，导致错误结果。</p>
-<p>一个简单的例子说明这一点：</p>
-<p>如果对变量i进行加1，CPU的执行步骤是</p>
-<ol>
-<li>读取i的值到寄存器</li>
-<li>执行加1</li>
-<li>结果写回i</li>
-</ol>
-<p>如果两个线程直接对变量i加1，可能的执行步骤是</p>
-<ol>
-<li>两个线程读取i的值（i&#x3D;1）到寄存器</li>
-<li>执行加1,得到2</li>
-<li>结果写回i,结果i&#x3D;2</li>
-</ol>
-<p>这样导致i被加了两次1但是结果却不是正确的3。</p>
-<p>对于这种情况，CPU提供了原子操作，避免了这样因为看到其他线程操作的中间状态，导致错误结果。</p>
-<p>CPU提供的原子操作包括原子加，原子读，原子写，原子交换等，适用于很小的数据。在一些简单的场景，如记录网站访问量，这样简单的对一个整数作加法这种场景是足够的，但在更复杂的场景不够。</p>
-<p>对于更复杂的场景，基于原子操作产生了互斥锁。互斥锁有加锁和解锁两个操作，一把锁加锁了必须解锁才能再加锁，这样避免在更复杂的场景看到其他线程操作的中间状态。</p>
-<p>用伪代码表示，互斥锁通常这样使用</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lock Mutex</span><br><span class="line"></span><br><span class="line">lock.Lock()<span class="comment">//加锁</span></span><br><span class="line"><span class="comment">//复杂的操作</span></span><br><span class="line">lock.Unlock()<span class="comment">//解锁</span></span><br></pre></td></tr></table></figure>
-
-<p>因为互斥锁的特性（一把锁加锁了必须解锁才能再加锁），所以可以确保复杂的操作在锁的保护中，不会被看到它操作时的中间状态，从而避免了错误结果。</p>
-<p>简单的互斥锁用go语言写扣除空行，完整实现只需要5行代码</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> mutex</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> <span class="string">&quot;sync/atomic&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Mutex <span class="type">int32</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(lock *Mutex)</span></span> Lock() &#123;<span class="keyword">for</span> !atomic.CompareAndSwapInt32((*<span class="type">int32</span>)(lock), <span class="number">0</span>, <span class="number">1</span>) &#123;&#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(lock *Mutex)</span></span> Unlock() &#123;<span class="keyword">for</span> !atomic.CompareAndSwapInt32((*<span class="type">int32</span>)(lock), <span class="number">1</span>, <span class="number">0</span>) &#123;&#125;&#125;</span><br></pre></td></tr></table></figure>
-
-<p>很简单，就是一个整数，用原子操作，加锁就为0时改成1，解锁就为1时改成0。这样就可以实现了一个能用的互斥锁。</p>
-<p>因为读操作与写操作不同，读操作不会改变什么，它没有中间状态，它只需要不会写操作同时进行，就可以多个线程同时进行读操作。在读多写少的场景，使用互斥锁让可以同时进行的读操作分开进行，会降低性能，所以产生了读写锁。</p>
-<p>读写锁是这样的锁：</p>
-<ol>
-<li>有读锁和写锁。</li>
-<li>不能同时加读锁没解锁和加写锁没解锁，其中一种加锁要等待另一种加锁后解锁才能。</li>
-<li>写锁就像互斥锁。</li>
-<li>读锁可以加锁n次，但解锁也要n次，否则加写锁永远不会成功。</li>
-</ol>
-<p>用伪代码表示，读写锁通常这样使用</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lock RWMutex</span><br><span class="line"></span><br><span class="line"><span class="comment">//写操作</span></span><br><span class="line">lock.Lock()<span class="comment">//加写锁</span></span><br><span class="line"><span class="comment">//执行写操作</span></span><br><span class="line">lock.Unlock()<span class="comment">//解写锁</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//读操作</span></span><br><span class="line">lock.RLock()<span class="comment">//加读锁</span></span><br><span class="line"><span class="comment">//执行读操作</span></span><br><span class="line">lock.RUnlock()<span class="comment">//解读锁</span></span><br></pre></td></tr></table></figure>
-
-<p>这样因为读写锁的特性，所以写操作不会和读操作同时进行，多个读操作可以同时进行，比互斥锁提高了读多写少时的性能。</p>
-<p>互斥锁和读写锁都基于原子操作实现，并且是使用原子加等相对性能更差的原子操作实现，性能随着CPU核数增加反而可能更差，所以在需要极致性能时，不适合。</p>
-<h2 id="仅写时加锁"><a href="#仅写时加锁" class="headerlink" title="仅写时加锁"></a>仅写时加锁</h2><p>在写<a target="_blank" rel="noopener" href="https://github.com/qiulaidongfeng/arena">arena</a>时，存在读多写少的场景，并且读操作特别多。每次都加读锁不能达到极致的性能。</p>
-<p>在原子操作中，原子读相对性能更好。并且数据在内存中有内存地址，它可以进行原子读。</p>
-<p>所以可以将使用读写锁的代码，用原子指针+互斥锁（对内存地址进行原子操作的指针）改写成这样代码：</p>
-<p>一个伪代码展示通用的模版：</p>
-<p>使用读写时的代码</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lock RWMutex</span><br><span class="line"><span class="keyword">var</span> data []<span class="type">int</span> <span class="comment">//共享数据</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//写操作</span></span><br><span class="line">lock.Lock()<span class="comment">//加写锁</span></span><br><span class="line"><span class="comment">//执行写操作，例如</span></span><br><span class="line">data=<span class="built_in">make</span>([]<span class="type">int</span>,<span class="number">0</span>)</span><br><span class="line">lock.Unlock()<span class="comment">//解写锁</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//读操作</span></span><br><span class="line">lock.RLock()<span class="comment">//加读锁</span></span><br><span class="line"><span class="comment">//执行读操作，例如</span></span><br><span class="line">v:=data[<span class="number">0</span>]</span><br><span class="line">lock.RUnlock()<span class="comment">//解读锁</span></span><br></pre></td></tr></table></figure>
-
-<p>改写为用原子指针的代码：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ptr atomic.Pointer[[]<span class="type">int</span>]</span><br><span class="line"><span class="keyword">var</span> lock Mutex</span><br><span class="line"><span class="keyword">var</span> data []<span class="type">int</span> <span class="comment">//共享数据</span></span><br><span class="line">ptr.Store(&amp;data)</span><br><span class="line"></span><br><span class="line"><span class="comment">//写操作</span></span><br><span class="line">lock.Lock()<span class="comment">//加写锁</span></span><br><span class="line"><span class="comment">//执行写操作，例如创建一个新的[]int替换旧的</span></span><br><span class="line"><span class="built_in">new</span>=<span class="built_in">make</span>([]<span class="type">int</span>,<span class="number">0</span>)</span><br><span class="line">ptr.Store(&amp;<span class="built_in">new</span>)</span><br><span class="line">lock.Unlock()<span class="comment">//解写锁</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//读操作，例如读[]int</span></span><br><span class="line">v:=*ptr.Load()</span><br></pre></td></tr></table></figure>
-
-<p>这样仅写时加锁，进一步提高了读操作的性能。</p>
-<p><strong>注意采用这种办法，需要小心注意写操作的涉及的内存必须和读操作涉及的内存不相交，否则读操作和写操作可能同时对同一块内存进行，导致错误结果</strong></p>
-<p>这是一个用伪代码写的不正确的模版：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ptr atomic.Pointer[[]<span class="type">int</span>]</span><br><span class="line"><span class="keyword">var</span> lock Mutex</span><br><span class="line"><span class="keyword">var</span> data []<span class="type">int</span> <span class="comment">//共享数据</span></span><br><span class="line">ptr.Store(&amp;data)</span><br><span class="line"></span><br><span class="line"><span class="comment">//写操作</span></span><br><span class="line">lock.Lock()<span class="comment">//加写锁</span></span><br><span class="line"><span class="comment">//执行写操作，例如创建一个新的[]int替换旧的</span></span><br><span class="line">v:=*ptr.Load()</span><br><span class="line">v[<span class="number">0</span>]=v[<span class="number">0</span>]+<span class="number">1</span></span><br><span class="line">lock.Unlock()<span class="comment">//解写锁</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//读操作，例如读[]int</span></span><br><span class="line">v:=*ptr.Load()</span><br><span class="line">i:=v[<span class="number">0</span>]</span><br></pre></td></tr></table></figure>
-<p>不正确在读操作和写操作对同一块内存（v[0]）可以同时进行。</p>
-
-      
+        
+        <p class="card-text">2024-12-17<p>
+        
+        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/%E7%94%A8%E5%8E%9F%E5%AD%90%E6%8C%87%E9%92%88&#43;%E4%BA%92%E6%96%A5%E9%94%81%E5%AE%9E%E7%8E%B0%E4%BB%85%E5%86%99%E6%97%B6%E5%8A%A0%E9%94%81/&#34;)">阅读</button>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://qiulaidongfeng.github.io/zh-cn/%E7%94%A8%E5%8E%9F%E5%AD%90%E6%8C%87%E9%92%88+%E4%BA%92%E6%96%A5%E9%94%81%E5%AE%9E%E7%8E%B0%E4%BB%85%E5%86%99%E6%97%B6%E5%8A%A0%E9%94%81/" data-id="cm9sn8hdn000fukus64aa1akc" data-title="用原子指针+互斥锁实现仅写时加锁" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go/" rel="tag">go</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-go1-24rc1发布" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/zh-cn/go1-24rc1%E5%8F%91%E5%B8%83/" class="article-date">
-  <time class="dt-published" datetime="2024-12-16T14:46:29.000Z" itemprop="datePublished">2024-12-16</time>
-</a>
+</div>
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+        <div class="card col-lg-4 col-sm-12">
+    <div class="card-body">
+        <h5 class="card-title">go1.24rc1发布</h5>
+        <p class="card-text">介绍go1.24值得关注的</p>
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/zh-cn/go1-24rc1%E5%8F%91%E5%B8%83/">go1.24rc1发布</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>go1.24rc1已经发布，值得注意的是</p>
-<ul>
-<li>抗量子密钥交换（crypto&#x2F;mlkem）</li>
-<li>弱指针</li>
-<li>通用哈希函数（我写的实现）</li>
-<li>泛型类型别名</li>
-<li>更快的终结器</li>
-<li>CPU开销平均降低2-3%，改进包括新的map内置实现，更高效的小object内存分配，新的运行时内部互斥实现</li>
-<li>实验性包testing&#x2F;synctest用来测试并发代码</li>
-<li>sync.Map的新实现，提高了性能</li>
-<li>os.Root用来在特定目录执行文件系统操作</li>
-</ul>
-
-      
+        
+        <p class="card-text">2024-12-16<p>
+        
+        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/go1-24rc1%E5%8F%91%E5%B8%83/&#34;)">阅读</button>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://qiulaidongfeng.github.io/zh-cn/go1-24rc1%E5%8F%91%E5%B8%83/" data-id="cm9sn8hcw0000ukus8mkx3ncb" data-title="go1.24rc1发布" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-go1-24/" rel="tag">go - go1.24</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-metrics包如何记录非默认行为发生次数-md" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/zh-cn/metrics%E5%8C%85%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BD%95%E9%9D%9E%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%8F%91%E7%94%9F%E6%AC%A1%E6%95%B0-md/" class="article-date">
-  <time class="dt-published" datetime="2023-04-05T16:00:00.000Z" itemprop="datePublished">2023-04-06</time>
-</a>
+</div>
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+        <div class="card col-lg-4 col-sm-12">
+    <div class="card-body">
+        <h5 class="card-title">metrics包如何记录非默认行为发生次数</h5>
+        <p class="card-text">记录研究metrics包怎么实现的</p>
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/zh-cn/metrics%E5%8C%85%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BD%95%E9%9D%9E%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%8F%91%E7%94%9F%E6%AC%A1%E6%95%B0-md/">metrics包如何记录非默认行为发生次数</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="go1-21前瞻"><a href="#go1-21前瞻" class="headerlink" title="go1.21前瞻"></a>go1.21前瞻</h1><h2 id="metrics包如何记录非默认行为发生次数"><a href="#metrics包如何记录非默认行为发生次数" class="headerlink" title="metrics包如何记录非默认行为发生次数"></a>metrics包如何记录非默认行为发生次数</h2><p>  go1.21正在开发中，<a target="_blank" rel="noopener" href="https://tip.golang.org/doc/go1.21">发行说明草案</a> 提到预计2023年8月发布。</p>
-<p>  在go1.21的<a target="_blank" rel="noopener" href="https://github.com/golang/go">开发分支</a>中，<a target="_blank" rel="noopener" href="https://pkg.go.dev/runtime/metrics@master">metrics</a> 包中，新增了一系列格式如同 &#x2F;godebug&#x2F;non-default-behavior&#x2F;(godebug-name):events的指标，(godebug-name)是GODEBUG环境变量的一系列键值对，某些键的名称，比如go1.19引入的execerrdot（以下简称<strong>godebug指标</strong>）。通过这些新增的指标，可以获取<strong>因为设置了这些环境变量导致非默认行为发生次数的数量</strong>，本文通过研究源代码来分析这是如何实现的。</p>
-<p>  首先，本文使用的是go标准库源代码(通过gotip安装)，具体版本号（go version devel go1.21-8d68b388d4 Wed Apr 5 21:45:24 2023 +0000 windows&#x2F;amd64）。</p>
-<hr>
-<p>  在go标准库的internal&#x2F;godebug包有如下API:</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Setting <span class="keyword">struct</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">New</span><span class="params">(name <span class="type">string</span>)</span></span> *Setting</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(s *Setting)</span></span> IncNonDefault()</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(s *Setting)</span></span> Name() <span class="type">string</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(s *Setting)</span></span> String() <span class="type">string</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(s *Setting)</span></span> Value() <span class="type">string</span></span><br></pre></td></tr></table></figure>
-
-<p>在Setting结构体中，有一个非默认行为计数器，类型是atomic.Uint64，这是一个在go1.19引入的原子类型，API如下</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Uint64 <span class="keyword">struct</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(x *Uint64)</span></span> Add(delta <span class="type">uint64</span>) (<span class="built_in">new</span> <span class="type">uint64</span>)</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(x *Uint64)</span></span> CompareAndSwap(old, <span class="built_in">new</span> <span class="type">uint64</span>) (swapped <span class="type">bool</span>)</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(x *Uint64)</span></span> Load() <span class="type">uint64</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(x *Uint64)</span></span> Store(val <span class="type">uint64</span>)</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(x *Uint64)</span></span> Swap(<span class="built_in">new</span> <span class="type">uint64</span>) (old <span class="type">uint64</span>)</span><br></pre></td></tr></table></figure>
-
-<p>这个结构体的IncNonDefault方法每次调用时非默认行为计数器都会原子加1，在第一次调用时还会将非默认行为计数器的Load方法通过runtime包的godebug_registerMetric函数设置为获取godebug指标对应的值的函数。</p>
-<p>这样通过每次非默认行为发生时都调用IncNonDefault方法，就可以在Setting结构体中记录非默认行为发生次数。</p>
-<p>godebug_registerMetric函数签名如下：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">godebug_registerMetric</span><span class="params">(name <span class="type">string</span>, read <span class="keyword">func</span>()</span></span> <span class="type">uint64</span>)</span><br></pre></td></tr></table></figure>
-
-<p>这个函数将name参数的值表示的指标，获取指标对应的值的函数设置为read参数传递的参数。</p>
-<p>metrics包获取godebug指标对应的值的能力来源于runtime包。</p>
-<hr>
-<p>这样，非默认行为发生次数被记录和获取的顺序是：</p>
-<ul>
-<li>go标准库的每个godebug选项都通过internal&#x2F;godebug包的New()函数创建，返回值包含非默认行为计数器。</li>
-<li>每次非默认行为发生时都会调用Setting结构体的IncNonDefault方法。</li>
-<li>IncNonDefault方法将获取godebug指标对应的值的函数设置为非默认行为计数器的Load方法。</li>
-<li>IncNonDefault方法将非默认行为计数器原子加1。</li>
-<li>每次godebug指标对应的值被获取，都会调用非默认行为计数器的Load方法，这样就实现了metrics包有记录非默认行为发生次数的现象（实际记录在Setting结构体，只是metrics包通过runtime包，runtime包通过调用Setting结构体的非默认行为计数器的Load方法展现出了这种现象）。</li>
-</ul>
-
-      
+        
+        <p class="card-text">2023-4-6<p>
+        
+        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/metrics%E5%8C%85%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BD%95%E9%9D%9E%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%8F%91%E7%94%9F%E6%AC%A1%E6%95%B0-md/&#34;)">阅读</button>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://qiulaidongfeng.github.io/zh-cn/metrics%E5%8C%85%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BD%95%E9%9D%9E%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%8F%91%E7%94%9F%E6%AC%A1%E6%95%B0-md/" data-id="cm9sn8hd20001ukuseqt5c5c0" data-title="metrics包如何记录非默认行为发生次数" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-go1-21/" rel="tag">go - go1.21</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-乘法还是解引用-md" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/zh-cn/%E4%B9%98%E6%B3%95%E8%BF%98%E6%98%AF%E8%A7%A3%E5%BC%95%E7%94%A8-md/" class="article-date">
-  <time class="dt-published" datetime="2023-03-18T16:00:00.000Z" itemprop="datePublished">2023-03-19</time>
-</a>
+</div>
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+        <div class="card col-lg-4 col-sm-12">
+    <div class="card-body">
+        <h5 class="card-title">乘法还是解引用</h5>
+        <p class="card-text">记录设计编程语言的一个思考过程</p>
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/zh-cn/%E4%B9%98%E6%B3%95%E8%BF%98%E6%98%AF%E8%A7%A3%E5%BC%95%E7%94%A8-md/">乘法还是解引用</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="乘法还是解引用"><a href="#乘法还是解引用" class="headerlink" title="乘法还是解引用"></a>乘法还是解引用</h1><p>在 <a target="_blank" rel="noopener" href="https://gitee.com/u-language/u-language">U语言项目</a> 中 ，实现了一个基于分隔符的词法分析器，文档在 <a target="_blank" rel="noopener" href="https://gitee.com/u-language/u-language/blob/master/pkg/lex/README.md">词法分析器设计文档</a> ，当前 * 将被分析为乘号，在没有指针时，这样没有问题。现在准备给这个项目增加指针，如果按其他语言一样使用 * 解引用，有两种方案</p>
-<ol>
-<li><p>在构建抽象语法树时处理 * 既可以是乘号又可以解引用的二义性</p>
-</li>
-<li><p>在词法分析节点处理 *  既可以是乘号又可以解引用的二义性</p>
-</li>
-</ol>
-<h2 id="如何解决-二义性"><a href="#如何解决-二义性" class="headerlink" title="如何解决 * 二义性"></a>如何解决 * 二义性</h2><p>当编译器看到 一个 * 处理既可以是乘号又可以解引用的二义性，首先没有直接解释为乘号或解引用一种语义的方法，枚举证明</p>
-<ul>
-<li>如果直接解释为 乘号 ，对于 *ptr&#x3D;1 的 *ptr是解引用ptr指针，现在被错误的解释成乘ptr</li>
-<li>如果直接解释为 解引用 ， 对于 c &#x3D;a*b 的 *b是乘b，现在被错误的解释成解引用b</li>
-</ul>
-<p>所以需要根据不同情况解释 * ，对于 *</p>
-<ul>
-<li>如果在开头，因为乘法需要两个操作数，在开头表示左边没有操作数，所以可以解释为解引用</li>
-<li>如果不在开头，如果 * 前面不是符号，比如 a+*ptr，因为左边不是操作数，所以可以解释为解引用</li>
-<li>如果不在开头，如果 * 是符号，比如 a*b，因为左边是操作数，所以可以解释为乘号</li>
-</ul>
-<p>上述处理方法在词法分析或构建抽象语法树，都可以，但是在词法分析的时候通过一个布尔变量，在发现乘号时设置为true,在末尾判断如果布尔变量为true则按上述方法处理乘号，对于没有乘号的部分只增加一次判断的开销。</p>
-<h2 id="更简单的办法"><a href="#更简单的办法" class="headerlink" title="更简单的办法"></a>更简单的办法</h2><p>如果* 有二义性，除了处理二义性还可以找一个没有二义性的符号，比如@，然后编译器看到@就可以直接的识别为解引用，只不过这样和主流做法有区别，可能增加学习成本</p>
-
-      
+        
+        <p class="card-text">2023-3-19<p>
+        
+        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/%E4%B9%98%E6%B3%95%E8%BF%98%E6%98%AF%E8%A7%A3%E5%BC%95%E7%94%A8-md/&#34;)">阅读</button>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://qiulaidongfeng.github.io/zh-cn/%E4%B9%98%E6%B3%95%E8%BF%98%E6%98%AF%E8%A7%A3%E5%BC%95%E7%94%A8-md/" data-id="cm9sn8hdh0008ukus3tr3epsx" data-title="乘法还是解引用" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ulang/" rel="tag">ulang</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-mmap错误" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/zh-cn/mmap%E9%94%99%E8%AF%AF/" class="article-date">
-  <time class="dt-published" datetime="2023-03-01T16:00:00.000Z" itemprop="datePublished">2023-03-02</time>
-</a>
+</div>
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+        <div class="card col-lg-4 col-sm-12">
+    <div class="card-body">
+        <h5 class="card-title">mmap错误</h5>
+        <p class="card-text">记录看go1.21提交记录发现被解决一个issue</p>
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/zh-cn/mmap%E9%94%99%E8%AF%AF/">mmap错误</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="go1-21前瞻"><a href="#go1-21前瞻" class="headerlink" title="go1.21前瞻"></a>go1.21前瞻</h1><h2 id="windows允许处理异常页面错误"><a href="#windows允许处理异常页面错误" class="headerlink" title="windows允许处理异常页面错误"></a>windows允许处理异常页面错误</h2><p>go1.21正在开发中，<a target="_blank" rel="noopener" href="https://tip.golang.org/doc/go1.21">发行说明草案</a> 提到预计2023年8月发布</p>
-<p>根据提交信息 <a target="_blank" rel="noopener" href="https://github.com/golang/go/commit/e03ee85ef434f307500a71927dfb3e876161847a">runtime: Allow handling of EXCEPTION_IN_PAGE_ERROR</a> go1.21允许在windows通过debug.SetPanicOnFault 处理内存映射文件的访问故障（例如，内存映射文件所在的驱动器被弹出）</p>
-<p>例如来源于 <a target="_blank" rel="noopener" href="https://github.com/golang/go/issues/58457">golang&#x2F;go#58457</a>的例子<br>内存映射外部磁盘上的文件(使用CreateFileMapping &#x2F; MapViewOfFile)<br>调用debug.SetPanicOnFault(true)<br>弹出外部磁盘<br>尝试从内存映射中读取</p>
-<p>看到的是？<br>The runtime faults (Exception 0xc0000006 0x0 …)<br>这不是panic,不能通过recover恢复</p>
-<p>go1.21应该是看到的 panic …</p>
-<p>根据 <a target="_blank" rel="noopener" href="https://pkg.go.dev/runtime/debug#SetPanicOnFault">SetPanicOnFault文档</a>这种情况当 调用debug.SetPanicOnFault(true) 后使用内存映射文件的程序或不安全的内存操作可能会导致非零地址出错；SetPanicOnFault允许这样的程序请求运行时只触发一次panic，根据<a target="_blank" rel="noopener" href="https://github.com/golang/go/issues/58457">golang&#x2F;go#58457</a> 至少在go1.19不是这样，截至发布前，没看到go官方打算将修复的提交反向移植到go1.20和go1.19的下一个次要版本</p>
-
-      
+        
+        <p class="card-text">2023-3-2<p>
+        
+        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/mmap%E9%94%99%E8%AF%AF/&#34;)">阅读</button>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://qiulaidongfeng.github.io/zh-cn/mmap%E9%94%99%E8%AF%AF/" data-id="cm9sn8hdf0005ukush44c3anb" data-title="mmap错误" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-go1-21/" rel="tag">go - go1.21</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-one" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/zh-cn/one/" class="article-date">
-  <time class="dt-published" datetime="2023-02-28T16:00:00.000Z" itemprop="datePublished">2023-03-01</time>
-</a>
+</div>
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+        <div class="card col-lg-4 col-sm-12">
+    <div class="card-body">
+        <h5 class="card-title">第一个博客</h5>
+        <p class="card-text">第一篇博客</p>
         
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/zh-cn/one/">第一个博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>2023年3月1日，我公开了这个博客</p>
-
-      
+        
+        <p class="card-text">2023-3-1<p>
+        
+        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/one/&#34;)">阅读</button>
     </div>
-    <footer class="article-footer">
-      <a data-url="https://qiulaidongfeng.github.io/zh-cn/one/" data-id="cm9sn8hde0004ukus300x19t4" data-title="第一个博客" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-
-
-</section>
-        
-          <aside id="sidebar">
-  
+</div>
     
+</div>
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-go1-21/" rel="tag">go - go1.21</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-go1-24/" rel="tag">go - go1.24</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ulang/" rel="tag">ulang</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/go/" style="font-size: 20px;">go</a> <a href="/tags/go-go1-21/" style="font-size: 20px;">go - go1.21</a> <a href="/tags/go-go1-24/" style="font-size: 10px;">go - go1.24</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/ulang/" style="font-size: 15px;">ulang</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 15px;">数据库</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">四月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">三月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">二月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">十二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/zh-cn/%E7%94%A8redis%E6%9E%84%E5%BB%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/">用redis构建聊天室</a>
-          </li>
-        
-          <li>
-            <a href="/zh-cn/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AEtls%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9D%91%E7%82%B9/">数据库配置tls的几个坑点</a>
-          </li>
-        
-          <li>
-            <a href="/zh-cn/%E5%9C%A8go%E6%A0%87%E5%87%86%E5%BA%93%E5%A4%96%E5%AE%9E%E7%8E%B0%E6%AF%94%E6%A0%87%E5%87%86%E5%BA%93%E6%9B%B4%E5%A5%BD%E7%9A%84arena/">在go标准库外实现比go标准库更好的arena</a>
-          </li>
-        
-          <li>
-            <a href="/zh-cn/go%E8%AF%AD%E8%A8%80tls1.3%E5%AF%86%E7%A0%81%E5%A5%97%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%A0%94%E7%A9%B6/">go语言tls1.3密码套件修改研究</a>
-          </li>
-        
-          <li>
-            <a href="/zh-cn/%E7%94%A8%E5%8E%9F%E5%AD%90%E6%8C%87%E9%92%88+%E4%BA%92%E6%96%A5%E9%94%81%E5%AE%9E%E7%8E%B0%E4%BB%85%E5%86%99%E6%97%B6%E5%8A%A0%E9%94%81/">用原子指针+互斥锁实现仅写时加锁</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2025 秋来冬风<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.6.4.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
+  </main>
+  <footer>
+    <p>Copyright 2023-2025 秋来冬风. All rights reserved.</p>
+<p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> and <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a></p>
+  </footer>
 </body>
 </html>

@@ -1,276 +1,107 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN" dir="ltr">
 <head>
   <meta charset="utf-8">
-  
-  
-  <title>metrics包如何记录非默认行为发生次数 | 秋来冬风的博客</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="go1.21前瞻metrics包如何记录非默认行为发生次数  go1.21正在开发中，发行说明草案 提到预计2023年8月发布。   在go1.21的开发分支中，metrics 包中，新增了一系列格式如同 &#x2F;godebug&#x2F;non-default-behavior&#x2F;(godebug-name):events的指标，(godebug-name)是GODEBUG环境变量的">
-<meta property="og:type" content="article">
-<meta property="og:title" content="metrics包如何记录非默认行为发生次数">
-<meta property="og:url" content="https://qiulaidongfeng.github.io/zh-cn/metrics%E5%8C%85%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BD%95%E9%9D%9E%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%8F%91%E7%94%9F%E6%AC%A1%E6%95%B0-md/index.html">
-<meta property="og:site_name" content="秋来冬风的博客">
-<meta property="og:description" content="go1.21前瞻metrics包如何记录非默认行为发生次数  go1.21正在开发中，发行说明草案 提到预计2023年8月发布。   在go1.21的开发分支中，metrics 包中，新增了一系列格式如同 &#x2F;godebug&#x2F;non-default-behavior&#x2F;(godebug-name):events的指标，(godebug-name)是GODEBUG环境变量的">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-04-05T16:00:00.000Z">
-<meta property="article:modified_time" content="2024-12-16T15:02:37.929Z">
-<meta property="article:author" content="秋来冬风">
-<meta property="article:tag" content="go - go1.21">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="秋来冬风的博客" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+<meta name="viewport" content="width=device-width">
+<title>metrics包如何记录非默认行为发生次数 | 秋来冬风的博客</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 
-  
-  
-<link rel="stylesheet" href="/css/style.css">
 
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
-  
-  
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
-
-<meta name="generator" content="Hexo 6.3.0"></head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">秋来冬风的博客</a>
-      </h1>
-      
+</head>
+<body class="container-fluid" style="background-color: #ddd;">
+  <header>
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-auto">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/tags" class="nav-link">tags</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/atom.xml" class="nav-link">rss</a>
+                </li>
+                <li class="nav-item"></li>
+                    <a href="/about" class="nav-link">about</a>
+                </li>
+                <li class="nav-item"></li>
+                    <a href="/zh-cn" class="nav-link">所有中文内容</a>
+                </li>
+                <li class="nav-item"></li>
+                    <a href="/en" class="nav-link">所有英文内容</a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://qiulaidongfeng.github.io"></form>
-      </div>
+    <div class="row">
+        <div class="offset-lg-4 col-lg-4 offset-sm-3 col-sm-6">
+            <h1 class="h1 text-center">秋来冬风的博客</h1>
+        </div>
     </div>
   </div>
-</header>
-
-      <div class="outer">
-        <section id="main"><article id="post-metrics包如何记录非默认行为发生次数-md" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/zh-cn/metrics%E5%8C%85%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BD%95%E9%9D%9E%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%8F%91%E7%94%9F%E6%AC%A1%E6%95%B0-md/" class="article-date">
-  <time class="dt-published" datetime="2023-04-05T16:00:00.000Z" itemprop="datePublished">2023-04-06</time>
-</a>
+  </header>
+  <main>
     
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 class="p-name article-title" itemprop="headline name">
-      metrics包如何记录非默认行为发生次数
-    </h1>
-  
+  <small>2023-4-6</small>
 
-      </header>
+  <div style="background-color: white;" class="p-4">
     
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="go1-21前瞻"><a href="#go1-21前瞻" class="headerlink" title="go1.21前瞻"></a>go1.21前瞻</h1><h2 id="metrics包如何记录非默认行为发生次数"><a href="#metrics包如何记录非默认行为发生次数" class="headerlink" title="metrics包如何记录非默认行为发生次数"></a>metrics包如何记录非默认行为发生次数</h2><p>  go1.21正在开发中，<a target="_blank" rel="noopener" href="https://tip.golang.org/doc/go1.21">发行说明草案</a> 提到预计2023年8月发布。</p>
-<p>  在go1.21的<a target="_blank" rel="noopener" href="https://github.com/golang/go">开发分支</a>中，<a target="_blank" rel="noopener" href="https://pkg.go.dev/runtime/metrics@master">metrics</a> 包中，新增了一系列格式如同 &#x2F;godebug&#x2F;non-default-behavior&#x2F;(godebug-name):events的指标，(godebug-name)是GODEBUG环境变量的一系列键值对，某些键的名称，比如go1.19引入的execerrdot（以下简称<strong>godebug指标</strong>）。通过这些新增的指标，可以获取<strong>因为设置了这些环境变量导致非默认行为发生次数的数量</strong>，本文通过研究源代码来分析这是如何实现的。</p>
-<p>  首先，本文使用的是go标准库源代码(通过gotip安装)，具体版本号（go version devel go1.21-8d68b388d4 Wed Apr 5 21:45:24 2023 +0000 windows&#x2F;amd64）。</p>
+    <h1>metrics包如何记录非默认行为发生次数</h1>
+    
+    <h1 id="go121前瞻">go1.21前瞻</h1>
+<h2 id="metrics包如何记录非默认行为发生次数">metrics包如何记录非默认行为发生次数</h2>
+<p>go1.21正在开发中，<a href="https://tip.golang.org/doc/go1.21">发行说明草案</a> 提到预计2023年8月发布。</p>
+<p>在go1.21的<a href="https://github.com/golang/go">开发分支</a>中，<a href="https://pkg.go.dev/runtime/metrics@master">metrics</a> 包中，新增了一系列格式如同 /godebug/non-default-behavior/(godebug-name):events的指标，(godebug-name)是GODEBUG环境变量的一系列键值对，某些键的名称，比如go1.19引入的execerrdot（以下简称<strong>godebug指标</strong>）。通过这些新增的指标，可以获取<strong>因为设置了这些环境变量导致非默认行为发生次数的数量</strong>，本文通过研究源代码来分析这是如何实现的。</p>
+<p>首先，本文使用的是go标准库源代码(通过gotip安装)，具体版本号（go version devel go1.21-8d68b388d4 Wed Apr 5 21:45:24 2023 +0000 windows/amd64）。</p>
 <hr>
-<p>  在go标准库的internal&#x2F;godebug包有如下API:</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Setting <span class="keyword">struct</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">New</span><span class="params">(name <span class="type">string</span>)</span></span> *Setting</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(s *Setting)</span></span> IncNonDefault()</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(s *Setting)</span></span> Name() <span class="type">string</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(s *Setting)</span></span> String() <span class="type">string</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(s *Setting)</span></span> Value() <span class="type">string</span></span><br></pre></td></tr></table></figure>
-
-<p>在Setting结构体中，有一个非默认行为计数器，类型是atomic.Uint64，这是一个在go1.19引入的原子类型，API如下</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> Uint64 <span class="keyword">struct</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(x *Uint64)</span></span> Add(delta <span class="type">uint64</span>) (<span class="built_in">new</span> <span class="type">uint64</span>)</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(x *Uint64)</span></span> CompareAndSwap(old, <span class="built_in">new</span> <span class="type">uint64</span>) (swapped <span class="type">bool</span>)</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(x *Uint64)</span></span> Load() <span class="type">uint64</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(x *Uint64)</span></span> Store(val <span class="type">uint64</span>)</span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="params">(x *Uint64)</span></span> Swap(<span class="built_in">new</span> <span class="type">uint64</span>) (old <span class="type">uint64</span>)</span><br></pre></td></tr></table></figure>
-
-<p>这个结构体的IncNonDefault方法每次调用时非默认行为计数器都会原子加1，在第一次调用时还会将非默认行为计数器的Load方法通过runtime包的godebug_registerMetric函数设置为获取godebug指标对应的值的函数。</p>
+<p>在go标准库的internal/godebug包有如下API:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Setting</span> <span style="color:#66d9ef">struct</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> <span style="color:#a6e22e">New</span>(<span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">Setting</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Setting</span>) <span style="color:#a6e22e">IncNonDefault</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Setting</span>) <span style="color:#a6e22e">Name</span>() <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Setting</span>) <span style="color:#a6e22e">String</span>() <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">s</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Setting</span>) <span style="color:#a6e22e">Value</span>() <span style="color:#66d9ef">string</span>
+</span></span></code></pre></div><p>在Setting结构体中，有一个非默认行为计数器，类型是atomic.Uint64，这是一个在go1.19引入的原子类型，API如下</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Uint64</span> <span style="color:#66d9ef">struct</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">x</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Uint64</span>) <span style="color:#a6e22e">Add</span>(<span style="color:#a6e22e">delta</span> <span style="color:#66d9ef">uint64</span>) (<span style="color:#a6e22e">new</span> <span style="color:#66d9ef">uint64</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">x</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Uint64</span>) <span style="color:#a6e22e">CompareAndSwap</span>(<span style="color:#a6e22e">old</span>, <span style="color:#a6e22e">new</span> <span style="color:#66d9ef">uint64</span>) (<span style="color:#a6e22e">swapped</span> <span style="color:#66d9ef">bool</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">x</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Uint64</span>) <span style="color:#a6e22e">Load</span>() <span style="color:#66d9ef">uint64</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">x</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Uint64</span>) <span style="color:#a6e22e">Store</span>(<span style="color:#a6e22e">val</span> <span style="color:#66d9ef">uint64</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">x</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">Uint64</span>) <span style="color:#a6e22e">Swap</span>(<span style="color:#a6e22e">new</span> <span style="color:#66d9ef">uint64</span>) (<span style="color:#a6e22e">old</span> <span style="color:#66d9ef">uint64</span>)
+</span></span></code></pre></div><p>这个结构体的IncNonDefault方法每次调用时非默认行为计数器都会原子加1，在第一次调用时还会将非默认行为计数器的Load方法通过runtime包的godebug_registerMetric函数设置为获取godebug指标对应的值的函数。</p>
 <p>这样通过每次非默认行为发生时都调用IncNonDefault方法，就可以在Setting结构体中记录非默认行为发生次数。</p>
 <p>godebug_registerMetric函数签名如下：</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">godebug_registerMetric</span><span class="params">(name <span class="type">string</span>, read <span class="keyword">func</span>()</span></span> <span class="type">uint64</span>)</span><br></pre></td></tr></table></figure>
-
-<p>这个函数将name参数的值表示的指标，获取指标对应的值的函数设置为read参数传递的参数。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">godebug_registerMetric</span>(<span style="color:#a6e22e">name</span> <span style="color:#66d9ef">string</span>, <span style="color:#a6e22e">read</span> <span style="color:#66d9ef">func</span>() <span style="color:#66d9ef">uint64</span>)
+</span></span></code></pre></div><p>这个函数将name参数的值表示的指标，获取指标对应的值的函数设置为read参数传递的参数。</p>
 <p>metrics包获取godebug指标对应的值的能力来源于runtime包。</p>
 <hr>
 <p>这样，非默认行为发生次数被记录和获取的顺序是：</p>
 <ul>
-<li>go标准库的每个godebug选项都通过internal&#x2F;godebug包的New()函数创建，返回值包含非默认行为计数器。</li>
+<li>go标准库的每个godebug选项都通过internal/godebug包的New()函数创建，返回值包含非默认行为计数器。</li>
 <li>每次非默认行为发生时都会调用Setting结构体的IncNonDefault方法。</li>
 <li>IncNonDefault方法将获取godebug指标对应的值的函数设置为非默认行为计数器的Load方法。</li>
 <li>IncNonDefault方法将非默认行为计数器原子加1。</li>
 <li>每次godebug指标对应的值被获取，都会调用非默认行为计数器的Load方法，这样就实现了metrics包有记录非默认行为发生次数的现象（实际记录在Setting结构体，只是metrics包通过runtime包，runtime包通过调用Setting结构体的非默认行为计数器的Load方法展现出了这种现象）。</li>
 </ul>
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://qiulaidongfeng.github.io/zh-cn/metrics%E5%8C%85%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BD%95%E9%9D%9E%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%8F%91%E7%94%9F%E6%AC%A1%E6%95%B0-md/" data-id="cm9sn8hd20001ukuseqt5c5c0" data-title="metrics包如何记录非默认行为发生次数" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/go-go1-21/" rel="tag">go - go1.21</a></li></ul>
-
-    </footer>
   </div>
   
-    
-<nav id="article-nav">
-  
-    <a href="/en/HowDoesTheMetricsPackageRecordTheNumberOfNonDefaultBehaviorOccurrences-md/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          How does the metrics package record the number of non default behavior occurrences
-        
-      </div>
-    </a>
-  
-  
-    <a href="/zh-cn/%E4%B9%98%E6%B3%95%E8%BF%98%E6%98%AF%E8%A7%A3%E5%BC%95%E7%94%A8-md/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">乘法还是解引用</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-go1-21/" rel="tag">go - go1.21</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go-go1-24/" rel="tag">go - go1.24</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/redis/" rel="tag">redis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ulang/" rel="tag">ulang</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="tag">数据库</a></li></ul>
-    </div>
+  <div>
+    <div>Tags:</div>
+    <ul>
+        <li><a href="/tags/go---go1.21/">Go - Go1.21</a></li>
+    </ul>
   </div>
 
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/go/" style="font-size: 20px;">go</a> <a href="/tags/go-go1-21/" style="font-size: 20px;">go - go1.21</a> <a href="/tags/go-go1-24/" style="font-size: 10px;">go - go1.24</a> <a href="/tags/redis/" style="font-size: 10px;">redis</a> <a href="/tags/ulang/" style="font-size: 15px;">ulang</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 15px;">数据库</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/04/">四月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/03/">三月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">二月 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/12/">十二月 2024</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">四月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">三月 2023</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/zh-cn/%E7%94%A8redis%E6%9E%84%E5%BB%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/">用redis构建聊天室</a>
-          </li>
-        
-          <li>
-            <a href="/zh-cn/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AEtls%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9D%91%E7%82%B9/">数据库配置tls的几个坑点</a>
-          </li>
-        
-          <li>
-            <a href="/zh-cn/%E5%9C%A8go%E6%A0%87%E5%87%86%E5%BA%93%E5%A4%96%E5%AE%9E%E7%8E%B0%E6%AF%94%E6%A0%87%E5%87%86%E5%BA%93%E6%9B%B4%E5%A5%BD%E7%9A%84arena/">在go标准库外实现比go标准库更好的arena</a>
-          </li>
-        
-          <li>
-            <a href="/zh-cn/go%E8%AF%AD%E8%A8%80tls1.3%E5%AF%86%E7%A0%81%E5%A5%97%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%A0%94%E7%A9%B6/">go语言tls1.3密码套件修改研究</a>
-          </li>
-        
-          <li>
-            <a href="/zh-cn/%E7%94%A8%E5%8E%9F%E5%AD%90%E6%8C%87%E9%92%88+%E4%BA%92%E6%96%A5%E9%94%81%E5%AE%9E%E7%8E%B0%E4%BB%85%E5%86%99%E6%97%B6%E5%8A%A0%E9%94%81/">用原子指针+互斥锁实现仅写时加锁</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2025 秋来冬风<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.6.4.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
+  </main>
+  <footer>
+    <p>Copyright 2023-2025 秋来冬风. All rights reserved.</p>
+<p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> and <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a></p>
+  </footer>
 </body>
 </html>

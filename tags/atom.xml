@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on 秋来冬风的博客</title>
+    <link>https://qiulaidongfeng.github.io/tags/</link>
+    <description>Recent content in Tags on 秋来冬风的博客</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 21 Apr 2025 10:15:12 +0000</lastBuildDate>
+    <atom:link href="https://qiulaidongfeng.github.io/tags/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Redis</title>
+      <link>https://qiulaidongfeng.github.io/tags/redis/</link>
+      <pubDate>Mon, 21 Apr 2025 10:15:12 +0000</pubDate>
+      <guid>https://qiulaidongfeng.github.io/tags/redis/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>数据库</title>
+      <link>https://qiulaidongfeng.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+      <pubDate>Mon, 21 Apr 2025 10:15:12 +0000</pubDate>
+      <guid>https://qiulaidongfeng.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Go</title>
+      <link>https://qiulaidongfeng.github.io/tags/go/</link>
+      <pubDate>Wed, 12 Feb 2025 03:36:31 +0000</pubDate>
+      <guid>https://qiulaidongfeng.github.io/tags/go/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Go - Go1.24</title>
+      <link>https://qiulaidongfeng.github.io/tags/go---go1.24/</link>
+      <pubDate>Mon, 16 Dec 2024 22:46:29 +0000</pubDate>
+      <guid>https://qiulaidongfeng.github.io/tags/go---go1.24/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Go - Go1.21</title>
+      <link>https://qiulaidongfeng.github.io/tags/go---go1.21/</link>
+      <pubDate>Thu, 06 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>https://qiulaidongfeng.github.io/tags/go---go1.21/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ulang</title>
+      <link>https://qiulaidongfeng.github.io/tags/ulang/</link>
+      <pubDate>Sun, 19 Mar 2023 00:00:00 +0000</pubDate>
+      <guid>https://qiulaidongfeng.github.io/tags/ulang/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>
