@@ -19,19 +19,19 @@
                     <a href="/" class="nav-link">home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/tags" class="nav-link">tags</a>
+                    <a href="/tags/" class="nav-link">tags</a>
                 </li>
                 <li class="nav-item">
                     <a href="/atom.xml" class="nav-link">rss</a>
                 </li>
                 <li class="nav-item"></li>
-                    <a href="/about" class="nav-link">about</a>
+                    <a href="/about/" class="nav-link">about</a>
                 </li>
                 <li class="nav-item"></li>
-                    <a href="/zh-cn" class="nav-link">所有中文内容</a>
+                    <a href="/zh-cn/" class="nav-link">所有中文内容</a>
                 </li>
                 <li class="nav-item"></li>
-                    <a href="/en" class="nav-link">所有英文内容</a>
+                    <a href="/en/" class="nav-link">所有英文内容</a>
                 </li>
             </ul>
         </div>
@@ -205,7 +205,12 @@ redis集群将数据分布到多个redis实例提供性能，上面的方案需�
 
   </main>
   <footer>
-    <p>Copyright 2023-2025 秋来冬风. All rights reserved.</p>
+    <p id="copyright"></p>
+<script type="text/javascript">
+    let currentDate = new Date();
+    let currentYear = currentDate.getFullYear();
+    document.getElementById("copyright").innerText = "Copyright 2023-"+currentYear.toString() + " 秋来冬风. All rights reserved."
+</script>
 <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> and <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a></p>
   </footer>
 </body>

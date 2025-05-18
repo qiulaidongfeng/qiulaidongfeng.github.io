@@ -19,19 +19,19 @@
                     <a href="/" class="nav-link">home</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/tags" class="nav-link">tags</a>
+                    <a href="/tags/" class="nav-link">tags</a>
                 </li>
                 <li class="nav-item">
                     <a href="/atom.xml" class="nav-link">rss</a>
                 </li>
                 <li class="nav-item"></li>
-                    <a href="/about" class="nav-link">about</a>
+                    <a href="/about/" class="nav-link">about</a>
                 </li>
                 <li class="nav-item"></li>
-                    <a href="/zh-cn" class="nav-link">所有中文内容</a>
+                    <a href="/zh-cn/" class="nav-link">所有中文内容</a>
                 </li>
                 <li class="nav-item"></li>
-                    <a href="/en" class="nav-link">所有英文内容</a>
+                    <a href="/en/" class="nav-link">所有英文内容</a>
                 </li>
             </ul>
         </div>
@@ -54,12 +54,13 @@
 <p>简介：一名Go语言程序员，软件设计师，我给Go语言贡献过很多代码，推动了多项Go语言的提案前进，是go-assigness组成员，有Go语言的may-start-trybots权限.</p>
 <p>我会go语言和gin框架、mysql、redis、mongodb数据库、jQuery、Bootstrap、gui工具包fyne、hexo和hugo搭建博客、word,excel,ppt。</p>
 <p>我自学两个月通过了人社部和工信部组织的的 全国计算机技术与软件专业技术资格(水平)考试 ———— 中级 软件设计师 大约百分之七八十多的考试者通不过这项考试。</p>
+<p>我有全国计算机等级考试 三级证 信息安全技术。</p>
 <p>我最擅长web后端，其次的做网页和APP，还有做微信公众号自动回复机器人。</p>
 <p>我懂编译原理，这是我自己设计的编程语言<a href="https://gitee.com/u-language/u-language" target="_blank">u-language</a>。</p>
 <p>我会做网站，这是我做过四个的网站。全部接入了cloudflare免费计划提供的网络安全和网络优化服务。</p>
 <ul class="list-group">
     <li class="list-group-item"><a href="https://qiulaidongfeng.ip-ddns.com/" target="_blank">无记名投票</a>&nbsp;<a href="https://gitee.com/qiulaidongfeng/nonamevote" target="_blank">源代码地址</a></li>
-    <li class="list-group-item"><a href="https://chat.qiulaidongfeng.ip-ddns.com/" target="_blank">聊天室</a>&nbsp;<a href="/zh-cn/用redis构建聊天室" target="_blank">设计方案：用redis构建聊天室</a></li>
+    <li class="list-group-item"><a href="https://chat.qiulaidongfeng.ip-ddns.com/" target="_blank">聊天室</a>&nbsp;<a href="/zh-cn/用redis构建聊天室/" target="_blank">设计方案：用redis构建聊天室</a></li>
     <li class="list-group-item"><a href="https://encrypt.qiulaidongfeng.ip-ddns.com/">加解密网站</a>&nbsp;<a href="https://gitee.com/qiulaidongfeng/myweb/blob/master/wasm/index.html" target="_blank">源代码地址</a></li>
     <li class="list-group-item"><a href="/">我的博客</a></li>
 </ul>
@@ -98,7 +99,12 @@
 
   </main>
   <footer>
-    <p>Copyright 2023-2025 秋来冬风. All rights reserved.</p>
+    <p id="copyright"></p>
+<script type="text/javascript">
+    let currentDate = new Date();
+    let currentYear = currentDate.getFullYear();
+    document.getElementById("copyright").innerText = "Copyright 2023-"+currentYear.toString() + " 秋来冬风. All rights reserved."
+</script>
 <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> and <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a></p>
   </footer>
 </body>
