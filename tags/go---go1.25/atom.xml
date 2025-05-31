@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Go - Go1.25 on 秋来冬风的博客</title>
+    <link>https://qiulaidongfeng.github.io/tags/go---go1.25/</link>
+    <description>Recent content in Go - Go1.25 on 秋来冬风的博客</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 31 May 2025 20:57:51 +0800</lastBuildDate>
+    <atom:link href="https://qiulaidongfeng.github.io/tags/go---go1.25/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go1.25值得关注的</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/go1.25%E5%80%BC%E5%BE%97%E5%85%B3%E6%B3%A8%E7%9A%84/</link>
+      <pubDate>Sat, 31 May 2025 20:57:51 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/go1.25%E5%80%BC%E5%BE%97%E5%85%B3%E6%B3%A8%E7%9A%84/</guid>
+      <description>&lt;p&gt;go1.25开发周期已经进入发布冻结，一般情况不再会有新功能，目前笔者认为有以下值得关注的：&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;GOMAXPROCS现在会考虑运行在容器时的CPU限制，这在Go程序运行于Kubernetes等容器时非常有用。&lt;/li&gt;&#xA;&lt;li&gt;现在有一个新的垃圾收集器作为实验，在构建时设置环境变量GOEXPERIMENT=greenteagc启用，这在某些场景下提高了性能。&lt;/li&gt;&#xA;&lt;li&gt;现在对于panic后recover再panic的value，不会重复打印value，这避免了测试时panic最终输出包括重复内容。&lt;/li&gt;&#xA;&lt;li&gt;实验性包testing/synctest已经结束实验转正，像其他标准库的包一样按照go1兼容性承诺保证向后兼容，它为测试并发代码提供了支持。&lt;/li&gt;&#xA;&lt;li&gt;编译器现在使用DWARF version 5生成调试信息，这减少了编译生成二进制文件的大小。&lt;/li&gt;&#xA;&lt;li&gt;net/http包增加了防范跨站点伪造攻击（CSRF）的API。&lt;/li&gt;&#xA;&lt;li&gt;构建时设置环境变量GOEXPERIMENT=jsonv2，可以体验正在使用的json包的v2版本。&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
+    </item>
+  </channel>
+</rss>
