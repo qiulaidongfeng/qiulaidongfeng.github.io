@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN" dir="ltr">
+
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
@@ -20,26 +21,61 @@
 
 
 <meta name="keywords" content="Cloudflare,免费计划,经验,qiulaidongfeng,秋来冬风">
+<link rel="canonical" href="https://qiulaidongfeng.github.io/zh-cn/%E6%88%91%E4%BD%BF%E7%94%A8cloudflare%E5%85%8D%E8%B4%B9%E8%AE%A1%E5%88%92%E7%9A%84%E7%BB%8F%E9%AA%8C/" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
 <style>
-@media (max-width: 1200px){
+@media (max-width: 992px){
   .w-sm-100 {
     width: 100% !important;
   }
   .h-sm-auto {
     height: auto !important;
   }
+  .time{
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+  }
+}
+@media (min-width: 992px){
+  .time{
+    margin-top: 15rem;
+    margin-bottom: 15rem;
+  }
+}
+.card:hover {
+   transform: translateY(-10px);
+   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script>
+    function countChars(container) {
+        let total = 0;
+
+        
+        $(container).find('*').addBack().contents().each(function () {
+            
+            if (this.nodeType === 3) {
+                const text = $(this).text().trim();
+                if (text) {
+                    total += text.length;
+                }
+            }
+        });
+
+        return total;
+    }
+</script>
 
 </head>
+
 <body class="container" style="background-color: #ddd;">
   <header>
     <div class="row">
     <div class="col-auto">
         <nav>
-            <ul class="nav">
+            <ul class="nav nav-underline">
                 <li class="nav-item">
                     <a href="/" class="nav-link">home</a>
                 </li>
@@ -58,6 +94,9 @@
                 <li class="nav-item">
                     <a href="/en/" class="nav-link">所有英文内容</a>
                 </li>
+                <li class="nav-item">
+                    <a href="/archive" class="nav-link">归档</a>
+                </li>
             </ul>
         </nav>
     </div>
@@ -68,12 +107,57 @@
     </div>
 </div>
   </header>
-  <main>
-    
-  
-  <small>2025-5-12</small>
+  <main class="row">
+    <aside class="mt-5 border-black col-sm-12 col-lg-2 align-items-center">
+      <div class="card my-5">
+        <div class="card-header">
+          <div class="card-title">
+            <p class="text-center m-0">博客总数</p>
+          </div>
+        </div>
+        <div class="card-body text-center">
+          <p class="h1">17</p>
+        </div>
+      </div>
 
-  <div style="background-color: white;" class="p-4">
+      <div class="card">
+        <div class="card-body">
+          <p class="h4">作者简介：</p>
+          <p>一位Go语言程序员，专业的软件设计师。</p>
+          <p>有多年编程经验和网站建设经验。</p>
+          <p>热爱研究http3等前沿技术。</p>
+        </div>
+      </div>
+
+      <div class="card my-5">
+        <div class="card-body">
+          <p class="h4">博客信息</p>
+          <p>博客上线日期：</p>
+          <time>2023-03-01</time>
+          <p class="mt-4">博客最后更新：</p>
+          <time>
+            
+            2025-5-31
+            
+          </time>
+        </div>
+      </div>
+
+      <div class="d-flex flex-column">
+        <a class="btn btn-primary mt-4" href="/tags/">查看分类</a>
+        <br>
+        <a class="btn btn-primary mt-4" href="/">回到首页</a>
+      </div>
+    </aside>
+    <div class="col-sm-12 col-lg-8">
+      
+<div class="d-flex justify-content-between">
+  <time>2025-5-12</time>
+  <p id="wordcount"></p>
+</div>
+
+<div style="background-color: white;" class="p-4">
+  <div id="content">
     
     <h1>我使用Cloudflare免费计划的经验</h1>
     
@@ -229,17 +313,42 @@ Cloudflare的使命是帮助构建更好的互联网。我们认为每个网站�
 <p>[11]: <a href="https://blog.cloudflare.com/unmetered-mitigation/">https://blog.cloudflare.com/unmetered-mitigation/</a> &ldquo;Unmetered Mitigation: DDoS Protection Without Limits&rdquo;</p>
 
   </div>
-  
+</div>
+
   <div>
     <div>Tags:</div>
     <ul>
         <li><a href="/tags/cloudflare/">Cloudflare</a></li>
+        <li><a href="/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/">网站相关</a></li>
     </ul>
   </div>
 
 
+    </div>
+    <aside class="mt-5 col-sm-12 col-lg-2 border-black">
+      <div class="time" style="margin-left: 0.5rem; margin-right: 0.5rem;">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">博客上线至今已经：</div>
+          </div>
+          <div class="card-body text-center">
+            <b id="year">年</b>
+            <br>
+            <b id="month">月</b>
+            <br>
+            <b id="day">日</b>
+            <br>
+            <b id="hour">小时</b>
+            <br>
+            <b id="minute">分钟</b>
+            <br>
+            <b id="second">秒</b>
+          </div>
+        </div>
+      </div>
+    </aside>
   </main>
-  <footer>
+  <footer class="text-center mt-5">
     <p id="copyright"></p>
 <script type="text/javascript">
     let currentDate = new Date();
@@ -252,4 +361,42 @@ Cloudflare的使命是帮助构建更好的互联网。我们认为每个网站�
 <p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> and <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a></p>
   </footer>
 </body>
+<script>
+  
+  const blogLaunchTime = '2023-03-01T14:00:00';
+
+  function updateUptime() {
+    const launchDate = new Date(blogLaunchTime);
+    const now = new Date();
+    const diff = now - launchDate;
+
+    let totalSeconds = diff / 1000;
+    let years = Math.floor(totalSeconds / (3600 * 24 * 365));
+    totalSeconds -= years * 3600 * 24 * 365;
+    let months = Math.floor(totalSeconds / (3600 * 24 * 30)); 
+    totalSeconds -= months * 3600 * 24 * 30;
+    let days = Math.floor(totalSeconds / (3600 * 24));
+    totalSeconds -= days * 3600 * 24;
+    let hours = Math.floor(totalSeconds / 3600);
+    totalSeconds -= hours * 3600;
+    let minutes = Math.floor(totalSeconds / 60);
+    let seconds = Math.floor(totalSeconds % 60);
+
+    document.getElementById('year').textContent = `${years}年`;
+    document.getElementById('month').textContent = `${months}月`;
+    document.getElementById('day').textContent = `${days}日`;
+    document.getElementById('hour').textContent = `${hours}时`;
+    document.getElementById('minute').textContent = `${minutes}分`;
+    document.getElementById('second').textContent = `${seconds}秒`;
+  }
+
+  
+  setInterval(updateUptime, 1000);
+  updateUptime(); 
+
+  $(function () {
+    $("#wordcount").text("字数："+countChars("#content"));
+  });
+</script>
+
 </html>
