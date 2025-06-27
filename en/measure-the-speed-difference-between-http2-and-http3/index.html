@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>Go | 秋来冬风的博客</title>
+<title>Measure the Speed Difference Between Http2 and Http3 | 秋来冬风的博客</title>
 
 
     
@@ -18,12 +18,12 @@
 
 
 
-
+<meta name="description" content="Record the process and results of my program measuring the speed of using http2 and http3">
 
 
     
-<meta name="keywords" content="秋来冬风的博客,秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog">
-<link rel="canonical" href="https://qiulaidongfeng.github.io/tags/go/" />
+<meta name="keywords" content="quic,quic-go,http2,http3,http,measure,秋来冬风的博客,秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog">
+<link rel="canonical" href="https://qiulaidongfeng.github.io/en/measure-the-speed-difference-between-http2-and-http3/" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 
 <style>
@@ -153,144 +153,50 @@
     </aside>
     <div class="col-sm-12 col-lg-8">
       
-  <h1>Go</h1>
-  
-  <div class="row">
-    
-    
-        <div class="card col-lg-4 col-sm-12">
-    <div class="card-body">
-        <h5 class="card-title">Measure the Speed Difference Between Http2 and Http3</h5>
-        <p class="card-text">Record the process and results of my program measuring the speed of using http2 and http3</p>
-        <div class="d-flex justify-content-between align-items-center">
-        
-        
-        <button class="btn btn-primary" onclick="window.location.assign(&#34;/en/measure-the-speed-difference-between-http2-and-http3/&#34;)">阅读</button>
-        </div>
-    </div>
+<div class="d-flex justify-content-between">
+  <time>2025-6-27</time>
+  <p id="wordcount"></p>
 </div>
+
+<div style="background-color: white;" class="p-4">
+  <div id="content">
     
-        <div class="card col-lg-4 col-sm-12">
-    <div class="card-body">
-        <h5 class="card-title">测量http2和http3的速度差异</h5>
-        <p class="card-text">记录我写程序对使用http2和http3的速度进行测量的过程和结果</p>
-        <div class="d-flex justify-content-between align-items-center">
-        
-        
-        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/%E6%B5%8B%E8%AF%95http2%E5%92%8Chttp3%E7%9A%84%E9%80%9F%E5%BA%A6%E5%B7%AE%E5%BC%82/&#34;)">阅读</button>
-        </div>
-    </div>
-</div>
+    <h1>Measure the Speed Difference Between Http2 and Http3</h1>
     
-        <div class="card col-lg-4 col-sm-12">
-    <div class="card-body">
-        <h5 class="card-title">Go1.25值得关注的</h5>
-        <p class="card-text">记录笔者阅读go1.25正在进行的发布说明，觉得这个版本值得关注的。</p>
-        <div class="d-flex justify-content-between align-items-center">
-        
-        
-        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/go1.25%E5%80%BC%E5%BE%97%E5%85%B3%E6%B3%A8%E7%9A%84/&#34;)">阅读</button>
-        </div>
-    </div>
+    <p>Software translation.</p>
+<h2 id="background">Background</h2>
+<p>Http3 is the latest version of the HTTP protocol, which has undergone a significant improvement by using the QUIC (Fast UDP Network Connection) protocol at the transport layer to enhance performance, especially in high packet loss networks.</p>
+<p>Http3 will be officially standardized in 2022, and currently mainstream programming language standard libraries do not support http3.</p>
+<p>Due to the open-source libraries github.com/quic-go/quic-go/http3 available in the Go language, it is easy to build http3 clients and servers, making it easier to measure the speed difference between http2 and http3.</p>
+<h2 id="measurement-method">Measurement method</h2>
+<p>First, send 200 http2 requests at a speed of no more than 10 times per second, then send 200 http3 requests at a speed of no more than 10 times per second, and measure the average time it takes for requests to be sent and responses to be read.</p>
+<p>Because TLS1.3 has a 0-RTT reconnection mechanism and QUIC enforces the use of TLS1.3, although http2 allows non encrypted transmission, only http2 encrypted with TLS1.3 is measured.</p>
+<p>At the same time, there is a theoretical difference of one RTT between the first connection and reconnection.</p>
+<p>RTT is the round-trip time, which represents the time it takes for data to travel back and forth between the client and server. Its time is related to the speed of webpage loading.</p>
+<p>In order to demonstrate the differences between http2 and http3 as much as possible, the above measurement method is used to mainly measure the speed of reconnection.</p>
+<p>The source code of the measurement tool can be found in <a href="https://gitee.com/qiulaidongfeng/benchhttp2and3">benchhttp2and3</a></p>
+<h2 id="measurement-preparation">Measurement preparation</h2>
+<p>The server hardware used for measurement is located in the United States, approximately 12000 kilometers away. It is charged by the hour, rounded to about 3 cents RMB per hour, and uses IPv6. The RTT for accessing from China at night is approximately 240-260ms.</p>
+<p>Deploy the same server software locally at the same time.</p>
+<p>Use AdGuardHome to modify DNS records, thereby changing whether accessing VPS or local machine.</p>
+<h2 id="measurement-results">Measurement results</h2>
+<p>On the local network, http2 takes over 3ms and http3 takes over 1ms, resulting in a reduction of approximately 50% in reconnection time.</p>
+<p>When accessing websites on remote servers based on actual conditions, it takes slightly over 300ms for http2 at night and 270ms for http3. During the day, it takes slightly over 330ms for http2 and 300ms for http3.</p>
+<p>The test results show that http3 reduces website usage by about 10% compared to http2 in real website visits.</p>
+<h2 id="subsequent">Subsequent</h2>
+<p>Can modify the measurement method to determine if the speed difference between the first connection to http2 and http3 have truly 1 RTT.</p>
+
+  </div>
 </div>
-    
-        <div class="card col-lg-4 col-sm-12">
-    <div class="card-body">
-        <h5 class="card-title">在go标准库外实现比go标准库更好的arena</h5>
-        <p class="card-text">记录我如何在go标准库外实现比go标准库更好的arena。</p>
-        <div class="d-flex justify-content-between align-items-center">
-        
-        
-        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/%E5%9C%A8go%E6%A0%87%E5%87%86%E5%BA%93%E5%A4%96%E5%AE%9E%E7%8E%B0%E6%AF%94%E6%A0%87%E5%87%86%E5%BA%93%E6%9B%B4%E5%A5%BD%E7%9A%84arena/&#34;)">阅读</button>
-        </div>
-    </div>
-</div>
-    
-        <div class="card col-lg-4 col-sm-12">
-    <div class="card-body">
-        <h5 class="card-title">go语言tls1.3密码套件修改研究</h5>
-        <p class="card-text">记录研究如何让go标准库的tls1.3默认密码套件用AES256的</p>
-        <div class="d-flex justify-content-between align-items-center">
-        
-        
-        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/go%E8%AF%AD%E8%A8%80tls1.3%E5%AF%86%E7%A0%81%E5%A5%97%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%A0%94%E7%A9%B6/&#34;)">阅读</button>
-        </div>
-    </div>
-</div>
-    
-        <div class="card col-lg-4 col-sm-12">
-    <div class="card-body">
-        <h5 class="card-title">用原子指针&#43;互斥锁实现仅写时加锁</h5>
-        <p class="card-text">记录我写arena的一个经验</p>
-        <div class="d-flex justify-content-between align-items-center">
-        
-        
-        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/%E7%94%A8%E5%8E%9F%E5%AD%90%E6%8C%87%E9%92%88&#43;%E4%BA%92%E6%96%A5%E9%94%81%E5%AE%9E%E7%8E%B0%E4%BB%85%E5%86%99%E6%97%B6%E5%8A%A0%E9%94%81/&#34;)">阅读</button>
-        </div>
-    </div>
-</div>
-    
-        <div class="card col-lg-4 col-sm-12">
-    <div class="card-body">
-        <h5 class="card-title">go1.24rc1发布</h5>
-        <p class="card-text">介绍go1.24值得关注的</p>
-        <div class="d-flex justify-content-between align-items-center">
-        
-        
-        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/go1-24rc1%E5%8F%91%E5%B8%83/&#34;)">阅读</button>
-        </div>
-    </div>
-</div>
-    
-        <div class="card col-lg-4 col-sm-12">
-    <div class="card-body">
-        <h5 class="card-title">How does the metrics package record the number of non default behavior occurrences</h5>
-        <p class="card-text">英文版</p>
-        <div class="d-flex justify-content-between align-items-center">
-        
-        
-        <button class="btn btn-primary" onclick="window.location.assign(&#34;/en/howdoesthemetricspackagerecordthenumberofnondefaultbehavioroccurrences-md/&#34;)">阅读</button>
-        </div>
-    </div>
-</div>
-    
-        <div class="card col-lg-4 col-sm-12">
-    <div class="card-body">
-        <h5 class="card-title">metrics包如何记录非默认行为发生次数</h5>
-        <p class="card-text">记录研究metrics包怎么实现的</p>
-        <div class="d-flex justify-content-between align-items-center">
-        
-        
-        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/metrics%E5%8C%85%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BD%95%E9%9D%9E%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%8F%91%E7%94%9F%E6%AC%A1%E6%95%B0-md/&#34;)">阅读</button>
-        </div>
-    </div>
-</div>
-    
-        <div class="card col-lg-4 col-sm-12">
-    <div class="card-body">
-        <h5 class="card-title">mmap_error</h5>
-        <p class="card-text">英文版</p>
-        <div class="d-flex justify-content-between align-items-center">
-        
-        
-        <button class="btn btn-primary" onclick="window.location.assign(&#34;/en/mmap-error/&#34;)">阅读</button>
-        </div>
-    </div>
-</div>
-    
-        <div class="card col-lg-4 col-sm-12">
-    <div class="card-body">
-        <h5 class="card-title">mmap错误</h5>
-        <p class="card-text">记录看go1.21提交记录发现被解决一个issue</p>
-        <div class="d-flex justify-content-between align-items-center">
-        
-        
-        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/mmap%E9%94%99%E8%AF%AF/&#34;)">阅读</button>
-        </div>
-    </div>
-</div>
-    
-</div>
+
+  <div>
+    <div>Tags:</div>
+    <ul>
+        <li><a href="/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/">网站相关</a></li>
+        <li><a href="/tags/go/">Go</a></li>
+    </ul>
+  </div>
+
 
     </div>
     <aside class="mt-5 col-sm-12 col-lg-2 border-black">

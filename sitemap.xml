@@ -2,8 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://qiulaidongfeng.github.io/en/</loc>
+    <lastmod>2025-06-27T12:48:30+08:00</lastmod>
+  </url><url>
     <loc>https://qiulaidongfeng.github.io/tags/go/</loc>
-    <lastmod>2025-05-31T20:57:51+08:00</lastmod>
+    <lastmod>2025-06-27T12:48:30+08:00</lastmod>
+  </url><url>
+    <loc>https://qiulaidongfeng.github.io/en/measure-the-speed-difference-between-http2-and-http3/</loc>
+    <lastmod>2025-06-27T12:48:30+08:00</lastmod>
+  </url><url>
+    <loc>https://qiulaidongfeng.github.io/tags/</loc>
+    <lastmod>2025-06-27T12:48:30+08:00</lastmod>
+  </url><url>
+    <loc>https://qiulaidongfeng.github.io/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/</loc>
+    <lastmod>2025-06-27T12:48:30+08:00</lastmod>
+  </url><url>
+    <loc>https://qiulaidongfeng.github.io/zh-cn/</loc>
+    <lastmod>2025-06-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://qiulaidongfeng.github.io/zh-cn/%E6%B5%8B%E8%AF%95http2%E5%92%8Chttp3%E7%9A%84%E9%80%9F%E5%BA%A6%E5%B7%AE%E5%BC%82/</loc>
+    <lastmod>2025-06-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://qiulaidongfeng.github.io/tags/go---go1.25/</loc>
     <lastmod>2025-05-31T20:57:51+08:00</lastmod>
@@ -11,16 +29,10 @@
     <loc>https://qiulaidongfeng.github.io/zh-cn/go1.25%E5%80%BC%E5%BE%97%E5%85%B3%E6%B3%A8%E7%9A%84/</loc>
     <lastmod>2025-05-31T20:57:51+08:00</lastmod>
   </url><url>
-    <loc>https://qiulaidongfeng.github.io/tags/</loc>
-    <lastmod>2025-05-31T20:57:51+08:00</lastmod>
-  </url><url>
     <loc>https://qiulaidongfeng.github.io/tags/cloudflare/</loc>
     <lastmod>2025-05-12T11:28:49+08:00</lastmod>
   </url><url>
     <loc>https://qiulaidongfeng.github.io/zh-cn/%E6%88%91%E4%BD%BF%E7%94%A8cloudflare%E5%85%8D%E8%B4%B9%E8%AE%A1%E5%88%92%E7%9A%84%E7%BB%8F%E9%AA%8C/</loc>
-    <lastmod>2025-05-12T11:28:49+08:00</lastmod>
-  </url><url>
-    <loc>https://qiulaidongfeng.github.io/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/</loc>
     <lastmod>2025-05-12T11:28:49+08:00</lastmod>
   </url><url>
     <loc>https://qiulaidongfeng.github.io/about/</loc>
@@ -53,9 +65,6 @@
     <loc>https://qiulaidongfeng.github.io/zh-cn/go1-24rc1%E5%8F%91%E5%B8%83/</loc>
     <lastmod>2024-12-16T22:46:29+00:00</lastmod>
   </url><url>
-    <loc>https://qiulaidongfeng.github.io/en/</loc>
-    <lastmod>2023-04-06T14:19:16+00:00</lastmod>
-  </url><url>
     <loc>https://qiulaidongfeng.github.io/tags/go---go1.21/</loc>
     <lastmod>2023-04-06T14:19:16+00:00</lastmod>
   </url><url>
@@ -69,9 +78,6 @@
     <lastmod>2023-03-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://qiulaidongfeng.github.io/tags/ulang/</loc>
-    <lastmod>2023-03-19T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://qiulaidongfeng.github.io/zh-cn/</loc>
     <lastmod>2023-03-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://qiulaidongfeng.github.io/zh-cn/%E4%B9%98%E6%B3%95%E8%BF%98%E6%98%AF%E8%A7%A3%E5%BC%95%E7%94%A8-md/</loc>

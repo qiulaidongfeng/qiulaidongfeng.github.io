@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>乘法还是解引用 on 秋来冬风的博客</title>
+    <title>Zh-Cns on 秋来冬风的博客</title>
     <link>https://qiulaidongfeng.github.io/zh-cn/</link>
-    <description>Recent content in 乘法还是解引用 on 秋来冬风的博客</description>
+    <description>Recent content in Zh-Cns on 秋来冬风的博客</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sat, 31 May 2025 20:57:51 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 24 Jun 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://qiulaidongfeng.github.io/zh-cn/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>测量http2和http3的速度差异</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/%E6%B5%8B%E8%AF%95http2%E5%92%8Chttp3%E7%9A%84%E9%80%9F%E5%BA%A6%E5%B7%AE%E5%BC%82/</link>
+      <pubDate>Tue, 24 Jun 2025 00:00:00 +0000</pubDate>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/%E6%B5%8B%E8%AF%95http2%E5%92%8Chttp3%E7%9A%84%E9%80%9F%E5%BA%A6%E5%B7%AE%E5%BC%82/</guid>
+      <description>&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;&#xA;&lt;p&gt;http3是http协议的最新版本，进行了一项重大改进，传输层改用QUIC（快速UDP网络连接）协议，以提高性能，特别是在高丢包网络的性能。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Go1.25值得关注的</title>
       <link>https://qiulaidongfeng.github.io/zh-cn/go1.25%E5%80%BC%E5%BE%97%E5%85%B3%E6%B3%A8%E7%9A%84/</link>

@@ -8,8 +8,24 @@
     <language>zh-CN</language>
     <managingEditor>秋来冬风</managingEditor>
     <webMaster>秋来冬风</webMaster>
-    <lastBuildDate>Sat, 31 May 2025 20:57:51 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 27 Jun 2025 12:48:30 +0800</lastBuildDate>
     <atom:link href="https://qiulaidongfeng.github.io/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Measure the Speed Difference Between Http2 and Http3</title>
+      <link>https://qiulaidongfeng.github.io/en/measure-the-speed-difference-between-http2-and-http3/</link>
+      <pubDate>Fri, 27 Jun 2025 12:48:30 +0800</pubDate>
+      <author>秋来冬风</author>
+      <guid>https://qiulaidongfeng.github.io/en/measure-the-speed-difference-between-http2-and-http3/</guid>
+      <description>&lt;p&gt;Software translation.&lt;/p&gt;&#xA;&lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;&#xA;&lt;p&gt;Http3 is the latest version of the HTTP protocol, which has undergone a significant improvement by using the QUIC (Fast UDP Network Connection) protocol at the transport layer to enhance performance, especially in high packet loss networks.&lt;/p&gt;&#xA;&lt;p&gt;Http3 will be officially standardized in 2022, and currently mainstream programming language standard libraries do not support http3.&lt;/p&gt;&#xA;&lt;p&gt;Due to the open-source libraries github.com/quic-go/quic-go/http3 available in the Go language, it is easy to build http3 clients and servers, making it easier to measure the speed difference between http2 and http3.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>测量http2和http3的速度差异</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/%E6%B5%8B%E8%AF%95http2%E5%92%8Chttp3%E7%9A%84%E9%80%9F%E5%BA%A6%E5%B7%AE%E5%BC%82/</link>
+      <pubDate>Tue, 24 Jun 2025 00:00:00 +0000</pubDate>
+      <author>秋来冬风</author>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/%E6%B5%8B%E8%AF%95http2%E5%92%8Chttp3%E7%9A%84%E9%80%9F%E5%BA%A6%E5%B7%AE%E5%BC%82/</guid>
+      <description>&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;&#xA;&lt;p&gt;http3是http协议的最新版本，进行了一项重大改进，传输层改用QUIC（快速UDP网络连接）协议，以提高性能，特别是在高丢包网络的性能。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Go1.25值得关注的</title>
       <link>https://qiulaidongfeng.github.io/zh-cn/go1.25%E5%80%BC%E5%BE%97%E5%85%B3%E6%B3%A8%E7%9A%84/</link>
