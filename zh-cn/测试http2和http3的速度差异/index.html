@@ -34,16 +34,6 @@
   .h-sm-auto {
     height: auto !important;
   }
-  .time{
-    margin-top: 5rem;
-    margin-bottom: 5rem;
-  }
-}
-@media (min-width: 992px){
-  .time{
-    margin-top: 15rem;
-    margin-bottom: 15rem;
-  }
 }
 .card:hover {
    transform: translateY(-10px);
@@ -110,11 +100,11 @@
 </div>
   </header>
   <main class="row">
-    <aside class="mt-5 border-black col-sm-12 col-lg-2 align-items-center">
-      <div class="card my-5">
+    <aside class="col-lg-2 align-items-center">
+      <div class="card mt-3">
         <div class="card-header">
           <div class="card-title">
-            <p class="text-center m-0">博客总数</p>
+            <p class="text-center h4">博客总数</p>
           </div>
         </div>
         <div class="card-body text-center">
@@ -122,18 +112,24 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card mt-3">
+        <div class="card-header">
+          <div class="card-title">
+            <p class="text-center h4">作者简介</p>
+          </div>
+        </div>
         <div class="card-body">
-          <p class="h4">作者简介：</p>
           <p>一位Go语言程序员，专业的软件设计师。</p>
           <p>有多年编程经验和网站建设经验。</p>
           <p>热爱研究http3等前沿技术。</p>
         </div>
       </div>
 
-      <div class="card my-5">
+      <div class="card mt-3">
+        <div class="card-header">
+          <p class="h4 text-center">博客信息</p>
+        </div>
         <div class="card-body">
-          <p class="h4">博客信息</p>
           <p>博客上线日期：</p>
           <time>2023-03-01</time>
           <p class="mt-4">博客最后更新：</p>
@@ -147,11 +143,11 @@
 
       <div class="d-flex flex-column">
         <a class="btn btn-primary mt-4" href="/tags/">查看分类</a>
-        <br>
-        <a class="btn btn-primary mt-4" href="/">回到首页</a>
+        <a class="btn btn-primary mt-3" href="/">回到首页</a>
+        <a class="btn btn-primary mt-3" href="/about/">了解作者</a>
       </div>
     </aside>
-    <div class="col-sm-12 col-lg-8">
+    <div class="col-lg-8 mt-3">
       
 <div class="d-flex justify-content-between">
   <time>2025-6-24</time>
@@ -198,7 +194,7 @@
 
 
     </div>
-    <aside class="mt-5 col-sm-12 col-lg-2 border-black">
+    <aside class="col-lg-2 mt-3">
       <div class="time" style="margin-left: 0.5rem; margin-right: 0.5rem;">
         <div class="card">
           <div class="card-header">
@@ -221,7 +217,7 @@
       </div>
     </aside>
   </main>
-  <footer class="text-center mt-5">
+  <footer class="text-center mt-3">
     <p id="copyright"></p>
 <script type="text/javascript">
     let currentDate = new Date();
@@ -268,7 +264,7 @@
   updateUptime(); 
 
   $(function () {
-    $("#wordcount").text("字数："+countChars("#content"));
+    $("#wordcount").text("字数：" + countChars("#content"));
   });
 </script>
 
