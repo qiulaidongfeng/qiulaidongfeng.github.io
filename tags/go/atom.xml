@@ -23,6 +23,13 @@
       <description>&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;&#xA;&lt;p&gt;http3是http协议的最新版本，进行了一项重大改进，传输层改用QUIC（快速UDP网络连接）协议，以提高性能，特别是在高丢包网络的性能。&lt;/p&gt;</description>
     </item>
     <item>
+      <title>Go1.25 is worth paying attention to</title>
+      <link>https://qiulaidongfeng.github.io/en/go1.25-is-worth-paying-attention-to/</link>
+      <pubDate>Sat, 31 May 2025 20:57:51 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/en/go1.25-is-worth-paying-attention-to/</guid>
+      <description>&lt;p&gt;Software translation&lt;/p&gt;&#xA;&lt;p&gt;The development cycle of go1.25 has entered a release freeze, and generally there will be no new features. Currently, the author believes that the following are worth paying attention to:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;GOMAXPROCS now considers CPU limitations when running on containers, which is very useful when Go programs run on containers such as Kubernetes.&lt;/li&gt;&#xA;&lt;li&gt;There is now a new garbage collector as an experiment, which sets the environment variable GOEXPERIMENT=greenteagc to be enabled during construction, which improves performance in certain scenarios.&lt;/li&gt;&#xA;&lt;li&gt;Now for the value recovered after the panic, the value will not be printed repeatedly, which avoids the final output of the panic including duplicate content during testing.&lt;/li&gt;&#xA;&lt;li&gt;The experimental package testing/synctest has been completed and turned positive. Like other standard library packages, it guarantees backward compatibility according to the go1 compatibility commitment, providing support for testing concurrent code.&lt;/li&gt;&#xA;&lt;li&gt;The compiler now uses DWARF version 5 to generate debugging information, which reduces the size of binary files generated during compilation.&lt;/li&gt;&#xA;&lt;li&gt;The net/http package has added an API to prevent cross site forgery attacks (CSRF).&lt;/li&gt;&#xA;&lt;li&gt;Set the environment variable GOEXPERIMENT=jsonv2 during construction to experience the v2 version of the JSON package being used.&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
+    </item>
+    <item>
       <title>Go1.25值得关注的</title>
       <link>https://qiulaidongfeng.github.io/zh-cn/go1.25%E5%80%BC%E5%BE%97%E5%85%B3%E6%B3%A8%E7%9A%84/</link>
       <pubDate>Sat, 31 May 2025 20:57:51 +0800</pubDate>
