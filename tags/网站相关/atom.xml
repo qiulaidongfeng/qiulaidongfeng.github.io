@@ -6,8 +6,15 @@
     <description>Recent content in 网站相关 on 秋来冬风的博客</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 27 Jun 2025 12:48:30 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 28 Jul 2025 17:21:25 +0800</lastBuildDate>
     <atom:link href="https://qiulaidongfeng.github.io/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>个人选购vps(虚拟专用服务器)指南</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/%E4%B8%AA%E4%BA%BA%E9%80%89%E8%B4%ADvps%E6%8C%87%E5%8D%97/</link>
+      <pubDate>Mon, 28 Jul 2025 17:21:25 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/%E4%B8%AA%E4%BA%BA%E9%80%89%E8%B4%ADvps%E6%8C%87%E5%8D%97/</guid>
+      <description>&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;&#xA;&lt;p&gt;vps(虚拟专用服务器)是基于虚拟化技术，将一台物理服务器，分为多个虚拟服务器，使得用户能以更低的成本获得服务器。&lt;/p&gt;&#xA;&lt;p&gt;本指南面向个人用途，如学习研究，轻量级网站（个人博客）等。但其他用途，如商业网站也有参考价值。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Measure the Speed Difference Between Http2 and Http3</title>
       <link>https://qiulaidongfeng.github.io/en/measure-the-speed-difference-between-http2-and-http3/</link>

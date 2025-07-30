@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>个人选购vps(虚拟专用服务器)指南 | 秋来冬风的博客</title>
+
+
+    
+        
+    
+
+
+
+
+    
+
+
+
+
+<meta name="description" content="本指南面向个人用途，如学习研究，轻量级网站（个人博客）等。但其他用途，如商业网站也有参考价值。">
+
+
+          
+<meta name="keywords" content="vps,个人,选购,指南,虚拟专用服务器,境外vps,万事达卡,秋来冬风的博客,秋来冬风,qiulaidongfeng,博客,blog">
+<link rel="canonical" href="https://qiulaidongfeng.github.io/zh-cn/%E4%B8%AA%E4%BA%BA%E9%80%89%E8%B4%ADvps%E6%8C%87%E5%8D%97/" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+<style>
+@media (max-width: 992px){
+  .w-sm-100 {
+    width: 100% !important;
+  }
+  .h-sm-auto {
+    height: auto !important;
+  }
+}
+.card:hover {
+   transform: translateY(-10px);
+   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script>
+    function countChars(container) {
+        let total = 0;
+
+        
+        $(container).find('*').addBack().contents().each(function () {
+            
+            if (this.nodeType === 3) {
+                const text = $(this).text().trim();
+                if (text) {
+                    total += text.length;
+                }
+            }
+        });
+
+        return total;
+    }
+</script>
+
+</head>
+
+<body class="container" style="background-color: #ddd;">
+  <header>
+    <div class="row">
+    <div class="col-auto">
+        <nav>
+            <ul class="nav nav-underline">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/tags/" class="nav-link">tags</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/atom.xml" class="nav-link">rss</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/about/" class="nav-link">about</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/zh-cn/" class="nav-link">所有中文内容</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/en/" class="nav-link">所有英文内容</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/archive/" class="nav-link">归档</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="row">
+    <div class="offset-lg-4 col-lg-4 offset-sm-3 col-sm-6">
+        <p class="h1 text-center">秋来冬风的博客</p>
+    </div>
+</div>
+  </header>
+  <main class="row">
+    <aside class="col-lg-2 align-items-center">
+      <div class="card mt-3">
+        <div class="card-header">
+          <div class="card-title">
+            <p class="text-center h4">博客总数</p>
+          </div>
+        </div>
+        <div class="card-body text-center">
+          <p class="h1">21</p>
+        </div>
+      </div>
+
+      <div class="card mt-3">
+        <div class="card-header">
+          <div class="card-title">
+            <p class="text-center h4">作者简介</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>一位Go语言程序员，专业的软件设计师。</p>
+          <p>有多年编程经验和网站建设经验。</p>
+          <p>热爱研究http3等前沿技术。</p>
+        </div>
+      </div>
+
+      <div class="card mt-3">
+        <div class="card-header">
+          <p class="h4 text-center">博客信息</p>
+        </div>
+        <div class="card-body">
+          <p>博客上线日期：</p>
+          <time>2023-03-01</time>
+          <p class="mt-4">博客最后更新：</p>
+          <time>
+            
+            2025-7-28
+            
+          </time>
+        </div>
+      </div>
+
+      <div class="d-flex flex-column">
+        <a class="btn btn-primary mt-4" href="/tags/">查看分类</a>
+        <a class="btn btn-primary mt-3" href="/">回到首页</a>
+        <a class="btn btn-primary mt-3" href="/about/">了解作者</a>
+      </div>
+    </aside>
+    <div class="col-lg-8 mt-3">
+      
+<div class="d-flex justify-content-between">
+  <time>2025-7-28</time>
+  <p id="wordcount"></p>
+</div>
+
+<div style="background-color: white;" class="p-4">
+  <div id="content">
+    
+    <h1>个人选购vps(虚拟专用服务器)指南</h1>
+    
+    <h2 id="前言">前言</h2>
+<p>vps(虚拟专用服务器)是基于虚拟化技术，将一台物理服务器，分为多个虚拟服务器，使得用户能以更低的成本获得服务器。</p>
+<p>本指南面向个人用途，如学习研究，轻量级网站（个人博客）等。但其他用途，如商业网站也有参考价值。</p>
+<h2 id="什么时候应该选择vps">什么时候应该选择vps</h2>
+<p>搭建网站或自建网盘等<strong>基于网络的服务</strong>，需要稳定运行（差不多7x24小时开机）的电脑、稳定的上行带宽网络连接和公网IP。</p>
+<p>特别是后两者，常见个人使用家用宽带，常说的多少兆宽带只是讲的下行速率，上行速率可能只有几十Mbps，且上行流量多可能被降更低速率，并且常用的端口80和443可能被阻止使用。</p>
+<p>最重要的是，IP地址可分为公网IP和内网IP，内网IP只有在连接同一WIFI等处于同一网络时才能访问到，公网IP可以被处于其他网络的访问者的访问。而公网IP，特别是固定不变的公网IP，一般的家用宽带不容易获取。</p>
+<p>为了做到这一点，搭建网站有四个上云服务的选择：</p>
+<ul>
+<li>静态网站托管（只能单纯几个网页源代码文件）</li>
+<li>共享主机（比较适合搭建简单的网站，通常被服务商限制只能使用如wordpress(一种可用于搭建网站的软件)等特定软件。）</li>
+<li>vps（<strong>可搭建复杂的网站，或者构建基于网络的其他服务，比如运行公众号机器人，自建电子邮箱，自建网盘等，需要选择vps或独享服务器。</strong>）</li>
+<li>独享服务器（因为单人专用，价格高性能好）</li>
+</ul>
+<p>如果静态网站托管和共享主机不能满足需要，且不具有很高的访问量等情况导致需要很高的性能，应选择使用vps。</p>
+<h2 id="地理位置的选择">地理位置的选择</h2>
+<p>建议首选境外（中国大陆以外）的vps，因为这两个原因：</p>
+<ol>
+<li>只要vps在中国大陆，并且搭建的网站或服务是向公众开放的，就需要备案。未满18岁几乎不可能做到。且备案手续繁琐，增加时间成本。</li>
+<li>中国大陆的vps网络带宽费用普遍很高，1Mbps(128KB/s)网速的vps正常价可能都有1000元以上，如按流量计费，常见每GB0.8元，常高于境外的vps。</li>
+</ol>
+<p>所以出于选择价格更低且更好的vps的原因，<strong>建议首选境外（中国大陆以外）的vps</strong>。</p>
+<p>理论上离主要用户群体越近越好，比如主要面向中国用户，理论上最好选香港等地理位置近的vps。</p>
+<p>不过实践中，如果不是做游戏，语音通话等需要低延迟的用例，即使服务器距离用户超过一万公里（比如中国大陆到美国东部），大多用户也感受不出区别。</p>
+<h2 id="服务商的选择">服务商的选择</h2>
+<p>确定地理位置以后，可以在浏览器等搜索地理位置+vps，或者类似的关键词。在搜索结果前几页频繁出现的服务商可能值得考虑。</p>
+<p>如果有需要大内存，大硬盘等特殊需求，也可以用类似的关键词搜索。</p>
+<p>然后尽可能的搜集此类服务商的信息，成立时间长，知名度高的往往值得选择。</p>
+<p>例如选择美国的vps，搜索中总是能看到Vultr，进一步搜索发现成立时间长，知名度高，那这家的vps大概值得选择。</p>
+<p>注意服务商可能不支持支付宝微信等付款，仅支持万事达卡等国际卡付款，可以到香港等境外地区的银行办此类银行卡，或者在中国大陆的广发银行，建设银行，中国银行未成年也可办万事达借记卡。小心不要选择邮政储蓄银行的万事达借记卡，截止2025年7月付款时会被银行拒绝交易。这样可避免因无法付款限制可选择的范围。建议非必要不使用虚拟卡付款。</p>
+<p><strong>牢记：不要往账户中充值太多钱，可以用万事达卡等国际卡，等服务商结算时自动扣。这样不合适方便换家更好的</strong></p>
+<h2 id="计费方式的选择">计费方式的选择</h2>
+<p><strong>推荐选按小时计费</strong>，方便低成本体验服务商的vps，再决定是否采用。</p>
+<p>按月计费比较常见，可以作为备选考虑。</p>
+<p>建议仅在有过往实际体验等充分证据支持时，才考虑按年计费。</p>
+<h2 id="网络方面的选择">网络方面的选择</h2>
+<p>首要避免中国大陆常见的按带宽速率计费的vps，特别是配置1Mbps，2Mbps，3Mbps等低网速vps，不要选，不然按照8Mbps=1MB/s的公式换算，用户访问时服务器最多几百kb/s是速度，比如网站页面放张图片，可能打开都好慢，放视频音乐的大文件基本是不行的。使用CDN等技术降低vps的带宽需要会增加开发和运行成本，像压缩要CPU开销加大，CDN常见先从vps读取一遍网页等静态资源。</p>
+<p>建议考虑按流量计费的vps，普遍都有一个月数百GB的流量，且带宽速率在美国等地常见共享1000Mbps甚至更高，一般足够使用。</p>
+<p>或者选择按带宽速率计费的vps时，注意不推荐带宽太低（50Mbps以下）的，除非严格确定用例可以仅用更低的带宽速率。</p>
+<p>如果没有特殊需求可以选择仅支持ipv6的vps，然后通过配Cloudflare CDN等方式支持ipv4，这样在选购美国等地理位置的低价vps时，可以省几十人民币。</p>
+<h2 id="内存的选择">内存的选择</h2>
+<p>建议1GB或根据用例选择更高的。</p>
+<p>比如：自建Redis数据库、Mongodb数据库等应该尽量选择大内存的vps。web服务器根据并发访问量增大内存。</p>
+<p>如果选择小于1GB内存的vps，可以适当使用交换空间弥补，但可能导致性能下降。</p>
+<h2 id="cpu的选择">CPU的选择</h2>
+<p>视情况选择。一般的低负载用例普通的1核已足够使用。</p>
+<p>或者比如自建Redis数据库等单核性能需求高的用例，应该尽量选择单核性能高的vps，甚至必要时应该选择独享服务器。</p>
+<p>对于web服务器等场景，可以通过多核提升性能的，应视访问量选择CPU核数。</p>
+<h2 id="硬盘的选择">硬盘的选择</h2>
+<p>一般的用例，10GB的硬盘已足够使用。</p>
+<p>如果用自建网盘，自建Mysql数据库等特殊需要，应选大硬盘的vps。自建Mysql数据库等，还应该尽量选固态硬盘的vps。</p>
+<p>视实际用例确定具体多大的硬盘。</p>
+<h2 id="免责声明">免责声明</h2>
+<p><strong>本文仅作技术交流，提及的产品仅作示例，不构成购买建议。实际选择请根据个人需求判断。</strong></p>
+
+  </div>
+</div>
+
+  <div>
+    <div>Tags:</div>
+    <ul>
+        <li><a href="/tags/vps/">Vps</a></li>
+        <li><a href="/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/">网站相关</a></li>
+    </ul>
+  </div>
+
+
+    </div>
+    <aside class="col-lg-2 mt-3">
+      <div class="time" style="margin-left: 0.5rem; margin-right: 0.5rem;">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">博客上线至今已经：</div>
+          </div>
+          <div class="card-body text-center">
+            <b id="year">年</b>
+            <br>
+            <b id="month">月</b>
+            <br>
+            <b id="day">日</b>
+            <br>
+            <b id="hour">小时</b>
+            <br>
+            <b id="minute">分钟</b>
+            <br>
+            <b id="second">秒</b>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+  <footer class="text-center mt-3">
+    <p id="copyright"></p>
+<script type="text/javascript">
+    let currentDate = new Date();
+    let currentYear = currentDate.getFullYear();
+    document.getElementById("copyright").innerText = "Copyright 2023-"+currentYear.toString() + " 秋来冬风. All rights reserved.";
+
+    $("img").addClass("w-sm-100 h-sm-auto");
+    $("a").addClass("text-break");
+</script>
+<p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> and <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a></p>
+  </footer>
+</body>
+<script>
+  
+  const blogLaunchTime = '2023-03-01T14:00:00';
+
+  function updateUptime() {
+    const launchDate = new Date(blogLaunchTime);
+    const now = new Date();
+    const diff = now - launchDate;
+
+    let totalSeconds = diff / 1000;
+    let years = Math.floor(totalSeconds / (3600 * 24 * 365));
+    totalSeconds -= years * 3600 * 24 * 365;
+    let months = Math.floor(totalSeconds / (3600 * 24 * 30)); 
+    totalSeconds -= months * 3600 * 24 * 30;
+    let days = Math.floor(totalSeconds / (3600 * 24));
+    totalSeconds -= days * 3600 * 24;
+    let hours = Math.floor(totalSeconds / 3600);
+    totalSeconds -= hours * 3600;
+    let minutes = Math.floor(totalSeconds / 60);
+    let seconds = Math.floor(totalSeconds % 60);
+
+    document.getElementById('year').textContent = `${years}年`;
+    document.getElementById('month').textContent = `${months}月`;
+    document.getElementById('day').textContent = `${days}日`;
+    document.getElementById('hour').textContent = `${hours}时`;
+    document.getElementById('minute').textContent = `${minutes}分`;
+    document.getElementById('second').textContent = `${seconds}秒`;
+  }
+
+  
+  setInterval(updateUptime, 1000);
+  updateUptime(); 
+
+  $(function () {
+    $("#wordcount").text("字数：" + countChars("#content"));
+  });
+</script>
+
+</html>

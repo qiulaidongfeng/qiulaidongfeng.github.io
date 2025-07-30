@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://qiulaidongfeng.github.io/tags/</loc>
+    <lastmod>2025-07-28T17:21:25+08:00</lastmod>
+  </url><url>
+    <loc>https://qiulaidongfeng.github.io/tags/vps/</loc>
+    <lastmod>2025-07-28T17:21:25+08:00</lastmod>
+  </url><url>
+    <loc>https://qiulaidongfeng.github.io/zh-cn/</loc>
+    <lastmod>2025-07-28T17:21:25+08:00</lastmod>
+  </url><url>
+    <loc>https://qiulaidongfeng.github.io/zh-cn/%E4%B8%AA%E4%BA%BA%E9%80%89%E8%B4%ADvps%E6%8C%87%E5%8D%97/</loc>
+    <lastmod>2025-07-28T17:21:25+08:00</lastmod>
+  </url><url>
+    <loc>https://qiulaidongfeng.github.io/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/</loc>
+    <lastmod>2025-07-28T17:21:25+08:00</lastmod>
+  </url><url>
     <loc>https://qiulaidongfeng.github.io/en/</loc>
     <lastmod>2025-06-27T12:48:30+08:00</lastmod>
   </url><url>
@@ -10,15 +25,6 @@
   </url><url>
     <loc>https://qiulaidongfeng.github.io/en/measure-the-speed-difference-between-http2-and-http3/</loc>
     <lastmod>2025-06-27T12:48:30+08:00</lastmod>
-  </url><url>
-    <loc>https://qiulaidongfeng.github.io/tags/</loc>
-    <lastmod>2025-06-27T12:48:30+08:00</lastmod>
-  </url><url>
-    <loc>https://qiulaidongfeng.github.io/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/</loc>
-    <lastmod>2025-06-27T12:48:30+08:00</lastmod>
-  </url><url>
-    <loc>https://qiulaidongfeng.github.io/zh-cn/</loc>
-    <lastmod>2025-06-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://qiulaidongfeng.github.io/zh-cn/%E6%B5%8B%E8%AF%95http2%E5%92%8Chttp3%E7%9A%84%E9%80%9F%E5%BA%A6%E5%B7%AE%E5%BC%82/</loc>
     <lastmod>2025-06-24T00:00:00+00:00</lastmod>
