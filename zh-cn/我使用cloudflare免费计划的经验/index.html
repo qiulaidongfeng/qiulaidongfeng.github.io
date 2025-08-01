@@ -28,18 +28,89 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 
 <style>
-@media (max-width: 992px){
-  .w-sm-100 {
-    width: 100% !important;
+  @media (max-width: 992px) {
+    .w-sm-100 {
+      width: 100% !important;
+    }
+
+    .h-sm-auto {
+      height: auto !important;
+    }
   }
-  .h-sm-auto {
-    height: auto !important;
+
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   }
-}
-.card:hover {
-   transform: translateY(-10px);
-   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-}
+
+  .toc {
+    top: 20px;
+    flex: 0 0 250px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    height: fit-content;
+  }
+
+  .toc h2 {
+    margin-top: 0;
+    font-size: 1.3em;
+    border-bottom: 2px solid #007cba;
+    padding-bottom: 5px;
+  }
+
+  .toc ul {
+    list-style: none;
+    padding-left: 10px;
+  }
+
+  .toc a {
+    text-decoration: none;
+    color: #005a87;
+    font-size: 0.95em;
+  }
+
+  .toc a:hover {
+    text-decoration: underline;
+  }
+
+  .toc ul ul {
+    margin-top: 6px;
+  }
+
+  .toc ul ul ul {
+    margin-left: 15px;
+  }
+
+   
+  .toc-level-2 {
+    padding-left: 0;
+  }
+
+  .toc-level-3 {
+    padding-left: 15px;
+  }
+
+  .toc-level-4 {
+    padding-left: 30px;
+  }
+
+   
+  h2::before,
+  h3::before,
+  h4::before {
+    content: "§";
+    color: #aaa;
+    margin-right: 8px;
+    opacity: 0;
+  }
+
+  h2:hover::before,
+  h3:hover::before,
+  h4:hover::before {
+    opacity: 1;
+  }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script>
@@ -160,7 +231,12 @@
     
     <h1>我使用Cloudflare免费计划的经验</h1>
     
-    <h2 id="cloudflare简介">Cloudflare简介</h2>
+    <div class="toc">
+      <h2>目录</h2>
+      <div id="table-of-contents"></div>
+    </div>
+    <div class="main">
+      <h2 id="cloudflare简介">Cloudflare简介</h2>
 <p>Cloudflare是一家2009年成立于美国的企业，初衷是保护网络安全，目前在 330 多个城市拥有数据中心，与大约 95% 的全球互联网用户距离仅约 50 毫秒，凭借 388 Tbps 的网络容量，成功缓解了一些有史以来最大规模的 DDoS 攻击。</p>
 <p>根据官网：
 Cloudflare的使命是帮助构建更好的互联网。我们认为每个网站和应用都应当可以免费获取基础的安全与性能服务。</p>
@@ -172,7 +248,7 @@ Cloudflare的使命是帮助构建更好的互联网。我们认为每个网站�
 <h3 id="安全">安全</h3>
 <ul>
 <li>
-<p>不修改服务器支持后量子密钥封装</p>
+<h4 id="不修改服务器支持后量子密钥封装">不修改服务器支持后量子密钥封装</h4>
 <p><strong>因为量子计算机擅长破解当今普遍使用的RSA(利用大整数因式分解的数学难题)等现有密钥封装使用的公钥算法，导致传统公钥加密体系彻底失效，导致现在的tls在未来不安全。</strong> 研究应对这种情况的称为后量子密码学（PQC）。</p>
 <p>尽管目前的量子计算机还未发展到这个程度，但业内预测离这个时候可能只有十到二十年，迁移目前使用的算法到能抵抗量子计算机的算法是一个长期工作，参考tls1.2迁移到tls1.3，从相关标准RFC 8446在2018年8月发布到现在已经过去了快7年，但完全替代tls1.2仍需数年。</p>
 <p>2024年8月13日，美国国家标准与技术研究所（NIST）正式发布了后量子密码学的三项新标准，其中的FIPS 203 Module-Lattice-Based Key-Encapsulation Mechanism Standar(基于模块格的密钥封装机制标准)，<strong>简称ML-KEM，利用数学难题Module Learning With Errors（模格上带错误学习问题）</strong></p>
@@ -180,7 +256,7 @@ Cloudflare的使命是帮助构建更好的互联网。我们认为每个网站�
 <p>可以替代RSA等旧的算法，X25519MLKEM768是目前将其应用在tls的混合密钥交换算法，go语言已经在2025年2月发布的go1.24标准库中实现了，并默认在tls连接启用，所以这项功能对我不太有用，不过对使用其他编程语言的人可能是有用的。</p>
 </li>
 <li>
-<p>免费不限量的DDoS防护</p>
+<h4 id="免费不限量的ddos防护">免费不限量的DDoS防护</h4>
 <p>DDoS攻击通过大量非法请求占用目标系统的资源（如带宽、内存、CPU 等），导致目标无法正常为合法用户提供服务。</p>
 <p>目前的DDoS防护市场常见的一些产品，高防IP价格根据防护的峰值攻击速率，在数万至上百万一年。高防服务器的最低价格稍低，有些一年几千块的。</p>
 <p>根据Cloudflare的博客，
@@ -189,17 +265,17 @@ Cloudflare的使命是帮助构建更好的互联网。我们认为每个网站�
 <p>根据我的实测，确实是有防护的效果，值得使用。</p>
 </li>
 <li>
-<p>访问速率控制</p>
+<h4 id="访问速率控制">访问速率控制</h4>
 <p>对于HTTPS Flood攻击，它是一种DDoS攻击，通过发送大量的HTTPS请求达到攻击目的，处理HTTPS请求需要更多的服务器资源用于加解密。</p>
 <p>虽然这不用访问速率控制也能被上述免费DDoS防护缓解，但设置访问速率控制是个更有效的做法，<strong>因为检测出是此类攻击到做出反应需要时间和有未检测出的可能，但访问速率控制不会</strong>。</p>
 <p>更重要的是，这节省了服务器资源，因为服务器不用自行消耗资源实现此类功能。</p>
 </li>
 <li>
-<p>恶意流量过滤</p>
+<h4 id="恶意流量过滤">恶意流量过滤</h4>
 <p>Cloudflare提供了Under Attack 模式用来在遭遇DDoS攻击时，让所有访问先进行一个大约5秒的验证，但也可以始终开启，<strong>这将拦截从自动化脚本或恶意机器人来的恶意流量，确保是为真实用户提供服务。</strong></p>
 </li>
 <li>
-<p>免费获取IP属地</p>
+<h4 id="免费获取ip属地">免费获取IP属地</h4>
 <p><strong>在用户进行登录等操作时，验证IP属地是否在两次登录时一致是一种很有用的账号防盗检测手段。</strong></p>
 <p>目前要获取IP数据，这方面的数据库由商业的获取的信息多，但比较贵，也有免费的，但信息较少。</p>
 <p>使用Cloudflare可免费获得用户IP属地信息，包括国家或地区，省份或行政区名，城市和经纬度，足够进行账号防盗检测。</p>
@@ -208,17 +284,17 @@ Cloudflare的使命是帮助构建更好的互联网。我们认为每个网站�
 <h3 id="性能">性能</h3>
 <ul>
 <li>
-<p>支持http3但不修改服务器</p>
+<h4 id="支持http3但不修改服务器">支持http3但不修改服务器</h4>
 <p>http3是http协议的最新版本，传输层改用QUIC（快速UDP网络连接）协议，因为内置tls1.3握手数据一起发送，<strong>首次连接仅需1个RTT</strong>（RTT是往返时间，指数据发过去再发回来的用时），比http2首次连接需要2-3个RTT更少，同时因为不使用TCP协议，避免了队头阻塞（<strong>前面的数据包丢了要等重新传好再发后面的数据包</strong>），改善了网络差时的传输延迟等，因为对既往问题的改进，加快了网页加载速度。</p>
 <p>因为主流编程语言的标准库中并没有提供对QUIC和http3的支持，例如go语言写的程序目前要支持http3,需使用开源库 github.com/quic-go/quic-go/http3 , 它的API用法高度兼容标准库，<strong>改一个函数调用即可支持http3</strong>，同时能在客户端不支持http3时自动回退到http2，尽管这种办法有各种优点，但使用Cloudflare，<strong>一行代码都不用改即可支持http3</strong>。</p>
 </li>
 <li>
-<p>免费不限量的CDN</p>
+<h4 id="免费不限量的cdn">免费不限量的CDN</h4>
 <p>用户可能位于不同的地理位置，但服务器是在固定的地理位置，造成有的用户访问快，有的用户访问慢，<strong>CDN中文内容分发网络，通过复制源服务器的内容到位于不同地理位置的节点，根据地理位置，就近提供服务，加速访问。</strong></p>
 <p>更为重要的是，这节省了源服务器的流量带宽。因为一些原本源服务器提供的内容，如网站首页，现在由CDN提供。</p>
 </li>
 <li>
-<p>自动响应压缩</p>
+<h4 id="自动响应压缩">自动响应压缩</h4>
 <p>Cloudflare可配置对服务器响应的内容进行压缩，这将降低传输给客户端的数据大小，从而起到加速访问的效果。</p>
 <p><strong>例如，客户网速每秒1MB，要下载100MB的文件，启用压缩后，如果压缩率为50%，则原本需要100秒下载完，现在可以减少一半的用时。</strong></p>
 </li>
@@ -226,47 +302,47 @@ Cloudflare的使命是帮助构建更好的互联网。我们认为每个网站�
 <h3 id="开发便利">开发便利</h3>
 <ul>
 <li>
-<p>15年的源服务器tls证书</p>
+<h4 id="15年的源服务器tls证书">15年的源服务器tls证书</h4>
 <p>http定义网页传输标准，但本身是未加密的，tls通过加密提供了传输过程的安全，http+tls是https，这是今天互联网的基石，许多网站据此实现安全的服务。</p>
 <p>使用tls需要有tls证书，它由CA(证书签发机构)签发，通过它能证明数据来自特定的网站，并实现客户端和服务器的加密通讯。</p>
 <p><strong>目前的tls证书分为免费证书和付费证书，免费证书的有效期通常为90天，付费证书的有效期通常为1年，未来会更短（短到最长47天）</strong>，过期前就要重新签发，有效期越短，证书重签越频繁，出错的概率越大。</p>
 <p><strong>使用Cloudflare的15年有效的源服务器tls证书，基本解决了服务器因为证书频繁重签出错的概率</strong>。这种证书仅Cloudflare信任，因为Cloudflare的工作原理，服务器仅需面对Cloudflare转发来的请求，所以这不成问题。</p>
 </li>
 <li>
-<p>自动重签边缘证书</p>
+<h4 id="自动重签边缘证书">自动重签边缘证书</h4>
 <p>边缘证书是客户端和Cloudflare通讯时使用的tls证书，使用Cloudflare保护网站时，<strong>它由Cloudflare负责自动重签，和15年的源服务器tls证书，一起确保了tls证书频繁重签还不出错。</strong></p>
 </li>
 <li>
-<p>免费ipv4支持</p>
+<h4 id="免费ipv4支持">免费ipv4支持</h4>
 <p>目前有些低价的服务器可能仅提供ipv6，在接入Cloudflare后，使用这类服务器搭建的网站等将不仅能通过ipv6访问，也能通过ipv4访问。</p>
 </li>
 <li>
-<p>电子邮件路由</p>
+<h4 id="电子邮件路由">电子邮件路由</h4>
 <p>使用该项功能，可创建自己的域名邮箱。</p>
 </li>
 <li>
-<p>Web Analytics</p>
+<h4 id="web-analytics">Web Analytics</h4>
 <p>使用该项功能，可获得近期访问量报告。比如有多少次被访问等。</p>
 </li>
 </ul>
 <h2 id="一些经验">一些经验</h2>
 <ul>
 <li>
-<p>域名托管</p>
+<h3 id="域名托管">域名托管</h3>
 <p>通过IP可以访问服务器，记住IP是个太苛刻的要求，比如ipv4的23.75.69.34已经不容易记忆，ipv6的更长，所以产生了域名帮助人不用记忆IP也可以达到目的，像 <code>.cn</code>、<code>.com</code> 这种是顶级域名，像<code>a.com</code> 这种是一级域名，像 <code>www.a.com</code> 这种是二级域名，三级域名四级域名等以此类推。</p>
 <p>一般一级域名是收费的，二级域名可以用自己的一级域名做，或者有免费的二级域名。有n级域名后可以自己创造出n+1级的子域名。</p>
 <p><strong>域名托管是通过将域名系统（DNS）的‌NS记录改为Cloudflare的服务器进行的，然后在Cloudflare添加其他记录。注意每个不同的域名都要做这一步。</strong> 例如有一个域名 <code>x.com</code>，一般建网站只用了一个域名，可能有的因为实现对已登录的用户有不同的页面等原因，有<code>dash.x.com</code>等子域名，这时所有子域名也应该做改ns记录的一步。</p>
 <p>当从Cloudflare的服务器获取dns响应结果时，域名托管设置完成。<strong>如果出现二级域名修改ns记录没有完成域名托管，可以设置一个alias记录，设为一个完成域名托管的子域名。</strong></p>
 </li>
 <li>
-<p>开启代理</p>
+<h3 id="开启代理">开启代理</h3>
 <p>完成域名托管后，按照防范DDoS的常规操作，应该一开始就隐藏源服务器IP，所以DNS记录创建时就应该开启代理，确保dns响应代理IP,并且免费CDN等服务也只有这样才能启用，像这样</p>
 <p><img src="/images/cf_dns_ip.png" alt=""></p>
 <p>注意为了安全，应该始终使用HTTPS，同时因为在开启代理后，为了自动签发边缘证书，应该设置一个dns记录在域名注册的地方，设置_acme-challenge.根域名的ns记录为Cloudflare的服务器。</p>
 <p>因为边缘证书不是立即签发的，<strong>这意味着刚接入Cloudflare免费计划后，在几分钟到几天的时间，无法访问服务器，tls连接因没有证书失败。</strong> 如果不想经历一段时间的无法访问服务器，可以花10美元买Cloudflare的高级证书管理器，然后上传一张自定义证书，还能对tls连接进行更精细的控制。</p>
 </li>
 <li>
-<p>建议下列设置一定要做</p>
+<h3 id="建议下列设置一定要做">建议下列设置一定要做</h3>
 <ul>
 <li><strong>DNS设置中的代理状态（所有A记录和AAAA记录都开）</strong>，确保能使用免费DDoS防护，免费CDN等服务</li>
 <li><strong>源服务器部署Cloudflare的15年源服务器tls证书</strong>（私钥类型为ECC），<strong>SSL/TLS 加密模式设为<code>完全（严格）</code></strong>，确保源服务器的证书可用</li>
@@ -283,7 +359,7 @@ Cloudflare的使命是帮助构建更好的互联网。我们认为每个网站�
 </ul>
 </li>
 <li>
-<p>可选开启下列设置</p>
+<h3 id="可选开启下列设置">可选开启下列设置</h3>
 <ul>
 <li>Under Attack 模式 , 这将强制所有访问者先进行一个大约5秒的人机验证，过滤恶意流量，但会影响正常用户访问体验</li>
 <li>规则设置中的添加访问者位置标头，可用于账号防盗检测。</li>
@@ -311,6 +387,7 @@ Cloudflare的使命是帮助构建更好的互联网。我们认为每个网站�
 <p>[10]: <a href="https://blog.cloudflare.com/26m-rps-ddos/">https://blog.cloudflare.com/26m-rps-ddos/</a> &ldquo;Cloudflare mitigates 26 million request per second DDoS attack&rdquo;</p>
 <p>[11]: <a href="https://blog.cloudflare.com/unmetered-mitigation/">https://blog.cloudflare.com/unmetered-mitigation/</a> &ldquo;Unmetered Mitigation: DDoS Protection Without Limits&rdquo;</p>
 
+    </div>
   </div>
 </div>
 
@@ -396,6 +473,107 @@ Cloudflare的使命是帮助构建更好的互联网。我们认为每个网站�
   $(function () {
     $("#wordcount").text("字数：" + countChars("#content"));
   });
+
+       
+       $(document).ready(function() {
+                
+                const $tocContainer = $('#table-of-contents');
+                
+                
+                const $headings = $('.main').find('h2, h3, h4');
+                
+                
+                let h2Count = 0;
+                let h3Count = 0;
+                let h4Count = 0;
+                
+                
+                let currentH2Item = null;
+                let currentH3Item = null;
+
+                
+                $headings.each(function() {
+                    const $heading = $(this);
+                    const tagName = $heading.prop('tagName');
+                    const level = parseInt(tagName.replace('H', ''));
+                    
+                    
+                    if (level === 2) {
+                        h2Count++;
+                        h3Count = 1;
+                        h4Count = 1;
+                    } else if (level === 3) {
+                        h3Count++;
+                        h4Count = 1;
+                    } else if (level === 4) {
+                        h4Count++;
+                    }
+                    
+                    
+                    let numberText = h2Count.toString(); 
+                    if (level >= 3) numberText += '.' + h3Count;
+                    if (level >= 4) numberText += '.' + h4Count;
+                    
+                    
+                    const headingText = $heading.text().replace(numberText, '').trim();
+                    const cleanText = headingText.toLowerCase()
+                        .replace(/\s+/g, '-')
+                        .replace(/[^\w-]/g, '');
+                    
+                    
+                    const safeNumberText = typeof numberText === 'string' ? numberText : numberText.toString();
+                    const generatedId = `heading-${safeNumberText.replace(/\./g, '-')}-${cleanText}`;
+                    $heading.attr('id', generatedId);
+
+                    
+                    const $li = $(`<li class="toc-level-${level}"></li>`);
+                    const $a = $(`<a class="toc-link" href="#${generatedId}">${numberText} ${headingText}</a>`);
+                    
+                    
+                    $a.on('click', function(e) {
+                        e.preventDefault();
+                        $('.toc-link').removeClass('active');
+                        $(this).addClass('active');
+                        
+                        $('html, body').animate({
+                            scrollTop: $($(this).attr('href')).offset().top - 30
+                        }, 300);
+                    });
+                    
+                    $li.append($a);
+
+                    
+                    if (level === 2) {
+                        const $subList = $('<ul class="toc-list"></ul>').append($li);
+                        $tocContainer.append($subList);
+                        currentH2Item = $subList;
+                        currentH3Item = null;
+                    } else if (level === 3) {
+                        if (currentH2Item) {
+                            currentH2Item.append($li);
+                            currentH3Item = $li;
+                        } else {
+                            $tocContainer.append($li);
+                        }
+                    } else if (level === 4) {
+                        if (currentH3Item) {
+                            let $subList = currentH3Item.find('ul.toc-list');
+                            if (!$subList.length) {
+                                $subList = $('<ul class="toc-list"></ul>');
+                                currentH3Item.append($subList);
+                            }
+                            $subList.append($li);
+                        } else if (currentH2Item) {
+                            currentH2Item.append($li);
+                        } else {
+                            $tocContainer.append($li);
+                        }
+                    }
+                });
+
+
+        });
+
 </script>
 
 </html>
