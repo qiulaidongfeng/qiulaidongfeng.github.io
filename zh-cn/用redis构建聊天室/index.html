@@ -498,11 +498,11 @@ redis集群将数据分布到多个redis实例提供性能，上面的方案需�
       
       if (level === 2) {
         h2Count++;
-        h3Count = 1;
-        h4Count = 1;
+        h3Count = 0;
+        h4Count = 0;
       } else if (level === 3) {
         h3Count++;
-        h4Count = 1;
+        h4Count = 0;
       } else if (level === 4) {
         h4Count++;
       }
