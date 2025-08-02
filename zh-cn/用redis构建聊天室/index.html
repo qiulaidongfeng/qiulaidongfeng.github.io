@@ -113,6 +113,7 @@
   }
 </style>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
 <script>
     function countChars(container) {
         let total = 0;
@@ -411,6 +412,14 @@ redis集群将数据分布到多个redis实例提供性能，上面的方案需�
           </div>
         </div>
       </div>
+      <div class="card mt-3">
+        <div class="card-header">
+          <div class="card-title">阅读历史</div>
+        </div>
+        <div class="card-body" id="history">
+
+        </div>
+      </div>
     </aside>
   </main>
   <footer class="text-center mt-3">
@@ -463,106 +472,204 @@ redis集群将数据分布到多个redis实例提供性能，上面的方案需�
     $("#wordcount").text("字数：" + countChars("#content"));
   });
 
-       
-       $(document).ready(function() {
-                
-                const $tocContainer = $('#table-of-contents');
-                
-                
-                const $headings = $('.main').find('h2, h3, h4');
-                
-                
-                let h2Count = 0;
-                let h3Count = 0;
-                let h4Count = 0;
-                
-                
-                let currentH2Item = null;
-                let currentH3Item = null;
+  
+  $(document).ready(function () {
+    
+    const $tocContainer = $('#table-of-contents');
 
-                
-                $headings.each(function() {
-                    const $heading = $(this);
-                    const tagName = $heading.prop('tagName');
-                    const level = parseInt(tagName.replace('H', ''));
-                    
-                    
-                    if (level === 2) {
-                        h2Count++;
-                        h3Count = 1;
-                        h4Count = 1;
-                    } else if (level === 3) {
-                        h3Count++;
-                        h4Count = 1;
-                    } else if (level === 4) {
-                        h4Count++;
-                    }
-                    
-                    
-                    let numberText = h2Count.toString(); 
-                    if (level >= 3) numberText += '.' + h3Count;
-                    if (level >= 4) numberText += '.' + h4Count;
-                    
-                    
-                    const headingText = $heading.text().replace(numberText, '').trim();
-                    const cleanText = headingText.toLowerCase()
-                        .replace(/\s+/g, '-')
-                        .replace(/[^\w-]/g, '');
-                    
-                    
-                    const safeNumberText = typeof numberText === 'string' ? numberText : numberText.toString();
-                    const generatedId = `heading-${safeNumberText.replace(/\./g, '-')}-${cleanText}`;
-                    $heading.attr('id', generatedId);
+    
+    const $headings = $('.main').find('h2, h3, h4');
 
-                    
-                    const $li = $(`<li class="toc-level-${level}"></li>`);
-                    const $a = $(`<a class="toc-link" href="#${generatedId}">${numberText} ${headingText}</a>`);
-                    
-                    
-                    $a.on('click', function(e) {
-                        e.preventDefault();
-                        $('.toc-link').removeClass('active');
-                        $(this).addClass('active');
-                        
-                        $('html, body').animate({
-                            scrollTop: $($(this).attr('href')).offset().top - 30
-                        }, 300);
-                    });
-                    
-                    $li.append($a);
+    
+    let h2Count = 0;
+    let h3Count = 0;
+    let h4Count = 0;
 
-                    
-                    if (level === 2) {
-                        const $subList = $('<ul class="toc-list"></ul>').append($li);
-                        $tocContainer.append($subList);
-                        currentH2Item = $subList;
-                        currentH3Item = null;
-                    } else if (level === 3) {
-                        if (currentH2Item) {
-                            currentH2Item.append($li);
-                            currentH3Item = $li;
-                        } else {
-                            $tocContainer.append($li);
-                        }
-                    } else if (level === 4) {
-                        if (currentH3Item) {
-                            let $subList = currentH3Item.find('ul.toc-list');
-                            if (!$subList.length) {
-                                $subList = $('<ul class="toc-list"></ul>');
-                                currentH3Item.append($subList);
-                            }
-                            $subList.append($li);
-                        } else if (currentH2Item) {
-                            currentH2Item.append($li);
-                        } else {
-                            $tocContainer.append($li);
-                        }
-                    }
-                });
+    
+    let currentH2Item = null;
+    let currentH3Item = null;
 
+    
+    $headings.each(function () {
+      const $heading = $(this);
+      const tagName = $heading.prop('tagName');
+      const level = parseInt(tagName.replace('H', ''));
 
-        });
+      
+      if (level === 2) {
+        h2Count++;
+        h3Count = 1;
+        h4Count = 1;
+      } else if (level === 3) {
+        h3Count++;
+        h4Count = 1;
+      } else if (level === 4) {
+        h4Count++;
+      }
 
+      
+      let numberText = h2Count.toString(); 
+      if (level >= 3) numberText += '.' + h3Count;
+      if (level >= 4) numberText += '.' + h4Count;
+
+      
+      const headingText = $heading.text().replace(numberText, '').trim();
+      const cleanText = headingText.toLowerCase()
+        .replace(/\s+/g, '-')
+        .replace(/[^\w-]/g, '');
+
+      
+      const safeNumberText = typeof numberText === 'string' ? numberText : numberText.toString();
+      const generatedId = `heading-${safeNumberText.replace(/\./g, '-')}-${cleanText}`;
+      $heading.attr('id', generatedId);
+
+      
+      const $li = $(`<li class="toc-level-${level}"></li>`);
+      const $a = $(`<a class="toc-link" href="#${generatedId}">${numberText} ${headingText}</a>`);
+
+      
+      $a.on('click', function (e) {
+        e.preventDefault();
+        $('.toc-link').removeClass('active');
+        $(this).addClass('active');
+        
+        $('html, body').animate({
+          scrollTop: $($(this).attr('href')).offset().top - 30
+        }, 300);
+      });
+
+      $li.append($a);
+
+      
+      if (level === 2) {
+        const $subList = $('<ul class="toc-list"></ul>').append($li);
+        $tocContainer.append($subList);
+        currentH2Item = $subList;
+        currentH3Item = null;
+      } else if (level === 3) {
+        if (currentH2Item) {
+          currentH2Item.append($li);
+          currentH3Item = $li;
+        } else {
+          $tocContainer.append($li);
+        }
+      } else if (level === 4) {
+        if (currentH3Item) {
+          let $subList = currentH3Item.find('ul.toc-list');
+          if (!$subList.length) {
+            $subList = $('<ul class="toc-list"></ul>');
+            currentH3Item.append($subList);
+          }
+          $subList.append($li);
+        } else if (currentH2Item) {
+          currentH2Item.append($li);
+        } else {
+          $tocContainer.append($li);
+        }
+      }
+    });
+  });
+
+  class History {
+    constructor() {
+      this.v = Cookies.get("history");
+      let b = typeof this.v != "undefined"
+      if (!b) {
+        this.v = [];
+      } else {
+        this.v = JSON.parse(this.v);
+        
+        if (this.v.length > 20) {
+          this.v = this.v.slice(0, 20);
+        }
+        for (let i = 0; i < this.v.length; i++) {
+          this.v[i].date = new Date(this.v[i].date);
+        };
+      }
+      console.log(this.v);
+    }
+    
+    find(url) {
+      let i = -1;
+      for (let index = 0; index < this.v.length; index++) {
+        if (this.v[index].url == url) {
+          i = index;
+          continue;
+        }
+      };
+      return i;
+    }
+    
+    
+    
+    add(url, title) {
+      
+      title = title.replace("| 秋来冬风的博客", "")
+
+      let i = this.find(url);
+      if (i != -1) { 
+        let n = [];
+        this.v[i].date = new Date();
+        n.push(this.v[i])
+        for (let index = 0; index < this.v.length; index++) {
+          if (index == i) {
+            continue
+          }
+          n.push(this.v[index])
+        };
+        this.v = n;
+      } else { 
+        let info = { url: url, title: title, date: new Date() };
+        this.v.unshift(info);
+      }
+      Cookies.set("history", JSON.stringify(this.v))
+    }
+    
+    clear() {
+      this.v = [];
+      Cookies.remove("history")
+    }
+    
+    read() {
+      return this.v;
+    }
+    
+    remove(url) {
+      let i = this.find(url);
+      let n = [];
+      for (let index = 0; index < this.v.length; index++) {
+        if (index == i) {
+          continue
+        }
+        n.push(this.v[index])
+      };
+      this.v = n;
+      Cookies.set("history", JSON.stringify(this.v))
+    }
+  }
+
+  $(function () {
+    
+    let h = new History();
+    
+    h.add(location.href, document.title);
+    
+    let v = h.read();
+
+    let u = $(`<ul class="list-group list-unstyled list-group-flush"></ul>`)
+    for (tmp of v) {
+      let l = $(`<li class"list-group-item"> <a href="${tmp.url}">${tmp.title}</a> ${tmp.date.toLocaleString()}<li>`);
+      u.append(l);
+    }
+    $("#history").append(u);
+
+    let clear = $(`<button class="btn btn-primary mt-3">清除历史</button>`);
+    clear.click(function () {
+      h.clear();
+      u.html("");
+    })
+    $("#history").append(clear);
+  });
 </script>
 
 </html>
