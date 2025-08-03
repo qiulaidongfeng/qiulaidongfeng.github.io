@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>用redis构建聊天室 | 秋来冬风的博客</title>
 
 
@@ -25,6 +25,43 @@
           
 <meta name="keywords" content="redis,数据库,聊天室,消息,秋来冬风的博客,秋来冬风,qiulaidongfeng,博客,blog">
 <link rel="canonical" href="https://qiulaidongfeng.github.io/zh-cn/%E7%94%A8redis%E6%9E%84%E5%BB%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/" />
+<meta name="author" content="qiulaidongfeng(秋来冬风)">
+<meta name="copyright" content="Copyright © 2023 秋来冬风. All rights reserved.">
+<link rel="author" href="/about/">
+
+<meta property="og:title" content="用redis构建聊天室">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="秋来冬风的博客">
+<meta property="og:url" content="https://qiulaidongfeng.github.io/zh-cn/%E7%94%A8redis%E6%9E%84%E5%BB%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/">
+<meta property="og:description" content="记录我用redis构建聊天室的一个方案。">
+<meta property="og:locale" content="zh_CN" />
+
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "用redis构建聊天室 | 秋来冬风的博客",
+      "description": "记录我用redis构建聊天室的一个方案。",
+      "author": {
+        "@type": "Person",
+        "name": "qiulaidongfeng(秋来冬风)",
+        "url": "https://qiulaidongfeng.github.io/about/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "秋来冬风的博客"
+      },
+      
+      "datePublished": "2025-04-21T10:15:12-08:00",
+      
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https:\/\/qiulaidongfeng.github.io\/zh-cn\/%E7%94%A8redis%E6%9E%84%E5%BB%BA%E8%81%8A%E5%A4%A9%E5%AE%A4\/"
+      },
+      "articleSection": "技术博客",
+      "keywords": "redis,数据库,聊天室,消息,秋来冬风的博客,秋来冬风,qiulaidongfeng,博客,blog"
+    }
+</script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 
 <style>
@@ -223,7 +260,7 @@
     <div class="col-lg-8 mt-3">
       
 <div class="d-flex justify-content-between">
-  <time>2025-4-21</time>
+  <time>2025-04-21</time>
   <p id="wordcount"></p>
 </div>
 
@@ -427,7 +464,7 @@ redis集群将数据分布到多个redis实例提供性能，上面的方案需�
 <script type="text/javascript">
     let currentDate = new Date();
     let currentYear = currentDate.getFullYear();
-    document.getElementById("copyright").innerText = "Copyright 2023-"+currentYear.toString() + " 秋来冬风. All rights reserved.";
+    document.getElementById("copyright").innerHTML = "&copy; 2023-"+currentYear.toString() + " 秋来冬风. All rights reserved.";
 
     $("img").addClass("w-sm-100 h-sm-auto");
     $("a").addClass("text-break");

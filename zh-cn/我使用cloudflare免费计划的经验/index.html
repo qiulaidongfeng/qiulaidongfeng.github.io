@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>我使用Cloudflare免费计划的经验 | 秋来冬风的博客</title>
 
 
@@ -23,8 +23,45 @@
 
 
        
-<meta name="keywords" content="Cloudflare,免费计划,经验,秋来冬风的博客,秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog">
+<meta name="keywords" content="Cloudflare,DDoS,免费计划,经验,秋来冬风的博客,秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog">
 <link rel="canonical" href="https://qiulaidongfeng.github.io/zh-cn/%E6%88%91%E4%BD%BF%E7%94%A8cloudflare%E5%85%8D%E8%B4%B9%E8%AE%A1%E5%88%92%E7%9A%84%E7%BB%8F%E9%AA%8C/" />
+<meta name="author" content="qiulaidongfeng(秋来冬风)">
+<meta name="copyright" content="Copyright © 2023 秋来冬风. All rights reserved.">
+<link rel="author" href="/about/">
+
+<meta property="og:title" content="我使用Cloudflare免费计划的经验">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="秋来冬风的博客">
+<meta property="og:url" content="https://qiulaidongfeng.github.io/zh-cn/%E6%88%91%E4%BD%BF%E7%94%A8cloudflare%E5%85%8D%E8%B4%B9%E8%AE%A1%E5%88%92%E7%9A%84%E7%BB%8F%E9%AA%8C/">
+<meta property="og:description" content="记录我使用Cloudflare免费计划的经验">
+<meta property="og:locale" content="zh_CN" />
+
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "我使用Cloudflare免费计划的经验 | 秋来冬风的博客",
+      "description": "记录我使用Cloudflare免费计划的经验",
+      "author": {
+        "@type": "Person",
+        "name": "qiulaidongfeng(秋来冬风)",
+        "url": "https://qiulaidongfeng.github.io/about/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "秋来冬风的博客"
+      },
+      
+      "datePublished": "2025-05-12T11:28:49-08:00",
+      
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https:\/\/qiulaidongfeng.github.io\/zh-cn\/%E6%88%91%E4%BD%BF%E7%94%A8cloudflare%E5%85%8D%E8%B4%B9%E8%AE%A1%E5%88%92%E7%9A%84%E7%BB%8F%E9%AA%8C\/"
+      },
+      "articleSection": "技术博客",
+      "keywords": "Cloudflare,DDoS,免费计划,经验,秋来冬风的博客,秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog"
+    }
+</script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 
 <style>
@@ -223,7 +260,7 @@
     <div class="col-lg-8 mt-3">
       
 <div class="d-flex justify-content-between">
-  <time>2025-5-12</time>
+  <time>2025-05-12</time>
   <p id="wordcount"></p>
 </div>
 
@@ -438,7 +475,7 @@ Cloudflare的使命是帮助构建更好的互联网。我们认为每个网站�
 <script type="text/javascript">
     let currentDate = new Date();
     let currentYear = currentDate.getFullYear();
-    document.getElementById("copyright").innerText = "Copyright 2023-"+currentYear.toString() + " 秋来冬风. All rights reserved.";
+    document.getElementById("copyright").innerHTML = "&copy; 2023-"+currentYear.toString() + " 秋来冬风. All rights reserved.";
 
     $("img").addClass("w-sm-100 h-sm-auto");
     $("a").addClass("text-break");
