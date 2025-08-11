@@ -6,8 +6,15 @@
     <description>Recent content in Ens on 秋来冬风的博客</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 27 Jun 2025 12:48:30 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 12 Aug 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://qiulaidongfeng.github.io/en/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Personal Guide to Choosing VPS (Virtual Private Server)</title>
+      <link>https://qiulaidongfeng.github.io/en/personal-guide-to-choosing-vps-virtual-private-server/</link>
+      <pubDate>Tue, 12 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://qiulaidongfeng.github.io/en/personal-guide-to-choosing-vps-virtual-private-server/</guid>
+      <description>&lt;p&gt;Software translation&lt;/p&gt;&#xA;&lt;h2 id=&#34;preface&#34;&gt;Preface&lt;/h2&gt;&#xA;&lt;p&gt;VPS (Virtual Private Server) is based on virtualization technology, which divides a physical server into multiple virtual servers, allowing users to obtain servers at a lower cost.&#xA;This guide is intended for personal use, such as learning and research, lightweight websites (personal blogs), etc. But other uses, such as commercial websites, also have reference value.&lt;/p&gt;&#xA;&lt;h2 id=&#34;when-should-i-choose-vps&#34;&gt;When should I choose VPS&lt;/h2&gt;&#xA;&lt;p&gt;Building a website or building a self built cloud storage and other &lt;strong&gt;web-based services&lt;/strong&gt; requires a computer that runs stably (around 7x24 hours on), a stable upstream bandwidth network connection, and a public IP address.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Measure the Speed Difference Between Http2 and Http3</title>
       <link>https://qiulaidongfeng.github.io/en/measure-the-speed-difference-between-http2-and-http3/</link>
