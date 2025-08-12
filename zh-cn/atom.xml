@@ -6,8 +6,15 @@
     <description>Recent content in Zh-Cns on 秋来冬风的博客</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 28 Jul 2025 17:21:25 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 12 Aug 2025 02:02:00 +0800</lastBuildDate>
     <atom:link href="https://qiulaidongfeng.github.io/zh-cn/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>我的Cloudflare Argo Smart Routing使用体验 - 大幅提升中国大陆访问速度</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/%E6%88%91%E7%9A%84cloudflare-argo-smart-routing%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C-%E5%A4%A7%E5%B9%85%E6%8F%90%E5%8D%87%E5%A4%9C%E9%97%B4%E4%B8%AD%E5%9B%BD%E5%A4%A7%E9%99%86%E8%AE%BF%E9%97%AE%E9%80%9F%E5%BA%A6/</link>
+      <pubDate>Tue, 12 Aug 2025 02:02:00 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/%E6%88%91%E7%9A%84cloudflare-argo-smart-routing%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C-%E5%A4%A7%E5%B9%85%E6%8F%90%E5%8D%87%E5%A4%9C%E9%97%B4%E4%B8%AD%E5%9B%BD%E5%A4%A7%E9%99%86%E8%AE%BF%E9%97%AE%E9%80%9F%E5%BA%A6/</guid>
+      <description>&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;&#xA;&lt;p&gt;Cloudflare的免费计划提供了无限量的CDN，DDoS防护以及15年的源服务器tls证书，等很有用的服务，对建网站很有帮助。&lt;/p&gt;&#xA;&lt;p&gt;这不能使用位于中国大陆的节点，所有数据均从境外（中国大陆以外）传输到中国大陆，且根据它们销售人员的说法，只能使用Cloudflare不到20%的节点。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>个人选购vps(虚拟专用服务器)指南</title>
       <link>https://qiulaidongfeng.github.io/zh-cn/%E4%B8%AA%E4%BA%BA%E9%80%89%E8%B4%ADvps%E6%8C%87%E5%8D%97/</link>
