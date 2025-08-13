@@ -2,23 +2,26 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://qiulaidongfeng.github.io/tags/cloudflare/</loc>
+    <lastmod>2025-08-14T00:50:12+08:00</lastmod>
+  </url><url>
     <loc>https://qiulaidongfeng.github.io/en/</loc>
-    <lastmod>2025-08-12T00:00:00+00:00</lastmod>
+    <lastmod>2025-08-14T00:50:12+08:00</lastmod>
+  </url><url>
+    <loc>https://qiulaidongfeng.github.io/en/my-experience-with-cloudflare-argo-smart-routing---greatly-improving-access-speed-in-chinese-mainland/</loc>
+    <lastmod>2025-08-14T00:50:12+08:00</lastmod>
+  </url><url>
+    <loc>https://qiulaidongfeng.github.io/tags/</loc>
+    <lastmod>2025-08-14T00:50:12+08:00</lastmod>
+  </url><url>
+    <loc>https://qiulaidongfeng.github.io/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/</loc>
+    <lastmod>2025-08-14T00:50:12+08:00</lastmod>
   </url><url>
     <loc>https://qiulaidongfeng.github.io/en/personal-guide-to-choosing-vps-virtual-private-server/</loc>
     <lastmod>2025-08-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://qiulaidongfeng.github.io/tags/</loc>
-    <lastmod>2025-08-12T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://qiulaidongfeng.github.io/tags/vps/</loc>
     <lastmod>2025-08-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://qiulaidongfeng.github.io/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/</loc>
-    <lastmod>2025-08-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://qiulaidongfeng.github.io/tags/cloudflare/</loc>
-    <lastmod>2025-08-12T02:02:00+08:00</lastmod>
   </url><url>
     <loc>https://qiulaidongfeng.github.io/zh-cn/</loc>
     <lastmod>2025-08-12T02:02:00+08:00</lastmod>

@@ -6,8 +6,15 @@
     <description>Recent content in Ens on 秋来冬风的博客</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 12 Aug 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 14 Aug 2025 00:50:12 +0800</lastBuildDate>
     <atom:link href="https://qiulaidongfeng.github.io/en/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Speed in Chinese Mainland</title>
+      <link>https://qiulaidongfeng.github.io/en/my-experience-with-cloudflare-argo-smart-routing---greatly-improving-access-speed-in-chinese-mainland/</link>
+      <pubDate>Thu, 14 Aug 2025 00:50:12 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/en/my-experience-with-cloudflare-argo-smart-routing---greatly-improving-access-speed-in-chinese-mainland/</guid>
+      <description>&lt;p&gt;Software translation&lt;/p&gt;&#xA;&lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;&#xA;&lt;p&gt;Cloudflare&amp;rsquo;s free plan provides unlimited CDN, DDoS protection, and a 15 year source server TLS certificate, among other useful services, which are very helpful for building websites.&lt;/p&gt;&#xA;&lt;p&gt;This cannot use nodes located in Chinese Mainland. All data is transferred from overseas (outside Chinese Mainland) to Chinese Mainland. According to their sales staff, only nodes with less than 20% Cloudflare can be used.&lt;/p&gt;&#xA;&lt;p&gt;After using the free plan, it may take nearly 50 seconds to load the website when you visit the website through http3 at night in Chinese Mainland.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Personal Guide to Choosing VPS (Virtual Private Server)</title>
       <link>https://qiulaidongfeng.github.io/en/personal-guide-to-choosing-vps-virtual-private-server/</link>
