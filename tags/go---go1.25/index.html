@@ -159,8 +159,9 @@
     opacity: 1;
   }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" onload="Main()"></script>
 <script>
     function countChars(container) {
         let total = 0;
@@ -218,7 +219,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="https://www.travellings.cn/go.html" target="_blank" rel="noopener" title="开往-友链接力">
-                        <img src="https://www.travellings.cn/assets/logo.gif" alt="开往-友链接力" width="120">
+                        <img  class="lozad" data-src="https://www.travellings.cn/assets/logo.gif" alt="开往-友链接力" width="120">
                     </a>
                 </li>
                 <li class="nav-item">
@@ -240,16 +241,16 @@
                             </li>
                             <li>
                                 <a class="dropdown-item" href="https://bloginc.kamyang.com/"><img
-                                        src="https://bloginc.kamyang.com/img/logo_bloginc_all.svg"></a>
+                                       class="lozad" data-src="https://bloginc.kamyang.com/img/logo_bloginc_all.svg"></a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="https://www.langhai.net"><img
-                                        src="https://www.langhai.net/assets/images/langhai-blogs.svg" /></a>
+                                    class="lozad" data-src="https://www.langhai.net/assets/images/langhai-blogs.svg" /></a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="https://www.boyouquan.com/home"
                                     alt="博客人的朋友圈，博客收录与文章 RSS 聚合网站。"><img
-                                        src="https://www.boyouquan.com/assets/images/sites/logo/logo-small.png">博友圈</a>
+                                    class="lozad" data-src="https://www.boyouquan.com/assets/images/sites/logo/logo-small.png" />博友圈</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="https://ljnws.cn/">小白学网络</a>
@@ -394,6 +395,10 @@
   </footer>
 </body>
 <script>
+  function Main(){
+  const observer = lozad();
+  observer.observe();
+
   
   const blogLaunchTime = '2023-03-01T14:00:00';
 
@@ -628,6 +633,7 @@
     })
     $("#history").append(clear);
   });
+}
 </script>
 
 </html>
