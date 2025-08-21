@@ -8,8 +8,24 @@
     <language>zh-CN</language>
     <managingEditor>秋来冬风</managingEditor>
     <webMaster>秋来冬风</webMaster>
-    <lastBuildDate>Thu, 14 Aug 2025 00:50:12 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 20 Aug 2025 23:49:45 +0800</lastBuildDate>
     <atom:link href="https://qiulaidongfeng.github.io/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go1.25的新CSRF（跨站请求伪造）防御API | 构建更安全的互联网</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/go1.25%E7%9A%84%E6%96%B0csrf%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%E9%98%B2%E5%BE%A1api-%E6%9E%84%E5%BB%BA%E6%9B%B4%E5%AE%89%E5%85%A8%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91/</link>
+      <pubDate>Wed, 20 Aug 2025 23:49:45 +0800</pubDate>
+      <author>秋来冬风</author>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/go1.25%E7%9A%84%E6%96%B0csrf%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%E9%98%B2%E5%BE%A1api-%E6%9E%84%E5%BB%BA%E6%9B%B4%E5%AE%89%E5%85%A8%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91/</guid>
+      <description>&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;&#xA;&lt;p&gt;Go1.25已经在2025年8月中旬发布。&lt;/p&gt;&#xA;&lt;p&gt;此次更新中在标准库的net/http包中增加了防御CSRF（跨站请求伪造）的API。此API由Go语言密码包维护者&lt;a href=&#34;https://filippo.io&#34;&gt;Filippo Valsorda&lt;/a&gt;提出并添加进标准库，他是密码学家。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>一个SEO优化的网页结构模板 | 打造搜索引擎友好的网站基础</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/%E4%B8%80%E4%B8%AAseo%E4%BC%98%E5%8C%96%E7%9A%84%E7%BD%91%E9%A1%B5%E7%BB%93%E6%9E%84%E6%A8%A1%E6%9D%BF/</link>
+      <pubDate>Wed, 20 Aug 2025 13:23:46 +0800</pubDate>
+      <author>秋来冬风</author>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/%E4%B8%80%E4%B8%AAseo%E4%BC%98%E5%8C%96%E7%9A%84%E7%BD%91%E9%A1%B5%E7%BB%93%E6%9E%84%E6%A8%A1%E6%9D%BF/</guid>
+      <description>&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;&#xA;&lt;p&gt;搜索引擎（如&lt;a href=&#34;https://cn.bing.com&#34;&gt;必应&lt;/a&gt;、谷歌）至关重要，关乎在用户能否找到自己的网站。一个经过SEO优化（搜索引擎优化）的网页，更容易被用户找到。&lt;/p&gt;&#xA;&lt;p&gt;此博客分享一个SEO优化的网页结构模板。&lt;/p&gt;&#xA;&lt;h2 id=&#34;一些要点&#34;&gt;一些要点&lt;/h2&gt;&#xA;&lt;h3 id=&#34;tdk标题描述关键词&#34;&gt;TDK（标题、描述、关键词）&lt;/h3&gt;&#xA;&lt;p&gt;title（标题），description（描述），keywords（关键词）是关于一个网页被搜索引擎的三要素。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Speed in Chinese Mainland</title>
       <link>https://qiulaidongfeng.github.io/en/my-experience-with-cloudflare-argo-smart-routing---greatly-improving-access-speed-in-chinese-mainland/</link>

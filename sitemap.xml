@@ -2,6 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://qiulaidongfeng.github.io/tags/go/</loc>
+    <lastmod>2025-08-20T23:49:45+08:00</lastmod>
+  </url><url>
+    <loc>https://qiulaidongfeng.github.io/tags/go1.25/</loc>
+    <lastmod>2025-08-20T23:49:45+08:00</lastmod>
+  </url><url>
+    <loc>https://qiulaidongfeng.github.io/zh-cn/go1.25%E7%9A%84%E6%96%B0csrf%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%E9%98%B2%E5%BE%A1api-%E6%9E%84%E5%BB%BA%E6%9B%B4%E5%AE%89%E5%85%A8%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91/</loc>
+    <lastmod>2025-08-20T23:49:45+08:00</lastmod>
+  </url><url>
+    <loc>https://qiulaidongfeng.github.io/tags/</loc>
+    <lastmod>2025-08-20T23:49:45+08:00</lastmod>
+  </url><url>
+    <loc>https://qiulaidongfeng.github.io/zh-cn/</loc>
+    <lastmod>2025-08-20T23:49:45+08:00</lastmod>
+  </url><url>
+    <loc>https://qiulaidongfeng.github.io/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/</loc>
+    <lastmod>2025-08-20T23:49:45+08:00</lastmod>
+  </url><url>
+    <loc>https://qiulaidongfeng.github.io/tags/seo/</loc>
+    <lastmod>2025-08-20T13:23:46+08:00</lastmod>
+  </url><url>
+    <loc>https://qiulaidongfeng.github.io/zh-cn/%E4%B8%80%E4%B8%AAseo%E4%BC%98%E5%8C%96%E7%9A%84%E7%BD%91%E9%A1%B5%E7%BB%93%E6%9E%84%E6%A8%A1%E6%9D%BF/</loc>
+    <lastmod>2025-08-20T13:23:46+08:00</lastmod>
+  </url><url>
     <loc>https://qiulaidongfeng.github.io/tags/cloudflare/</loc>
     <lastmod>2025-08-14T00:50:12+08:00</lastmod>
   </url><url>
@@ -11,29 +35,17 @@
     <loc>https://qiulaidongfeng.github.io/en/my-experience-with-cloudflare-argo-smart-routing---greatly-improving-access-speed-in-chinese-mainland/</loc>
     <lastmod>2025-08-14T00:50:12+08:00</lastmod>
   </url><url>
-    <loc>https://qiulaidongfeng.github.io/tags/</loc>
-    <lastmod>2025-08-14T00:50:12+08:00</lastmod>
-  </url><url>
-    <loc>https://qiulaidongfeng.github.io/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/</loc>
-    <lastmod>2025-08-14T00:50:12+08:00</lastmod>
-  </url><url>
     <loc>https://qiulaidongfeng.github.io/en/personal-guide-to-choosing-vps-virtual-private-server/</loc>
     <lastmod>2025-08-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://qiulaidongfeng.github.io/tags/vps/</loc>
     <lastmod>2025-08-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://qiulaidongfeng.github.io/zh-cn/</loc>
-    <lastmod>2025-08-12T02:02:00+08:00</lastmod>
-  </url><url>
     <loc>https://qiulaidongfeng.github.io/zh-cn/%E6%88%91%E7%9A%84cloudflare-argo-smart-routing%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C-%E5%A4%A7%E5%B9%85%E6%8F%90%E5%8D%87%E5%A4%9C%E9%97%B4%E4%B8%AD%E5%9B%BD%E5%A4%A7%E9%99%86%E8%AE%BF%E9%97%AE%E9%80%9F%E5%BA%A6/</loc>
     <lastmod>2025-08-12T02:02:00+08:00</lastmod>
   </url><url>
     <loc>https://qiulaidongfeng.github.io/zh-cn/%E4%B8%AA%E4%BA%BA%E9%80%89%E8%B4%ADvps%E6%8C%87%E5%8D%97/</loc>
     <lastmod>2025-07-28T17:21:25+08:00</lastmod>
-  </url><url>
-    <loc>https://qiulaidongfeng.github.io/tags/go/</loc>
-    <lastmod>2025-06-27T12:48:30+08:00</lastmod>
   </url><url>
     <loc>https://qiulaidongfeng.github.io/en/measure-the-speed-difference-between-http2-and-http3/</loc>
     <lastmod>2025-06-27T12:48:30+08:00</lastmod>

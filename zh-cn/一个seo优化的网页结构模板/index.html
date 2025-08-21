@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+
+
+
+<html lang="zh-CN" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>一个SEO优化的网页结构模板 | 打造搜索引擎友好的网站基础 | 秋来冬风的博客</title>
+
+
+    
+        
+    
+
+
+
+
+    
+
+
+
+
+<meta name="description" content="分享了一个SEO优化的网页结构模板，以及一些要点，如带async和defer属性的script标签等。">
+
+
+          
+<meta name="keywords" content="SEO,优化,网页,搜索引擎,秋来冬风,qiulaidongfeng,博客,blog">
+<link rel="canonical" href="https://qiulaidongfeng.github.io/zh-cn/%E4%B8%80%E4%B8%AAseo%E4%BC%98%E5%8C%96%E7%9A%84%E7%BD%91%E9%A1%B5%E7%BB%93%E6%9E%84%E6%A8%A1%E6%9D%BF/" />
+<meta name="author" content="qiulaidongfeng(秋来冬风)">
+<meta name="copyright" content="Copyright © 2023 秋来冬风. All rights reserved.">
+<link rel="author" href="/about/">
+
+
+
+
+<meta property="og:title" content="一个SEO优化的网页结构模板 | 打造搜索引擎友好的网站基础">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="秋来冬风的博客">
+<meta property="og:url" content="https://qiulaidongfeng.github.io/zh-cn/%E4%B8%80%E4%B8%AAseo%E4%BC%98%E5%8C%96%E7%9A%84%E7%BD%91%E9%A1%B5%E7%BB%93%E6%9E%84%E6%A8%A1%E6%9D%BF/">
+<meta property="og:description" content="分享了一个SEO优化的网页结构模板，以及一些要点，如带async和defer属性的script标签等。">
+<meta property="og:locale" content="zh-CN" />
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="一个SEO优化的网页结构模板 | 打造搜索引擎友好的网站基础">
+<meta name="twitter:description" content="分享了一个SEO优化的网页结构模板，以及一些要点，如带async和defer属性的script标签等。">
+<meta name="twitter:url" content="https://qiulaidongfeng.github.io/zh-cn/%E4%B8%80%E4%B8%AAseo%E4%BC%98%E5%8C%96%E7%9A%84%E7%BD%91%E9%A1%B5%E7%BB%93%E6%9E%84%E6%A8%A1%E6%9D%BF/">
+
+<script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "一个SEO优化的网页结构模板 | 打造搜索引擎友好的网站基础 | 秋来冬风的博客",
+      "description": "分享了一个SEO优化的网页结构模板，以及一些要点，如带async和defer属性的script标签等。",
+      "author": {
+        "@type": "Person",
+        "name": "qiulaidongfeng(秋来冬风)",
+        "url": "https://qiulaidongfeng.github.io/about/"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "秋来冬风的博客"
+      },
+      
+      "datePublished": "2025-08-20T13:23:46+08:00",
+      
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https:\/\/qiulaidongfeng.github.io\/zh-cn\/%E4%B8%80%E4%B8%AAseo%E4%BC%98%E5%8C%96%E7%9A%84%E7%BD%91%E9%A1%B5%E7%BB%93%E6%9E%84%E6%A8%A1%E6%9D%BF\/"
+      },
+      "articleSection": "技术博客",
+      "keywords": "SEO,优化,网页,搜索引擎,秋来冬风,qiulaidongfeng,博客,blog"
+    }
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
+<style>
+  @media (max-width: 992px) {
+    .w-sm-100 {
+      width: 100% !important;
+    }
+
+    .h-sm-auto {
+      height: auto !important;
+    }
+  }
+
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  .toc {
+    top: 20px;
+    flex: 0 0 250px;
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    height: fit-content;
+  }
+
+  .toc h2 {
+    margin-top: 0;
+    font-size: 1.3em;
+    border-bottom: 2px solid #007cba;
+    padding-bottom: 5px;
+  }
+
+  .toc ul {
+    list-style: none;
+    padding-left: 10px;
+  }
+
+  .toc a {
+    text-decoration: none;
+    color: #005a87;
+    font-size: 0.95em;
+  }
+
+  .toc a:hover {
+    text-decoration: underline;
+  }
+
+  .toc ul ul {
+    margin-top: 6px;
+  }
+
+  .toc ul ul ul {
+    margin-left: 15px;
+  }
+
+   
+  .toc-level-2 {
+    padding-left: 0;
+  }
+
+  .toc-level-3 {
+    padding-left: 15px;
+  }
+
+  .toc-level-4 {
+    padding-left: 30px;
+  }
+
+  h2::before,
+  h3::before,
+  h4::before {
+    content: "";
+     
+    color: #aaa;
+  }
+
+  h2:hover::before,
+  h3:hover::before,
+  h4:hover::before {
+    margin-right: 8px;
+    content: "§";
+     
+  }
+</style>
+<script defer src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" onload="Main()"></script>
+<script>
+    function countChars(container) {
+        let total = 0;
+
+        
+        $(container).find('*').addBack().contents().each(function () {
+            
+            if (this.nodeType === 3) {
+                const text = $(this).text().trim();
+                if (text) {
+                    total += text.length;
+                }
+            }
+        });
+
+        return total;
+    }
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "sur2h32fhc");
+</script>
+
+</head>
+
+<body class="container" style="background-color: #ddd;">
+  <header>
+    <div class="row">
+    <div class="col-auto">
+        <nav>
+            <ul class="nav nav-underline">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/tags/" class="nav-link">tags</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/atom.xml" class="nav-link" type="application/atom+xml" title="RSS Feed">rss</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/about/" class="nav-link">about</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/zh-cn/" class="nav-link" hreflang="zh-CN" lang="zh-CN">所有中文内容</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/en/" class="nav-link" hreflang="en" lang="en">所有英文内容</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/archive/" class="nav-link">归档</a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://www.travellings.cn/go.html" target="_blank" rel="noopener" title="开往-友链接力">
+                        <img  class="lozad" data-src="https://www.travellings.cn/assets/logo.gif" alt="开往-友链接力" width="120">
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <div class="dropdown">
+                        <a type="button" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+                            aria-expanded="false">推荐外站</a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="dropdown-item" href="https://www.blogsclub.org/">BlogsClub 个人博客俱乐部</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="https://boke.lu">博客录</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="https://bokequan.cn/">博客园</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="https://www.blogplanet.cn/">博客星球</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="https://bloginc.kamyang.com/"><img
+                                       class="lozad" data-src="https://bloginc.kamyang.com/img/logo_bloginc_all.svg"></a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="https://www.langhai.net"><img
+                                    class="lozad" data-src="https://www.langhai.net/assets/images/langhai-blogs.svg" /></a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="https://www.boyouquan.com/home"
+                                    alt="博客人的朋友圈，博客收录与文章 RSS 聚合网站。"><img
+                                    class="lozad" data-src="https://www.boyouquan.com/assets/images/sites/logo/logo-small.png" />博友圈</a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="https://ljnws.cn/">小白学网络</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="row">
+    <div class="offset-lg-4 col-lg-4 offset-sm-3 col-sm-6">
+        <p class="h1 text-center">秋来冬风的博客</p>
+    </div>
+</div>
+  </header>
+  <main class="row">
+    <aside class="col-lg-2 align-items-center">
+      <div class="card mt-3">
+        <div class="card-header">
+          <div class="card-title">
+            <p class="text-center h4">博客总数</p>
+          </div>
+        </div>
+        <div class="card-body text-center">
+          <p class="h1">26</p>
+        </div>
+      </div>
+
+      <div class="card mt-3">
+        <div class="card-header">
+          <div class="card-title">
+            <p class="text-center h4">作者简介</p>
+          </div>
+        </div>
+        <div class="card-body">
+          <p>一位Go语言程序员，专业的软件设计师。</p>
+          <p>有多年编程经验和网站建设经验。</p>
+          <p>热爱研究http3等前沿技术。</p>
+        </div>
+      </div>
+
+      <div class="card mt-3">
+        <div class="card-header">
+          <p class="h4 text-center">博客信息</p>
+        </div>
+        <div class="card-body">
+          <p>博客上线日期：</p>
+          <time>2023-03-01</time>
+          <p class="mt-4">博客最后更新：</p>
+          <time>
+            
+            2025-8-20
+            
+          </time>
+        </div>
+      </div>
+
+      <div class="d-flex flex-column">
+        <a class="btn btn-primary mt-4" href="/tags/">查看分类</a>
+        <a class="btn btn-primary mt-3" href="/">回到首页</a>
+        <a class="btn btn-primary mt-3" href="/about/">了解作者</a>
+      </div>
+    </aside>
+    <div class="col-lg-8 mt-3">
+      
+<div class="d-flex justify-content-between">
+  <time>2025-08-20</time>
+  <p id="wordcount"></p>
+</div>
+
+<div style="background-color: white;" class="p-4">
+  <div id="content">
+    
+    <h1>一个SEO优化的网页结构模板 | 打造搜索引擎友好的网站基础</h1>
+    
+    <div class="toc">
+      <h2>目录</h2>
+      <div id="table-of-contents"></div>
+    </div>
+    <div class="main">
+      <h2 id="背景">背景</h2>
+<p>搜索引擎（如<a href="https://cn.bing.com">必应</a>、谷歌）至关重要，关乎在用户能否找到自己的网站。一个经过SEO优化（搜索引擎优化）的网页，更容易被用户找到。</p>
+<p>此博客分享一个SEO优化的网页结构模板。</p>
+<h2 id="一些要点">一些要点</h2>
+<h3 id="tdk标题描述关键词">TDK（标题、描述、关键词）</h3>
+<p>title（标题），description（描述），keywords（关键词）是关于一个网页被搜索引擎的三要素。</p>
+<p>title和description影响搜索引擎给用户显示搜索结果中，关于此页面的信息，对容易被用户点击很重要。</p>
+<p>keywords影响搜索引擎如何展示此页面到特定搜索结果，过去对容易被用户找到很重要，现在可能没太大用处，视情况添加。</p>
+<h3 id="规范化链接">规范化链接</h3>
+<p>在元数据中设置规范化链接，有助于避免重复页面收录。在网站有多副本时很有用。</p>
+<h3 id="open-graph-协议和-twitter-card">Open Graph 协议和 Twitter Card</h3>
+<p>Open Graph协议和Twitter Card都是用于提升网页在社交媒体分享时的展示效果的技术。</p>
+<p>通过增强社交分享吸引力，影响内容的传播，可以显著提升网站的整体可见性和流量，从而对SEO产生积极影响。</p>
+<h3 id="作者和版权声明">作者和版权声明</h3>
+<p>author（作者）,copyright（版权声明）两个元数据对搜索引擎搜索结果排名的直接影响较小。</p>
+<p>但可以辅助搜索引擎理解内容关联。例如当用户搜索该作者时，相关内容可能更易被推荐。</p>
+<h3 id="结构化数据">结构化数据</h3>
+<p>JSON-LD有助于提升搜索引擎对内容的理解，帮助搜索引擎更精准地判断内容与用户 query（搜索词）的匹配度。</p>
+<h3 id="带async和defer属性的script标签">带async和defer属性的script标签</h3>
+<p>异步加载js脚本有助于加快网页显示速度，通过提升用户体验，间接地对SEO产生积极帮助。</p>
+<h3 id="使用语义化标签">使用语义化标签</h3>
+<p>header、nav、main、article、section、footer等语义化标签，通过清晰表达页面结构和内容类型，能帮助搜索引擎理解网页各部分，从而提升网站在搜索结果中的排名和可见性。</p>
+<h2 id="模板">模板</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;zh-CN或其他语言代码&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- 字符编码 --&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- 视口设置 --&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width, initial-scale=1.0&#34;</span>&gt;    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- 页面标题（核心SEO元素，建议≤65字符） --&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">title</span>&gt;标题 | 您的品牌名称&lt;/<span style="color:#f92672">title</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- 页面描述（影响点击率，建议≤155字符） --&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;description&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;您的页面描述&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- 关键词（现代SEO中权重较低） --&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;keywords&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;页面的关键词&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- 版权信息 --&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;author&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;作者信息&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;copyright&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Copyright © 年份 您的品牌名称. 保留所有权利.&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;author&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;有关作者介绍的链接&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- Open Graph 协议（用于社交分享） --&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">property</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;og:title&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;分享到平台的标题&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">property</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;og:description&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;分享到设计平台的卡片描述&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">property</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;og:type&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;website&#34;</span>&gt; <span style="color:#75715e">&lt;!-- 文章页面可以设置 content=&#34;article&#34; --&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">property</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;og:url&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;页面链接&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">property</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;og:locale&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;页面语言代码&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">property</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;og:image&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;页面封面展示的图片链接&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- Twitter Card --&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;twitter:card&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;summary_large_image&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;twitter:title&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;分享到平台的标题&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;twitter:description&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;学习如何构建搜索引擎友好的网页结构。&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!--  规范化链接，告诉搜索引擎该页面的权威版本（防止重复内容） --&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;canonical&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;页面规范化链接&#34;</span> /&gt;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- 结构化数据（Schema Markup） - JSON-LD格式 --&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;application/ld+json&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;@context&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;@type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;BlogPosting 或 Article 或其他合适的&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;headline&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;和title标签一样&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;description&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;和description标签一样&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;author&#34;</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;@type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Person 或 Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;name&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;your name&#34;</span>
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;publisher&#34;</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;@type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Person 或 Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;name&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;your name&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;logo&#34;</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;@type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;ImageObject&#34;</span>,
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">&#34;url&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;https://www.yourwebsite.com/logo.png&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;datePublished&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;年-月-日&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;dateModified&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;年-月-日&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;@type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;WebPage&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;@id&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;页面链接&#34;</span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- 异步加载脚本 --&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">defer</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/1.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">async</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/2.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- 页眉 --&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">header</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">h1</span>&gt;标题&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">nav</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">li</span>&gt;&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/&#34;</span>&gt;首页&lt;/<span style="color:#f92672">a</span>&gt;&lt;/<span style="color:#f92672">li</span>&gt;
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">&lt;!-- 内部的其他链接 --&gt;</span>
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">ul</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">nav</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">header</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- 主要内容 --&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">main</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">article</span>&gt; 
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">p</span>&gt;发布于 &lt;<span style="color:#f92672">time</span> <span style="color:#a6e22e">datetime</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;年-月-日&#34;</span>&gt;xxxx年xx月xx日&lt;/<span style="color:#f92672">time</span>&gt; | 作者：&lt;<span style="color:#f92672">author</span>&gt;作者名&lt;/<span style="color:#f92672">author</span>&gt;&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">section</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">h2</span>&gt;第一章节&lt;/<span style="color:#f92672">h2</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">p</span>&gt;详细内容...&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">section</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">section</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">h2</span>&gt;第二章节&lt;/<span style="color:#f92672">h2</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">p</span>&gt;详细内容...&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">section</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">&lt;!-- 其他内容部分 --&gt;</span>
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">article</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">&lt;!-- 侧边栏（可选） --&gt;</span>
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">aside</span>&gt;
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">&lt;!-- 有关内容 --&gt;</span>
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">aside</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">main</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">&lt;!-- 页脚 --&gt;</span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">footer</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">p</span>&gt;&amp;copy; 年份 您的品牌名称. 保留所有权利.&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">footer</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div>
+    </div>
+  </div>
+</div>
+
+  <div>
+    <div>Tags:</div>
+    <ul>
+        <li><a href="/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/">网站相关</a></li>
+        <li><a href="/tags/seo/">SEO</a></li>
+    </ul>
+  </div>
+
+
+    </div>
+    <aside class="col-lg-2 mt-3">
+      <div class="time" style="margin-left: 0.5rem; margin-right: 0.5rem;">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">博客上线至今已经：</div>
+          </div>
+          <div class="card-body text-center">
+            <b id="year">年</b>
+            <br>
+            <b id="month">月</b>
+            <br>
+            <b id="day">日</b>
+            <br>
+            <b id="hour">小时</b>
+            <br>
+            <b id="minute">分钟</b>
+            <br>
+            <b id="second">秒</b>
+          </div>
+        </div>
+      </div>
+      <div class="card mt-3">
+        <div class="card-header">
+          <div class="card-title">阅读历史</div>
+        </div>
+        <div class="card-body" id="history">
+
+        </div>
+      </div>
+    </aside>
+  </main>
+  <footer class="text-center mt-3">
+    <p id="copyright"></p>
+<script type="text/javascript">
+    let currentDate = new Date();
+    let currentYear = currentDate.getFullYear();
+    document.getElementById("copyright").innerHTML = "&copy; 2023-"+currentYear.toString() + " 秋来冬风. All rights reserved.";
+</script>
+<p>Powered by <a href="https://gohugo.io/" target="_blank">Hugo</a> and <a href="https://getbootstrap.com/" target="_blank">Bootstrap</a></p>
+  </footer>
+</body>
+<script>
+  function Main(){
+  $("img").addClass("w-sm-100 h-sm-auto");
+  $("a").addClass("text-break");
+  const observer = lozad();
+  observer.observe();
+
+  
+  const blogLaunchTime = '2023-03-01T14:00:00';
+
+  function updateUptime() {
+    const launchDate = new Date(blogLaunchTime);
+    const now = new Date();
+    const diff = now - launchDate;
+
+    let totalSeconds = diff / 1000;
+    let years = Math.floor(totalSeconds / (3600 * 24 * 365));
+    totalSeconds -= years * 3600 * 24 * 365;
+    let months = Math.floor(totalSeconds / (3600 * 24 * 30)); 
+    totalSeconds -= months * 3600 * 24 * 30;
+    let days = Math.floor(totalSeconds / (3600 * 24));
+    totalSeconds -= days * 3600 * 24;
+    let hours = Math.floor(totalSeconds / 3600);
+    totalSeconds -= hours * 3600;
+    let minutes = Math.floor(totalSeconds / 60);
+    let seconds = Math.floor(totalSeconds % 60);
+
+    document.getElementById('year').textContent = `${years}年`;
+    document.getElementById('month').textContent = `${months}月`;
+    document.getElementById('day').textContent = `${days}日`;
+    document.getElementById('hour').textContent = `${hours}时`;
+    document.getElementById('minute').textContent = `${minutes}分`;
+    document.getElementById('second').textContent = `${seconds}秒`;
+  }
+
+  
+  setInterval(updateUptime, 1000);
+  updateUptime(); 
+
+  $(function () {
+    $("#wordcount").text("字数：" + countChars("#content"));
+  });
+
+  
+  $(document).ready(function () {
+    
+    const $tocContainer = $('#table-of-contents');
+
+    
+    const $headings = $('.main').find('h2, h3, h4');
+
+    
+    let h2Count = 0;
+    let h3Count = 0;
+    let h4Count = 0;
+
+    
+    let currentH2Item = null;
+    let currentH3Item = null;
+
+    
+    $headings.each(function () {
+      const $heading = $(this);
+      const tagName = $heading.prop('tagName');
+      const level = parseInt(tagName.replace('H', ''));
+
+      
+      if (level === 2) {
+        h2Count++;
+        h3Count = 0;
+        h4Count = 0;
+      } else if (level === 3) {
+        h3Count++;
+        h4Count = 0;
+      } else if (level === 4) {
+        h4Count++;
+      }
+
+      
+      let numberText = h2Count.toString(); 
+      if (level >= 3) numberText += '.' + h3Count;
+      if (level >= 4) numberText += '.' + h4Count;
+
+      
+      const headingText = $heading.text().replace(numberText, '').trim();
+      const cleanText = headingText.toLowerCase()
+        .replace(/\s+/g, '-')
+        .replace(/[^\w-]/g, '');
+
+      
+      const safeNumberText = typeof numberText === 'string' ? numberText : numberText.toString();
+      const generatedId = `heading-${safeNumberText.replace(/\./g, '-')}-${cleanText}`;
+      $heading.attr('id', generatedId);
+
+      
+      const $li = $(`<li class="toc-level-${level}"></li>`);
+      const $a = $(`<a class="toc-link" href="#${generatedId}">${numberText} ${headingText}</a>`);
+
+      
+      $a.on('click', function (e) {
+        e.preventDefault();
+        $('.toc-link').removeClass('active');
+        $(this).addClass('active');
+        
+        $('html, body').animate({
+          scrollTop: $($(this).attr('href')).offset().top - 30
+        }, 300);
+      });
+
+      $li.append($a);
+
+      
+      if (level === 2) {
+        const $subList = $('<ul class="toc-list"></ul>').append($li);
+        $tocContainer.append($subList);
+        currentH2Item = $subList;
+        currentH3Item = null;
+      } else if (level === 3) {
+        if (currentH2Item) {
+          currentH2Item.append($li);
+          currentH3Item = $li;
+        } else {
+          $tocContainer.append($li);
+        }
+      } else if (level === 4) {
+        if (currentH3Item) {
+          let $subList = currentH3Item.find('ul.toc-list');
+          if (!$subList.length) {
+            $subList = $('<ul class="toc-list"></ul>');
+            currentH3Item.append($subList);
+          }
+          $subList.append($li);
+        } else if (currentH2Item) {
+          currentH2Item.append($li);
+        } else {
+          $tocContainer.append($li);
+        }
+      }
+    });
+  });
+
+  class History {
+    constructor() {
+      this.v = Cookies.get("history");
+      let b = typeof this.v != "undefined"
+      if (!b) {
+        this.v = [];
+      } else {
+        this.v = JSON.parse(this.v);
+        
+        if (this.v.length > 20) {
+          this.v = this.v.slice(0, 20);
+        }
+        for (let i = 0; i < this.v.length; i++) {
+          this.v[i].date = new Date(this.v[i].date);
+        };
+      }
+      console.log(this.v);
+    }
+    
+    find(url) {
+      let i = -1;
+      for (let index = 0; index < this.v.length; index++) {
+        if (this.v[index].url == url) {
+          i = index;
+          continue;
+        }
+      };
+      return i;
+    }
+    
+    
+    
+    add(url, title) {
+      
+      title = title.replace("| 秋来冬风的博客", "")
+
+      let i = this.find(url);
+      if (i != -1) { 
+        let n = [];
+        this.v[i].date = new Date();
+        n.push(this.v[i])
+        for (let index = 0; index < this.v.length; index++) {
+          if (index == i) {
+            continue
+          }
+          n.push(this.v[index])
+        };
+        this.v = n;
+      } else { 
+        let info = { url: url, title: title, date: new Date() };
+        this.v.unshift(info);
+      }
+      Cookies.set("history", JSON.stringify(this.v))
+    }
+    
+    clear() {
+      this.v = [];
+      Cookies.remove("history")
+    }
+    
+    read() {
+      return this.v;
+    }
+    
+    remove(url) {
+      let i = this.find(url);
+      let n = [];
+      for (let index = 0; index < this.v.length; index++) {
+        if (index == i) {
+          continue
+        }
+        n.push(this.v[index])
+      };
+      this.v = n;
+      Cookies.set("history", JSON.stringify(this.v))
+    }
+  }
+
+  $(function () {
+    
+    let h = new History();
+    
+    h.add(location.href, document.title);
+    
+    let v = h.read();
+
+    let u = $(`<ul class="list-group list-unstyled list-group-flush"></ul>`)
+    for (tmp of v) {
+      let l = $(`<li class"list-group-item"> <a href="${tmp.url}">${tmp.title}</a> ${tmp.date.toLocaleString()}<li>`);
+      u.append(l);
+    }
+    $("#history").append(u);
+
+    let clear = $(`<button class="btn btn-primary mt-3">清除历史</button>`);
+    clear.click(function () {
+      h.clear();
+      u.html("");
+    })
+    $("#history").append(clear);
+  });
+}
+</script>
+
+</html>

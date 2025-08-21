@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Go - Go1.24 | 秋来冬风的博客</title>
+<title>Go1.25的新CSRF（跨站请求伪造）防御API | 构建更安全的互联网 | 秋来冬风的博客</title>
 
 
     
@@ -22,12 +22,12 @@
 
 
 
-
+<meta name="description" content="介绍Go1.25新CSRF（跨站请求伪造）防御API的原理和特点，以及和其他方法的优劣，还有使用新API要注意的。">
 
 
        
-<meta name="keywords" content="秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog">
-<link rel="canonical" href="https://qiulaidongfeng.github.io/tags/go---go1.24/" />
+<meta name="keywords" content="CSRF,跨站请求伪造,Go1.25,秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog">
+<link rel="canonical" href="https://qiulaidongfeng.github.io/zh-cn/go1.25%E7%9A%84%E6%96%B0csrf%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%E9%98%B2%E5%BE%A1api-%E6%9E%84%E5%BB%BA%E6%9B%B4%E5%AE%89%E5%85%A8%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91/" />
 <meta name="author" content="qiulaidongfeng(秋来冬风)">
 <meta name="copyright" content="Copyright © 2023 秋来冬风. All rights reserved.">
 <link rel="author" href="/about/">
@@ -35,24 +35,24 @@
 
 
 
-<meta property="og:title" content="Go - Go1.24">
+<meta property="og:title" content="Go1.25的新CSRF（跨站请求伪造）防御API | 构建更安全的互联网">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="秋来冬风的博客">
-<meta property="og:url" content="https://qiulaidongfeng.github.io/tags/go---go1.24/">
-<meta property="og:description" content="">
+<meta property="og:url" content="https://qiulaidongfeng.github.io/zh-cn/go1.25%E7%9A%84%E6%96%B0csrf%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%E9%98%B2%E5%BE%A1api-%E6%9E%84%E5%BB%BA%E6%9B%B4%E5%AE%89%E5%85%A8%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91/">
+<meta property="og:description" content="介绍Go1.25新CSRF（跨站请求伪造）防御API的原理和特点，以及和其他方法的优劣，还有使用新API要注意的。">
 <meta property="og:locale" content="zh-CN" />
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Go - Go1.24">
-<meta name="twitter:description" content="">
-<meta name="twitter:url" content="https://qiulaidongfeng.github.io/tags/go---go1.24/">
+<meta name="twitter:title" content="Go1.25的新CSRF（跨站请求伪造）防御API | 构建更安全的互联网">
+<meta name="twitter:description" content="介绍Go1.25新CSRF（跨站请求伪造）防御API的原理和特点，以及和其他方法的优劣，还有使用新API要注意的。">
+<meta name="twitter:url" content="https://qiulaidongfeng.github.io/zh-cn/go1.25%E7%9A%84%E6%96%B0csrf%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%E9%98%B2%E5%BE%A1api-%E6%9E%84%E5%BB%BA%E6%9B%B4%E5%AE%89%E5%85%A8%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91/">
 
 <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
-      "headline": "Go - Go1.24 | 秋来冬风的博客",
-      "description": "",
+      "headline": "Go1.25的新CSRF（跨站请求伪造）防御API | 构建更安全的互联网 | 秋来冬风的博客",
+      "description": "介绍Go1.25新CSRF（跨站请求伪造）防御API的原理和特点，以及和其他方法的优劣，还有使用新API要注意的。",
       "author": {
         "@type": "Person",
         "name": "qiulaidongfeng(秋来冬风)",
@@ -63,12 +63,14 @@
         "name": "秋来冬风的博客"
       },
       
+      "datePublished": "2025-08-20T23:49:45+08:00",
+      
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https:\/\/qiulaidongfeng.github.io\/tags\/go---go1.24\/"
+        "@id": "https:\/\/qiulaidongfeng.github.io\/zh-cn\/go1.25%E7%9A%84%E6%96%B0csrf%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%E9%98%B2%E5%BE%A1api-%E6%9E%84%E5%BB%BA%E6%9B%B4%E5%AE%89%E5%85%A8%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91\/"
       },
       "articleSection": "技术博客",
-      "keywords": "秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog"
+      "keywords": "CSRF,跨站请求伪造,Go1.25,秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog"
     }
 </script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
@@ -318,24 +320,106 @@
     </aside>
     <div class="col-lg-8 mt-3">
       
-  <h1>Go - Go1.24</h1>
-  
-  <div class="row">
+<div class="d-flex justify-content-between">
+  <time>2025-08-20</time>
+  <p id="wordcount"></p>
+</div>
+
+<div style="background-color: white;" class="p-4">
+  <div id="content">
     
+    <h1>Go1.25的新CSRF（跨站请求伪造）防御API | 构建更安全的互联网</h1>
     
-        <div class="card col-lg-4 col-sm-12">
-    <div class="card-body">
-        <h5 class="card-title">go1.24rc1发布</h5>
-        <p class="card-text" style="font-size: 0.95rem;">介绍go1.24值得关注的</p>
-        <div class="d-flex justify-content-between align-items-center">
-        
-        
-        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/go1-24rc1%E5%8F%91%E5%B8%83/&#34;)">阅读</button>
-        </div>
+    <div class="toc">
+      <h2>目录</h2>
+      <div id="table-of-contents"></div>
     </div>
+    <div class="main">
+      <h2 id="背景">背景</h2>
+<p>Go1.25已经在2025年8月中旬发布。</p>
+<p>此次更新中在标准库的net/http包中增加了防御CSRF（跨站请求伪造）的API。此API由Go语言密码包维护者<a href="https://filippo.io">Filippo Valsorda</a>提出并添加进标准库，他是密码学家。</p>
+<h2 id="csrf实现原理">CSRF实现原理</h2>
+<p>CSRF原理是<strong>浏览器在向一个网站发送请求时，会自动同时发送这个网站保存的Cookie</strong>。</p>
+<p>意味着存在这么一种情况，用户点击了一个恶意链接，链接点后自动向特殊网站（例如用户的网上银行）发送请求，因为同时自动发送了这个网站保存的Cookie，服务器看到用户的Cookie，认为是用户本人的请求，导致一些恶意行为例如转走用户银行卡的钱被执行。</p>
+<h2 id="添加起因">添加起因</h2>
+<p><a href="https://filippo.io">Filippo Valsorda</a>发现现在两个广泛使用防御CSRF攻击的Go库，似乎处于缺乏维护的状态（例如报告安全问题数周无回应）。</p>
+<p>这些库中有些漏洞自2015年最初发布以来就一致存在，还存在要求开发者管理一个密钥来用签名token cookie，与其他专家讨论过这个问题，结论是签名和密钥是无效的。</p>
+<h2 id="新api">新API</h2>
+<h3 id="api签名">API签名</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">CrossOriginProtection</span> <span style="color:#66d9ef">struct</span> {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">NewCrossOriginProtection</span>() <span style="color:#f92672">*</span><span style="color:#a6e22e">CrossOriginProtection</span> 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">c</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">CrossOriginProtection</span>) <span style="color:#a6e22e">AddTrustedOrigin</span>(<span style="color:#a6e22e">origin</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span> 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">c</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">CrossOriginProtection</span>) <span style="color:#a6e22e">AddInsecureBypassPattern</span>(<span style="color:#a6e22e">pattern</span> <span style="color:#66d9ef">string</span>) 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">c</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">CrossOriginProtection</span>) <span style="color:#a6e22e">Check</span>(<span style="color:#a6e22e">req</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Request</span>) <span style="color:#66d9ef">error</span> 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">c</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">CrossOriginProtection</span>) <span style="color:#a6e22e">Handler</span>(<span style="color:#a6e22e">h</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Handler</span>) <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Handler</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">c</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">CrossOriginProtection</span>) <span style="color:#a6e22e">SetDenyHandler</span>(<span style="color:#a6e22e">h</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Handler</span>)
+</span></span></code></pre></div><p>API文档在 <a href="https://pkg.go.dev/net/http#CrossOriginProtection">https://pkg.go.dev/net/http#CrossOriginProtection</a></p>
+<h3 id="api实现原理">API实现原理</h3>
+<p>过往防御CSRF的一些对策（CSRF token、SameSite cookies、Origin header &hellip;&hellip;），要么要求开发者付出额外努力（例如修改html表单）或存在各种各样的其他问题。</p>
+<p>Go1.25添加的新API通过以下方式防御CSRF：</p>
+<ol>
+<li>若请求方法为安全方法（GET、HEAD、OPTIONS），直接通过；</li>
+<li>否则，检查 Sec-Fetch-Site：
+<ul>
+<li>为 “same-origin”“none” → 通过；</li>
+<li>为其他非空值 → 检查是否允许绕过，是则通过，否则拦截；</li>
+</ul>
+</li>
+<li>若 Sec-Fetch-Site 为空，检查 Origin：
+<ul>
+<li>Origin 为空 → 通过；</li>
+<li>Origin 的 Host 与请求 Host 一致 → 通过；</li>
+</ul>
+</li>
+<li>否则，检查是否允许绕过，是则通过，否则拦截。</li>
+</ol>
+<p>关键点在于http Header的这些键值对：</p>
+<ul>
+<li>Sec-Fetch-Site（自2023年以来，在所有主要浏览器中都已可用）</li>
+<li>Origin（RFC 6454定义，跨源请求时浏览器自动发送）</li>
+<li>Host（RFC 7230 (HTTP/1.1)标准的5.4节规定必须存在）</li>
+</ul>
+<p>CSRF需要在用户的浏览器进行，所以<strong>如果伪造这些键值对，就违反了攻击的实现原理</strong>。</p>
+<p>例如，<strong>如果Sec-Fetch-Site是真实的，就不会通过检查，如果是伪造的的，就没有浏览器自动发送的用户Cookie</strong></p>
+<p>其他键值对也是如此。</p>
+<h3 id="过往防御的麻烦之处">过往防御的麻烦之处</h3>
+<p>CSRF token要修改html表单，要额外数据库存token。</p>
+<p>SameSite cookies不能防御同一站点内不同子域名之间的攻击。</p>
+<p>Origin Header存在和上面类似的问题，且在某些请求中不会被发。</p>
+<h3 id="新api的优势">新API的优势</h3>
+<ul>
+<li>无需修改html表单等，不需要付出额外努力</li>
+<li>可以防御同一站点内不同子域名之间的攻击</li>
+<li>仅需一行代码（<code>http.NewCrossOriginProtection().Handler(mux)</code>）即可启用防御</li>
+</ul>
+<h2 id="需要注意的">需要注意的</h2>
+<h3 id="保持安全方法语义">保持安全方法语义</h3>
+<p>对于GET等http安全方法，保持它们的语义，不要让这些方法用来进行敏感操作。</p>
+<h3 id="预防cookie窃取">预防Cookie窃取</h3>
+<p>新API仅防御因浏览器自动发送Cookie的CSRF，如果用户的Cookie已经被窃取，它无能为力。</p>
+<p>实践中应设置Cookie的HttpOnly和Secure，避免Cookie被窃取。</p>
+<h3 id="安全要求高的场景">安全要求高的场景</h3>
+<p>对于金融，电商等等安全要求高的场景，可以使用CSRF token，避免太老旧的浏览器因为没有http Header需要的键值对，在被攻击时错误的通过检查。</p>
+
+    </div>
+  </div>
 </div>
-    
-</div>
+
+  <div>
+    <div>Tags:</div>
+    <ul>
+        <li><a href="/tags/go/">Go</a></li>
+        <li><a href="/tags/go1.25/">Go1.25</a></li>
+        <li><a href="/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/">网站相关</a></li>
+    </ul>
+  </div>
+
 
     </div>
     <aside class="col-lg-2 mt-3">
