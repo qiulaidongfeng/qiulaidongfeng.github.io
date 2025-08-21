@@ -7,7 +7,8 @@
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Ens | 秋来冬风的博客</title>
+<title>
+Ens | 秋来冬风的博客</title>
 
 
     
@@ -22,7 +23,12 @@
 
 
 
+    
 
+
+
+
+<meta name="description" content="Many excellent blogs about Go language and website construction, it is all the English content of qiulaidongfeng Blog. I am a professional software designer, welcome to visit my blog.">
 
 
        
@@ -30,7 +36,7 @@
 <link rel="canonical" href="https://qiulaidongfeng.github.io/en/" />
 <meta name="author" content="qiulaidongfeng(秋来冬风)">
 <meta name="copyright" content="Copyright © 2023 秋来冬风. All rights reserved.">
-<link rel="author" href="/about/">
+<link rel="author" href="https://qiulaidongfeng.github.io/about/">
 
 
 
@@ -39,12 +45,12 @@
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="秋来冬风的博客">
 <meta property="og:url" content="https://qiulaidongfeng.github.io/en/">
-<meta property="og:description" content="">
+<meta property="og:description" content="Many excellent blogs about Go language and website construction, it is all the English content of qiulaidongfeng Blog. I am a professional software designer, welcome to visit my blog.">
 <meta property="og:locale" content="en" />
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Ens">
-<meta name="twitter:description" content="">
+<meta name="twitter:description" content="Many excellent blogs about Go language and website construction, it is all the English content of qiulaidongfeng Blog. I am a professional software designer, welcome to visit my blog.">
 <meta name="twitter:url" content="https://qiulaidongfeng.github.io/en/">
 
 <script type="application/ld+json">
@@ -52,7 +58,7 @@
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "headline": "Ens | 秋来冬风的博客",
-      "description": "",
+      "description": "Many excellent blogs about Go language and website construction, it is all the English content of qiulaidongfeng Blog. I am a professional software designer, welcome to visit my blog.",
       "author": {
         "@type": "Person",
         "name": "qiulaidongfeng(秋来冬风)",
@@ -267,9 +273,19 @@
         <p class="h1 text-center">秋来冬风的博客</p>
     </div>
 </div>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+      <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/">秋来冬风的博客</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Ens</li>
+  </ol>
+</nav>
+
   </header>
   <main class="row">
-    <aside class="col-lg-2 align-items-center">
+    <aside id="first" class="col-lg-2 align-items-center">
       <div class="card mt-3">
         <div class="card-header">
           <div class="card-title">
@@ -316,7 +332,7 @@
         <a class="btn btn-primary mt-3" href="/about/">了解作者</a>
       </div>
     </aside>
-    <div class="col-lg-8 mt-3">
+    <div class="col-lg-8">
       
   <h1>所有英文内容</h1>
   
@@ -354,7 +370,7 @@
         <div class="card col-lg-4 col-sm-12">
     <div class="card-body">
         <h5 class="card-title">Measure the Speed Difference Between Http2 and Http3</h5>
-        <p class="card-text" style="font-size: 0.95rem;">Record the process and results of my program measuring the speed of using http2 and http3</p>
+        <p class="card-text" style="font-size: 0.95rem;">HTTP/3 vs HTTP/2 performance test in real networks. Results show ~10% faster response with HTTP/3. Open-source tool in Go.</p>
         <div class="d-flex justify-content-between align-items-center">
         
         
@@ -438,8 +454,8 @@
 </div>
 
     </div>
-    <aside class="col-lg-2 mt-3">
-      <div class="time" style="margin-left: 0.5rem; margin-right: 0.5rem;">
+    <aside class="col-lg-2">
+      <div class="time">
         <div class="card">
           <div class="card-header">
             <div class="card-title">博客上线至今已经：</div>
@@ -468,6 +484,8 @@
         </div>
       </div>
     </aside>
+    <aside id="end">
+    </aside>
   </main>
   <footer class="text-center mt-3">
     <p id="copyright"></p>
@@ -485,6 +503,18 @@
   $("a").addClass("text-break");
   const observer = lozad();
   observer.observe();
+
+  function adjustFtoE(){
+    if ($(window).width() >= 992){
+      $('#end').children().prependTo('#first');
+      return;
+    }
+    $('#first').children().prependTo('#end');
+  }
+  $(window).resize(function(){
+    adjustFtoE();
+  })
+  adjustFtoE();
 
   
   const blogLaunchTime = '2023-03-01T14:00:00';

@@ -7,12 +7,16 @@
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>乘法还是解引用 | 秋来冬风的博客</title>
+<title>
+乘法还是解引用 | 秋来冬风的博客</title>
 
 
     
         
     
+
+
+
 
 
 
@@ -30,7 +34,7 @@
 <link rel="canonical" href="https://qiulaidongfeng.github.io/zh-cn/%E4%B9%98%E6%B3%95%E8%BF%98%E6%98%AF%E8%A7%A3%E5%BC%95%E7%94%A8-md/" />
 <meta name="author" content="qiulaidongfeng(秋来冬风)">
 <meta name="copyright" content="Copyright © 2023 秋来冬风. All rights reserved.">
-<link rel="author" href="/about/">
+<link rel="author" href="https://qiulaidongfeng.github.io/about/">
 
 
 
@@ -269,9 +273,21 @@
         <p class="h1 text-center">秋来冬风的博客</p>
     </div>
 </div>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+      <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/">秋来冬风的博客</a></li>
+    
+      <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/zh-cn/">所有中文内容</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">乘法还是解引用</li>
+  </ol>
+</nav>
+
   </header>
   <main class="row">
-    <aside class="col-lg-2 align-items-center">
+    <aside id="first" class="col-lg-2 align-items-center">
       <div class="card mt-3">
         <div class="card-header">
           <div class="card-title">
@@ -318,7 +334,7 @@
         <a class="btn btn-primary mt-3" href="/about/">了解作者</a>
       </div>
     </aside>
-    <div class="col-lg-8 mt-3">
+    <div class="col-lg-8">
       
 <div class="d-flex justify-content-between">
   <time>2023-03-19</time>
@@ -326,7 +342,7 @@
 </div>
 
 <div style="background-color: white;" class="p-4">
-  <div id="content">
+  <article id="content">
     
     <h1>乘法还是解引用</h1>
     
@@ -335,8 +351,7 @@
       <div id="table-of-contents"></div>
     </div>
     <div class="main">
-      <h1 id="乘法还是解引用">乘法还是解引用</h1>
-<p>在 <a href="https://gitee.com/u-language/u-language">U语言项目</a> 中 ，实现了一个基于分隔符的词法分析器，文档在 <a href="https://gitee.com/u-language/u-language/blob/master/pkg/lex/README.md">词法分析器设计文档</a> ，当前 * 将被分析为乘号，在没有指针时，这样没有问题。现在准备给这个项目增加指针，如果按其他语言一样使用 * 解引用，有两种方案</p>
+      <p>在 <a href="https://gitee.com/u-language/u-language">U语言项目</a> 中 ，实现了一个基于分隔符的词法分析器，文档在 <a href="https://gitee.com/u-language/u-language/blob/master/pkg/lex/README.md">词法分析器设计文档</a> ，当前 * 将被分析为乘号，在没有指针时，这样没有问题。现在准备给这个项目增加指针，如果按其他语言一样使用 * 解引用，有两种方案</p>
 <ol>
 <li>
 <p>在构建抽象语法树时处理 * 既可以是乘号又可以解引用的二义性</p>
@@ -363,7 +378,7 @@
 
     </div>
   </div>
-</div>
+</article>
 
   <div>
     <div>Tags:</div>
@@ -374,8 +389,8 @@
 
 
     </div>
-    <aside class="col-lg-2 mt-3">
-      <div class="time" style="margin-left: 0.5rem; margin-right: 0.5rem;">
+    <aside class="col-lg-2">
+      <div class="time">
         <div class="card">
           <div class="card-header">
             <div class="card-title">博客上线至今已经：</div>
@@ -404,6 +419,8 @@
         </div>
       </div>
     </aside>
+    <aside id="end">
+    </aside>
   </main>
   <footer class="text-center mt-3">
     <p id="copyright"></p>
@@ -421,6 +438,18 @@
   $("a").addClass("text-break");
   const observer = lozad();
   observer.observe();
+
+  function adjustFtoE(){
+    if ($(window).width() >= 992){
+      $('#end').children().prependTo('#first');
+      return;
+    }
+    $('#first').children().prependTo('#end');
+  }
+  $(window).resize(function(){
+    adjustFtoE();
+  })
+  adjustFtoE();
 
   
   const blogLaunchTime = '2023-03-01T14:00:00';

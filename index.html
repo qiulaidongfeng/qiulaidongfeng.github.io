@@ -8,7 +8,7 @@
 	<meta name="generator" content="Hugo 0.148.2">
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>秋来冬风的博客</title>
+<title>秋来冬风的博客 | qiulaidongfeng blog</title>
 
 
 
@@ -17,11 +17,14 @@
 
 
 
+
+
+
     
 
 
 
-<meta name="description" content="Github用户qiulaidongfeng的个人博客，主要和Go语言以及网站建设等互联网技术有关。我是一位专业的软件设计师，欢迎访问我的博客。">
+<meta name="description" content="Github用户qiulaidongfeng的个人博客，主要和Go语言以及网站建设（如使用Cloudflare,选择vps）等互联网技术有关。我是一位专业的软件设计师，欢迎访问我的博客。">
 
 
 
@@ -29,7 +32,7 @@
 <link rel="canonical" href="https://qiulaidongfeng.github.io/" />
 <meta name="author" content="qiulaidongfeng(秋来冬风)">
 <meta name="copyright" content="Copyright © 2023 秋来冬风. All rights reserved.">
-<link rel="author" href="/about/">
+<link rel="author" href="https://qiulaidongfeng.github.io/about/">
 
 
 
@@ -38,12 +41,12 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="秋来冬风的博客">
 <meta property="og:url" content="https://qiulaidongfeng.github.io/">
-<meta property="og:description" content="Github用户qiulaidongfeng的个人博客，主要和Go语言以及网站建设等互联网技术有关。我是一位专业的软件设计师，欢迎访问我的博客。">
+<meta property="og:description" content="Github用户qiulaidongfeng的个人博客，主要和Go语言以及网站建设（如使用Cloudflare,选择vps）等互联网技术有关。我是一位专业的软件设计师，欢迎访问我的博客。">
 <meta property="og:locale" content="zh-CN" />
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="秋来冬风的博客">
-<meta name="twitter:description" content="Github用户qiulaidongfeng的个人博客，主要和Go语言以及网站建设等互联网技术有关。我是一位专业的软件设计师，欢迎访问我的博客。">
+<meta name="twitter:description" content="Github用户qiulaidongfeng的个人博客，主要和Go语言以及网站建设（如使用Cloudflare,选择vps）等互联网技术有关。我是一位专业的软件设计师，欢迎访问我的博客。">
 <meta name="twitter:url" content="https://qiulaidongfeng.github.io/">
 
 <script type="application/ld+json">
@@ -51,7 +54,7 @@
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "headline": "秋来冬风的博客",
-      "description": "Github用户qiulaidongfeng的个人博客，主要和Go语言以及网站建设等互联网技术有关。我是一位专业的软件设计师，欢迎访问我的博客。",
+      "description": "Github用户qiulaidongfeng的个人博客，主要和Go语言以及网站建设（如使用Cloudflare,选择vps）等互联网技术有关。我是一位专业的软件设计师，欢迎访问我的博客。",
       "author": {
         "@type": "Person",
         "name": "qiulaidongfeng(秋来冬风)",
@@ -263,12 +266,13 @@
 </div>
 <div class="row">
     <div class="offset-lg-4 col-lg-4 offset-sm-3 col-sm-6">
-        <p class="h1 text-center">秋来冬风的博客</p>
+        <h1 class="text-center">秋来冬风的博客</h1>
     </div>
 </div>
+
   </header>
   <main class="row">
-    <aside class="col-lg-2 align-items-center">
+    <aside id="first" class="col-lg-2 align-items-center">
       <div class="card mt-3">
         <div class="card-header">
           <div class="card-title">
@@ -315,7 +319,7 @@
         <a class="btn btn-primary mt-3" href="/about/">了解作者</a>
       </div>
     </aside>
-    <div class="col-lg-8 mt-3">
+    <div class="col-lg-8">
       
   
   <h2 class="h2"><p class="text-dark">置顶</p></h2>
@@ -417,7 +421,7 @@
   
   </div>
   <br>
-  <div class="all">
+  <div>
   <h2 class="h2"><p class="text-dark">所有</p></h2>
   <div class="row">
     
@@ -509,7 +513,7 @@
         <div class="card col-lg-4 col-sm-12">
     <div class="card-body">
         <h5 class="card-title">Measure the Speed Difference Between Http2 and Http3</h5>
-        <p class="card-text" style="font-size: 0.95rem;">Record the process and results of my program measuring the speed of using http2 and http3</p>
+        <p class="card-text" style="font-size: 0.95rem;">HTTP/3 vs HTTP/2 performance test in real networks. Results show ~10% faster response with HTTP/3. Open-source tool in Go.</p>
         <div class="d-flex justify-content-between align-items-center">
         
         
@@ -523,7 +527,7 @@
         <div class="card col-lg-4 col-sm-12">
     <div class="card-body">
         <h5 class="card-title">测量http2和http3的速度差异</h5>
-        <p class="card-text" style="font-size: 0.95rem;">记录我写程序对使用http2和http3的速度进行测量的过程和结果</p>
+        <p class="card-text" style="font-size: 0.95rem;">通过自研工具实测 HTTP/2 与 HTTP/3 在本地及跨国网络下的性能差异。基于 QUIC 和 TLS 1.3 的 HTTP/3 在重连场景下平均延迟降低 10%，在高 RTT 环境中优势显著。详述测试方法、环境配置与结果分析。</p>
         <div class="d-flex justify-content-between align-items-center">
         
         
@@ -775,7 +779,7 @@
         <div class="card col-lg-4 col-sm-12">
     <div class="card-body">
         <h5 class="card-title">第一个博客</h5>
-        <p class="card-text" style="font-size: 0.95rem;">第一篇博客</p>
+        <p class="card-text" style="font-size: 0.95rem;">第一篇博客,宣告我的博客正式上线。</p>
         <div class="d-flex justify-content-between align-items-center">
         
         
@@ -790,8 +794,8 @@
   </div>
 
     </div>
-    <aside class="col-lg-2 mt-3">
-      <div class="time" style="margin-left: 0.5rem; margin-right: 0.5rem;">
+    <aside class="col-lg-2">
+      <div class="time">
         <div class="card">
           <div class="card-header">
             <div class="card-title">博客上线至今已经：</div>
@@ -820,6 +824,8 @@
         </div>
       </div>
     </aside>
+    <aside id="end">
+    </aside>
   </main>
   <footer class="text-center mt-3">
     <p id="copyright"></p>
@@ -837,6 +843,18 @@
   $("a").addClass("text-break");
   const observer = lozad();
   observer.observe();
+
+  function adjustFtoE(){
+    if ($(window).width() >= 992){
+      $('#end').children().prependTo('#first');
+      return;
+    }
+    $('#first').children().prependTo('#end');
+  }
+  $(window).resize(function(){
+    adjustFtoE();
+  })
+  adjustFtoE();
 
   
   const blogLaunchTime = '2023-03-01T14:00:00';

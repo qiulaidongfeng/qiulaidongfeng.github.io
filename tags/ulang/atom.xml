@@ -20,7 +20,7 @@
       <link>https://qiulaidongfeng.github.io/zh-cn/%E4%B9%98%E6%B3%95%E8%BF%98%E6%98%AF%E8%A7%A3%E5%BC%95%E7%94%A8-md/</link>
       <pubDate>Sun, 19 Mar 2023 00:00:00 +0000</pubDate>
       <guid>https://qiulaidongfeng.github.io/zh-cn/%E4%B9%98%E6%B3%95%E8%BF%98%E6%98%AF%E8%A7%A3%E5%BC%95%E7%94%A8-md/</guid>
-      <description>&lt;h1 id=&#34;乘法还是解引用&#34;&gt;乘法还是解引用&lt;/h1&gt;&#xA;&lt;p&gt;在 &lt;a href=&#34;https://gitee.com/u-language/u-language&#34;&gt;U语言项目&lt;/a&gt; 中 ，实现了一个基于分隔符的词法分析器，文档在 &lt;a href=&#34;https://gitee.com/u-language/u-language/blob/master/pkg/lex/README.md&#34;&gt;词法分析器设计文档&lt;/a&gt; ，当前 * 将被分析为乘号，在没有指针时，这样没有问题。现在准备给这个项目增加指针，如果按其他语言一样使用 * 解引用，有两种方案&lt;/p&gt;</description>
+      <description>&lt;p&gt;在 &lt;a href=&#34;https://gitee.com/u-language/u-language&#34;&gt;U语言项目&lt;/a&gt; 中 ，实现了一个基于分隔符的词法分析器，文档在 &lt;a href=&#34;https://gitee.com/u-language/u-language/blob/master/pkg/lex/README.md&#34;&gt;词法分析器设计文档&lt;/a&gt; ，当前 * 将被分析为乘号，在没有指针时，这样没有问题。现在准备给这个项目增加指针，如果按其他语言一样使用 * 解引用，有两种方案&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

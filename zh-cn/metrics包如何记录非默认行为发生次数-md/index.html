@@ -7,12 +7,16 @@
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>metrics包如何记录非默认行为发生次数 | 秋来冬风的博客</title>
+<title>
+metrics包如何记录非默认行为发生次数 | 秋来冬风的博客</title>
 
 
     
         
     
+
+
+
 
 
 
@@ -30,7 +34,7 @@
 <link rel="canonical" href="https://qiulaidongfeng.github.io/zh-cn/metrics%E5%8C%85%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BD%95%E9%9D%9E%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%8F%91%E7%94%9F%E6%AC%A1%E6%95%B0-md/" />
 <meta name="author" content="qiulaidongfeng(秋来冬风)">
 <meta name="copyright" content="Copyright © 2023 秋来冬风. All rights reserved.">
-<link rel="author" href="/about/">
+<link rel="author" href="https://qiulaidongfeng.github.io/about/">
 
 
 
@@ -269,9 +273,21 @@
         <p class="h1 text-center">秋来冬风的博客</p>
     </div>
 </div>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+      <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/">秋来冬风的博客</a></li>
+    
+      <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/zh-cn/">所有中文内容</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">metrics包如何记录非默认行为发生次数</li>
+  </ol>
+</nav>
+
   </header>
   <main class="row">
-    <aside class="col-lg-2 align-items-center">
+    <aside id="first" class="col-lg-2 align-items-center">
       <div class="card mt-3">
         <div class="card-header">
           <div class="card-title">
@@ -318,7 +334,7 @@
         <a class="btn btn-primary mt-3" href="/about/">了解作者</a>
       </div>
     </aside>
-    <div class="col-lg-8 mt-3">
+    <div class="col-lg-8">
       
 <div class="d-flex justify-content-between">
   <time>2023-04-06</time>
@@ -326,7 +342,7 @@
 </div>
 
 <div style="background-color: white;" class="p-4">
-  <div id="content">
+  <article id="content">
     
     <h1>metrics包如何记录非默认行为发生次数</h1>
     
@@ -373,7 +389,7 @@
 
     </div>
   </div>
-</div>
+</article>
 
   <div>
     <div>Tags:</div>
@@ -385,8 +401,8 @@
 
 
     </div>
-    <aside class="col-lg-2 mt-3">
-      <div class="time" style="margin-left: 0.5rem; margin-right: 0.5rem;">
+    <aside class="col-lg-2">
+      <div class="time">
         <div class="card">
           <div class="card-header">
             <div class="card-title">博客上线至今已经：</div>
@@ -415,6 +431,8 @@
         </div>
       </div>
     </aside>
+    <aside id="end">
+    </aside>
   </main>
   <footer class="text-center mt-3">
     <p id="copyright"></p>
@@ -432,6 +450,18 @@
   $("a").addClass("text-break");
   const observer = lozad();
   observer.observe();
+
+  function adjustFtoE(){
+    if ($(window).width() >= 992){
+      $('#end').children().prependTo('#first');
+      return;
+    }
+    $('#first').children().prependTo('#end');
+  }
+  $(window).resize(function(){
+    adjustFtoE();
+  })
+  adjustFtoE();
 
   
   const blogLaunchTime = '2023-03-01T14:00:00';

@@ -7,12 +7,16 @@
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>数据库 | 秋来冬风的博客</title>
+<title>
+数据库 | 秋来冬风的博客</title>
 
 
     
         
     
+
+
+
 
 
 
@@ -30,7 +34,7 @@
 <link rel="canonical" href="https://qiulaidongfeng.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" />
 <meta name="author" content="qiulaidongfeng(秋来冬风)">
 <meta name="copyright" content="Copyright © 2023 秋来冬风. All rights reserved.">
-<link rel="author" href="/about/">
+<link rel="author" href="https://qiulaidongfeng.github.io/about/">
 
 
 
@@ -267,9 +271,21 @@
         <p class="h1 text-center">秋来冬风的博客</p>
     </div>
 </div>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    
+      <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/">秋来冬风的博客</a></li>
+    
+      <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/tags/">Tags</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">数据库</li>
+  </ol>
+</nav>
+
   </header>
   <main class="row">
-    <aside class="col-lg-2 align-items-center">
+    <aside id="first" class="col-lg-2 align-items-center">
       <div class="card mt-3">
         <div class="card-header">
           <div class="card-title">
@@ -316,7 +332,7 @@
         <a class="btn btn-primary mt-3" href="/about/">了解作者</a>
       </div>
     </aside>
-    <div class="col-lg-8 mt-3">
+    <div class="col-lg-8">
       
   <h1>数据库</h1>
   
@@ -350,8 +366,8 @@
 </div>
 
     </div>
-    <aside class="col-lg-2 mt-3">
-      <div class="time" style="margin-left: 0.5rem; margin-right: 0.5rem;">
+    <aside class="col-lg-2">
+      <div class="time">
         <div class="card">
           <div class="card-header">
             <div class="card-title">博客上线至今已经：</div>
@@ -380,6 +396,8 @@
         </div>
       </div>
     </aside>
+    <aside id="end">
+    </aside>
   </main>
   <footer class="text-center mt-3">
     <p id="copyright"></p>
@@ -397,6 +415,18 @@
   $("a").addClass("text-break");
   const observer = lozad();
   observer.observe();
+
+  function adjustFtoE(){
+    if ($(window).width() >= 992){
+      $('#end').children().prependTo('#first');
+      return;
+    }
+    $('#first').children().prependTo('#end');
+  }
+  $(window).resize(function(){
+    adjustFtoE();
+  })
+  adjustFtoE();
 
   
   const blogLaunchTime = '2023-03-01T14:00:00';
