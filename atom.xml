@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Home on 秋来冬风的博客</title>
+    <title>秋来冬风的博客</title>
     <link>https://qiulaidongfeng.github.io/</link>
-    <description>Recent content in Home on 秋来冬风的博客</description>
+    <description>Recent content on 秋来冬风的博客</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <managingEditor>秋来冬风</managingEditor>
@@ -139,11 +139,11 @@
       <description>&lt;p&gt;有些浏览器可以看到tls的一些信息，例如&#xA;&lt;img src=&#34;https://qiulaidongfeng.github.io/images/s.jpg&#34; alt=&#34;&#34;&gt;&#xA;笔者看到go语言默认用的aes128,其他tls1.3实现有默认用aes256的。&lt;/p&gt;&#xA;&lt;p&gt;go语言的tls默认tls1.3使用下列密码套件按下列顺序&#xA;TLS_AES_128_GCM_SHA256,&#xA;TLS_AES_256_GCM_SHA384,&#xA;TLS_CHACHA20_POLY1305_SHA256&#xA;并且文档中明确列出TLS 1.3 ciphersuites are not configurable(TLS 1.3密码套件是不可配置的)&lt;/p&gt;</description>
     </item>
     <item>
-      <title>用原子指针&#43;互斥锁实现仅写时加锁</title>
-      <link>https://qiulaidongfeng.github.io/zh-cn/%E7%94%A8%E5%8E%9F%E5%AD%90%E6%8C%87%E9%92%88&#43;%E4%BA%92%E6%96%A5%E9%94%81%E5%AE%9E%E7%8E%B0%E4%BB%85%E5%86%99%E6%97%B6%E5%8A%A0%E9%94%81/</link>
+      <title>用原子指针+互斥锁实现仅写时加锁</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/%E7%94%A8%E5%8E%9F%E5%AD%90%E6%8C%87%E9%92%88+%E4%BA%92%E6%96%A5%E9%94%81%E5%AE%9E%E7%8E%B0%E4%BB%85%E5%86%99%E6%97%B6%E5%8A%A0%E9%94%81/</link>
       <pubDate>Tue, 17 Dec 2024 20:00:37 +0000</pubDate>
       <author>秋来冬风</author>
-      <guid>https://qiulaidongfeng.github.io/zh-cn/%E7%94%A8%E5%8E%9F%E5%AD%90%E6%8C%87%E9%92%88&#43;%E4%BA%92%E6%96%A5%E9%94%81%E5%AE%9E%E7%8E%B0%E4%BB%85%E5%86%99%E6%97%B6%E5%8A%A0%E9%94%81/</guid>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/%E7%94%A8%E5%8E%9F%E5%AD%90%E6%8C%87%E9%92%88+%E4%BA%92%E6%96%A5%E9%94%81%E5%AE%9E%E7%8E%B0%E4%BB%85%E5%86%99%E6%97%B6%E5%8A%A0%E9%94%81/</guid>
       <description>&lt;p&gt;此博客介绍我写&lt;a href=&#34;https://github.com/qiulaidongfeng/arena&#34;&gt;arena&lt;/a&gt;的一个经验。&lt;/p&gt;&#xA;&lt;p&gt;通常在访问共享资源时，简单的加互斥锁就够用，在读多写少时使用读写锁优化性能，在写&lt;a href=&#34;https://github.com/qiulaidongfeng/arena&#34;&gt;arena&lt;/a&gt;等场景，为了极致的性能，需要别的方法。&lt;/p&gt;&#xA;&lt;h2 id=&#34;回顾一些知识说明为什么互斥锁和读写锁不适合用在需要极致性能时&#34;&gt;回顾一些知识，说明为什么互斥锁和读写锁不适合用在需要极致性能时。&lt;/h2&gt;&#xA;&lt;p&gt;为什么访问共享资源时需要加锁，因为如果不加锁，多个线程可能看到正在进行操作的中间状态，并基于此中间状态执行它自己的一些操作，导致错误结果。&lt;/p&gt;</description>
     </item>
     <item>
