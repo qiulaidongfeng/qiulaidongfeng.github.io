@@ -39,6 +39,14 @@ metrics包如何记录非默认行为发生次数 | 秋来冬风的博客</title
 
 
 
+<link rel="alternate" href="https://qiulaidongfeng.github.io/zh-cn/metrics%E5%8C%85%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BD%95%E9%9D%9E%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%8F%91%E7%94%9F%E6%AC%A1%E6%95%B0-md/" hreflang="zh-CN" />
+
+
+  
+    
+  
+<link rel="alternate" href="https://qiulaidongfeng.github.io/en/howdoesthemetricspackagerecordthenumberofnondefaultbehavioroccurrences-md/" hreflang="en" />
+
 <meta property="og:title" content="metrics包如何记录非默认行为发生次数">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="秋来冬风的博客">
@@ -54,8 +62,10 @@ metrics包如何记录非默认行为发生次数 | 秋来冬风的博客</title
 <script type="application/ld+json">
     {
       "@context": "https://schema.org",
+      
       "@type": "BlogPosting",
       "headline": "metrics包如何记录非默认行为发生次数 | 秋来冬风的博客",
+      
       "description": "记录研究metrics包怎么实现的",
       "author": {
         "@type": "Person",
@@ -68,12 +78,8 @@ metrics包如何记录非默认行为发生次数 | 秋来冬风的博客</title
       },
       
       "datePublished": "2023-04-06T00:00:00+08:00",
-      
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https:\/\/qiulaidongfeng.github.io\/zh-cn\/metrics%E5%8C%85%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BD%95%E9%9D%9E%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%8F%91%E7%94%9F%E6%AC%A1%E6%95%B0-md\/"
-      },
       "articleSection": "技术博客",
+      
       "keywords": "metrics,秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog"
     }
 </script>
@@ -316,7 +322,7 @@ metrics包如何记录非默认行为发生次数 | 秋来冬风的博客</title
           </div>
         </div>
         <div class="card-body text-center">
-          <p class="h1">26</p>
+          <p class="h1">27</p>
         </div>
       </div>
 
@@ -343,7 +349,7 @@ metrics包如何记录非默认行为发生次数 | 秋来冬风的博客</title
           <p class="mt-4">博客最后更新：</p>
           <time>
             
-            2025-8-20
+            2025-9-24
             
           </time>
         </div>
@@ -372,8 +378,7 @@ metrics包如何记录非默认行为发生次数 | 秋来冬风的博客</title
       <div id="table-of-contents"></div>
     </div>
     <div class="main">
-      <h1 id="go121前瞻">go1.21前瞻</h1>
-<h2 id="metrics包如何记录非默认行为发生次数">metrics包如何记录非默认行为发生次数</h2>
+      <h2 id="metrics包如何记录非默认行为发生次数">metrics包如何记录非默认行为发生次数</h2>
 <p>go1.21正在开发中，<a href="https://tip.golang.org/doc/go1.21">发行说明草案</a> 提到预计2023年8月发布。</p>
 <p>在go1.21的<a href="https://github.com/golang/go">开发分支</a>中，<a href="https://pkg.go.dev/runtime/metrics@master">metrics</a> 包中，新增了一系列格式如同 /godebug/non-default-behavior/(godebug-name):events的指标，(godebug-name)是GODEBUG环境变量的一系列键值对，某些键的名称，比如go1.19引入的execerrdot（以下简称<strong>godebug指标</strong>）。通过这些新增的指标，可以获取<strong>因为设置了这些环境变量导致非默认行为发生次数的数量</strong>，本文通过研究源代码来分析这是如何实现的。</p>
 <p>首先，本文使用的是go标准库源代码(通过gotip安装)，具体版本号（go version devel go1.21-8d68b388d4 Wed Apr 5 21:45:24 2023 +0000 windows/amd64）。</p>
