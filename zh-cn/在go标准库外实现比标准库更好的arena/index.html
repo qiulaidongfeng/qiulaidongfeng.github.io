@@ -98,9 +98,51 @@
   });
 </script>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<style>
+  @charset "UTF-8"; :root{--bs-dark-rgb:33,37,41;--bs-font-sans-serif:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans","Liberation Sans",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--bs-body-font-family:var(--bs-font-sans-serif);--bs-body-font-size:1rem;--bs-body-font-weight:400;--bs-body-line-height:1.5;--bs-body-color:#212529;--bs-body-color-rgb:33,37,41;--bs-body-bg:#fff;--bs-emphasis-color:#000;--bs-secondary-color:rgba(33, 37, 41, 0.75);--bs-tertiary-color:rgba(33, 37, 41, 0.5);--bs-tertiary-bg:#f8f9fa;--bs-heading-color:inherit;--bs-link-color:#0d6efd;--bs-link-color-rgb:13,110,253;--bs-link-hover-color:#0a58ca;--bs-link-hover-color-rgb:10,88,202;--bs-border-width:1px;--bs-border-style:solid;--bs-border-color:#dee2e6;--bs-border-color-translucent:rgba(0, 0, 0, 0.175);--bs-border-radius:0.375rem}*,::after,::before{box-sizing:border-box}@media (prefers-reduced-motion:no-preference){:root{scroll-behavior:smooth}}body{margin:0;font-family:var(--bs-body-font-family);font-size:var(--bs-body-font-size);font-weight:var(--bs-body-font-weight);line-height:var(--bs-body-line-height);color:var(--bs-body-color);text-align:var(--bs-body-text-align);background-color:var(--bs-body-bg);-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}.h1,.h2,.h3,.h4,.h5,h1,h2,h3,h4,h5{margin-top:0;margin-bottom:.5rem;font-weight:500;line-height:1.2;color:var(--bs-heading-color)}.h1,h1{font-size:calc(1.375rem + 1.5vw)}@media (min-width:1200px){.h1,h1{font-size:2.5rem}}.h2,h2{font-size:calc(1.325rem + .9vw)}@media (min-width:1200px){.h2,h2{font-size:2rem}}.h3,h3{font-size:calc(1.3rem + .6vw)}@media (min-width:1200px){.h3,h3{font-size:1.75rem}}.h4,h4{font-size:calc(1.275rem + .3vw)}@media (min-width:1200px){.h4,h4{font-size:1.5rem}}.h5,h5{font-size:1.25rem}p{margin-top:0;margin-bottom:1rem}ol,ul{padding-left:2rem}ol,ul{margin-top:0;margin-bottom:1rem}ol ol,ol ul,ul ol,ul ul{margin-bottom:0}b{font-weight:bolder}a{color:rgba(var(--bs-link-color-rgb),var(--bs-link-opacity,1));text-decoration:underline}a:hover{--bs-link-color-rgb:var(--bs-link-hover-color-rgb)}a:not([href]):not([class]),a:not([href]):not([class]):hover{color:inherit;text-decoration:none}img,svg{vertical-align:middle}button{border-radius:0}button:focus:not(:focus-visible){outline:0}button{margin:0;font-family:inherit;font-size:inherit;line-height:inherit}button{text-transform:none}[type=button],button{-webkit-appearance:button}[type=button]:not(:disabled),button:not(:disabled){cursor:pointer}::-moz-focus-inner{padding:0;border-style:none}::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-fields-wrapper,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-text,::-webkit-datetime-edit-year-field{padding:0}::-webkit-inner-spin-button{height:auto}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-color-swatch-wrapper{padding:0}::-webkit-file-upload-button{font:inherit;-webkit-appearance:button}::file-selector-button{font:inherit;-webkit-appearance:button}.list-unstyled{padding-left:0;list-style:none}.container{--bs-gutter-x:1.5rem;--bs-gutter-y:0;width:100%;padding-right:calc(var(--bs-gutter-x) * .5);padding-left:calc(var(--bs-gutter-x) * .5);margin-right:auto;margin-left:auto}@media (min-width:576px){.container{max-width:540px}}@media (min-width:768px){.container{max-width:720px}}@media (min-width:992px){.container{max-width:960px}}@media (min-width:1200px){.container{max-width:1140px}}@media (min-width:1400px){.container{max-width:1320px}}:root{}.row{--bs-gutter-x:1.5rem;--bs-gutter-y:0;display:flex;flex-wrap:wrap;margin-top:calc(-1 * var(--bs-gutter-y));margin-right:calc(-.5 * var(--bs-gutter-x));margin-left:calc(-.5 * var(--bs-gutter-x))}.row>*{flex-shrink:0;width:100%;max-width:100%;padding-right:calc(var(--bs-gutter-x) * .5);padding-left:calc(var(--bs-gutter-x) * .5);margin-top:var(--bs-gutter-y)}.col-auto{flex:0 0 auto;width:auto}.col-6{flex:0 0 auto;width:50%}@media (min-width:576px){.col-sm-6{flex:0 0 auto;width:50%}.col-sm-12{flex:0 0 auto;width:100%}.offset-sm-3{margin-left:25%}}@media (min-width:992px){.col-lg-2{flex:0 0 auto;width:16.66666667%}.col-lg-4{flex:0 0 auto;width:33.33333333%}.col-lg-8{flex:0 0 auto;width:66.66666667%}.offset-lg-4{margin-left:33.33333333%}}.btn-check{position:absolute;clip:rect(0,0,0,0);pointer-events:none}.btn-check:disabled+.btn,.btn-check[disabled]+.btn{pointer-events:none;filter:none;opacity:.65}.btn{--bs-btn-padding-x:0.75rem;--bs-btn-padding-y:0.375rem;--bs-btn-font-family: ;--bs-btn-font-size:1rem;--bs-btn-font-weight:400;--bs-btn-line-height:1.5;--bs-btn-color:var(--bs-body-color);--bs-btn-bg:transparent;--bs-btn-border-width:var(--bs-border-width);--bs-btn-border-color:transparent;--bs-btn-border-radius:var(--bs-border-radius);--bs-btn-hover-border-color:transparent;--bs-btn-disabled-opacity:0.65;--bs-btn-focus-box-shadow:0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), .5);display:inline-block;padding:var(--bs-btn-padding-y) var(--bs-btn-padding-x);font-family:var(--bs-btn-font-family);font-size:var(--bs-btn-font-size);font-weight:var(--bs-btn-font-weight);line-height:var(--bs-btn-line-height);color:var(--bs-btn-color);text-align:center;text-decoration:none;vertical-align:middle;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;user-select:none;border:var(--bs-btn-border-width) solid var(--bs-btn-border-color);border-radius:var(--bs-btn-border-radius);background-color:var(--bs-btn-bg);transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out}@media (prefers-reduced-motion:reduce){.btn{transition:none}}.btn:hover{color:var(--bs-btn-hover-color);background-color:var(--bs-btn-hover-bg);border-color:var(--bs-btn-hover-border-color)}.btn-check+.btn:hover{color:var(--bs-btn-color);background-color:var(--bs-btn-bg);border-color:var(--bs-btn-border-color)}.btn:focus-visible{color:var(--bs-btn-hover-color);background-color:var(--bs-btn-hover-bg);border-color:var(--bs-btn-hover-border-color);outline:0;box-shadow:var(--bs-btn-focus-box-shadow)}.btn-check:focus-visible+.btn{border-color:var(--bs-btn-hover-border-color);outline:0;box-shadow:var(--bs-btn-focus-box-shadow)}.btn-check:checked+.btn,.btn.active,.btn.show,.btn:first-child:active,:not(.btn-check)+.btn:active{color:var(--bs-btn-active-color);background-color:var(--bs-btn-active-bg);border-color:var(--bs-btn-active-border-color)}.btn-check:checked+.btn:focus-visible,.btn.active:focus-visible,.btn.show:focus-visible,.btn:first-child:active:focus-visible,:not(.btn-check)+.btn:active:focus-visible{box-shadow:var(--bs-btn-focus-box-shadow)}.btn-check:checked:focus-visible+.btn{box-shadow:var(--bs-btn-focus-box-shadow)}.btn.disabled,.btn:disabled{color:var(--bs-btn-disabled-color);pointer-events:none;background-color:var(--bs-btn-disabled-bg);border-color:var(--bs-btn-disabled-border-color);opacity:var(--bs-btn-disabled-opacity)}.btn-primary{--bs-btn-color:#fff;--bs-btn-bg:#0d6efd;--bs-btn-border-color:#0d6efd;--bs-btn-hover-color:#fff;--bs-btn-hover-bg:#0b5ed7;--bs-btn-hover-border-color:#0a58ca;--bs-btn-focus-shadow-rgb:49,132,253;--bs-btn-active-color:#fff;--bs-btn-active-bg:#0a58ca;--bs-btn-active-border-color:#0a53be;--bs-btn-disabled-color:#fff;--bs-btn-disabled-bg:#0d6efd;--bs-btn-disabled-border-color:#0d6efd}.dropdown{position:relative}.dropdown-toggle{white-space:nowrap}.dropdown-toggle::after{display:inline-block;margin-left:.255em;vertical-align:.255em;content:"";border-top:.3em solid;border-right:.3em solid transparent;border-bottom:0;border-left:.3em solid transparent}.dropdown-toggle:empty::after{margin-left:0}.dropdown-menu{--bs-dropdown-zindex:1000;--bs-dropdown-min-width:10rem;--bs-dropdown-padding-x:0;--bs-dropdown-padding-y:0.5rem;--bs-dropdown-font-size:1rem;--bs-dropdown-color:var(--bs-body-color);--bs-dropdown-bg:var(--bs-body-bg);--bs-dropdown-border-color:var(--bs-border-color-translucent);--bs-dropdown-border-radius:var(--bs-border-radius);--bs-dropdown-border-width:var(--bs-border-width);--bs-dropdown-link-color:var(--bs-body-color);--bs-dropdown-link-hover-color:var(--bs-body-color);--bs-dropdown-link-hover-bg:var(--bs-tertiary-bg);--bs-dropdown-link-active-color:#fff;--bs-dropdown-link-active-bg:#0d6efd;--bs-dropdown-link-disabled-color:var(--bs-tertiary-color);--bs-dropdown-item-padding-x:1rem;--bs-dropdown-item-padding-y:0.25rem;position:absolute;z-index:var(--bs-dropdown-zindex);display:none;min-width:var(--bs-dropdown-min-width);padding:var(--bs-dropdown-padding-y) var(--bs-dropdown-padding-x);margin:0;font-size:var(--bs-dropdown-font-size);color:var(--bs-dropdown-color);text-align:left;list-style:none;background-color:var(--bs-dropdown-bg);background-clip:padding-box;border:var(--bs-dropdown-border-width) solid var(--bs-dropdown-border-color);border-radius:var(--bs-dropdown-border-radius)}.dropdown-item{display:block;width:100%;padding:var(--bs-dropdown-item-padding-y) var(--bs-dropdown-item-padding-x);clear:both;font-weight:400;color:var(--bs-dropdown-link-color);text-align:inherit;text-decoration:none;white-space:nowrap;background-color:transparent;border:0;border-radius:var(--bs-dropdown-item-border-radius,0)}.dropdown-item:focus,.dropdown-item:hover{color:var(--bs-dropdown-link-hover-color);background-color:var(--bs-dropdown-link-hover-bg)}.dropdown-item.active,.dropdown-item:active{color:var(--bs-dropdown-link-active-color);text-decoration:none;background-color:var(--bs-dropdown-link-active-bg)}.dropdown-item.disabled,.dropdown-item:disabled{color:var(--bs-dropdown-link-disabled-color);pointer-events:none;background-color:transparent}.dropdown-menu.show{display:block}.nav{--bs-nav-link-padding-x:1rem;--bs-nav-link-padding-y:0.5rem;--bs-nav-link-font-weight: ;--bs-nav-link-color:var(--bs-link-color);--bs-nav-link-hover-color:var(--bs-link-hover-color);--bs-nav-link-disabled-color:var(--bs-secondary-color);display:flex;flex-wrap:wrap;padding-left:0;margin-bottom:0;list-style:none}.nav-link{display:block;padding:var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);font-size:var(--bs-nav-link-font-size);font-weight:var(--bs-nav-link-font-weight);color:var(--bs-nav-link-color);text-decoration:none;background:0 0;border:0;transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out}@media (prefers-reduced-motion:reduce){.nav-link{transition:none}}.nav-link:focus,.nav-link:hover{color:var(--bs-nav-link-hover-color)}.nav-link:focus-visible{outline:0;box-shadow:0 0 0 .25rem rgba(13,110,253,.25)}.nav-link.disabled,.nav-link:disabled{color:var(--bs-nav-link-disabled-color);pointer-events:none;cursor:default}.nav-underline{--bs-nav-underline-gap:1rem;--bs-nav-underline-border-width:0.125rem;--bs-nav-underline-link-active-color:var(--bs-emphasis-color);gap:var(--bs-nav-underline-gap)}.nav-underline .nav-link{padding-right:0;padding-left:0;border-bottom:var(--bs-nav-underline-border-width) solid transparent}.nav-underline .nav-link:focus,.nav-underline .nav-link:hover{border-bottom-color:currentcolor}.nav-underline .nav-link.active,.nav-underline .show>.nav-link{font-weight:700;color:var(--bs-nav-underline-link-active-color);border-bottom-color:currentcolor}.card{--bs-card-spacer-y:1rem;--bs-card-spacer-x:1rem;--bs-card-title-spacer-y:0.5rem;--bs-card-title-color: ;--bs-card-border-width:var(--bs-border-width);--bs-card-border-color:var(--bs-border-color-translucent);--bs-card-border-radius:var(--bs-border-radius);--bs-card-inner-border-radius:calc(var(--bs-border-radius) - (var(--bs-border-width)));--bs-card-cap-padding-y:0.5rem;--bs-card-cap-padding-x:1rem;--bs-card-cap-bg:rgba(var(--bs-body-color-rgb), 0.03);--bs-card-cap-color: ;--bs-card-height: ;--bs-card-color: ;--bs-card-bg:var(--bs-body-bg);position:relative;display:flex;flex-direction:column;min-width:0;height:var(--bs-card-height);color:var(--bs-body-color);word-wrap:break-word;background-color:var(--bs-card-bg);background-clip:border-box;border:var(--bs-card-border-width) solid var(--bs-card-border-color);border-radius:var(--bs-card-border-radius)}.card>.list-group{border-top:inherit;border-bottom:inherit}.card>.list-group:first-child{border-top-width:0;border-top-left-radius:var(--bs-card-inner-border-radius);border-top-right-radius:var(--bs-card-inner-border-radius)}.card>.list-group:last-child{border-bottom-width:0;border-bottom-right-radius:var(--bs-card-inner-border-radius);border-bottom-left-radius:var(--bs-card-inner-border-radius)}.card>.card-header+.list-group{border-top:0}.card-body{flex:1 1 auto;padding:var(--bs-card-spacer-y) var(--bs-card-spacer-x);color:var(--bs-card-color)}.card-title{margin-bottom:var(--bs-card-title-spacer-y);color:var(--bs-card-title-color)}.card-text:last-child{margin-bottom:0}.card-header{padding:var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);margin-bottom:0;color:var(--bs-card-cap-color);background-color:var(--bs-card-cap-bg);border-bottom:var(--bs-card-border-width) solid var(--bs-card-border-color)}.card-header:first-child{border-radius:var(--bs-card-inner-border-radius) var(--bs-card-inner-border-radius) 0 0}.breadcrumb{--bs-breadcrumb-padding-x:0;--bs-breadcrumb-padding-y:0;--bs-breadcrumb-margin-bottom:1rem;--bs-breadcrumb-bg: ;--bs-breadcrumb-border-radius: ;--bs-breadcrumb-divider-color:var(--bs-secondary-color);--bs-breadcrumb-item-padding-x:0.5rem;--bs-breadcrumb-item-active-color:var(--bs-secondary-color);display:flex;flex-wrap:wrap;padding:var(--bs-breadcrumb-padding-y) var(--bs-breadcrumb-padding-x);margin-bottom:var(--bs-breadcrumb-margin-bottom);font-size:var(--bs-breadcrumb-font-size);list-style:none;background-color:var(--bs-breadcrumb-bg);border-radius:var(--bs-breadcrumb-border-radius)}.breadcrumb-item+.breadcrumb-item{padding-left:var(--bs-breadcrumb-item-padding-x)}.breadcrumb-item+.breadcrumb-item::before{float:left;padding-right:var(--bs-breadcrumb-item-padding-x);color:var(--bs-breadcrumb-divider-color);content:var(--bs-breadcrumb-divider, "/")}.breadcrumb-item.active{color:var(--bs-breadcrumb-item-active-color)}.list-group{--bs-list-group-color:var(--bs-body-color);--bs-list-group-bg:var(--bs-body-bg);--bs-list-group-border-color:var(--bs-border-color);--bs-list-group-border-width:var(--bs-border-width);--bs-list-group-border-radius:var(--bs-border-radius);--bs-list-group-item-padding-x:1rem;--bs-list-group-item-padding-y:0.5rem;--bs-list-group-disabled-color:var(--bs-secondary-color);--bs-list-group-disabled-bg:var(--bs-body-bg);--bs-list-group-active-color:#fff;--bs-list-group-active-bg:#0d6efd;--bs-list-group-active-border-color:#0d6efd;display:flex;flex-direction:column;padding-left:0;margin-bottom:0;border-radius:var(--bs-list-group-border-radius)}.list-group-item{position:relative;display:block;padding:var(--bs-list-group-item-padding-y) var(--bs-list-group-item-padding-x);color:var(--bs-list-group-color);text-decoration:none;background-color:var(--bs-list-group-bg);border:var(--bs-list-group-border-width) solid var(--bs-list-group-border-color)}.list-group-item:first-child{border-top-left-radius:inherit;border-top-right-radius:inherit}.list-group-item:last-child{border-bottom-right-radius:inherit;border-bottom-left-radius:inherit}.list-group-item.disabled,.list-group-item:disabled{color:var(--bs-list-group-disabled-color);pointer-events:none;background-color:var(--bs-list-group-disabled-bg)}.list-group-item.active{z-index:2;color:var(--bs-list-group-active-color);background-color:var(--bs-list-group-active-bg);border-color:var(--bs-list-group-active-border-color)}.list-group-item+.list-group-item{border-top-width:0}.list-group-item+.list-group-item.active{margin-top:calc(-1 * var(--bs-list-group-border-width));border-top-width:var(--bs-list-group-border-width)}.list-group-flush{border-radius:0}.list-group-flush>.list-group-item{border-width:0 0 var(--bs-list-group-border-width)}.list-group-flush>.list-group-item:last-child{border-bottom-width:0}:root{}:root{}.spinner-border,.spinner-grow{display:inline-block;width:var(--bs-spinner-width);height:var(--bs-spinner-height);vertical-align:var(--bs-spinner-vertical-align);border-radius:50%;animation:var(--bs-spinner-animation-speed) linear infinite var(--bs-spinner-animation-name)}.spinner-border{--bs-spinner-width:2rem;--bs-spinner-height:2rem;--bs-spinner-vertical-align:-0.125em;--bs-spinner-border-width:0.25em;--bs-spinner-animation-speed:0.75s;--bs-spinner-animation-name:spinner-border;border:var(--bs-spinner-border-width) solid currentcolor;border-right-color:transparent}.spinner-grow{--bs-spinner-width:2rem;--bs-spinner-height:2rem;--bs-spinner-vertical-align:-0.125em;--bs-spinner-animation-speed:0.75s;--bs-spinner-animation-name:spinner-grow;background-color:currentcolor;opacity:0}@media (prefers-reduced-motion:reduce){.spinner-border,.spinner-grow{--bs-spinner-animation-speed:1.5s}}.placeholder-wave{-webkit-mask-image:linear-gradient(130deg,#000 55%,rgba(0,0,0,0.8) 75%,#000 95%);mask-image:linear-gradient(130deg,#000 55%,rgba(0,0,0,0.8) 75%,#000 95%);-webkit-mask-size:200% 100%;mask-size:200% 100%;animation:placeholder-wave 2s linear infinite}@keyframes placeholder-wave{100%{-webkit-mask-position:-200% 0%;mask-position:-200% 0%}}.d-inline-block{display:inline-block!important}.d-flex{display:flex!important}.border{border:var(--bs-border-width) var(--bs-border-style) var(--bs-border-color)!important}.border-top{border-top:var(--bs-border-width) var(--bs-border-style) var(--bs-border-color)!important}.border-bottom{border-bottom:var(--bs-border-width) var(--bs-border-style) var(--bs-border-color)!important}.w-100{width:100%!important}.h-100{height:100%!important}.flex-column{flex-direction:column!important}.flex-wrap{flex-wrap:wrap!important}.justify-content-between{justify-content:space-between!important}.align-items-center{align-items:center!important}.mt-3{margin-top:1rem!important}.mt-4{margin-top:1.5rem!important}.mb-0{margin-bottom:0!important}.p-4{padding:1.5rem!important}.px-2{padding-right:.5rem!important;padding-left:.5rem!important}.text-center{text-align:center!important}.text-break{word-wrap:break-word!important;word-break:break-word!important}.text-dark{--bs-text-opacity:1;color:rgba(var(--bs-dark-rgb),var(--bs-text-opacity))!important}
+</style>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" 
+      media="print" onload="this.media='all'">
 
 <style>
+  @media (max-width: 992px) {
+    #main {
+      order: 1;
+    }
+
+    #aside2 {
+      order: 2;
+    }
+
+    #first {
+      order: 3;
+    }
+  }
+
+
+   
+  @media (min-width: 992px) {
+    #main {
+      order: 2;
+    }
+
+    #aside2 {
+      order: 3;
+    }
+
+    #first {
+      order: 1;
+    }
+  }
+
+
+  @media (max-width: 768px) {
+    header {
+      min-height: 30vh;
+    }
+  }
+
   @media (max-width: 992px) {
     .w-sm-100 {
       width: 100% !important;
@@ -126,7 +168,7 @@
     height: fit-content;
   }
 
-  .toc h2 {
+  .toc summary {
     margin-top: 0;
     font-size: 1.3em;
     border-bottom: 2px solid #007cba;
@@ -169,6 +211,16 @@
     padding-left: 30px;
   }
 
+   
+  #table-of-contents>.toc-list {
+    margin-bottom: 0;
+  }
+
+   
+  .toc-list+.toc-list:has(.toc-level-3) {
+    margin-top: 1rem !important;
+  }
+
   h2::before,
   h3::before,
   h4::before {
@@ -186,9 +238,8 @@
   }
 </style>
 <script defer src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" onload="Main()"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js" onload="Main()"></script>
+<script async src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
     function countChars(container) {
         let total = 0;
@@ -244,9 +295,9 @@
                 <li class="nav-item">
                     <a href="/archive/" class="nav-link">归档</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" style="width:200px; height:60px">
                     <a href="https://www.travellings.cn/go.html" target="_blank" rel="noopener" title="开往-友链接力">
-                        <img  class="lozad" data-src="https://www.travellings.cn/assets/logo.gif" alt="开往-友链接力" width="120">
+                        <img class="lozad" data-src="https://www.travellings.cn/assets/logo.gif" alt="开往-友链接力">
                     </a>
                 </li>
                 <li class="nav-item">
@@ -267,17 +318,17 @@
                                 <a class="dropdown-item" href="https://www.blogplanet.cn/">博客星球</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="https://bloginc.kamyang.com/"><img
-                                       class="lozad" data-src="https://bloginc.kamyang.com/img/logo_bloginc_all.svg"></a>
+                                <a class="dropdown-item" href="https://bloginc.kamyang.com/"><img class="lozad"
+                                        data-src="https://bloginc.kamyang.com/img/logo_bloginc_all.svg"></a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="https://www.langhai.net"><img
-                                    class="lozad" data-src="https://www.langhai.net/assets/images/langhai-blogs.svg" /></a>
+                                <a class="dropdown-item" href="https://www.langhai.net"><img class="lozad"
+                                        data-src="https://www.langhai.net/assets/images/langhai-blogs.svg" /></a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="https://www.boyouquan.com/home"
-                                    alt="博客人的朋友圈，博客收录与文章 RSS 聚合网站。"><img
-                                    class="lozad" data-src="https://www.boyouquan.com/assets/images/sites/logo/logo-small.png" />博友圈</a>
+                                    alt="博客人的朋友圈，博客收录与文章 RSS 聚合网站。"><img class="lozad"
+                                        data-src="https://www.boyouquan.com/assets/images/sites/logo/logo-small.png" />博友圈</a>
                             </li>
                             <li>
                                 <a class="dropdown-item" href="https://ljnws.cn/">小白学网络</a>
@@ -291,23 +342,24 @@
 </div>
 <div class="row">
     <div class="offset-lg-4 col-lg-4 offset-sm-3 col-sm-6">
-        <p class="h1 text-center">秋来冬风的博客</p>
+        <p class="h1 text-center">秋来冬风的博客
+        </p>
     </div>
 </div>
 
 <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    
-      <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/">秋来冬风的博客</a></li>
-    
-      <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/zh-cn/">所有中文内容</a></li>
-    
-    <li class="breadcrumb-item active" aria-current="page">在go标准库外实现比go标准库更好的arena</li>
-  </ol>
+    <ol class="breadcrumb">
+        
+        <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/">秋来冬风的博客</a></li>
+        
+        <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/zh-cn/">所有中文内容</a></li>
+        
+        <li class="breadcrumb-item active" aria-current="page">在go标准库外实现比go标准库更好的arena</li>
+    </ol>
 </nav>
 
   </header>
-  <main class="row">
+  <main class="row" id="main-container">
     <aside id="first" class="col-lg-2 align-items-center">
       <div class="card mt-3">
         <div class="card-header">
@@ -355,7 +407,7 @@
         <a class="btn btn-primary mt-3" href="/about/">了解作者</a>
       </div>
     </aside>
-    <div class="col-lg-8">
+    <div id="main" class="col-lg-8">
       
 <div class="d-flex justify-content-between">
   <time>2025-02-12</time>
@@ -367,10 +419,10 @@
     
     <h1>在go标准库外实现比go标准库更好的arena</h1>
     
-    <div class="toc">
-      <h2>目录</h2>
+    <details class="toc">
+      <summary>目录</summary>
       <div id="table-of-contents"></div>
-    </div>
+    </details>
     <div class="main">
       <p>此博客介绍笔者是如何在go标准库外实现比go标准库更好的arena。</p>
 <h2 id="背景">背景</h2>
@@ -481,7 +533,7 @@
 
 
     </div>
-    <aside class="col-lg-2">
+    <aside id="aside2" class="col-lg-2">
       <div class="time">
         <div class="card">
           <div class="card-header">
@@ -511,8 +563,6 @@
         </div>
       </div>
     </aside>
-    <aside id="end">
-    </aside>
   </main>
   <footer class="text-center mt-3">
     <p id="copyright"></p>
@@ -525,199 +575,217 @@
   </footer>
 </body>
 <script>
-  function Main(){
-  $("img").addClass("w-sm-100 h-sm-auto");
-  $("a").addClass("text-break");
-  const observer = lozad();
-  observer.observe();
+  function obs() {
+    const observer = lozad();
+    observer.observe();
+  }
+  function showtime() {
+    
+    const blogLaunchTime = '2023-03-01T14:00:00';
 
-  function adjustFtoE(){
-    if ($(window).width() >= 992){
-      $('#end').children().prependTo('#first');
-      return;
+    function updateUptime() {
+      const launchDate = new Date(blogLaunchTime);
+      const now = new Date();
+      const diff = now - launchDate;
+
+      let totalSeconds = diff / 1000;
+      let years = Math.floor(totalSeconds / (3600 * 24 * 365));
+      totalSeconds -= years * 3600 * 24 * 365;
+      let months = Math.floor(totalSeconds / (3600 * 24 * 30)); 
+      totalSeconds -= months * 3600 * 24 * 30;
+      let days = Math.floor(totalSeconds / (3600 * 24));
+      totalSeconds -= days * 3600 * 24;
+      let hours = Math.floor(totalSeconds / 3600);
+      totalSeconds -= hours * 3600;
+      let minutes = Math.floor(totalSeconds / 60);
+      let seconds = Math.floor(totalSeconds % 60);
+
+      document.getElementById('year').textContent = `${years}年`;
+      document.getElementById('month').textContent = `${months}月`;
+      document.getElementById('day').textContent = `${days}日`;
+      document.getElementById('hour').textContent = `${hours}时`;
+      document.getElementById('minute').textContent = `${minutes}分`;
+      document.getElementById('second').textContent = `${seconds}秒`;
     }
-    $('#first').children().prependTo('#end');
+
+    
+    setInterval(updateUptime, 1000);
+    updateUptime(); 
   }
-  $(window).resize(function(){
-    adjustFtoE();
-  })
-  adjustFtoE();
+  showtime();
+  function Main() {
+    $("img").addClass("w-sm-100 h-sm-auto");
+    $("a").addClass("text-break");
 
-  
-  const blogLaunchTime = '2023-03-01T14:00:00';
-
-  function updateUptime() {
-    const launchDate = new Date(blogLaunchTime);
-    const now = new Date();
-    const diff = now - launchDate;
-
-    let totalSeconds = diff / 1000;
-    let years = Math.floor(totalSeconds / (3600 * 24 * 365));
-    totalSeconds -= years * 3600 * 24 * 365;
-    let months = Math.floor(totalSeconds / (3600 * 24 * 30)); 
-    totalSeconds -= months * 3600 * 24 * 30;
-    let days = Math.floor(totalSeconds / (3600 * 24));
-    totalSeconds -= days * 3600 * 24;
-    let hours = Math.floor(totalSeconds / 3600);
-    totalSeconds -= hours * 3600;
-    let minutes = Math.floor(totalSeconds / 60);
-    let seconds = Math.floor(totalSeconds % 60);
-
-    document.getElementById('year').textContent = `${years}年`;
-    document.getElementById('month').textContent = `${months}月`;
-    document.getElementById('day').textContent = `${days}日`;
-    document.getElementById('hour').textContent = `${hours}时`;
-    document.getElementById('minute').textContent = `${minutes}分`;
-    document.getElementById('second').textContent = `${seconds}秒`;
-  }
-
-  
-  setInterval(updateUptime, 1000);
-  updateUptime(); 
-
-  $(function () {
-    $("#wordcount").text("字数：" + countChars("#content"));
-  });
-
-  
-  $(document).ready(function () {
-    
-    const $tocContainer = $('#table-of-contents');
-
-    
-    const $headings = $('.main').find('h2, h3, h4');
-
-    
-    let h2Count = 0;
-    let h3Count = 0;
-    let h4Count = 0;
-
-    
-    let currentH2Item = null;
-    let currentH3Item = null;
-
-    
-    $headings.each(function () {
-      const $heading = $(this);
-      const tagName = $heading.prop('tagName');
-      const level = parseInt(tagName.replace('H', ''));
-
-      
-      if (level === 2) {
-        h2Count++;
-        h3Count = 0;
-        h4Count = 0;
-      } else if (level === 3) {
-        h3Count++;
-        h4Count = 0;
-      } else if (level === 4) {
-        h4Count++;
-      }
-
-      
-      let numberText = h2Count.toString(); 
-      if (level >= 3) numberText += '.' + h3Count;
-      if (level >= 4) numberText += '.' + h4Count;
-
-      
-      const headingText = $heading.text().replace(numberText, '').trim();
-      const cleanText = headingText.toLowerCase()
-        .replace(/\s+/g, '-')
-        .replace(/[^\w-]/g, '');
-
-      
-      const safeNumberText = typeof numberText === 'string' ? numberText : numberText.toString();
-      const generatedId = `heading-${safeNumberText.replace(/\./g, '-')}-${cleanText}`;
-      $heading.attr('id', generatedId);
-
-      
-      const $li = $(`<li class="toc-level-${level}"></li>`);
-      const $a = $(`<a class="toc-link" href="#${generatedId}">${numberText} ${headingText}</a>`);
-
-      
-      $a.on('click', function (e) {
-        e.preventDefault();
-        $('.toc-link').removeClass('active');
-        $(this).addClass('active');
-        
-        $('html, body').animate({
-          scrollTop: $($(this).attr('href')).offset().top - 30
-        }, 300);
-      });
-
-      $li.append($a);
-
-      
-      if (level === 2) {
-        const $subList = $('<ul class="toc-list"></ul>').append($li);
-        $tocContainer.append($subList);
-        currentH2Item = $subList;
-        currentH3Item = null;
-      } else if (level === 3) {
-        if (currentH2Item) {
-          currentH2Item.append($li);
-          currentH3Item = $li;
-        } else {
-          $tocContainer.append($li);
-        }
-      } else if (level === 4) {
-        if (currentH3Item) {
-          let $subList = currentH3Item.find('ul.toc-list');
-          if (!$subList.length) {
-            $subList = $('<ul class="toc-list"></ul>');
-            currentH3Item.append($subList);
-          }
-          $subList.append($li);
-        } else if (currentH2Item) {
-          currentH2Item.append($li);
-        } else {
-          $tocContainer.append($li);
-        }
-      }
+    $(function () {
+      $("#wordcount").text("字数：" + countChars("#content"));
     });
-  });
 
-  class History {
-    constructor() {
-      this.v = Cookies.get("history");
-      let b = typeof this.v != "undefined"
-      if (!b) {
-        this.v = [];
-      } else {
-        this.v = JSON.parse(this.v);
-        
-        if (this.v.length > 20) {
-          this.v = this.v.slice(0, 20);
-        }
-        for (let i = 0; i < this.v.length; i++) {
-          this.v[i].date = new Date(this.v[i].date);
-        };
-      }
-      console.log(this.v);
-    }
     
-    find(url) {
-      let i = -1;
-      for (let index = 0; index < this.v.length; index++) {
-        if (this.v[index].url == url) {
-          i = index;
-          continue;
-        }
-      };
-      return i;
-    }
-    
-    
-    
-    add(url, title) {
+    $(document).ready(function () {
       
-      title = title.replace("| 秋来冬风的博客", "")
+      const $tocContainer = $('#table-of-contents');
 
-      let i = this.find(url);
-      if (i != -1) { 
+      
+      const $headings = $('.main').find('h2, h3, h4');
+
+      
+      let h2Count = 0;
+      let h3Count = 0;
+      let h4Count = 0;
+
+      
+      let currentH2Item = null;
+      let currentH3Item = null;
+
+      
+      $headings.each(function () {
+        const $heading = $(this);
+        const tagName = $heading.prop('tagName');
+        const level = parseInt(tagName.replace('H', ''));
+
+        
+        if (level === 2) {
+          h2Count++;
+          h3Count = 0;
+          h4Count = 0;
+        } else if (level === 3) {
+          h3Count++;
+          h4Count = 0;
+        } else if (level === 4) {
+          h4Count++;
+        }
+
+        
+        let numberText = h2Count.toString(); 
+        if (level >= 3) numberText += '.' + h3Count;
+        if (level >= 4) numberText += '.' + h4Count;
+
+        
+        const headingText = $heading.text().replace(numberText, '').trim();
+        const cleanText = headingText.toLowerCase()
+          .replace(/\s+/g, '-')
+          .replace(/[^\w-]/g, '');
+
+        
+        const safeNumberText = typeof numberText === 'string' ? numberText : numberText.toString();
+        const generatedId = `heading-${safeNumberText.replace(/\./g, '-')}-${cleanText}`;
+        $heading.attr('id', generatedId);
+
+        
+        const $li = $(`<li class="toc-level-${level}"></li>`);
+        const $a = $(`<a class="toc-link" href="#${generatedId}">${numberText} ${headingText}</a>`);
+
+        
+        $a.on('click', function (e) {
+          e.preventDefault();
+          $('.toc-link').removeClass('active');
+          $(this).addClass('active');
+          
+          $('html, body').animate({
+            scrollTop: $($(this).attr('href')).offset().top - 30
+          }, 300);
+        });
+
+        $li.append($a);
+
+        
+        if (level === 2) {
+          const $subList = $('<ul class="toc-list"></ul>').append($li);
+          $tocContainer.append($subList);
+          currentH2Item = $subList;
+          currentH3Item = null;
+        } else if (level === 3) {
+          if (currentH2Item) {
+            currentH2Item.append($li);
+            currentH3Item = $li;
+          } else {
+            $tocContainer.append($li);
+          }
+        } else if (level === 4) {
+          if (currentH3Item) {
+            let $subList = currentH3Item.find('ul.toc-list');
+            if (!$subList.length) {
+              $subList = $('<ul class="toc-list"></ul>');
+              currentH3Item.append($subList);
+            }
+            $subList.append($li);
+          } else if (currentH2Item) {
+            currentH2Item.append($li);
+          } else {
+            $tocContainer.append($li);
+          }
+        }
+      });
+    });
+
+    class History {
+      constructor() {
+        this.v = Cookies.get("history");
+        let b = typeof this.v != "undefined"
+        if (!b) {
+          this.v = [];
+        } else {
+          this.v = JSON.parse(this.v);
+          
+          if (this.v.length > 20) {
+            this.v = this.v.slice(0, 20);
+          }
+          for (let i = 0; i < this.v.length; i++) {
+            this.v[i].date = new Date(this.v[i].date);
+          };
+        }
+        console.log(this.v);
+      }
+      
+      find(url) {
+        let i = -1;
+        for (let index = 0; index < this.v.length; index++) {
+          if (this.v[index].url == url) {
+            i = index;
+            continue;
+          }
+        };
+        return i;
+      }
+      
+      
+      
+      add(url, title) {
+        
+        title = title.replace("| 秋来冬风的博客", "")
+
+        let i = this.find(url);
+        if (i != -1) { 
+          let n = [];
+          this.v[i].date = new Date();
+          n.push(this.v[i])
+          for (let index = 0; index < this.v.length; index++) {
+            if (index == i) {
+              continue
+            }
+            n.push(this.v[index])
+          };
+          this.v = n;
+        } else { 
+          let info = { url: url, title: title, date: new Date() };
+          this.v.unshift(info);
+        }
+        Cookies.set("history", JSON.stringify(this.v))
+      }
+      
+      clear() {
+        this.v = [];
+        Cookies.remove("history")
+      }
+      
+      read() {
+        return this.v;
+      }
+      
+      remove(url) {
+        let i = this.find(url);
         let n = [];
-        this.v[i].date = new Date();
-        n.push(this.v[i])
         for (let index = 0; index < this.v.length; index++) {
           if (index == i) {
             continue
@@ -725,59 +793,33 @@
           n.push(this.v[index])
         };
         this.v = n;
-      } else { 
-        let info = { url: url, title: title, date: new Date() };
-        this.v.unshift(info);
+        Cookies.set("history", JSON.stringify(this.v))
       }
-      Cookies.set("history", JSON.stringify(this.v))
     }
-    
-    clear() {
-      this.v = [];
-      Cookies.remove("history")
-    }
-    
-    read() {
-      return this.v;
-    }
-    
-    remove(url) {
-      let i = this.find(url);
-      let n = [];
-      for (let index = 0; index < this.v.length; index++) {
-        if (index == i) {
-          continue
-        }
-        n.push(this.v[index])
-      };
-      this.v = n;
-      Cookies.set("history", JSON.stringify(this.v))
-    }
+
+    $(function () {
+      
+      let h = new History();
+      
+      h.add(location.href, document.title);
+      
+      let v = h.read();
+
+      let u = $(`<ul class="list-group list-unstyled list-group-flush"></ul>`)
+      for (tmp of v) {
+        let l = $(`<li class"list-group-item"> <a href="${tmp.url}">${tmp.title}</a> ${tmp.date.toLocaleString()}<li>`);
+        u.append(l);
+      }
+      $("#history").append(u);
+
+      let clear = $(`<button class="btn btn-primary mt-3">清除历史</button>`);
+      clear.click(function () {
+        h.clear();
+        u.html("");
+      })
+      $("#history").append(clear);
+    });
   }
-
-  $(function () {
-    
-    let h = new History();
-    
-    h.add(location.href, document.title);
-    
-    let v = h.read();
-
-    let u = $(`<ul class="list-group list-unstyled list-group-flush"></ul>`)
-    for (tmp of v) {
-      let l = $(`<li class"list-group-item"> <a href="${tmp.url}">${tmp.title}</a> ${tmp.date.toLocaleString()}<li>`);
-      u.append(l);
-    }
-    $("#history").append(u);
-
-    let clear = $(`<button class="btn btn-primary mt-3">清除历史</button>`);
-    clear.click(function () {
-      h.clear();
-      u.html("");
-    })
-    $("#history").append(clear);
-  });
-}
 </script>
-
+<script async src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" onload="obs()"></script>
 </html>
