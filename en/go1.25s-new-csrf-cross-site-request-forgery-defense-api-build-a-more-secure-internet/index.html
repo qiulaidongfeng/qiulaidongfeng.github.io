@@ -8,7 +8,7 @@
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>
-My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Speed in Chinese Mainland | 秋来冬风的博客</title>
+Go1.25&#39;s New CSRF (Cross Site Request Forgery) Defense API | Build a More Secure Internet | 秋来冬风的博客</title>
 
 
     
@@ -26,12 +26,12 @@ My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Spee
 
 
 
-<meta name="description" content="Share my experience of using Cloudflare Argo Smart Routing, and actually measure that Cloudflare Argo Smart Routing has reduced the visit delay in Chinese Mainland from nearly 50 seconds to 200+ms, which has significantly improved the access speed in Chinese Mainland, even faster than the direct connected vps. In addition, compare the cost-effectiveness analysis of Cloudflare Pro plan, and when to choose Cloudflare Pro plan.">
+<meta name="description" content="Introduce the principles and features of the new CSRF (Cross Site Request Falsification) defense API for Go1.25, as well as its advantages and disadvantages compared to other methods, and what to pay attention to when using the new API.">
 
 
-          
-<meta name="keywords" content="Cloudflare,Cloudflare,Argo,Smart,Routing,Pro,plan,experience,use,experience,Chinese,Mainland,website,traffic,秋来冬风,qiulaidongfeng,博客,blog">
-<link rel="canonical" href="https://qiulaidongfeng.github.io/en/my-experience-with-cloudflare-argo-smart-routing---greatly-improving-access-speed-in-chinese-mainland/" />
+       
+<meta name="keywords" content="CSRF,跨站请求伪造,Go1.25,秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog">
+<link rel="canonical" href="https://qiulaidongfeng.github.io/en/go1.25s-new-csrf-cross-site-request-forgery-defense-api-build-a-more-secure-internet/" />
 <meta name="author" content="qiulaidongfeng(秋来冬风)">
 <meta name="copyright" content="Copyright © 2023 秋来冬风. All rights reserved.">
 <link rel="author" href="https://qiulaidongfeng.github.io/about/">
@@ -39,34 +39,34 @@ My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Spee
 
 
 
-<link rel="alternate" href="https://qiulaidongfeng.github.io/en/my-experience-with-cloudflare-argo-smart-routing---greatly-improving-access-speed-in-chinese-mainland/" hreflang="en" />
+<link rel="alternate" href="https://qiulaidongfeng.github.io/en/go1.25s-new-csrf-cross-site-request-forgery-defense-api-build-a-more-secure-internet/" hreflang="en" />
 
 
   
     
   
-<link rel="alternate" href="https://qiulaidongfeng.github.io/zh-cn/%e6%88%91%e7%9a%84cloudflare-argo-smart-routing%e4%bd%bf%e7%94%a8%e4%bd%93%e9%aa%8c-%e5%a4%a7%e5%b9%85%e6%8f%90%e5%8d%87%e5%a4%9c%e9%97%b4%e4%b8%ad%e5%9b%bd%e5%a4%a7%e9%99%86%e8%ae%bf%e9%97%ae%e9%80%9f%e5%ba%a6/" hreflang="zh-CN" />
+<link rel="alternate" href="https://qiulaidongfeng.github.io/zh-cn/go1.25%e7%9a%84%e6%96%b0csrf%e8%b7%a8%e7%ab%99%e8%84%9a%e6%9c%ac%e6%94%bb%e5%87%bb%e9%98%b2%e5%be%a1api-%e6%9e%84%e5%bb%ba%e6%9b%b4%e5%ae%89%e5%85%a8%e7%9a%84%e4%ba%92%e8%81%94%e7%bd%91/" hreflang="zh-CN" />
 
-<meta property="og:title" content="My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Speed in Chinese Mainland">
+<meta property="og:title" content="Go1.25&#39;s New CSRF (Cross Site Request Forgery) Defense API | Build a More Secure Internet">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="秋来冬风的博客">
-<meta property="og:url" content="https://qiulaidongfeng.github.io/en/my-experience-with-cloudflare-argo-smart-routing---greatly-improving-access-speed-in-chinese-mainland/">
-<meta property="og:description" content="Share my experience of using Cloudflare Argo Smart Routing, and actually measure that Cloudflare Argo Smart Routing has reduced the visit delay in Chinese Mainland from nearly 50 seconds to 200+ms, which has significantly improved the access speed in Chinese Mainland, even faster than the direct connected vps. In addition, compare the cost-effectiveness analysis of Cloudflare Pro plan, and when to choose Cloudflare Pro plan.">
+<meta property="og:url" content="https://qiulaidongfeng.github.io/en/go1.25s-new-csrf-cross-site-request-forgery-defense-api-build-a-more-secure-internet/">
+<meta property="og:description" content="Introduce the principles and features of the new CSRF (Cross Site Request Falsification) defense API for Go1.25, as well as its advantages and disadvantages compared to other methods, and what to pay attention to when using the new API.">
 <meta property="og:locale" content="en" />
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Speed in Chinese Mainland">
-<meta name="twitter:description" content="Share my experience of using Cloudflare Argo Smart Routing, and actually measure that Cloudflare Argo Smart Routing has reduced the visit delay in Chinese Mainland from nearly 50 seconds to 200+ms, which has significantly improved the access speed in Chinese Mainland, even faster than the direct connected vps. In addition, compare the cost-effectiveness analysis of Cloudflare Pro plan, and when to choose Cloudflare Pro plan.">
-<meta name="twitter:url" content="https://qiulaidongfeng.github.io/en/my-experience-with-cloudflare-argo-smart-routing---greatly-improving-access-speed-in-chinese-mainland/">
+<meta name="twitter:title" content="Go1.25&#39;s New CSRF (Cross Site Request Forgery) Defense API | Build a More Secure Internet">
+<meta name="twitter:description" content="Introduce the principles and features of the new CSRF (Cross Site Request Falsification) defense API for Go1.25, as well as its advantages and disadvantages compared to other methods, and what to pay attention to when using the new API.">
+<meta name="twitter:url" content="https://qiulaidongfeng.github.io/en/go1.25s-new-csrf-cross-site-request-forgery-defense-api-build-a-more-secure-internet/">
 
 <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       
       "@type": "BlogPosting",
-      "headline": "My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Speed in Chinese Mainland | 秋来冬风的博客",
+      "headline": "Go1.25\u0027s New CSRF (Cross Site Request Forgery) Defense API | Build a More Secure Internet | 秋来冬风的博客",
       
-      "description": "Share my experience of using Cloudflare Argo Smart Routing, and actually measure that Cloudflare Argo Smart Routing has reduced the visit delay in Chinese Mainland from nearly 50 seconds to 200\u002bms, which has significantly improved the access speed in Chinese Mainland, even faster than the direct connected vps. In addition, compare the cost-effectiveness analysis of Cloudflare Pro plan, and when to choose Cloudflare Pro plan.",
+      "description": "Introduce the principles and features of the new CSRF (Cross Site Request Falsification) defense API for Go1.25, as well as its advantages and disadvantages compared to other methods, and what to pay attention to when using the new API.",
       "author": {
         "@type": "Person",
         "name": "qiulaidongfeng(秋来冬风)",
@@ -77,10 +77,10 @@ My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Spee
         "name": "秋来冬风的博客"
       },
       
-      "datePublished": "2025-08-14T00:50:12+08:00",
+      "datePublished": "2025-10-16T14:24:47+08:00",
       "articleSection": "技术博客",
       
-      "keywords": "Cloudflare,Cloudflare,Argo,Smart,Routing,Pro,plan,experience,use,experience,Chinese,Mainland,website,traffic,秋来冬风,qiulaidongfeng,博客,blog"
+      "keywords": "CSRF,跨站请求伪造,Go1.25,秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog"
     }
 </script>
 
@@ -363,7 +363,7 @@ My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Spee
         
         <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/en/">Ens</a></li>
         
-        <li class="breadcrumb-item active" aria-current="page">My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Speed in Chinese Mainland</li>
+        <li class="breadcrumb-item active" aria-current="page">Go1.25&#39;s New CSRF (Cross Site Request Forgery) Defense API | Build a More Secure Internet</li>
     </ol>
 </nav>
 
@@ -419,14 +419,14 @@ My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Spee
     <div id="main" class="col-lg-8">
       
 <div class="d-flex justify-content-between">
-  <time>2025-08-14</time>
+  <time>2025-10-16</time>
   <p id="wordcount"></p>
 </div>
 
 <div style="background-color: white;" class="p-4">
   <article id="content">
     
-    <h1>My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Speed in Chinese Mainland</h1>
+    <h1>Go1.25&#39;s New CSRF (Cross Site Request Forgery) Defense API | Build a More Secure Internet</h1>
     
     <details class="toc">
       <summary>目录</summary>
@@ -435,53 +435,76 @@ My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Spee
     <div class="main">
       <p>Software translation</p>
 <h2 id="background">Background</h2>
-<p>Cloudflare&rsquo;s free plan provides unlimited CDN, DDoS protection, and a 15 year source server TLS certificate, among other useful services, which are very helpful for building websites.</p>
-<p>This cannot use nodes located in Chinese Mainland. All data is transferred from overseas (outside Chinese Mainland) to Chinese Mainland. According to their sales staff, only nodes with less than 20% Cloudflare can be used.</p>
-<p>After using the free plan, it may take nearly 50 seconds to load the website when you visit the website through http3 at night in Chinese Mainland.</p>
-<h2 id="why-do-we-need-cloudflare-argo-smart-routing">Why do we need Cloudflare Argo Smart Routing</h2>
-<p>The traditional Internet routing (<strong>BGP</strong> border gateway protocol) is responsible for telling which routes are available from point A to point B. But it usually <strong>only chooses the &ldquo;existing&rdquo; route, not the &ldquo;best&rdquo; route</strong>. These roads may be very congested, take long detours, or have poor road conditions.</p>
-<p><strong>Cloudflare Argo Smart Routing</strong> is an additional service that utilizes Cloudflare&rsquo;s global network (covering 330 cities, with 13000 networks directly connected to Cloudflare, including all major ISPs, cloud providers, and enterprises) to <strong>detect and bypass congestion in real-time, and route traffic to the most efficient network path</strong>, accelerating access speed.</p>
-<h2 id="experiencetesting-environment">Experience/Testing Environment</h2>
-<p>The source server is the vps in the east of the united states, which is more than 10000 kilometers away from the test site in Chinese Mainland.</p>
-<p>RTT (round-trip time, which is the time it takes for data to travel from the local to the server and then back) is approximately 240-260ms.</p>
-<p>The homepage of the built website only transfers HTML files ranging from several kb to tens of kb.</p>
-<p>Use Cloudflare&rsquo;s free plan to activate CDN.</p>
-<h2 id="how-to-enable">How to Enable</h2>
-<p>Cloudflare Argo Smart Routing requires an additional fee to use, with a monthly base fee of $5 (including the first GB of data), and $0.1 per GB beyond that. The fee includes the total upstream and downstream data.</p>
-<p>So first, you need to add a payment method. It is recommended to use <strong>MasterCard or Visa card</strong>. If possible, you can go to <strong>Hong Kong and other overseas regions to apply</strong>, or several banks in Chinese Mainland can apply at the age of 16. It is strongly not recommended to use a virtual card.</p>
-<p>Then, simply click a few times on the dashboard to activate it</p>
-<img src="/images/cf_argo.png" class="w-100 h-auto">
-<h2 id="actual-measurement-results">Actual measurement results</h2>
-<table class="table table-striped table-bordered">
-<tbody>
-<tr>
-<td>Comparison items</td>
-<td>Free plan only</td>
-<td>Enable Argo</td>
-</tr>
-<tr>
-<td>Http3 night access</td>
-<td>Slowest by nearly 50 seconds, very severe lag</td>
-<td>200+milliseconds, smooth opening</td>
-</tr>
-<tr>
-<td>Http2 daytime access</td>
-<td>1-2 seconds, open the flash card</td>
-<td>200+milliseconds, smooth opening</td>
-</tr>
-</tbody>
-</table>
-<p>After activation, in many cases, the access time is already less than the RTT of the direct connection.</p>
-<p>This means that accessing the source server through Cloudflare is faster than directly accessing the source server.</p>
-<h2 id="compare-cloudflare-pro-plan">Compare Cloudflare Pro Plan</h2>
-<p><a href="https://www.cloudflare-cn.com/small-business/">Cloudflare Pro Program</a> The current price is $20 per month, which is enough for a free plan+Cloudflare Argo Smart Routing <strong>with a monthly total of 151GB</strong> for both upstream and downstream traffic.</p>
-<p>Refer to <a href="https://www.cloudflare-cn.com/">Cloudflare official website</a> And this high-quality blog found online <a href="https://blog.tangwudi.com/technology/homedatacenter13116">Home Data Center Series Cloudflare Pro Deep Experience: From Free to Pro, Is It Worth Upgrading? </a></p>
-<p>The Cloudflare Pro program has a lot of powerful WAF (Web Application Firewall, used to intercept malicious requests), more customizable optimizations, richer health information, and possibly much faster first byte arrival times.</p>
-<p>If there is a need for these aspects, or if the total uplink and downlink traffic exceeds 151GB per month, upgrading directly to the Cloudflare Pro plan instead of using Cloudflare Argo Smart Routing is probably a better choice. The rich man can take it all.</p>
-<h2 id="when-to-use-cloudflare-argo-smart-routing">When to use Cloudflare Argo Smart Routing</h2>
-<p>For delay sensitive use cases. For example, when opening website pages or real-time chat software, the slower the speed, the easier it is for people to leave.</p>
-<p>These situations should consider using Cloudflare Argo Smart Routing.</p>
-<p>Note that enabling 1000GB costs $104.9. For high traffic use cases such as video playback, online storage upload and download, use with caution to avoid high fees.</p>
+<p>Go1.25 has been released in mid August 2025.</p>
+<p>In this update, an API for defending against CSRF (Cross Site Request Forgery) has been added to the net/http package of the standard library. This API is maintained by Filippo Valsorda, the Go language password package maintainer（ <a href="https://filippo.io">https://filippo.io</a> ）Proposed and added to the standard library, he is a cryptographer.</p>
+<h2 id="csrf-implementation-principle">CSRF Implementation Principle</h2>
+<p>The principle of CSRF is that when a browser sends a request to a website, it will automatically send the cookies saved by that website at the same time.</p>
+<p>This means that there is a situation where a user clicks on a malicious link and automatically sends a request to a special website (such as the user&rsquo;s online banking), because at the same time, the cookie saved by this website is automatically sent. The server sees the user&rsquo;s cookie and believes it is the user&rsquo;s own request, resulting in some malicious behavior such as transferring money from the user&rsquo;s bank card being executed.</p>
+<h2 id="add-cause">Add cause</h2>
+<p><a href="https://filippo.io">Filippo Valsorda</a> Two widely used Go libraries for defending against CSRF attacks seem to be in a state of lack of maintenance (such as reporting security issues for weeks without response).</p>
+<p>Some vulnerabilities in these libraries have been consistently present since their initial release in 2015, and there are also requirements for developers to manage a key to use signature token cookies. This issue has been discussed with other experts, and the conclusion is that the signature and key are invalid.</p>
+<h2 id="new-api">New API</h2>
+<h3 id="api-signature">API Signature</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">CrossOriginProtection</span> <span style="color:#66d9ef">struct</span> {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">NewCrossOriginProtection</span>() <span style="color:#f92672">*</span><span style="color:#a6e22e">CrossOriginProtection</span> 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">c</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">CrossOriginProtection</span>) <span style="color:#a6e22e">AddTrustedOrigin</span>(<span style="color:#a6e22e">origin</span> <span style="color:#66d9ef">string</span>) <span style="color:#66d9ef">error</span> 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">c</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">CrossOriginProtection</span>) <span style="color:#a6e22e">AddInsecureBypassPattern</span>(<span style="color:#a6e22e">pattern</span> <span style="color:#66d9ef">string</span>) 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">c</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">CrossOriginProtection</span>) <span style="color:#a6e22e">Check</span>(<span style="color:#a6e22e">req</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Request</span>) <span style="color:#66d9ef">error</span> 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">c</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">CrossOriginProtection</span>) <span style="color:#a6e22e">Handler</span>(<span style="color:#a6e22e">h</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Handler</span>) <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Handler</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">c</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">CrossOriginProtection</span>) <span style="color:#a6e22e">SetDenyHandler</span>(<span style="color:#a6e22e">h</span> <span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Handler</span>)
+</span></span></code></pre></div><p>The API documentation is available <a href="https://pkg.go.dev/net/http#CrossOriginProtection">https://pkg.go.dev/net/http#CrossOriginProtection</a></p>
+<h3 id="principles-of-api-implementation">Principles of API Implementation</h3>
+<p>In the past, some measures to defend against CSRF (CSRF tokens, SameSite cookies, Origin headers, etc.) either required developers to make extra efforts (such as modifying HTML forms) or had various other issues.</p>
+<p>The new API added by Go1.25 defends against CSRF through the following methods:</p>
+<ol>
+<li>If the request method is a secure method (GET, HEAD, OPTIONS), pass it directly;</li>
+<li>Otherwise, check Sec-Fetch-Site:
+<ul>
+<li>Pass for &ldquo;same origin&rdquo; and &ldquo;none&rdquo; → pass;</li>
+<li>Check if bypass is allowed for other non null values. If yes, pass; otherwise, intercept;</li>
+</ul>
+</li>
+<li>If Sec-Fetch-Site is empty, check Origin:
+<ul>
+<li>Origin is empty → passed;</li>
+<li>Origin&rsquo;s Host is consistent with the requested Host → Passed;</li>
+</ul>
+</li>
+<li>Otherwise, check if bypassing is allowed. If yes, pass, otherwise intercept.</li>
+</ol>
+<p>The key point is these key value pairs in the HTTP header:</p>
+<ul>
+<li>Sec-Fetch-Site (available in all major browsers since 2023)</li>
+<li>Origin (defined in RFC 6454, automatically sent by the browser upon cross source requests)</li>
+<li>Host (required by section 5.4 of RFC 7230 (HTTP/1.1) standard)</li>
+</ul>
+<p>CSRF needs to be performed in the user&rsquo;s browser, so forging these key value pairs would violate the implementation principles of the attack.
+For example, if Sec-Fetch-Site is genuine, it will not pass the inspection, and if it is forged, there will be no user cookies automatically sent by the browser**</p>
+<p>The same applies to other key value pairs.</p>
+<h3 id="the-troubles-of-past-defense-methods">The Troubles of Past Defense Methods</h3>
+<p>CSRF tokens require modifying HTML forms and additional database storage for the tokens.</p>
+<p>SameSite cookies cannot defend against attacks between different subdomains within the same site.</p>
+<p>The Origin Header has similar issues to the above and is not sent in certain types of requests.</p>
+<h3 id="advantages-of-the-new-api">Advantages of the New API</h3>
+<ul>
+<li>No need to modify HTML forms or other elements, requiring no extra effort</li>
+<li>Can defend against attacks between different subdomains within the same site</li>
+<li>Defense can be enabled with just one line of code (<code>http.NewCrossOriginProtection().Handler(mux)</code>)</li>
+</ul>
+<h2 id="points-to-note">Points to Note</h2>
+<h3 id="maintain-semantics-of-safe-methods">Maintain Semantics of Safe Methods</h3>
+<p>For HTTP safe methods like GET, maintain their semantics and do not use these methods for sensitive operations.</p>
+<h3 id="prevent-cookie-theft">Prevent Cookie Theft</h3>
+<p>The new API only defends against CSRF attacks caused by browsers automatically sending cookies. It is ineffective if the user&rsquo;s cookies have already been stolen.</p>
+<p>In practice, set the <code>HttpOnly</code> and <code>Secure</code> flags for cookies to prevent cookie theft.</p>
+<h3 id="scenarios-with-high-security-requirements">Scenarios with High Security Requirements</h3>
+<p>For scenarios with high security requirements such as finance and e-commerce, CSRF tokens can be used. This prevents outdated browsers—due to missing the required key-value pairs for HTTP Headers—from incorrectly passing verification when under attack.</p>
 
     </div>
   </div>
@@ -490,7 +513,8 @@ My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Spee
   <div>
     <div>Tags:</div>
     <ul>
-        <li><a href="/tags/cloudflare/">Cloudflare</a></li>
+        <li><a href="/tags/go/">Go</a></li>
+        <li><a href="/tags/go1.25/">Go1.25</a></li>
         <li><a href="/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/">网站相关</a></li>
     </ul>
   </div>

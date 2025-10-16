@@ -8,7 +8,7 @@
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>
-My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Speed in Chinese Mainland | 秋来冬风的博客</title>
+Why Not Use TLS to Connect to the Database Instead of WireGuard? | 秋来冬风的博客</title>
 
 
     
@@ -26,12 +26,12 @@ My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Spee
 
 
 
-<meta name="description" content="Share my experience of using Cloudflare Argo Smart Routing, and actually measure that Cloudflare Argo Smart Routing has reduced the visit delay in Chinese Mainland from nearly 50 seconds to 200+ms, which has significantly improved the access speed in Chinese Mainland, even faster than the direct connected vps. In addition, compare the cost-effectiveness analysis of Cloudflare Pro plan, and when to choose Cloudflare Pro plan.">
+<meta name="description" content="TLS and WireGuard connection databases are analyzed from four dimensions: configuration frequency, quantum security, anti intrusion, and scalability. WireGuard has obvious advantages in small-scale scenarios and is an excellent alternative to TLS.">
 
 
           
-<meta name="keywords" content="Cloudflare,Cloudflare,Argo,Smart,Routing,Pro,plan,experience,use,experience,Chinese,Mainland,website,traffic,秋来冬风,qiulaidongfeng,博客,blog">
-<link rel="canonical" href="https://qiulaidongfeng.github.io/en/my-experience-with-cloudflare-argo-smart-routing---greatly-improving-access-speed-in-chinese-mainland/" />
+<meta name="keywords" content="TLS,WireGuard,database,秋来冬风,qiulaidongfeng,博客,blog">
+<link rel="canonical" href="https://qiulaidongfeng.github.io/en/why-not-use-tls-to-connect-to-the-database-instead-of-wireguard/" />
 <meta name="author" content="qiulaidongfeng(秋来冬风)">
 <meta name="copyright" content="Copyright © 2023 秋来冬风. All rights reserved.">
 <link rel="author" href="https://qiulaidongfeng.github.io/about/">
@@ -39,34 +39,34 @@ My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Spee
 
 
 
-<link rel="alternate" href="https://qiulaidongfeng.github.io/en/my-experience-with-cloudflare-argo-smart-routing---greatly-improving-access-speed-in-chinese-mainland/" hreflang="en" />
+<link rel="alternate" href="https://qiulaidongfeng.github.io/en/why-not-use-tls-to-connect-to-the-database-instead-of-wireguard/" hreflang="en" />
 
 
   
     
   
-<link rel="alternate" href="https://qiulaidongfeng.github.io/zh-cn/%e6%88%91%e7%9a%84cloudflare-argo-smart-routing%e4%bd%bf%e7%94%a8%e4%bd%93%e9%aa%8c-%e5%a4%a7%e5%b9%85%e6%8f%90%e5%8d%87%e5%a4%9c%e9%97%b4%e4%b8%ad%e5%9b%bd%e5%a4%a7%e9%99%86%e8%ae%bf%e9%97%ae%e9%80%9f%e5%ba%a6/" hreflang="zh-CN" />
+<link rel="alternate" href="https://qiulaidongfeng.github.io/zh-cn/%e4%b8%ba%e4%bb%80%e4%b9%88%e4%b8%8d%e8%a6%81%e4%bd%bf%e7%94%a8tls%e8%bf%9e%e6%8e%a5%e6%95%b0%e6%8d%ae%e5%ba%93%e8%80%8c%e7%94%a8wireguard%e6%9b%bf%e4%bb%a3/" hreflang="zh-CN" />
 
-<meta property="og:title" content="My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Speed in Chinese Mainland">
+<meta property="og:title" content="Why Not Use TLS to Connect to the Database Instead of WireGuard?">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="秋来冬风的博客">
-<meta property="og:url" content="https://qiulaidongfeng.github.io/en/my-experience-with-cloudflare-argo-smart-routing---greatly-improving-access-speed-in-chinese-mainland/">
-<meta property="og:description" content="Share my experience of using Cloudflare Argo Smart Routing, and actually measure that Cloudflare Argo Smart Routing has reduced the visit delay in Chinese Mainland from nearly 50 seconds to 200+ms, which has significantly improved the access speed in Chinese Mainland, even faster than the direct connected vps. In addition, compare the cost-effectiveness analysis of Cloudflare Pro plan, and when to choose Cloudflare Pro plan.">
+<meta property="og:url" content="https://qiulaidongfeng.github.io/en/why-not-use-tls-to-connect-to-the-database-instead-of-wireguard/">
+<meta property="og:description" content="TLS and WireGuard connection databases are analyzed from four dimensions: configuration frequency, quantum security, anti intrusion, and scalability. WireGuard has obvious advantages in small-scale scenarios and is an excellent alternative to TLS.">
 <meta property="og:locale" content="en" />
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Speed in Chinese Mainland">
-<meta name="twitter:description" content="Share my experience of using Cloudflare Argo Smart Routing, and actually measure that Cloudflare Argo Smart Routing has reduced the visit delay in Chinese Mainland from nearly 50 seconds to 200+ms, which has significantly improved the access speed in Chinese Mainland, even faster than the direct connected vps. In addition, compare the cost-effectiveness analysis of Cloudflare Pro plan, and when to choose Cloudflare Pro plan.">
-<meta name="twitter:url" content="https://qiulaidongfeng.github.io/en/my-experience-with-cloudflare-argo-smart-routing---greatly-improving-access-speed-in-chinese-mainland/">
+<meta name="twitter:title" content="Why Not Use TLS to Connect to the Database Instead of WireGuard?">
+<meta name="twitter:description" content="TLS and WireGuard connection databases are analyzed from four dimensions: configuration frequency, quantum security, anti intrusion, and scalability. WireGuard has obvious advantages in small-scale scenarios and is an excellent alternative to TLS.">
+<meta name="twitter:url" content="https://qiulaidongfeng.github.io/en/why-not-use-tls-to-connect-to-the-database-instead-of-wireguard/">
 
 <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       
       "@type": "BlogPosting",
-      "headline": "My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Speed in Chinese Mainland | 秋来冬风的博客",
+      "headline": "Why Not Use TLS to Connect to the Database Instead of WireGuard? | 秋来冬风的博客",
       
-      "description": "Share my experience of using Cloudflare Argo Smart Routing, and actually measure that Cloudflare Argo Smart Routing has reduced the visit delay in Chinese Mainland from nearly 50 seconds to 200\u002bms, which has significantly improved the access speed in Chinese Mainland, even faster than the direct connected vps. In addition, compare the cost-effectiveness analysis of Cloudflare Pro plan, and when to choose Cloudflare Pro plan.",
+      "description": "TLS and WireGuard connection databases are analyzed from four dimensions: configuration frequency, quantum security, anti intrusion, and scalability. WireGuard has obvious advantages in small-scale scenarios and is an excellent alternative to TLS.",
       "author": {
         "@type": "Person",
         "name": "qiulaidongfeng(秋来冬风)",
@@ -77,10 +77,10 @@ My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Spee
         "name": "秋来冬风的博客"
       },
       
-      "datePublished": "2025-08-14T00:50:12+08:00",
+      "datePublished": "2025-10-16T11:59:13+08:00",
       "articleSection": "技术博客",
       
-      "keywords": "Cloudflare,Cloudflare,Argo,Smart,Routing,Pro,plan,experience,use,experience,Chinese,Mainland,website,traffic,秋来冬风,qiulaidongfeng,博客,blog"
+      "keywords": "TLS,WireGuard,database,秋来冬风,qiulaidongfeng,博客,blog"
     }
 </script>
 
@@ -363,7 +363,7 @@ My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Spee
         
         <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/en/">Ens</a></li>
         
-        <li class="breadcrumb-item active" aria-current="page">My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Speed in Chinese Mainland</li>
+        <li class="breadcrumb-item active" aria-current="page">Why Not Use TLS to Connect to the Database Instead of WireGuard?</li>
     </ol>
 </nav>
 
@@ -419,14 +419,14 @@ My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Spee
     <div id="main" class="col-lg-8">
       
 <div class="d-flex justify-content-between">
-  <time>2025-08-14</time>
+  <time>2025-10-16</time>
   <p id="wordcount"></p>
 </div>
 
 <div style="background-color: white;" class="p-4">
   <article id="content">
     
-    <h1>My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Speed in Chinese Mainland</h1>
+    <h1>Why Not Use TLS to Connect to the Database Instead of WireGuard?</h1>
     
     <details class="toc">
       <summary>目录</summary>
@@ -434,54 +434,30 @@ My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Spee
     </details>
     <div class="main">
       <p>Software translation</p>
-<h2 id="background">Background</h2>
-<p>Cloudflare&rsquo;s free plan provides unlimited CDN, DDoS protection, and a 15 year source server TLS certificate, among other useful services, which are very helpful for building websites.</p>
-<p>This cannot use nodes located in Chinese Mainland. All data is transferred from overseas (outside Chinese Mainland) to Chinese Mainland. According to their sales staff, only nodes with less than 20% Cloudflare can be used.</p>
-<p>After using the free plan, it may take nearly 50 seconds to load the website when you visit the website through http3 at night in Chinese Mainland.</p>
-<h2 id="why-do-we-need-cloudflare-argo-smart-routing">Why do we need Cloudflare Argo Smart Routing</h2>
-<p>The traditional Internet routing (<strong>BGP</strong> border gateway protocol) is responsible for telling which routes are available from point A to point B. But it usually <strong>only chooses the &ldquo;existing&rdquo; route, not the &ldquo;best&rdquo; route</strong>. These roads may be very congested, take long detours, or have poor road conditions.</p>
-<p><strong>Cloudflare Argo Smart Routing</strong> is an additional service that utilizes Cloudflare&rsquo;s global network (covering 330 cities, with 13000 networks directly connected to Cloudflare, including all major ISPs, cloud providers, and enterprises) to <strong>detect and bypass congestion in real-time, and route traffic to the most efficient network path</strong>, accelerating access speed.</p>
-<h2 id="experiencetesting-environment">Experience/Testing Environment</h2>
-<p>The source server is the vps in the east of the united states, which is more than 10000 kilometers away from the test site in Chinese Mainland.</p>
-<p>RTT (round-trip time, which is the time it takes for data to travel from the local to the server and then back) is approximately 240-260ms.</p>
-<p>The homepage of the built website only transfers HTML files ranging from several kb to tens of kb.</p>
-<p>Use Cloudflare&rsquo;s free plan to activate CDN.</p>
-<h2 id="how-to-enable">How to Enable</h2>
-<p>Cloudflare Argo Smart Routing requires an additional fee to use, with a monthly base fee of $5 (including the first GB of data), and $0.1 per GB beyond that. The fee includes the total upstream and downstream data.</p>
-<p>So first, you need to add a payment method. It is recommended to use <strong>MasterCard or Visa card</strong>. If possible, you can go to <strong>Hong Kong and other overseas regions to apply</strong>, or several banks in Chinese Mainland can apply at the age of 16. It is strongly not recommended to use a virtual card.</p>
-<p>Then, simply click a few times on the dashboard to activate it</p>
-<img src="/images/cf_argo.png" class="w-100 h-auto">
-<h2 id="actual-measurement-results">Actual measurement results</h2>
-<table class="table table-striped table-bordered">
-<tbody>
-<tr>
-<td>Comparison items</td>
-<td>Free plan only</td>
-<td>Enable Argo</td>
-</tr>
-<tr>
-<td>Http3 night access</td>
-<td>Slowest by nearly 50 seconds, very severe lag</td>
-<td>200+milliseconds, smooth opening</td>
-</tr>
-<tr>
-<td>Http2 daytime access</td>
-<td>1-2 seconds, open the flash card</td>
-<td>200+milliseconds, smooth opening</td>
-</tr>
-</tbody>
-</table>
-<p>After activation, in many cases, the access time is already less than the RTT of the direct connection.</p>
-<p>This means that accessing the source server through Cloudflare is faster than directly accessing the source server.</p>
-<h2 id="compare-cloudflare-pro-plan">Compare Cloudflare Pro Plan</h2>
-<p><a href="https://www.cloudflare-cn.com/small-business/">Cloudflare Pro Program</a> The current price is $20 per month, which is enough for a free plan+Cloudflare Argo Smart Routing <strong>with a monthly total of 151GB</strong> for both upstream and downstream traffic.</p>
-<p>Refer to <a href="https://www.cloudflare-cn.com/">Cloudflare official website</a> And this high-quality blog found online <a href="https://blog.tangwudi.com/technology/homedatacenter13116">Home Data Center Series Cloudflare Pro Deep Experience: From Free to Pro, Is It Worth Upgrading? </a></p>
-<p>The Cloudflare Pro program has a lot of powerful WAF (Web Application Firewall, used to intercept malicious requests), more customizable optimizations, richer health information, and possibly much faster first byte arrival times.</p>
-<p>If there is a need for these aspects, or if the total uplink and downlink traffic exceeds 151GB per month, upgrading directly to the Cloudflare Pro plan instead of using Cloudflare Argo Smart Routing is probably a better choice. The rich man can take it all.</p>
-<h2 id="when-to-use-cloudflare-argo-smart-routing">When to use Cloudflare Argo Smart Routing</h2>
-<p>For delay sensitive use cases. For example, when opening website pages or real-time chat software, the slower the speed, the easier it is for people to leave.</p>
-<p>These situations should consider using Cloudflare Argo Smart Routing.</p>
-<p>Note that enabling 1000GB costs $104.9. For high traffic use cases such as video playback, online storage upload and download, use with caution to avoid high fees.</p>
+<p>This is the second blog post in the <a href="/categories/%E6%88%91%E7%9A%84%E9%AB%98%E5%90%9E%E5%90%90http2%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%98%E5%8C%96%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%E7%B3%BB%E5%88%97/">&ldquo;My Experience Sharing Series on High Throughput http2 Server Optimization&rdquo;</a>.</p>
+<p>The previous blog mentioned not using TLS to connect to the database and instead using WireGuard. This article provides a detailed explanation of why this is the case.</p>
+<h2 id="number-of-configurations">Number of configurations</h2>
+<p>TLS works at the application layer, while WireGuard works at the network layer, resulting in configuration differences.</p>
+<p>At the application layer, it means that each database instance needs to modify the configuration file to configure it, while at the network layer, it means that only the database needs to be configured on the host.</p>
+<p>So, if n databases and m database hosts are used, TLS needs to be configured n times by m; Using WireGuard only requires m configurations.</p>
+<p><strong>Taking MySQL+Redis as an example, if there are 5 hosts, it means that TLS needs to be configured 10 times, while WireGuard only needs to be configured 5 times.</strong></p>
+<p>Moreover, with TLS, production environments typically have their own CA, self issue certificates, and configure automatic certificate updates, which can be more complex.</p>
+<h2 id="quantum-security">Quantum security</h2>
+<p>The current standard TLS1.3 does not provide quantum security, and both RSA and ECC are quantum insecure.</p>
+<p>Although quantum secure key exchange algorithms such as ML-KEM hybrid X25519 have been offered since go1.24, they are currently not supported in mainstream TLS databases.</p>
+<p>Although the Curve25519 used by WireGuard does not provide quantum security, WireGuard supports PSK. By providing a 256 bit randomly generated key, even if an attacker can crack Curve25519 (such as through a quantum computer), they still need to crack PSK to decrypt the traffic. Similar to AES256, quantum security is sufficient, and symmetric keys themselves are quantum secure. Ultimately, it makes WireGuard with PSK quantum secure.</p>
+<h2 id="anti-intrusion-analysis">Anti intrusion analysis</h2>
+<p>Now, by deploying the database on a cloud server and using WireGuard, the database can be completely on the intranet without being exposed to the public network, reducing the attack surface.</p>
+<p>WireGuard has provided encryption as an alternative to TLS. In real production environments, effective authentication can be achieved by configuring dedicated point-to-point routing from each client to the database, assigning dedicated usernames, passwords, and permissions.</p>
+<p>If a node using a database is compromised and listens to internal network traffic, it can also steal TLS client certificates and impersonate clients on the spot.</p>
+<p>So using WireGuard with supporting measures and using TLS to connect to the database also has good anti intrusion capabilities.</p>
+<h2 id="scalability">Scalability</h2>
+<p>In situations where there are a large number of nodes, such as hundreds or even more nodes connected to the database, the operation and maintenance costs of WireGuard with supporting measures are higher, because IP allocation, setting dedicated usernames, passwords, and permission assignments need to be repeated every time a node is added, especially when the WireGuard configuration file of the database needs to be modified every time a node is added.</p>
+<p>TLS, on the other hand, can automatically allocate and update certificates through self built CAs and improved toolchains, achieving dynamic node growth.</p>
+<h2 id="suggestion">Suggestion</h2>
+<p>WireGuard with accompanying measures is a better choice for connecting to databases on a small scale.</p>
+<p>As the number of nodes increases, the operational costs of using TLS will be evenly distributed due to the scale, making this solution more suitable.</p>
+<p>Combining WireGuard and TLS is always possible, but it introduces more opportunities for errors to reduce availability, which is not worth it on a small scale.</p>
 
     </div>
   </div>
@@ -490,12 +466,18 @@ My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Spee
   <div>
     <div>Tags:</div>
     <ul>
-        <li><a href="/tags/cloudflare/">Cloudflare</a></li>
         <li><a href="/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/">网站相关</a></li>
+        <li><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></li>
     </ul>
   </div>
 
 
+  <div>
+    <div>Categories:</div>
+    <ul>
+        <li><a href="/categories/%E6%88%91%E7%9A%84%E9%AB%98%E5%90%9E%E5%90%90http2%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%98%E5%8C%96%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%E7%B3%BB%E5%88%97/">我的高吞吐http2服务器优化经验分享系列</a></li>
+    </ul>
+  </div>
 
 
     </div>

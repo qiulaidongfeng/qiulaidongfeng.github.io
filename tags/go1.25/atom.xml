@@ -6,8 +6,15 @@
     <description>Recent content in Go1.25 on 秋来冬风的博客</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 20 Aug 2025 23:49:45 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 16 Oct 2025 14:24:47 +0800</lastBuildDate>
     <atom:link href="https://qiulaidongfeng.github.io/tags/go1.25/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go1.25&#39;s New CSRF (Cross Site Request Forgery) Defense API | Build a More Secure Internet</title>
+      <link>https://qiulaidongfeng.github.io/en/go1.25s-new-csrf-cross-site-request-forgery-defense-api-build-a-more-secure-internet/</link>
+      <pubDate>Thu, 16 Oct 2025 14:24:47 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/en/go1.25s-new-csrf-cross-site-request-forgery-defense-api-build-a-more-secure-internet/</guid>
+      <description>&lt;p&gt;Software translation&lt;/p&gt;&#xA;&lt;h2 id=&#34;background&#34;&gt;Background&lt;/h2&gt;&#xA;&lt;p&gt;Go1.25 has been released in mid August 2025.&lt;/p&gt;&#xA;&lt;p&gt;In this update, an API for defending against CSRF (Cross Site Request Forgery) has been added to the net/http package of the standard library. This API is maintained by Filippo Valsorda, the Go language password package maintainer（ &lt;a href=&#34;https://filippo.io&#34;&gt;https://filippo.io&lt;/a&gt; ）Proposed and added to the standard library, he is a cryptographer.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Go1.25的新CSRF（跨站请求伪造）防御API | 构建更安全的互联网</title>
       <link>https://qiulaidongfeng.github.io/zh-cn/go1.25%E7%9A%84%E6%96%B0csrf%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%E9%98%B2%E5%BE%A1api-%E6%9E%84%E5%BB%BA%E6%9B%B4%E5%AE%89%E5%85%A8%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91/</link>

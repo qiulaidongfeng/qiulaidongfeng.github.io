@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>数据库 on 秋来冬风的博客</title>
-    <link>https://qiulaidongfeng.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
-    <description>Recent content in 数据库 on 秋来冬风的博客</description>
+    <title>我的高吞吐http2服务器优化经验分享系列 on 秋来冬风的博客</title>
+    <link>https://qiulaidongfeng.github.io/categories/%E6%88%91%E7%9A%84%E9%AB%98%E5%90%9E%E5%90%90http2%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%98%E5%8C%96%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%E7%B3%BB%E5%88%97/</link>
+    <description>Recent content in 我的高吞吐http2服务器优化经验分享系列 on 秋来冬风的博客</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
     <lastBuildDate>Thu, 16 Oct 2025 11:59:13 +0800</lastBuildDate>
-    <atom:link href="https://qiulaidongfeng.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/atom.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://qiulaidongfeng.github.io/categories/%E6%88%91%E7%9A%84%E9%AB%98%E5%90%9E%E5%90%90http2%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%98%E5%8C%96%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%E7%B3%BB%E5%88%97/atom.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Why Not Use TLS to Connect to the Database Instead of WireGuard?</title>
       <link>https://qiulaidongfeng.github.io/en/why-not-use-tls-to-connect-to-the-database-instead-of-wireguard/</link>
@@ -23,18 +23,11 @@
       <description>&lt;p&gt;这是&lt;a href=&#34;https://qiulaidongfeng.github.io/categories/%E6%88%91%E7%9A%84%E9%AB%98%E5%90%9E%E5%90%90http2%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%98%E5%8C%96%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%E7%B3%BB%E5%88%97/&#34;&gt;我的高吞吐http2服务器优化经验分享系列&lt;/a&gt; 第二篇博客。&lt;/p&gt;&#xA;&lt;p&gt;上一篇博客提到不要使用TLS连接数据库，可以使用WireGuard替代，本文详细介绍为什么这样。&lt;/p&gt;&#xA;&lt;h2 id=&#34;配置次数&#34;&gt;配置次数&lt;/h2&gt;&#xA;&lt;p&gt;TLS工作在应用层，WireGuard工作在网络层，造成配置差异。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>用redis构建聊天室</title>
-      <link>https://qiulaidongfeng.github.io/zh-cn/%E7%94%A8redis%E6%9E%84%E5%BB%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/</link>
-      <pubDate>Mon, 21 Apr 2025 10:15:12 +0000</pubDate>
-      <guid>https://qiulaidongfeng.github.io/zh-cn/%E7%94%A8redis%E6%9E%84%E5%BB%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/</guid>
-      <description>&lt;p&gt;此博客记录我用redis构建聊天室的一个方案。&lt;/p&gt;&#xA;&lt;p&gt;首先，要实现的功能是聊天室可以被多个用户进入，在里面互相发消息聊天，能显示在线id数，聊天室会在一段时间没人发消息后自动删除。&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>数据库配置tls的几个坑点</title>
-      <link>https://qiulaidongfeng.github.io/zh-cn/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AEtls%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9D%91%E7%82%B9/</link>
-      <pubDate>Wed, 19 Mar 2025 19:22:51 +0000</pubDate>
-      <guid>https://qiulaidongfeng.github.io/zh-cn/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AEtls%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9D%91%E7%82%B9/</guid>
-      <description>&lt;ol&gt;&#xA;&lt;li&gt;用docker安装的redis，配置tls时，许多网上相关的内容都是讲的生成证书和改redis配置文件的tls部分，但是没讲如果docker安装在wsl2，还要修改redis配置文件的bind为0.0.0.0。&lt;/li&gt;&#xA;&lt;li&gt;mongodb不支持tls1.3。&lt;/li&gt;&#xA;&lt;li&gt;mongodb和redis默认在启用tls时启用客户端证书验证，意味着默认只配置服务端证书验证还不能用tls连接mongodb和redis。&lt;/li&gt;&#xA;&lt;li&gt;一些网上讲用openssl自建ca签发tls证书的内容没有讲到证书SAN信息要包含服务端的域名或IP，不包含的话服务端使用这样的证书，客户端连接时会产生这样的错误Hostname/IP does not match certificate&amp;rsquo;s altnames: IP: 127.0.0.1 is not in the cert&amp;rsquo;s list:&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
+      <title>如何做到高可用高吞吐的web服务 | 全栈优化实践</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/%E5%A6%82%E4%BD%95%E5%81%9A%E5%88%B0%E9%AB%98%E5%8F%AF%E7%94%A8%E9%AB%98%E5%90%9E%E5%90%90%E7%9A%84web%E6%9C%8D%E5%8A%A1/</link>
+      <pubDate>Wed, 24 Sep 2025 19:40:58 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/%E5%A6%82%E4%BD%95%E5%81%9A%E5%88%B0%E9%AB%98%E5%8F%AF%E7%94%A8%E9%AB%98%E5%90%9E%E5%90%90%E7%9A%84web%E6%9C%8D%E5%8A%A1/</guid>
+      <description>&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;&#xA;&lt;p&gt;这是&lt;a href=&#34;https://qiulaidongfeng.github.io/categories/%E6%88%91%E7%9A%84%E9%AB%98%E5%90%9E%E5%90%90http2%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%98%E5%8C%96%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%E7%B3%BB%E5%88%97/&#34;&gt;我的高吞吐http2服务器优化经验分享系列&lt;/a&gt; 第一篇博客。&lt;/p&gt;&#xA;&lt;p&gt;本文分享笔者一些搭建web服务时，做到高可用且高吞吐的经验。&lt;/p&gt;&#xA;&lt;h2 id=&#34;硬件角度&#34;&gt;硬件角度&lt;/h2&gt;&#xA;&lt;h3 id=&#34;服务器&#34;&gt;服务器&lt;/h3&gt;&#xA;&lt;p&gt;通常，web服务被部署在云服务器上，而且比较可能是在成本较低的vps(虚拟专用服务器)。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

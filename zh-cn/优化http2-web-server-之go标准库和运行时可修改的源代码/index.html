@@ -2,13 +2,13 @@
 
 
 
-<html lang="en" dir="ltr">
+<html lang="zh-CN" dir="ltr">
 
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>
-My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Speed in Chinese Mainland | 秋来冬风的博客</title>
+优化http2 Web Server 之Go标准库和运行时可修改的源代码 | 秋来冬风的博客</title>
 
 
     
@@ -26,12 +26,12 @@ My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Spee
 
 
 
-<meta name="description" content="Share my experience of using Cloudflare Argo Smart Routing, and actually measure that Cloudflare Argo Smart Routing has reduced the visit delay in Chinese Mainland from nearly 50 seconds to 200+ms, which has significantly improved the access speed in Chinese Mainland, even faster than the direct connected vps. In addition, compare the cost-effectiveness analysis of Cloudflare Pro plan, and when to choose Cloudflare Pro plan.">
+<meta name="description" content="分享一些发现的Go HTTP2 服务器标准库与运行时源码可修改点，包含调帧大小、减内存分配、控 GC 占用、调goroutine栈大小等。">
 
 
-          
-<meta name="keywords" content="Cloudflare,Cloudflare,Argo,Smart,Routing,Pro,plan,experience,use,experience,Chinese,Mainland,website,traffic,秋来冬风,qiulaidongfeng,博客,blog">
-<link rel="canonical" href="https://qiulaidongfeng.github.io/en/my-experience-with-cloudflare-argo-smart-routing---greatly-improving-access-speed-in-chinese-mainland/" />
+       
+<meta name="keywords" content="秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog">
+<link rel="canonical" href="https://qiulaidongfeng.github.io/zh-cn/%E4%BC%98%E5%8C%96http2-web-server-%E4%B9%8Bgo%E6%A0%87%E5%87%86%E5%BA%93%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6%E5%8F%AF%E4%BF%AE%E6%94%B9%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81/" />
 <meta name="author" content="qiulaidongfeng(秋来冬风)">
 <meta name="copyright" content="Copyright © 2023 秋来冬风. All rights reserved.">
 <link rel="author" href="https://qiulaidongfeng.github.io/about/">
@@ -39,34 +39,34 @@ My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Spee
 
 
 
-<link rel="alternate" href="https://qiulaidongfeng.github.io/en/my-experience-with-cloudflare-argo-smart-routing---greatly-improving-access-speed-in-chinese-mainland/" hreflang="en" />
+<link rel="alternate" href="https://qiulaidongfeng.github.io/zh-cn/%E4%BC%98%E5%8C%96http2-web-server-%E4%B9%8Bgo%E6%A0%87%E5%87%86%E5%BA%93%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6%E5%8F%AF%E4%BF%AE%E6%94%B9%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81/" hreflang="zh-CN" />
 
 
   
     
   
-<link rel="alternate" href="https://qiulaidongfeng.github.io/zh-cn/%e6%88%91%e7%9a%84cloudflare-argo-smart-routing%e4%bd%bf%e7%94%a8%e4%bd%93%e9%aa%8c-%e5%a4%a7%e5%b9%85%e6%8f%90%e5%8d%87%e5%a4%9c%e9%97%b4%e4%b8%ad%e5%9b%bd%e5%a4%a7%e9%99%86%e8%ae%bf%e9%97%ae%e9%80%9f%e5%ba%a6/" hreflang="zh-CN" />
+<link rel="alternate" href="https://qiulaidongfeng.github.io/en/optimize-the-go-standard-library-and-runtime-modifiable-source-code-for-http2-web-server/" hreflang="en" />
 
-<meta property="og:title" content="My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Speed in Chinese Mainland">
+<meta property="og:title" content="优化http2 Web Server 之Go标准库和运行时可修改的源代码">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="秋来冬风的博客">
-<meta property="og:url" content="https://qiulaidongfeng.github.io/en/my-experience-with-cloudflare-argo-smart-routing---greatly-improving-access-speed-in-chinese-mainland/">
-<meta property="og:description" content="Share my experience of using Cloudflare Argo Smart Routing, and actually measure that Cloudflare Argo Smart Routing has reduced the visit delay in Chinese Mainland from nearly 50 seconds to 200+ms, which has significantly improved the access speed in Chinese Mainland, even faster than the direct connected vps. In addition, compare the cost-effectiveness analysis of Cloudflare Pro plan, and when to choose Cloudflare Pro plan.">
-<meta property="og:locale" content="en" />
+<meta property="og:url" content="https://qiulaidongfeng.github.io/zh-cn/%E4%BC%98%E5%8C%96http2-web-server-%E4%B9%8Bgo%E6%A0%87%E5%87%86%E5%BA%93%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6%E5%8F%AF%E4%BF%AE%E6%94%B9%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81/">
+<meta property="og:description" content="分享一些发现的Go HTTP2 服务器标准库与运行时源码可修改点，包含调帧大小、减内存分配、控 GC 占用、调goroutine栈大小等。">
+<meta property="og:locale" content="zh-CN" />
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Speed in Chinese Mainland">
-<meta name="twitter:description" content="Share my experience of using Cloudflare Argo Smart Routing, and actually measure that Cloudflare Argo Smart Routing has reduced the visit delay in Chinese Mainland from nearly 50 seconds to 200+ms, which has significantly improved the access speed in Chinese Mainland, even faster than the direct connected vps. In addition, compare the cost-effectiveness analysis of Cloudflare Pro plan, and when to choose Cloudflare Pro plan.">
-<meta name="twitter:url" content="https://qiulaidongfeng.github.io/en/my-experience-with-cloudflare-argo-smart-routing---greatly-improving-access-speed-in-chinese-mainland/">
+<meta name="twitter:title" content="优化http2 Web Server 之Go标准库和运行时可修改的源代码">
+<meta name="twitter:description" content="分享一些发现的Go HTTP2 服务器标准库与运行时源码可修改点，包含调帧大小、减内存分配、控 GC 占用、调goroutine栈大小等。">
+<meta name="twitter:url" content="https://qiulaidongfeng.github.io/zh-cn/%E4%BC%98%E5%8C%96http2-web-server-%E4%B9%8Bgo%E6%A0%87%E5%87%86%E5%BA%93%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6%E5%8F%AF%E4%BF%AE%E6%94%B9%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81/">
 
 <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       
       "@type": "BlogPosting",
-      "headline": "My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Speed in Chinese Mainland | 秋来冬风的博客",
+      "headline": "优化http2 Web Server 之Go标准库和运行时可修改的源代码 | 秋来冬风的博客",
       
-      "description": "Share my experience of using Cloudflare Argo Smart Routing, and actually measure that Cloudflare Argo Smart Routing has reduced the visit delay in Chinese Mainland from nearly 50 seconds to 200\u002bms, which has significantly improved the access speed in Chinese Mainland, even faster than the direct connected vps. In addition, compare the cost-effectiveness analysis of Cloudflare Pro plan, and when to choose Cloudflare Pro plan.",
+      "description": "分享一些发现的Go HTTP2 服务器标准库与运行时源码可修改点，包含调帧大小、减内存分配、控 GC 占用、调goroutine栈大小等。",
       "author": {
         "@type": "Person",
         "name": "qiulaidongfeng(秋来冬风)",
@@ -77,10 +77,10 @@ My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Spee
         "name": "秋来冬风的博客"
       },
       
-      "datePublished": "2025-08-14T00:50:12+08:00",
+      "datePublished": "2025-10-16T14:48:58+08:00",
       "articleSection": "技术博客",
       
-      "keywords": "Cloudflare,Cloudflare,Argo,Smart,Routing,Pro,plan,experience,use,experience,Chinese,Mainland,website,traffic,秋来冬风,qiulaidongfeng,博客,blog"
+      "keywords": "秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog"
     }
 </script>
 
@@ -361,9 +361,9 @@ My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Spee
         
         <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/">秋来冬风的博客</a></li>
         
-        <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/en/">Ens</a></li>
+        <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/zh-cn/">所有中文内容</a></li>
         
-        <li class="breadcrumb-item active" aria-current="page">My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Speed in Chinese Mainland</li>
+        <li class="breadcrumb-item active" aria-current="page">优化http2 Web Server 之Go标准库和运行时可修改的源代码</li>
     </ol>
 </nav>
 
@@ -419,69 +419,55 @@ My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Spee
     <div id="main" class="col-lg-8">
       
 <div class="d-flex justify-content-between">
-  <time>2025-08-14</time>
+  <time>2025-10-16</time>
   <p id="wordcount"></p>
 </div>
 
 <div style="background-color: white;" class="p-4">
   <article id="content">
     
-    <h1>My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Speed in Chinese Mainland</h1>
+    <h1>优化http2 Web Server 之Go标准库和运行时可修改的源代码</h1>
     
     <details class="toc">
       <summary>目录</summary>
       <div id="table-of-contents"></div>
     </details>
     <div class="main">
-      <p>Software translation</p>
-<h2 id="background">Background</h2>
-<p>Cloudflare&rsquo;s free plan provides unlimited CDN, DDoS protection, and a 15 year source server TLS certificate, among other useful services, which are very helpful for building websites.</p>
-<p>This cannot use nodes located in Chinese Mainland. All data is transferred from overseas (outside Chinese Mainland) to Chinese Mainland. According to their sales staff, only nodes with less than 20% Cloudflare can be used.</p>
-<p>After using the free plan, it may take nearly 50 seconds to load the website when you visit the website through http3 at night in Chinese Mainland.</p>
-<h2 id="why-do-we-need-cloudflare-argo-smart-routing">Why do we need Cloudflare Argo Smart Routing</h2>
-<p>The traditional Internet routing (<strong>BGP</strong> border gateway protocol) is responsible for telling which routes are available from point A to point B. But it usually <strong>only chooses the &ldquo;existing&rdquo; route, not the &ldquo;best&rdquo; route</strong>. These roads may be very congested, take long detours, or have poor road conditions.</p>
-<p><strong>Cloudflare Argo Smart Routing</strong> is an additional service that utilizes Cloudflare&rsquo;s global network (covering 330 cities, with 13000 networks directly connected to Cloudflare, including all major ISPs, cloud providers, and enterprises) to <strong>detect and bypass congestion in real-time, and route traffic to the most efficient network path</strong>, accelerating access speed.</p>
-<h2 id="experiencetesting-environment">Experience/Testing Environment</h2>
-<p>The source server is the vps in the east of the united states, which is more than 10000 kilometers away from the test site in Chinese Mainland.</p>
-<p>RTT (round-trip time, which is the time it takes for data to travel from the local to the server and then back) is approximately 240-260ms.</p>
-<p>The homepage of the built website only transfers HTML files ranging from several kb to tens of kb.</p>
-<p>Use Cloudflare&rsquo;s free plan to activate CDN.</p>
-<h2 id="how-to-enable">How to Enable</h2>
-<p>Cloudflare Argo Smart Routing requires an additional fee to use, with a monthly base fee of $5 (including the first GB of data), and $0.1 per GB beyond that. The fee includes the total upstream and downstream data.</p>
-<p>So first, you need to add a payment method. It is recommended to use <strong>MasterCard or Visa card</strong>. If possible, you can go to <strong>Hong Kong and other overseas regions to apply</strong>, or several banks in Chinese Mainland can apply at the age of 16. It is strongly not recommended to use a virtual card.</p>
-<p>Then, simply click a few times on the dashboard to activate it</p>
-<img src="/images/cf_argo.png" class="w-100 h-auto">
-<h2 id="actual-measurement-results">Actual measurement results</h2>
-<table class="table table-striped table-bordered">
-<tbody>
-<tr>
-<td>Comparison items</td>
-<td>Free plan only</td>
-<td>Enable Argo</td>
-</tr>
-<tr>
-<td>Http3 night access</td>
-<td>Slowest by nearly 50 seconds, very severe lag</td>
-<td>200+milliseconds, smooth opening</td>
-</tr>
-<tr>
-<td>Http2 daytime access</td>
-<td>1-2 seconds, open the flash card</td>
-<td>200+milliseconds, smooth opening</td>
-</tr>
-</tbody>
-</table>
-<p>After activation, in many cases, the access time is already less than the RTT of the direct connection.</p>
-<p>This means that accessing the source server through Cloudflare is faster than directly accessing the source server.</p>
-<h2 id="compare-cloudflare-pro-plan">Compare Cloudflare Pro Plan</h2>
-<p><a href="https://www.cloudflare-cn.com/small-business/">Cloudflare Pro Program</a> The current price is $20 per month, which is enough for a free plan+Cloudflare Argo Smart Routing <strong>with a monthly total of 151GB</strong> for both upstream and downstream traffic.</p>
-<p>Refer to <a href="https://www.cloudflare-cn.com/">Cloudflare official website</a> And this high-quality blog found online <a href="https://blog.tangwudi.com/technology/homedatacenter13116">Home Data Center Series Cloudflare Pro Deep Experience: From Free to Pro, Is It Worth Upgrading? </a></p>
-<p>The Cloudflare Pro program has a lot of powerful WAF (Web Application Firewall, used to intercept malicious requests), more customizable optimizations, richer health information, and possibly much faster first byte arrival times.</p>
-<p>If there is a need for these aspects, or if the total uplink and downlink traffic exceeds 151GB per month, upgrading directly to the Cloudflare Pro plan instead of using Cloudflare Argo Smart Routing is probably a better choice. The rich man can take it all.</p>
-<h2 id="when-to-use-cloudflare-argo-smart-routing">When to use Cloudflare Argo Smart Routing</h2>
-<p>For delay sensitive use cases. For example, when opening website pages or real-time chat software, the slower the speed, the easier it is for people to leave.</p>
-<p>These situations should consider using Cloudflare Argo Smart Routing.</p>
-<p>Note that enabling 1000GB costs $104.9. For high traffic use cases such as video playback, online storage upload and download, use with caution to avoid high fees.</p>
+      <p>这是<a href="/categories/%E6%88%91%E7%9A%84%E9%AB%98%E5%90%9E%E5%90%90http2%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%98%E5%8C%96%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%E7%B3%BB%E5%88%97/">我的高吞吐http2服务器优化经验分享系列</a> 第三篇博客。</p>
+<h2 id="背景">背景</h2>
+<p>我在优化我的用go语言写的http2服务器时，尝试修改go的源代码对标准库和运行时进行优化，本文分享我发现的一些源代码中可以修改的部分。</p>
+<p>对应版本是go1.26开发分支。</p>
+<h2 id="nethttp包">net/http包</h2>
+<p>除非有特别声明，要修改的代码在h2_bundle.go</p>
+<h3 id="加大缓冲区">加大缓冲区</h3>
+<p>调整 <code>http2bufWriterPoolBufferSize</code> 常量，原来是4kb。</p>
+<h3 id="调整data帧大小">调整DATA帧大小</h3>
+<p>调整 <code>http2handlerChunkWriteSize</code> 常量，原来是4kb。</p>
+<h3 id="减少时间字符串分配">减少时间字符串分配</h3>
+<p>在<code>http2responseWriterState.writeChunk</code>方法，每次调用会动态分成堆分配的RFC1123时间字符串，可以自行优化为1秒获取1次。</p>
+<h3 id="避免响应码字符串堆分配">避免响应码字符串堆分配</h3>
+<p>在<code>http2httpCodeString</code>函数，除了200和404，其他响应码每次都会堆分配一个字符串，可以优化掉。</p>
+<h3 id="调整content-type猜测规则">调整Content-Type猜测规则</h3>
+<p>要修改的代码在sniff.go</p>
+<p>是<code>sniffSignatures</code>变量，它定义了Content-Type猜测规则，可以针对性调整来优化。</p>
+<h2 id="runtime包">runtime包</h2>
+<h3 id="调大每p最大栈缓存">调大每P最大栈缓存</h3>
+<p>在malloc.go的<code>_StackCacheSize</code>常量，定义每P对特定大小（例如2kb,4kb）的栈，每种最多缓存多少，默认32kb。</p>
+<h3 id="调整gc目标占用cpu率">调整GC目标占用CPU率</h3>
+<p>在mgcpacer.go的<code>gcGoalUtilization</code>常量，定义GC目标占用百分之多少CPU，默认0.25(25%)。</p>
+<p>注意这个值如果设置的太低，可能导致反效果，严重超出目标。例如设置为1%，可能时间使用是10+%。</p>
+<h3 id="辅助标记assist-marking相关">辅助标记（assist marking）相关</h3>
+<p>辅助标记是指：如果 GC 正在进行并发标记阶段，并且发现 GC 的进度落后于内存分配的速度，用户 goroutine 在进行分配时，协助 GC 执行一部分标记工作。</p>
+<p>在mgcpacer.go的<code>gcCreditSlack</code>常量是本地累计的扫描工作信用（scan work credit）阈值，超过该值后会更新全局的gcController.heapScanWork和bgScanCredit。</p>
+<ul>
+<li>值越小，辅助比例（assist ratio）越精确，辅助线程更可能成功 &ldquo;窃取&rdquo; 后台信用。</li>
+<li>值越大，可减少内存竞争（因全局更新频率降低）。</li>
+</ul>
+<p><code>gcAssistTimeSlack</code>是P（处理器）上累计的 &ldquo;辅助标记时间&rdquo;（mutator assist time）阈值，超过后会更新全局的gcController.assistTime。控制辅助时间统计的更新频率。</p>
+<h3 id="调整最小堆大小">调整最小堆大小</h3>
+<p>在mgcpacer.go的<code>defaultHeapMinimum</code>常量定义当 GOGC=100时，堆内存的最小阈值。默认4Mb,避免小堆频繁 GC。</p>
+<h3 id="调整最小栈大小">调整最小栈大小</h3>
+<p>在stack.go中的 <code>stackMin</code> 常量，控制创建goroutine时的初始栈大小，也是最小栈大小。</p>
 
     </div>
   </div>
@@ -490,7 +476,7 @@ My Experience With Cloudflare Argo Smart Routing   Greatly Improving Access Spee
   <div>
     <div>Tags:</div>
     <ul>
-        <li><a href="/tags/cloudflare/">Cloudflare</a></li>
+        <li><a href="/tags/go/">Go</a></li>
         <li><a href="/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/">网站相关</a></li>
     </ul>
   </div>

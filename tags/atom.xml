@@ -6,27 +6,34 @@
     <description>Recent content in Tags on 秋来冬风的博客</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 24 Sep 2025 19:40:58 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 16 Oct 2025 18:17:20 +0800</lastBuildDate>
     <atom:link href="https://qiulaidongfeng.github.io/tags/atom.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>网站相关</title>
-      <link>https://qiulaidongfeng.github.io/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/</link>
-      <pubDate>Wed, 24 Sep 2025 19:40:58 +0800</pubDate>
-      <guid>https://qiulaidongfeng.github.io/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/</guid>
-      <description></description>
-    </item>
     <item>
       <title>Go</title>
       <link>https://qiulaidongfeng.github.io/tags/go/</link>
-      <pubDate>Wed, 20 Aug 2025 23:49:45 +0800</pubDate>
+      <pubDate>Thu, 16 Oct 2025 18:17:20 +0800</pubDate>
       <guid>https://qiulaidongfeng.github.io/tags/go/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>网站相关</title>
+      <link>https://qiulaidongfeng.github.io/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/</link>
+      <pubDate>Thu, 16 Oct 2025 18:17:20 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/</guid>
       <description></description>
     </item>
     <item>
       <title>Go1.25</title>
       <link>https://qiulaidongfeng.github.io/tags/go1.25/</link>
-      <pubDate>Wed, 20 Aug 2025 23:49:45 +0800</pubDate>
+      <pubDate>Thu, 16 Oct 2025 14:24:47 +0800</pubDate>
       <guid>https://qiulaidongfeng.github.io/tags/go1.25/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>数据库</title>
+      <link>https://qiulaidongfeng.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+      <pubDate>Thu, 16 Oct 2025 11:59:13 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
       <description></description>
     </item>
     <item>
@@ -62,13 +69,6 @@
       <link>https://qiulaidongfeng.github.io/tags/redis/</link>
       <pubDate>Mon, 21 Apr 2025 10:15:12 +0000</pubDate>
       <guid>https://qiulaidongfeng.github.io/tags/redis/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>数据库</title>
-      <link>https://qiulaidongfeng.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
-      <pubDate>Mon, 21 Apr 2025 10:15:12 +0000</pubDate>
-      <guid>https://qiulaidongfeng.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
       <description></description>
     </item>
     <item>
