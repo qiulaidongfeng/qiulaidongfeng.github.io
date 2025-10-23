@@ -8,7 +8,7 @@
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>
-我使用Cloudflare免费计划的经验 | 秋来冬风的博客</title>
+快速限流路径和慢速业务路径设计,提升web服务可用性 | 秋来冬风的博客</title>
 
 
     
@@ -26,12 +26,12 @@
 
 
 
-<meta name="description" content="记录我使用Cloudflare免费计划的经验">
+<meta name="description" content="分享我的快速限流路径设计经验，CDN、IP、可用资源(CPU和内存)、业务特定，层层设防，将限流效果最大化。">
 
 
-       
-<meta name="keywords" content="Cloudflare,DDoS,免费计划,经验,秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog">
-<link rel="canonical" href="https://qiulaidongfeng.github.io/zh-cn/%E6%88%91%E4%BD%BF%E7%94%A8cloudflare%E5%85%8D%E8%B4%B9%E8%AE%A1%E5%88%92%E7%9A%84%E7%BB%8F%E9%AA%8C/" />
+          
+<meta name="keywords" content="限流,秋来冬风,qiulaidongfeng,博客,blog">
+<link rel="canonical" href="https://qiulaidongfeng.github.io/zh-cn/%E5%BF%AB%E9%80%9F%E9%99%90%E6%B5%81%E8%B7%AF%E5%BE%84%E5%92%8C%E6%85%A2%E9%80%9F%E4%B8%9A%E5%8A%A1%E8%B7%AF%E5%BE%84%E8%AE%BE%E8%AE%A1%E6%8F%90%E5%8D%87web%E6%9C%8D%E5%8A%A1%E5%8F%AF%E7%94%A8%E6%80%A7/" />
 <meta name="author" content="qiulaidongfeng(秋来冬风)">
 <meta name="copyright" content="Copyright © 2023 秋来冬风. All rights reserved.">
 <link rel="author" href="https://qiulaidongfeng.github.io/about/">
@@ -39,28 +39,28 @@
 
 
 
-<link rel="alternate" href="https://qiulaidongfeng.github.io/zh-cn/%E6%88%91%E4%BD%BF%E7%94%A8cloudflare%E5%85%8D%E8%B4%B9%E8%AE%A1%E5%88%92%E7%9A%84%E7%BB%8F%E9%AA%8C/" hreflang="zh-CN" />
+<link rel="alternate" href="https://qiulaidongfeng.github.io/zh-cn/%E5%BF%AB%E9%80%9F%E9%99%90%E6%B5%81%E8%B7%AF%E5%BE%84%E5%92%8C%E6%85%A2%E9%80%9F%E4%B8%9A%E5%8A%A1%E8%B7%AF%E5%BE%84%E8%AE%BE%E8%AE%A1%E6%8F%90%E5%8D%87web%E6%9C%8D%E5%8A%A1%E5%8F%AF%E7%94%A8%E6%80%A7/" hreflang="zh-CN" />
 
-<meta property="og:title" content="我使用Cloudflare免费计划的经验">
+<meta property="og:title" content="快速限流路径和慢速业务路径设计,提升web服务可用性">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="秋来冬风的博客">
-<meta property="og:url" content="https://qiulaidongfeng.github.io/zh-cn/%E6%88%91%E4%BD%BF%E7%94%A8cloudflare%E5%85%8D%E8%B4%B9%E8%AE%A1%E5%88%92%E7%9A%84%E7%BB%8F%E9%AA%8C/">
-<meta property="og:description" content="记录我使用Cloudflare免费计划的经验">
+<meta property="og:url" content="https://qiulaidongfeng.github.io/zh-cn/%E5%BF%AB%E9%80%9F%E9%99%90%E6%B5%81%E8%B7%AF%E5%BE%84%E5%92%8C%E6%85%A2%E9%80%9F%E4%B8%9A%E5%8A%A1%E8%B7%AF%E5%BE%84%E8%AE%BE%E8%AE%A1%E6%8F%90%E5%8D%87web%E6%9C%8D%E5%8A%A1%E5%8F%AF%E7%94%A8%E6%80%A7/">
+<meta property="og:description" content="分享我的快速限流路径设计经验，CDN、IP、可用资源(CPU和内存)、业务特定，层层设防，将限流效果最大化。">
 <meta property="og:locale" content="zh-CN" />
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="我使用Cloudflare免费计划的经验">
-<meta name="twitter:description" content="记录我使用Cloudflare免费计划的经验">
-<meta name="twitter:url" content="https://qiulaidongfeng.github.io/zh-cn/%E6%88%91%E4%BD%BF%E7%94%A8cloudflare%E5%85%8D%E8%B4%B9%E8%AE%A1%E5%88%92%E7%9A%84%E7%BB%8F%E9%AA%8C/">
+<meta name="twitter:title" content="快速限流路径和慢速业务路径设计,提升web服务可用性">
+<meta name="twitter:description" content="分享我的快速限流路径设计经验，CDN、IP、可用资源(CPU和内存)、业务特定，层层设防，将限流效果最大化。">
+<meta name="twitter:url" content="https://qiulaidongfeng.github.io/zh-cn/%E5%BF%AB%E9%80%9F%E9%99%90%E6%B5%81%E8%B7%AF%E5%BE%84%E5%92%8C%E6%85%A2%E9%80%9F%E4%B8%9A%E5%8A%A1%E8%B7%AF%E5%BE%84%E8%AE%BE%E8%AE%A1%E6%8F%90%E5%8D%87web%E6%9C%8D%E5%8A%A1%E5%8F%AF%E7%94%A8%E6%80%A7/">
 
 <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       
       "@type": "BlogPosting",
-      "headline": "我使用Cloudflare免费计划的经验 | 秋来冬风的博客",
+      "headline": "快速限流路径和慢速业务路径设计,提升web服务可用性 | 秋来冬风的博客",
       
-      "description": "记录我使用Cloudflare免费计划的经验",
+      "description": "分享我的快速限流路径设计经验，CDN、IP、可用资源(CPU和内存)、业务特定，层层设防，将限流效果最大化。",
       "author": {
         "@type": "Person",
         "name": "qiulaidongfeng(秋来冬风)",
@@ -72,10 +72,10 @@
         "url": "https://qiulaidongfeng.github.io/"
       },
       
-      "datePublished": "2025-05-12T11:28:49+08:00",
+      "datePublished": "2025-10-21T02:37:01+08:00",
       "articleSection": "技术博客",
       
-      "keywords": "Cloudflare,DDoS,免费计划,经验,秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog"
+      "keywords": "限流,秋来冬风,qiulaidongfeng,博客,blog"
     }
 </script>
 
@@ -358,7 +358,7 @@
         
         <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/zh-cn/">所有中文内容</a></li>
         
-        <li class="breadcrumb-item active" aria-current="page">我使用Cloudflare免费计划的经验</li>
+        <li class="breadcrumb-item active" aria-current="page">快速限流路径和慢速业务路径设计,提升web服务可用性</li>
     </ol>
 </nav>
 
@@ -414,170 +414,42 @@
     <div id="main" class="col-lg-8">
       
 <div class="d-flex justify-content-between">
-  <time>2025-05-12</time>
+  <time>2025-10-21</time>
   <p id="wordcount"></p>
 </div>
 
 <div style="background-color: white;" class="p-4">
   <article id="content">
     
-    <h1>我使用Cloudflare免费计划的经验</h1>
+    <h1>快速限流路径和慢速业务路径设计,提升web服务可用性</h1>
     
     <details class="toc">
       <summary>目录</summary>
       <div id="table-of-contents"></div>
     </details>
     <div class="main">
-      <h2 id="cloudflare简介">Cloudflare简介</h2>
-<p>Cloudflare是一家2009年成立于美国的企业，初衷是保护网络安全，目前在 330 多个城市拥有数据中心，与大约 95% 的全球互联网用户距离仅约 50 毫秒，凭借 388 Tbps 的网络容量，成功缓解了一些有史以来最大规模的 DDoS 攻击。</p>
-<p>根据官网：
-Cloudflare的使命是帮助构建更好的互联网。我们认为每个网站和应用都应当可以免费获取基础的安全与性能服务。</p>
-<p>Cloudflare保护网站时的工作原理如图：
-<img src="/images/cloudflare.png" alt=""></p>
-<p>用户的请求先发到Cloudflare在来到网站自己的服务器，记住这一点，这在后面很重要。</p>
-<h2 id="为什么选择cloudflare">为什么选择Cloudflare</h2>
-<p>Cloudflare定价里有四种计划，其中免费计划虽然不要钱，但也有这些很值得的，对学习建网站很有用的：</p>
-<h3 id="安全">安全</h3>
-<ul>
-<li>
-<h4 id="不修改服务器支持后量子密钥封装">不修改服务器支持后量子密钥封装</h4>
-<p><strong>因为量子计算机擅长破解当今普遍使用的RSA(利用大整数因式分解的数学难题)等现有密钥封装使用的公钥算法，导致传统公钥加密体系彻底失效，导致现在的tls在未来不安全。</strong> 研究应对这种情况的称为后量子密码学（PQC）。</p>
-<p>尽管目前的量子计算机还未发展到这个程度，但业内预测离这个时候可能只有十到二十年，迁移目前使用的算法到能抵抗量子计算机的算法是一个长期工作，参考tls1.2迁移到tls1.3，从相关标准RFC 8446在2018年8月发布到现在已经过去了快7年，但完全替代tls1.2仍需数年。</p>
-<p>2024年8月13日，美国国家标准与技术研究所（NIST）正式发布了后量子密码学的三项新标准，其中的FIPS 203 Module-Lattice-Based Key-Encapsulation Mechanism Standar(基于模块格的密钥封装机制标准)，<strong>简称ML-KEM，利用数学难题Module Learning With Errors（模格上带错误学习问题）</strong></p>
-<p><img src="/images/MLWE.png" alt=""></p>
-<p>可以替代RSA等旧的算法，X25519MLKEM768是目前将其应用在tls的混合密钥交换算法，go语言已经在2025年2月发布的go1.24标准库中实现了，并默认在tls连接启用，所以这项功能对我不太有用，不过对使用其他编程语言的人可能是有用的。</p>
-</li>
-<li>
-<h4 id="免费不限量的ddos防护">免费不限量的DDoS防护</h4>
-<p>DDoS攻击通过大量非法请求占用目标系统的资源（如带宽、内存、CPU 等），导致目标无法正常为合法用户提供服务。</p>
-<p>目前的DDoS防护市场常见的一些产品，高防IP价格根据防护的峰值攻击速率，在数万至上百万一年。高防服务器的最低价格稍低，有些一年几千块的。</p>
-<p>根据Cloudflare的博客，
-<strong>Cloudflare曾在2022年6月为一个使用免费计划的客户网站自动缓解了当时有史以来最大规模的 HTTPS DDoS 攻击（在不到 30 秒内，产生了超过 2.12 亿次 HTTPS 攻击请求）。</strong>
-<strong>无论您使用何种Cloudflare计划(免费、专业、商业或企业),我们都不会让您离开，也不会让您因为攻击的规模而需要向我们支付更多费用。</strong></p>
-<p>根据我的实测，确实是有防护的效果，值得使用。</p>
-</li>
-<li>
-<h4 id="访问速率控制">访问速率控制</h4>
-<p>对于HTTPS Flood攻击，它是一种DDoS攻击，通过发送大量的HTTPS请求达到攻击目的，处理HTTPS请求需要更多的服务器资源用于加解密。</p>
-<p>虽然这不用访问速率控制也能被上述免费DDoS防护缓解，但设置访问速率控制是个更有效的做法，<strong>因为检测出是此类攻击到做出反应需要时间和有未检测出的可能，但访问速率控制不会</strong>。</p>
-<p>更重要的是，这节省了服务器资源，因为服务器不用自行消耗资源实现此类功能。</p>
-</li>
-<li>
-<h4 id="恶意流量过滤">恶意流量过滤</h4>
-<p>Cloudflare提供了Under Attack 模式用来在遭遇DDoS攻击时，让所有访问先进行一个大约5秒的验证，但也可以始终开启，<strong>这将拦截从自动化脚本或恶意机器人来的恶意流量，确保是为真实用户提供服务。</strong></p>
-</li>
-<li>
-<h4 id="免费获取ip属地">免费获取IP属地</h4>
-<p><strong>在用户进行登录等操作时，验证IP属地是否在两次登录时一致是一种很有用的账号防盗检测手段。</strong></p>
-<p>目前要获取IP数据，这方面的数据库由商业的获取的信息多，但比较贵，也有免费的，但信息较少。</p>
-<p>使用Cloudflare可免费获得用户IP属地信息，包括国家或地区，省份或行政区名，城市和经纬度，足够进行账号防盗检测。</p>
-</li>
-</ul>
-<h3 id="性能">性能</h3>
-<ul>
-<li>
-<h4 id="支持http3但不修改服务器">支持http3但不修改服务器</h4>
-<p>http3是http协议的最新版本，传输层改用QUIC（快速UDP网络连接）协议，因为内置tls1.3握手数据一起发送，<strong>首次连接仅需1个RTT</strong>（RTT是往返时间，指数据发过去再发回来的用时），比http2首次连接需要2-3个RTT更少，同时因为不使用TCP协议，避免了队头阻塞（<strong>前面的数据包丢了要等重新传好再发后面的数据包</strong>），改善了网络差时的传输延迟等，因为对既往问题的改进，加快了网页加载速度。</p>
-<p>因为主流编程语言的标准库中并没有提供对QUIC和http3的支持，例如go语言写的程序目前要支持http3,需使用开源库 github.com/quic-go/quic-go/http3 , 它的API用法高度兼容标准库，<strong>改一个函数调用即可支持http3</strong>，同时能在客户端不支持http3时自动回退到http2，尽管这种办法有各种优点，但使用Cloudflare，<strong>一行代码都不用改即可支持http3</strong>。</p>
-</li>
-<li>
-<h4 id="免费不限量的cdn">免费不限量的CDN</h4>
-<p>用户可能位于不同的地理位置，但服务器是在固定的地理位置，造成有的用户访问快，有的用户访问慢，<strong>CDN中文内容分发网络，通过复制源服务器的内容到位于不同地理位置的节点，根据地理位置，就近提供服务，加速访问。</strong></p>
-<p>更为重要的是，这节省了源服务器的流量带宽。因为一些原本源服务器提供的内容，如网站首页，现在由CDN提供。</p>
-</li>
-<li>
-<h4 id="自动响应压缩">自动响应压缩</h4>
-<p>Cloudflare可配置对服务器响应的内容进行压缩，这将降低传输给客户端的数据大小，从而起到加速访问的效果。</p>
-<p><strong>例如，客户网速每秒1MB，要下载100MB的文件，启用压缩后，如果压缩率为50%，则原本需要100秒下载完，现在可以减少一半的用时。</strong></p>
-</li>
-</ul>
-<h3 id="开发便利">开发便利</h3>
-<ul>
-<li>
-<h4 id="15年的源服务器tls证书">15年的源服务器tls证书</h4>
-<p>http定义网页传输标准，但本身是未加密的，tls通过加密提供了传输过程的安全，http+tls是https，这是今天互联网的基石，许多网站据此实现安全的服务。</p>
-<p>使用tls需要有tls证书，它由CA(证书签发机构)签发，通过它能证明数据来自特定的网站，并实现客户端和服务器的加密通讯。</p>
-<p><strong>目前的tls证书分为免费证书和付费证书，免费证书的有效期通常为90天，付费证书的有效期通常为1年，未来会更短（短到最长47天）</strong>，过期前就要重新签发，有效期越短，证书重签越频繁，出错的概率越大。</p>
-<p><strong>使用Cloudflare的15年有效的源服务器tls证书，基本解决了服务器因为证书频繁重签出错的概率</strong>。这种证书仅Cloudflare信任，因为Cloudflare的工作原理，服务器仅需面对Cloudflare转发来的请求，所以这不成问题。</p>
-</li>
-<li>
-<h4 id="自动重签边缘证书">自动重签边缘证书</h4>
-<p>边缘证书是客户端和Cloudflare通讯时使用的tls证书，使用Cloudflare保护网站时，<strong>它由Cloudflare负责自动重签，和15年的源服务器tls证书，一起确保了tls证书频繁重签还不出错。</strong></p>
-</li>
-<li>
-<h4 id="免费ipv4支持">免费ipv4支持</h4>
-<p>目前有些低价的服务器可能仅提供ipv6，在接入Cloudflare后，使用这类服务器搭建的网站等将不仅能通过ipv6访问，也能通过ipv4访问。</p>
-</li>
-<li>
-<h4 id="电子邮件路由">电子邮件路由</h4>
-<p>使用该项功能，可创建自己的域名邮箱。</p>
-</li>
-<li>
-<h4 id="web-analytics">Web Analytics</h4>
-<p>使用该项功能，可获得近期访问量报告。比如有多少次被访问等。</p>
-</li>
-</ul>
-<h2 id="一些经验">一些经验</h2>
-<ul>
-<li>
-<h3 id="域名托管">域名托管</h3>
-<p>通过IP可以访问服务器，记住IP是个太苛刻的要求，比如ipv4的23.75.69.34已经不容易记忆，ipv6的更长，所以产生了域名帮助人不用记忆IP也可以达到目的，像 <code>.cn</code>、<code>.com</code> 这种是顶级域名，像<code>a.com</code> 这种是一级域名，像 <code>www.a.com</code> 这种是二级域名，三级域名四级域名等以此类推。</p>
-<p>一般一级域名是收费的，二级域名可以用自己的一级域名做，或者有免费的二级域名。有n级域名后可以自己创造出n+1级的子域名。</p>
-<p><strong>域名托管是通过将域名系统（DNS）的‌NS记录改为Cloudflare的服务器进行的，然后在Cloudflare添加其他记录。注意每个不同的域名都要做这一步。</strong> 例如有一个域名 <code>x.com</code>，一般建网站只用了一个域名，可能有的因为实现对已登录的用户有不同的页面等原因，有<code>dash.x.com</code>等子域名，这时所有子域名也应该做改ns记录的一步。</p>
-<p>当从Cloudflare的服务器获取dns响应结果时，域名托管设置完成。<strong>如果出现二级域名修改ns记录没有完成域名托管，可以设置一个alias记录，设为一个完成域名托管的子域名。</strong></p>
-</li>
-<li>
-<h3 id="开启代理">开启代理</h3>
-<p>完成域名托管后，按照防范DDoS的常规操作，应该一开始就隐藏源服务器IP，所以DNS记录创建时就应该开启代理，确保dns响应代理IP,并且免费CDN等服务也只有这样才能启用，像这样</p>
-<p><img src="/images/cf_dns_ip.png" alt=""></p>
-<p>注意为了安全，应该始终使用HTTPS，同时因为在开启代理后，为了自动签发边缘证书，应该设置一个dns记录在域名注册的地方，设置_acme-challenge.根域名的ns记录为Cloudflare的服务器。</p>
-<p>因为边缘证书不是立即签发的，<strong>这意味着刚接入Cloudflare免费计划后，在几分钟到几天的时间，无法访问服务器，tls连接因没有证书失败。</strong> 如果不想经历一段时间的无法访问服务器，可以花10美元买Cloudflare的高级证书管理器，然后上传一张自定义证书，还能对tls连接进行更精细的控制。</p>
-</li>
-<li>
-<h3 id="建议下列设置一定要做">建议下列设置一定要做</h3>
-<ul>
-<li><strong>DNS设置中的代理状态（所有A记录和AAAA记录都开）</strong>，确保能使用免费DDoS防护，免费CDN等服务</li>
-<li><strong>源服务器部署Cloudflare的15年源服务器tls证书</strong>（私钥类型为ECC），<strong>SSL/TLS 加密模式设为<code>完全（严格）</code></strong>，确保源服务器的证书可用</li>
-<li><strong>最低 TLS 版本设为tls1.2</strong>，确保数据传输得到安全的加密</li>
-<li><strong>开启TLS 1.3选项</strong>，确保可使用最新的加密方式</li>
-<li><strong>开启浏览器完整性检查</strong>，确保阻止恶意流量</li>
-<li><strong>开启速率限制</strong>，（1个ip10秒只能访问10次或更低），确保防范HTTPS Flood攻击</li>
-<li>设置Web应用程序防火墙的自定义规则，<strong>拒绝http连接</strong>，它未经加密，数据传输不安全，且可能数据传输中被加入广告</li>
-<li>设置Web应用程序防火墙的自定义规则，<strong>已通过验证自动程序类别跳过所有安全验证</strong>，避免影响搜索引擎的爬虫工作，导致网站无法正常的被搜索引擎收录</li>
-<li><strong>开启优化中的Early Hints、Rocket Loader、HTTP/2 到源服务器、HTTP/3（使用 QUIC）、0-RTT 连接恢复选项</strong>，确保开启必要的优化</li>
-<li><strong>设置Cache Rules</strong>，确保使用上免费CDN</li>
-<li><strong>设置Tiered Cache Topology为Smart Tiered Caching Topology</strong>，确保缓存命中率更高</li>
-<li><strong>设置压缩规则</strong>，确保对大的响应数据进行压缩，加快响应速度</li>
-</ul>
-</li>
-<li>
-<h3 id="可选开启下列设置">可选开启下列设置</h3>
-<ul>
-<li>Under Attack 模式 , 这将强制所有访问者先进行一个大约5秒的人机验证，过滤恶意流量，但会影响正常用户访问体验</li>
-<li>规则设置中的添加访问者位置标头，可用于账号防盗检测。</li>
-<li>网络中的WebSockets，如果需要使用WebSocket的话。</li>
-<li>Argo Smart Routing，可优化网络路由，减少加载时间，价格固定5美元1月+流量费用。</li>
-<li>负载平衡，如果有多个源服务器的话。</li>
-<li>电子邮件路由，如果需要域名邮箱的话。</li>
-</ul>
-</li>
-</ul>
-<h2 id="免费计划的缺点">免费计划的缺点</h2>
-<p>Cloudflare的免费计划不能使用位于中国大陆的节点，意味着即使源服务器和客户都在中国大陆，数据也必须先到境外，然后在回来。</p>
-<p>一年2000美元的商业计划也不能使用位于中国大陆的节点，必须要最高级的企业计划且满足有ICP备案等政策要求才可以，<strong>意味着使用免费计划后，在境外是有优化的，但在中国大陆，访问是负优化，反而更慢了。尤其是夜间，访问速度可能慢到几十kb/s，且延迟可达数秒至十几秒。</strong></p>
-<p>刚接入时不能访问如上所述。</p>
-<p>参考资料：</p>
-<p>[1]: <a href="https://www.rfc-editor.org/rfc/rfc9000.html">https://www.rfc-editor.org/rfc/rfc9000.html</a> &ldquo;QUIC: A UDP-Based Multiplexed and Secure Transport&rdquo;</p>
-<p>[2]: <a href="https://www.rfc-editor.org/rfc/rfc9001.html">https://www.rfc-editor.org/rfc/rfc9001.html</a> &ldquo;Using TLS to Secure QUIC&rdquo;</p>
-<p>[3]: <a href="https://www.rfc-editor.org/rfc/rfc8446.html">https://www.rfc-editor.org/rfc/rfc8446.html</a> &ldquo;The Transport Layer Security (TLS) Protocol Version 1.3&rdquo;</p>
-<p>[4]: <a href="https://blog.cloudflare.com/pq-2024/">https://blog.cloudflare.com/pq-2024/</a> &ldquo;The state of the post-quantum Internet&rdquo;</p>
-<p>[5]: <a href="https://github.com/golang/go/issues/69985">https://github.com/golang/go/issues/69985</a> &ldquo;crypto/tls: add X25519MLKEM768 and use by default; remove x25519Kyber768Draft00&rdquo;</p>
-<p>[6]: <a href="https://blog.cloudflare.com/http3-the-past-present-and-future/">https://blog.cloudflare.com/http3-the-past-present-and-future/</a> &ldquo;HTTP/3: the past, the present, and the future&rdquo;</p>
-<p>[7]: <a href="https://httptoolkit.com/blog/http3-quic-open-source-support-nowhere/">https://httptoolkit.com/blog/http3-quic-open-source-support-nowhere/</a> &ldquo;HTTP/3 is everywhere but nowhere&rdquo;</p>
-<p>[8]: <a href="https://developers.cloudflare.com/ssl/post-quantum-cryptography/">https://developers.cloudflare.com/ssl/post-quantum-cryptography/</a> &ldquo;Post-quantum cryptography (PQC)&rdquo;</p>
-<p>[9]: <a href="https://blog.cloudflare.com/cloudflare-ca-encryption-origin/">https://blog.cloudflare.com/cloudflare-ca-encryption-origin/</a> &ldquo;Introducing CloudFlare Origin CA&rdquo;</p>
-<p>[10]: <a href="https://blog.cloudflare.com/26m-rps-ddos/">https://blog.cloudflare.com/26m-rps-ddos/</a> &ldquo;Cloudflare mitigates 26 million request per second DDoS attack&rdquo;</p>
-<p>[11]: <a href="https://blog.cloudflare.com/unmetered-mitigation/">https://blog.cloudflare.com/unmetered-mitigation/</a> &ldquo;Unmetered Mitigation: DDoS Protection Without Limits&rdquo;</p>
+      <p>这是<a href="/categories/%E6%88%91%E7%9A%84%E9%AB%98%E5%90%9E%E5%90%90http2%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%98%E5%8C%96%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%E7%B3%BB%E5%88%97/">我的高吞吐http2服务器优化经验分享系列</a> 第五篇博客。</p>
+<h2 id="背景">背景</h2>
+<p>在web程序设计中，限流代码路径在业务代码路径之前执行，这是常识。</p>
+<p>因此，将限流路径设计的尽可能快而准，对提升web服务可用性很有益。</p>
+<h2 id="推荐的快速限流路径">推荐的快速限流路径</h2>
+<p>一个推荐的快速限流路径是这样的：</p>
+<p><strong>特别注意：这些代码应该尽可能快，最好在纳秒级时间完成判断</strong></p>
+<h3 id="不要什么都自己做">不要什么都自己做。</h3>
+<p>所有请求经过CDN，再到达源服务器。先从源头减少请求数，而且现代CDN支持配置限流，使得不需要使用自己的计算资源，也能实现限流。</p>
+<h3 id="先本机配置基于ip的限流">先本机配置基于ip的限流</h3>
+<p>目的是防止极端情况，本机自行也能抗一定程度的大量请求。</p>
+<p>这个时候也尽可能的快，因此任何HTTP响应头，Cookie都不要设置，在同ip快速大量访问时，可直接视为恶意攻击，除了403什么都不响应。</p>
+<p>甚至直接在TLS握手时拒绝，但小心切勿将 CDN 的出口 IP 误判为攻击源，防止网站无法访问，因为CDN的ip大量访问很可能是正常的。</p>
+<p>例如go语言的tls.Config就提供了<code>GetCertificate</code>挂钩，可以做到TLS握手时拒绝被限流的请求。</p>
+<h3 id="再配置基于可用资源的限流">再配置基于可用资源的限流</h3>
+<p>CPU和内存等可用资源是有限的，如果检测到CPU占用100%或内存即将耗尽等情况，可以配置执行限流，响应503。</p>
+<p>注意实践中流量比较可能是突发的，比如到时间特定电影开播，这时候视频服务器突然收到大量请求。</p>
+<p>实践中，面对突发流量（如热门电影上线瞬间），立即猛烈限流（而非缓慢限流）往往是更有效的策略。</p>
+<h3 id="最后配置特定业务的限流">最后配置特定业务的限流</h3>
+<p>根据业务需求限流。</p>
+<p>比如比较消耗数据库、比较消耗内存等的，限流限制强一些</p>
+<p>返回静态文件的，可以没有那么强。</p>
 
     </div>
   </div>
@@ -586,12 +458,17 @@ Cloudflare的使命是帮助构建更好的互联网。我们认为每个网站�
   <div>
     <div>Tags:</div>
     <ul>
-        <li><a href="/tags/cloudflare/">Cloudflare</a></li>
         <li><a href="/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/">网站相关</a></li>
     </ul>
   </div>
 
 
+  <div>
+    <div>Categories:</div>
+    <ul>
+        <li><a href="/categories/%E6%88%91%E7%9A%84%E9%AB%98%E5%90%9E%E5%90%90http2%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%98%E5%8C%96%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%E7%B3%BB%E5%88%97/">我的高吞吐http2服务器优化经验分享系列</a></li>
+    </ul>
+  </div>
 
 
     </div>

@@ -6,8 +6,22 @@
     <description>Recent content in Zh-Cns on 秋来冬风的博客</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 16 Oct 2025 14:48:58 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 21 Oct 2025 02:37:01 +0800</lastBuildDate>
     <atom:link href="https://qiulaidongfeng.github.io/zh-cn/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>快速限流路径和慢速业务路径设计,提升web服务可用性</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/%E5%BF%AB%E9%80%9F%E9%99%90%E6%B5%81%E8%B7%AF%E5%BE%84%E5%92%8C%E6%85%A2%E9%80%9F%E4%B8%9A%E5%8A%A1%E8%B7%AF%E5%BE%84%E8%AE%BE%E8%AE%A1%E6%8F%90%E5%8D%87web%E6%9C%8D%E5%8A%A1%E5%8F%AF%E7%94%A8%E6%80%A7/</link>
+      <pubDate>Tue, 21 Oct 2025 02:37:01 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/%E5%BF%AB%E9%80%9F%E9%99%90%E6%B5%81%E8%B7%AF%E5%BE%84%E5%92%8C%E6%85%A2%E9%80%9F%E4%B8%9A%E5%8A%A1%E8%B7%AF%E5%BE%84%E8%AE%BE%E8%AE%A1%E6%8F%90%E5%8D%87web%E6%9C%8D%E5%8A%A1%E5%8F%AF%E7%94%A8%E6%80%A7/</guid>
+      <description>&lt;p&gt;这是&lt;a href=&#34;https://qiulaidongfeng.github.io/categories/%E6%88%91%E7%9A%84%E9%AB%98%E5%90%9E%E5%90%90http2%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%98%E5%8C%96%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%E7%B3%BB%E5%88%97/&#34;&gt;我的高吞吐http2服务器优化经验分享系列&lt;/a&gt; 第五篇博客。&lt;/p&gt;&#xA;&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;&#xA;&lt;p&gt;在web程序设计中，限流代码路径在业务代码路径之前执行，这是常识。&lt;/p&gt;&#xA;&lt;p&gt;因此，将限流路径设计的尽可能快而准，对提升web服务可用性很有益。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>自己实现ip限流可以不用redis,内存哈希表就足够了</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/ip%E9%99%90%E6%B5%81%E5%8F%AF%E4%BB%A5%E4%B8%8D%E7%94%A8redis%E5%86%85%E5%AD%98%E5%93%88%E5%B8%8C%E8%A1%A8%E5%B0%B1%E8%B6%B3%E5%A4%9F%E4%BA%86/</link>
+      <pubDate>Tue, 21 Oct 2025 02:13:43 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/ip%E9%99%90%E6%B5%81%E5%8F%AF%E4%BB%A5%E4%B8%8D%E7%94%A8redis%E5%86%85%E5%AD%98%E5%93%88%E5%B8%8C%E8%A1%A8%E5%B0%B1%E8%B6%B3%E5%A4%9F%E4%BA%86/</guid>
+      <description>&lt;p&gt;这是&lt;a href=&#34;https://qiulaidongfeng.github.io/categories/%E6%88%91%E7%9A%84%E9%AB%98%E5%90%9E%E5%90%90http2%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%98%E5%8C%96%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%E7%B3%BB%E5%88%97/&#34;&gt;我的高吞吐http2服务器优化经验分享系列&lt;/a&gt; 第四篇博客。&lt;/p&gt;&#xA;&lt;h2 id=&#34;背景&#34;&gt;背景&lt;/h2&gt;&#xA;&lt;p&gt;在公网环境部署的web服务可能遭遇大流量的请求，哪怕是自己发动的压力测试，在未经限流的情况下，也可能也引发OOM，数据库使用率100%等情况。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>优化http2 Web Server 之Go标准库和运行时可修改的源代码</title>
       <link>https://qiulaidongfeng.github.io/zh-cn/%E4%BC%98%E5%8C%96http2-web-server-%E4%B9%8Bgo%E6%A0%87%E5%87%86%E5%BA%93%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6%E5%8F%AF%E4%BF%AE%E6%94%B9%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81/</link>
@@ -139,7 +153,7 @@
       <link>https://qiulaidongfeng.github.io/zh-cn/mmap%E9%94%99%E8%AF%AF/</link>
       <pubDate>Thu, 02 Mar 2023 00:00:00 +0000</pubDate>
       <guid>https://qiulaidongfeng.github.io/zh-cn/mmap%E9%94%99%E8%AF%AF/</guid>
-      <description>&lt;h1 id=&#34;go121前瞻&#34;&gt;go1.21前瞻&lt;/h1&gt;&#xA;&lt;h2 id=&#34;windows允许处理异常页面错误&#34;&gt;windows允许处理异常页面错误&lt;/h2&gt;&#xA;&lt;p&gt;go1.21正在开发中，&lt;a href=&#34;https://tip.golang.org/doc/go1.21&#34;&gt;发行说明草案&lt;/a&gt; 提到预计2023年8月发布&lt;/p&gt;&#xA;&lt;p&gt;根据提交信息 &lt;a href=&#34;https://github.com/golang/go/commit/e03ee85ef434f307500a71927dfb3e876161847a&#34;&gt;runtime: Allow handling of EXCEPTION_IN_PAGE_ERROR&lt;/a&gt; go1.21允许在windows通过debug.SetPanicOnFault 处理内存映射文件的访问故障（例如，内存映射文件所在的驱动器被弹出）&lt;/p&gt;</description>
+      <description>&lt;p&gt;go1.21前瞻&lt;/p&gt;&#xA;&lt;h2 id=&#34;windows允许处理异常页面错误&#34;&gt;windows允许处理异常页面错误&lt;/h2&gt;&#xA;&lt;p&gt;go1.21正在开发中，&lt;a href=&#34;https://tip.golang.org/doc/go1.21&#34;&gt;发行说明草案&lt;/a&gt; 提到预计2023年8月发布&lt;/p&gt;&#xA;&lt;p&gt;根据提交信息 &lt;a href=&#34;https://github.com/golang/go/commit/e03ee85ef434f307500a71927dfb3e876161847a&#34;&gt;runtime: Allow handling of EXCEPTION_IN_PAGE_ERROR&lt;/a&gt; go1.21允许在windows通过debug.SetPanicOnFault 处理内存映射文件的访问故障（例如，内存映射文件所在的驱动器被弹出）&lt;/p&gt;</description>
     </item>
     <item>
       <title>第一个博客</title>

@@ -34,7 +34,7 @@
       <link>https://qiulaidongfeng.github.io/zh-cn/mmap%E9%94%99%E8%AF%AF/</link>
       <pubDate>Thu, 02 Mar 2023 00:00:00 +0000</pubDate>
       <guid>https://qiulaidongfeng.github.io/zh-cn/mmap%E9%94%99%E8%AF%AF/</guid>
-      <description>&lt;h1 id=&#34;go121前瞻&#34;&gt;go1.21前瞻&lt;/h1&gt;&#xA;&lt;h2 id=&#34;windows允许处理异常页面错误&#34;&gt;windows允许处理异常页面错误&lt;/h2&gt;&#xA;&lt;p&gt;go1.21正在开发中，&lt;a href=&#34;https://tip.golang.org/doc/go1.21&#34;&gt;发行说明草案&lt;/a&gt; 提到预计2023年8月发布&lt;/p&gt;&#xA;&lt;p&gt;根据提交信息 &lt;a href=&#34;https://github.com/golang/go/commit/e03ee85ef434f307500a71927dfb3e876161847a&#34;&gt;runtime: Allow handling of EXCEPTION_IN_PAGE_ERROR&lt;/a&gt; go1.21允许在windows通过debug.SetPanicOnFault 处理内存映射文件的访问故障（例如，内存映射文件所在的驱动器被弹出）&lt;/p&gt;</description>
+      <description>&lt;p&gt;go1.21前瞻&lt;/p&gt;&#xA;&lt;h2 id=&#34;windows允许处理异常页面错误&#34;&gt;windows允许处理异常页面错误&lt;/h2&gt;&#xA;&lt;p&gt;go1.21正在开发中，&lt;a href=&#34;https://tip.golang.org/doc/go1.21&#34;&gt;发行说明草案&lt;/a&gt; 提到预计2023年8月发布&lt;/p&gt;&#xA;&lt;p&gt;根据提交信息 &lt;a href=&#34;https://github.com/golang/go/commit/e03ee85ef434f307500a71927dfb3e876161847a&#34;&gt;runtime: Allow handling of EXCEPTION_IN_PAGE_ERROR&lt;/a&gt; go1.21允许在windows通过debug.SetPanicOnFault 处理内存映射文件的访问故障（例如，内存映射文件所在的驱动器被弹出）&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
