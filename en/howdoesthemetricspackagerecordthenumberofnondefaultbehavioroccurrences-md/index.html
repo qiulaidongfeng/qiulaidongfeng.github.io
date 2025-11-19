@@ -241,6 +241,14 @@ How does the metrics package record the number of non default behavior occurrenc
     content: "§";
      
   }
+
+  .main h2:nth-of-type(n+2) {
+    border-top: 1px solid #000;
+  }
+
+  p {
+    word-wrap: break-word;
+  }
 </style>
 <script defer src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js" onload="Main()"></script>
@@ -376,7 +384,7 @@ How does the metrics package record the number of non default behavior occurrenc
           </div>
         </div>
         <div class="card-body text-center">
-          <p class="h1">34</p>
+          <p class="h1">36</p>
         </div>
       </div>
 
@@ -387,7 +395,7 @@ How does the metrics package record the number of non default behavior occurrenc
           </div>
         </div>
         <div class="card-body">
-          <p>一位Go语言程序员，专业的软件设计师。</p>
+          <p>一位全栈工程师。掌握用go+vue做完整web项目，从设计到部署到运维全能独自完成。</p>
           <p>有多年编程经验和网站建设经验。</p>
           <p>热爱研究http3等前沿技术。</p>
         </div>
@@ -403,7 +411,7 @@ How does the metrics package record the number of non default behavior occurrenc
           <p class="mt-4">博客最后更新：</p>
           <time>
             
-            2025-10-21
+            2025-11-19
             
           </time>
         </div>
@@ -622,16 +630,9 @@ How does the metrics package record the number of non default behavior occurrenc
         if (level >= 3) numberText += '.' + h3Count;
         if (level >= 4) numberText += '.' + h4Count;
 
-        
         const headingText = $heading.text().replace(numberText, '').trim();
-        const cleanText = headingText.toLowerCase()
-          .replace(/\s+/g, '-')
-          .replace(/[^\w-]/g, '');
-
-        
-        const safeNumberText = typeof numberText === 'string' ? numberText : numberText.toString();
-        const generatedId = `heading-${safeNumberText.replace(/\./g, '-')}-${cleanText}`;
-        $heading.attr('id', generatedId);
+          
+        const generatedId = $heading.attr('id');
 
         
         const $li = $(`<li class="toc-level-${level}"></li>`);

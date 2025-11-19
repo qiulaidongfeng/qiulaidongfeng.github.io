@@ -224,6 +224,14 @@
     content: "§";
      
   }
+
+  .main h2:nth-of-type(n+2) {
+    border-top: 1px solid #000;
+  }
+
+  p {
+    word-wrap: break-word;
+  }
 </style>
 <script defer src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js" onload="Main()"></script>
@@ -359,7 +367,7 @@
           </div>
         </div>
         <div class="card-body text-center">
-          <p class="h1">34</p>
+          <p class="h1">36</p>
         </div>
       </div>
 
@@ -370,7 +378,7 @@
           </div>
         </div>
         <div class="card-body">
-          <p>一位Go语言程序员，专业的软件设计师。</p>
+          <p>一位全栈工程师。掌握用go+vue做完整web项目，从设计到部署到运维全能独自完成。</p>
           <p>有多年编程经验和网站建设经验。</p>
           <p>热爱研究http3等前沿技术。</p>
         </div>
@@ -386,7 +394,7 @@
           <p class="mt-4">博客最后更新：</p>
           <time>
             
-            2025-10-21
+            2025-11-19
             
           </time>
         </div>
@@ -407,7 +415,8 @@
   <div class="row">
     
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/en/why-not-use-tls-to-connect-to-the-database-instead-of-wireguard/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/en/why-not-use-tls-to-connect-to-the-database-instead-of-wireguard/&#34;)">
     <div class="card-body">
         <h5 class="card-title">Why Not Use TLS to Connect to the Database Instead of WireGuard?</h5>
         <p class="card-text" style="font-size: 0.95rem;">TLS and WireGuard connection databases are analyzed from four dimensions: configuration frequency, quantum security, anti intrusion, and scalability. WireGuard has obvious advantages in small-scale scenarios and is an excellent alternative to TLS.</p>
@@ -418,7 +427,8 @@
     </div>
 </div>
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%A6%81%E4%BD%BF%E7%94%A8tls%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E8%80%8C%E7%94%A8wireguard%E6%9B%BF%E4%BB%A3/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%A6%81%E4%BD%BF%E7%94%A8tls%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E8%80%8C%E7%94%A8wireguard%E6%9B%BF%E4%BB%A3/&#34;)">
     <div class="card-body">
         <h5 class="card-title">为什么不要使用TLS连接数据库，而用WireGuard替代？</h5>
         <p class="card-text" style="font-size: 0.95rem;">TLS 和 WireGuard 连接数据库 从配置次数、量子安全、抗入侵和扩展性四个维度分析。发现WireGuard在小规模场景下优势明显，是替代TLS的绝佳选择。</p>
@@ -429,7 +439,8 @@
     </div>
 </div>
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E7%94%A8redis%E6%9E%84%E5%BB%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E7%94%A8redis%E6%9E%84%E5%BB%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/&#34;)">
     <div class="card-body">
         <h5 class="card-title">用redis构建聊天室</h5>
         <p class="card-text" style="font-size: 0.95rem;">记录我用redis构建聊天室的一个方案。</p>
@@ -440,7 +451,8 @@
     </div>
 </div>
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AEtls%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9D%91%E7%82%B9/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AEtls%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9D%91%E7%82%B9/&#34;)">
     <div class="card-body">
         <h5 class="card-title">数据库配置tls的几个坑点</h5>
         <p class="card-text" style="font-size: 0.95rem;">记录我配置数据库连接使用tls遇到的一些常见网络教程未介绍的坑点</p>
@@ -582,16 +594,9 @@
         if (level >= 3) numberText += '.' + h3Count;
         if (level >= 4) numberText += '.' + h4Count;
 
-        
         const headingText = $heading.text().replace(numberText, '').trim();
-        const cleanText = headingText.toLowerCase()
-          .replace(/\s+/g, '-')
-          .replace(/[^\w-]/g, '');
-
-        
-        const safeNumberText = typeof numberText === 'string' ? numberText : numberText.toString();
-        const generatedId = `heading-${safeNumberText.replace(/\./g, '-')}-${cleanText}`;
-        $heading.attr('id', generatedId);
+          
+        const generatedId = $heading.attr('id');
 
         
         const $li = $(`<li class="toc-level-${level}"></li>`);

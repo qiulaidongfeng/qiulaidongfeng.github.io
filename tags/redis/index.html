@@ -224,6 +224,14 @@ Redis | 秋来冬风的博客</title>
     content: "§";
      
   }
+
+  .main h2:nth-of-type(n+2) {
+    border-top: 1px solid #000;
+  }
+
+  p {
+    word-wrap: break-word;
+  }
 </style>
 <script defer src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js" onload="Main()"></script>
@@ -359,7 +367,7 @@ Redis | 秋来冬风的博客</title>
           </div>
         </div>
         <div class="card-body text-center">
-          <p class="h1">34</p>
+          <p class="h1">36</p>
         </div>
       </div>
 
@@ -370,7 +378,7 @@ Redis | 秋来冬风的博客</title>
           </div>
         </div>
         <div class="card-body">
-          <p>一位Go语言程序员，专业的软件设计师。</p>
+          <p>一位全栈工程师。掌握用go+vue做完整web项目，从设计到部署到运维全能独自完成。</p>
           <p>有多年编程经验和网站建设经验。</p>
           <p>热爱研究http3等前沿技术。</p>
         </div>
@@ -386,7 +394,7 @@ Redis | 秋来冬风的博客</title>
           <p class="mt-4">博客最后更新：</p>
           <time>
             
-            2025-10-21
+            2025-11-19
             
           </time>
         </div>
@@ -407,7 +415,8 @@ Redis | 秋来冬风的博客</title>
   <div class="row">
     
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/ip%E9%99%90%E6%B5%81%E5%8F%AF%E4%BB%A5%E4%B8%8D%E7%94%A8redis%E5%86%85%E5%AD%98%E5%93%88%E5%B8%8C%E8%A1%A8%E5%B0%B1%E8%B6%B3%E5%A4%9F%E4%BA%86/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/ip%E9%99%90%E6%B5%81%E5%8F%AF%E4%BB%A5%E4%B8%8D%E7%94%A8redis%E5%86%85%E5%AD%98%E5%93%88%E5%B8%8C%E8%A1%A8%E5%B0%B1%E8%B6%B3%E5%A4%9F%E4%BA%86/&#34;)">
     <div class="card-body">
         <h5 class="card-title">自己实现ip限流可以不用redis,内存哈希表就足够了</h5>
         <p class="card-text" style="font-size: 0.95rem;">分享我对限流的思考，自己用redis实现限流大可不必，它比内存哈希表性能差，如果需要多节点全局限流，用现代CDN是更好的选择。</p>
@@ -418,7 +427,8 @@ Redis | 秋来冬风的博客</title>
     </div>
 </div>
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E7%94%A8redis%E6%9E%84%E5%BB%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E7%94%A8redis%E6%9E%84%E5%BB%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/&#34;)">
     <div class="card-body">
         <h5 class="card-title">用redis构建聊天室</h5>
         <p class="card-text" style="font-size: 0.95rem;">记录我用redis构建聊天室的一个方案。</p>
@@ -560,16 +570,9 @@ Redis | 秋来冬风的博客</title>
         if (level >= 3) numberText += '.' + h3Count;
         if (level >= 4) numberText += '.' + h4Count;
 
-        
         const headingText = $heading.text().replace(numberText, '').trim();
-        const cleanText = headingText.toLowerCase()
-          .replace(/\s+/g, '-')
-          .replace(/[^\w-]/g, '');
-
-        
-        const safeNumberText = typeof numberText === 'string' ? numberText : numberText.toString();
-        const generatedId = `heading-${safeNumberText.replace(/\./g, '-')}-${cleanText}`;
-        $heading.attr('id', generatedId);
+          
+        const generatedId = $heading.attr('id');
 
         
         const $li = $(`<li class="toc-level-${level}"></li>`);

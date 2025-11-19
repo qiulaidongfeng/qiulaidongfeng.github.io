@@ -226,6 +226,14 @@
     content: "§";
      
   }
+
+  .main h2:nth-of-type(n+2) {
+    border-top: 1px solid #000;
+  }
+
+  p {
+    word-wrap: break-word;
+  }
 </style>
 <script defer src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js" onload="Main()"></script>
@@ -359,7 +367,7 @@
           </div>
         </div>
         <div class="card-body text-center">
-          <p class="h1">34</p>
+          <p class="h1">36</p>
         </div>
       </div>
 
@@ -370,7 +378,7 @@
           </div>
         </div>
         <div class="card-body">
-          <p>一位Go语言程序员，专业的软件设计师。</p>
+          <p>一位全栈工程师。掌握用go+vue做完整web项目，从设计到部署到运维全能独自完成。</p>
           <p>有多年编程经验和网站建设经验。</p>
           <p>热爱研究http3等前沿技术。</p>
         </div>
@@ -386,7 +394,7 @@
           <p class="mt-4">博客最后更新：</p>
           <time>
             
-            2025-10-21
+            2025-11-19
             
           </time>
         </div>
@@ -405,7 +413,36 @@
   <div class="row">
     
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E5%BF%AB%E9%80%9F%E9%99%90%E6%B5%81%E8%B7%AF%E5%BE%84%E5%92%8C%E6%85%A2%E9%80%9F%E4%B8%9A%E5%8A%A1%E8%B7%AF%E5%BE%84%E8%AE%BE%E8%AE%A1%E6%8F%90%E5%8D%87web%E6%9C%8D%E5%8A%A1%E5%8F%AF%E7%94%A8%E6%80%A7/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E5%AE%89%E5%85%A8%E7%99%BB%E5%BD%95%E4%BC%9A%E8%AF%9D%E7%AC%AC%E4%B8%89%E7%89%88%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/&#34;)">
+    <div class="card-body">
+        <h5 class="card-title">安全登录会话第三版设计方案——公开登录凭据也安全的机制</h5>
+        <p class="card-text" style="font-size: 0.95rem;">在Session的基础上，通过各种辅助验证，以及对加密的巧妙运用，做到了在安全维持登录会话的同时，自身仅存储少量数据，并且即使泄露登录会话凭据，也不太影响安全性。</p>
+        <div class="d-flex justify-content-between align-items-center">
+        
+        <time class="card-text">2025-11-19</time>
+        
+        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/%E5%AE%89%E5%85%A8%E7%99%BB%E5%BD%95%E4%BC%9A%E8%AF%9D%E7%AC%AC%E4%B8%89%E7%89%88%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/&#34;)">阅读</button>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E5%AE%89%E5%85%A8%E7%99%BB%E5%BD%95%E4%BC%9A%E8%AF%9D%E4%B8%89%E7%89%88%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E7%9A%84%E6%BC%94%E8%BF%9B%E5%8E%86%E7%A8%8B/&#34;)">
+    <div class="card-body">
+        <h5 class="card-title">安全登录会话三版设计方案的演进历程</h5>
+        <p class="card-text" style="font-size: 0.95rem;">此博客回顾我设计safesession的过程，从第一版到第二版到第三版，各增加了什么，解决了什么问题。</p>
+        <div class="d-flex justify-content-between align-items-center">
+        
+        <time class="card-text">2025-11-2</time>
+        
+        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/%E5%AE%89%E5%85%A8%E7%99%BB%E5%BD%95%E4%BC%9A%E8%AF%9D%E4%B8%89%E7%89%88%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E7%9A%84%E6%BC%94%E8%BF%9B%E5%8E%86%E7%A8%8B/&#34;)">阅读</button>
+        </div>
+    </div>
+</div>
+    
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E5%BF%AB%E9%80%9F%E9%99%90%E6%B5%81%E8%B7%AF%E5%BE%84%E5%92%8C%E6%85%A2%E9%80%9F%E4%B8%9A%E5%8A%A1%E8%B7%AF%E5%BE%84%E8%AE%BE%E8%AE%A1%E6%8F%90%E5%8D%87web%E6%9C%8D%E5%8A%A1%E5%8F%AF%E7%94%A8%E6%80%A7/&#34;)">
     <div class="card-body">
         <h5 class="card-title">快速限流路径和慢速业务路径设计,提升web服务可用性</h5>
         <p class="card-text" style="font-size: 0.95rem;">分享我的快速限流路径设计经验，CDN、IP、可用资源(CPU和内存)、业务特定，层层设防，将限流效果最大化。</p>
@@ -418,7 +455,8 @@
     </div>
 </div>
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/ip%E9%99%90%E6%B5%81%E5%8F%AF%E4%BB%A5%E4%B8%8D%E7%94%A8redis%E5%86%85%E5%AD%98%E5%93%88%E5%B8%8C%E8%A1%A8%E5%B0%B1%E8%B6%B3%E5%A4%9F%E4%BA%86/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/ip%E9%99%90%E6%B5%81%E5%8F%AF%E4%BB%A5%E4%B8%8D%E7%94%A8redis%E5%86%85%E5%AD%98%E5%93%88%E5%B8%8C%E8%A1%A8%E5%B0%B1%E8%B6%B3%E5%A4%9F%E4%BA%86/&#34;)">
     <div class="card-body">
         <h5 class="card-title">自己实现ip限流可以不用redis,内存哈希表就足够了</h5>
         <p class="card-text" style="font-size: 0.95rem;">分享我对限流的思考，自己用redis实现限流大可不必，它比内存哈希表性能差，如果需要多节点全局限流，用现代CDN是更好的选择。</p>
@@ -431,7 +469,8 @@
     </div>
 </div>
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E4%BC%98%E5%8C%96http2-web-server-%E4%B9%8Bgo%E6%A0%87%E5%87%86%E5%BA%93%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6%E5%8F%AF%E4%BF%AE%E6%94%B9%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E4%BC%98%E5%8C%96http2-web-server-%E4%B9%8Bgo%E6%A0%87%E5%87%86%E5%BA%93%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6%E5%8F%AF%E4%BF%AE%E6%94%B9%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81/&#34;)">
     <div class="card-body">
         <h5 class="card-title">优化http2 Web Server 之Go标准库和运行时可修改的源代码</h5>
         <p class="card-text" style="font-size: 0.95rem;">分享一些发现的Go HTTP2 服务器标准库与运行时源码可修改点，包含调帧大小、减内存分配、控 GC 占用、调goroutine栈大小等。</p>
@@ -444,7 +483,8 @@
     </div>
 </div>
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%A6%81%E4%BD%BF%E7%94%A8tls%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E8%80%8C%E7%94%A8wireguard%E6%9B%BF%E4%BB%A3/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%A6%81%E4%BD%BF%E7%94%A8tls%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E8%80%8C%E7%94%A8wireguard%E6%9B%BF%E4%BB%A3/&#34;)">
     <div class="card-body">
         <h5 class="card-title">为什么不要使用TLS连接数据库，而用WireGuard替代？</h5>
         <p class="card-text" style="font-size: 0.95rem;">TLS 和 WireGuard 连接数据库 从配置次数、量子安全、抗入侵和扩展性四个维度分析。发现WireGuard在小规模场景下优势明显，是替代TLS的绝佳选择。</p>
@@ -457,7 +497,8 @@
     </div>
 </div>
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E5%A6%82%E4%BD%95%E5%81%9A%E5%88%B0%E9%AB%98%E5%8F%AF%E7%94%A8%E9%AB%98%E5%90%9E%E5%90%90%E7%9A%84web%E6%9C%8D%E5%8A%A1/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E5%A6%82%E4%BD%95%E5%81%9A%E5%88%B0%E9%AB%98%E5%8F%AF%E7%94%A8%E9%AB%98%E5%90%9E%E5%90%90%E7%9A%84web%E6%9C%8D%E5%8A%A1/&#34;)">
     <div class="card-body">
         <h5 class="card-title">如何做到高可用高吞吐的web服务 | 全栈优化实践</h5>
         <p class="card-text" style="font-size: 0.95rem;">分享搭建高可用高吞吐 Web 服务的实战经验，涵盖服务器选型、HTTP/2 优化、内核参数调优（TCP/IP、缓冲区、连接队列）、CDN 加速、限流策略与数据库连接优化，提升Web吞吐量与稳定性。</p>
@@ -470,7 +511,8 @@
     </div>
 </div>
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/go1.25%E7%9A%84%E6%96%B0csrf%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%E9%98%B2%E5%BE%A1api-%E6%9E%84%E5%BB%BA%E6%9B%B4%E5%AE%89%E5%85%A8%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/go1.25%E7%9A%84%E6%96%B0csrf%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%E9%98%B2%E5%BE%A1api-%E6%9E%84%E5%BB%BA%E6%9B%B4%E5%AE%89%E5%85%A8%E7%9A%84%E4%BA%92%E8%81%94%E7%BD%91/&#34;)">
     <div class="card-body">
         <h5 class="card-title">Go1.25的新CSRF（跨站请求伪造）防御API | 构建更安全的互联网</h5>
         <p class="card-text" style="font-size: 0.95rem;">介绍Go1.25新CSRF（跨站请求伪造）防御API的原理和特点，以及和其他方法的优劣，还有使用新API要注意的。</p>
@@ -483,7 +525,8 @@
     </div>
 </div>
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E4%B8%80%E4%B8%AAseo%E4%BC%98%E5%8C%96%E7%9A%84%E7%BD%91%E9%A1%B5%E7%BB%93%E6%9E%84%E6%A8%A1%E6%9D%BF/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E4%B8%80%E4%B8%AAseo%E4%BC%98%E5%8C%96%E7%9A%84%E7%BD%91%E9%A1%B5%E7%BB%93%E6%9E%84%E6%A8%A1%E6%9D%BF/&#34;)">
     <div class="card-body">
         <h5 class="card-title">一个SEO优化的网页结构模板 | 打造搜索引擎友好的网站基础</h5>
         <p class="card-text" style="font-size: 0.95rem;">分享了一个SEO优化的网页结构模板，以及一些要点，如带async和defer属性的script标签等。</p>
@@ -496,7 +539,8 @@
     </div>
 </div>
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E6%88%91%E7%9A%84cloudflare-argo-smart-routing%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C-%E5%A4%A7%E5%B9%85%E6%8F%90%E5%8D%87%E5%A4%9C%E9%97%B4%E4%B8%AD%E5%9B%BD%E5%A4%A7%E9%99%86%E8%AE%BF%E9%97%AE%E9%80%9F%E5%BA%A6/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E6%88%91%E7%9A%84cloudflare-argo-smart-routing%E4%BD%BF%E7%94%A8%E4%BD%93%E9%AA%8C-%E5%A4%A7%E5%B9%85%E6%8F%90%E5%8D%87%E5%A4%9C%E9%97%B4%E4%B8%AD%E5%9B%BD%E5%A4%A7%E9%99%86%E8%AE%BF%E9%97%AE%E9%80%9F%E5%BA%A6/&#34;)">
     <div class="card-body">
         <h5 class="card-title">我的Cloudflare Argo Smart Routing使用体验 - 大幅提升中国大陆访问速度</h5>
         <p class="card-text" style="font-size: 0.95rem;">分享我的Cloudflare Argo Smart Routing使用体验，实测Cloudflare Argo Smart Routing将中国大陆访问延迟从近50秒降至200+ms，对中国大陆访问速度有大幅提升，甚至比直连vps快，还有对比 Cloudflare Pro 计划性价比分析，何时该选择Cloudflare Pro计划。</p>
@@ -509,7 +553,8 @@
     </div>
 </div>
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E4%B8%AA%E4%BA%BA%E9%80%89%E8%B4%ADvps%E6%8C%87%E5%8D%97/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E4%B8%AA%E4%BA%BA%E9%80%89%E8%B4%ADvps%E6%8C%87%E5%8D%97/&#34;)">
     <div class="card-body">
         <h5 class="card-title">个人选购vps(虚拟专用服务器)指南</h5>
         <p class="card-text" style="font-size: 0.95rem;">本指南面向个人用途，如学习研究，轻量级网站（个人博客）等，包含境外VPS选择技巧和支付方式分享。但其他用途，如商业网站也有参考价值。</p>
@@ -522,7 +567,8 @@
     </div>
 </div>
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E6%B5%8B%E8%AF%95http2%E5%92%8Chttp3%E7%9A%84%E9%80%9F%E5%BA%A6%E5%B7%AE%E5%BC%82/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E6%B5%8B%E8%AF%95http2%E5%92%8Chttp3%E7%9A%84%E9%80%9F%E5%BA%A6%E5%B7%AE%E5%BC%82/&#34;)">
     <div class="card-body">
         <h5 class="card-title">测量http2和http3的速度差异</h5>
         <p class="card-text" style="font-size: 0.95rem;">通过自研工具实测 HTTP/2 与 HTTP/3 在本地及跨国网络下的性能差异。基于 QUIC 和 TLS 1.3 的 HTTP/3 在重连场景下平均延迟降低 10%，在高 RTT 环境中优势显著。详述测试方法、环境配置与结果分析。</p>
@@ -535,7 +581,8 @@
     </div>
 </div>
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/go1.25%E5%80%BC%E5%BE%97%E5%85%B3%E6%B3%A8%E7%9A%84/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/go1.25%E5%80%BC%E5%BE%97%E5%85%B3%E6%B3%A8%E7%9A%84/&#34;)">
     <div class="card-body">
         <h5 class="card-title">Go1.25值得关注的</h5>
         <p class="card-text" style="font-size: 0.95rem;">记录笔者阅读go1.25正在进行的发布说明，觉得这个版本值得关注的。</p>
@@ -548,7 +595,8 @@
     </div>
 </div>
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E6%88%91%E4%BD%BF%E7%94%A8cloudflare%E5%85%8D%E8%B4%B9%E8%AE%A1%E5%88%92%E7%9A%84%E7%BB%8F%E9%AA%8C/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E6%88%91%E4%BD%BF%E7%94%A8cloudflare%E5%85%8D%E8%B4%B9%E8%AE%A1%E5%88%92%E7%9A%84%E7%BB%8F%E9%AA%8C/&#34;)">
     <div class="card-body">
         <h5 class="card-title">我使用Cloudflare免费计划的经验</h5>
         <p class="card-text" style="font-size: 0.95rem;">记录我使用Cloudflare免费计划的经验</p>
@@ -561,7 +609,8 @@
     </div>
 </div>
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E7%94%A8redis%E6%9E%84%E5%BB%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E7%94%A8redis%E6%9E%84%E5%BB%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/&#34;)">
     <div class="card-body">
         <h5 class="card-title">用redis构建聊天室</h5>
         <p class="card-text" style="font-size: 0.95rem;">记录我用redis构建聊天室的一个方案。</p>
@@ -574,7 +623,8 @@
     </div>
 </div>
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AEtls%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9D%91%E7%82%B9/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AEtls%E7%9A%84%E5%87%A0%E4%B8%AA%E5%9D%91%E7%82%B9/&#34;)">
     <div class="card-body">
         <h5 class="card-title">数据库配置tls的几个坑点</h5>
         <p class="card-text" style="font-size: 0.95rem;">记录我配置数据库连接使用tls遇到的一些常见网络教程未介绍的坑点</p>
@@ -587,7 +637,8 @@
     </div>
 </div>
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E5%9C%A8go%E6%A0%87%E5%87%86%E5%BA%93%E5%A4%96%E5%AE%9E%E7%8E%B0%E6%AF%94%E6%A0%87%E5%87%86%E5%BA%93%E6%9B%B4%E5%A5%BD%E7%9A%84arena/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E5%9C%A8go%E6%A0%87%E5%87%86%E5%BA%93%E5%A4%96%E5%AE%9E%E7%8E%B0%E6%AF%94%E6%A0%87%E5%87%86%E5%BA%93%E6%9B%B4%E5%A5%BD%E7%9A%84arena/&#34;)">
     <div class="card-body">
         <h5 class="card-title">在go标准库外实现比go标准库更好的arena</h5>
         <p class="card-text" style="font-size: 0.95rem;">记录我如何在go标准库外实现比go标准库更好的arena。</p>
@@ -600,7 +651,8 @@
     </div>
 </div>
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/go%E8%AF%AD%E8%A8%80tls1.3%E5%AF%86%E7%A0%81%E5%A5%97%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%A0%94%E7%A9%B6/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/go%E8%AF%AD%E8%A8%80tls1.3%E5%AF%86%E7%A0%81%E5%A5%97%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%A0%94%E7%A9%B6/&#34;)">
     <div class="card-body">
         <h5 class="card-title">go语言tls1.3密码套件修改研究</h5>
         <p class="card-text" style="font-size: 0.95rem;">记录研究如何让go标准库的tls1.3默认密码套件用AES256的</p>
@@ -613,7 +665,8 @@
     </div>
 </div>
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E7%94%A8%E5%8E%9F%E5%AD%90%E6%8C%87%E9%92%88+%E4%BA%92%E6%96%A5%E9%94%81%E5%AE%9E%E7%8E%B0%E4%BB%85%E5%86%99%E6%97%B6%E5%8A%A0%E9%94%81/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E7%94%A8%E5%8E%9F%E5%AD%90%E6%8C%87%E9%92%88+%E4%BA%92%E6%96%A5%E9%94%81%E5%AE%9E%E7%8E%B0%E4%BB%85%E5%86%99%E6%97%B6%E5%8A%A0%E9%94%81/&#34;)">
     <div class="card-body">
         <h5 class="card-title">用原子指针+互斥锁实现仅写时加锁</h5>
         <p class="card-text" style="font-size: 0.95rem;">记录我写arena的一个经验</p>
@@ -626,7 +679,8 @@
     </div>
 </div>
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/go1-24rc1%E5%8F%91%E5%B8%83/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/go1-24rc1%E5%8F%91%E5%B8%83/&#34;)">
     <div class="card-body">
         <h5 class="card-title">go1.24rc1发布</h5>
         <p class="card-text" style="font-size: 0.95rem;">介绍go1.24值得关注的</p>
@@ -639,7 +693,8 @@
     </div>
 </div>
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/metrics%E5%8C%85%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BD%95%E9%9D%9E%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%8F%91%E7%94%9F%E6%AC%A1%E6%95%B0-md/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/metrics%E5%8C%85%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BD%95%E9%9D%9E%E9%BB%98%E8%AE%A4%E8%A1%8C%E4%B8%BA%E5%8F%91%E7%94%9F%E6%AC%A1%E6%95%B0-md/&#34;)">
     <div class="card-body">
         <h5 class="card-title">metrics包如何记录非默认行为发生次数</h5>
         <p class="card-text" style="font-size: 0.95rem;">记录研究metrics包怎么实现的</p>
@@ -652,7 +707,8 @@
     </div>
 </div>
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E4%B9%98%E6%B3%95%E8%BF%98%E6%98%AF%E8%A7%A3%E5%BC%95%E7%94%A8-md/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/%E4%B9%98%E6%B3%95%E8%BF%98%E6%98%AF%E8%A7%A3%E5%BC%95%E7%94%A8-md/&#34;)">
     <div class="card-body">
         <h5 class="card-title">乘法还是解引用</h5>
         <p class="card-text" style="font-size: 0.95rem;">记录我设计编程语言时，如何处理*号的思考过程</p>
@@ -665,7 +721,8 @@
     </div>
 </div>
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/mmap%E9%94%99%E8%AF%AF/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/mmap%E9%94%99%E8%AF%AF/&#34;)">
     <div class="card-body">
         <h5 class="card-title">mmap错误</h5>
         <p class="card-text" style="font-size: 0.95rem;">记录看go1.21提交记录发现被解决一个issue</p>
@@ -678,7 +735,8 @@
     </div>
 </div>
     
-        <div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/one/&#34;)">
+        
+<div class="card col-lg-4 col-sm-12" onclick="window.location.assign(&#34;/zh-cn/one/&#34;)">
     <div class="card-body">
         <h5 class="card-title">第一个博客</h5>
         <p class="card-text" style="font-size: 0.95rem;">第一篇博客,宣告我的博客正式上线。</p>
@@ -822,16 +880,9 @@
         if (level >= 3) numberText += '.' + h3Count;
         if (level >= 4) numberText += '.' + h4Count;
 
-        
         const headingText = $heading.text().replace(numberText, '').trim();
-        const cleanText = headingText.toLowerCase()
-          .replace(/\s+/g, '-')
-          .replace(/[^\w-]/g, '');
-
-        
-        const safeNumberText = typeof numberText === 'string' ? numberText : numberText.toString();
-        const generatedId = `heading-${safeNumberText.replace(/\./g, '-')}-${cleanText}`;
-        $heading.attr('id', generatedId);
+          
+        const generatedId = $heading.attr('id');
 
         
         const $li = $(`<li class="toc-level-${level}"></li>`);

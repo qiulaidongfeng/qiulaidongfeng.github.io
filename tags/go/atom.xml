@@ -6,8 +6,22 @@
     <description>Recent content in Go on 秋来冬风的博客</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 16 Oct 2025 18:17:20 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 19 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://qiulaidongfeng.github.io/tags/go/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>安全登录会话第三版设计方案——公开登录凭据也安全的机制</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/%E5%AE%89%E5%85%A8%E7%99%BB%E5%BD%95%E4%BC%9A%E8%AF%9D%E7%AC%AC%E4%B8%89%E7%89%88%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/</link>
+      <pubDate>Wed, 19 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/%E5%AE%89%E5%85%A8%E7%99%BB%E5%BD%95%E4%BC%9A%E8%AF%9D%E7%AC%AC%E4%B8%89%E7%89%88%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/</guid>
+      <description>&lt;h2 id=&#34;摘要&#34;&gt;摘要&lt;/h2&gt;&#xA;&lt;p&gt;本文记录一种安全登录会话第三版设计方案，之前版本的开源在&lt;a href=&#34;https://github.com/qiulaidongfeng/safesession&#34;&gt;github safesession库&lt;/a&gt;。&lt;/p&gt;&#xA;&lt;p&gt;用于在基于http协议的网络服务中保存用户的登录状态。&lt;/p&gt;&#xA;&lt;p&gt;设计思路是在Session ID in Cookie Value的基础上改进。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>安全登录会话三版设计方案的演进历程</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/%E5%AE%89%E5%85%A8%E7%99%BB%E5%BD%95%E4%BC%9A%E8%AF%9D%E4%B8%89%E7%89%88%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E7%9A%84%E6%BC%94%E8%BF%9B%E5%8E%86%E7%A8%8B/</link>
+      <pubDate>Sun, 02 Nov 2025 17:17:31 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/%E5%AE%89%E5%85%A8%E7%99%BB%E5%BD%95%E4%BC%9A%E8%AF%9D%E4%B8%89%E7%89%88%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E7%9A%84%E6%BC%94%E8%BF%9B%E5%8E%86%E7%A8%8B/</guid>
+      <description>&lt;p&gt;此博客回顾我设计&lt;a href=&#34;https://github.com/qiulaidongfeng/safesession&#34;&gt;safesession&lt;/a&gt;的过程。&lt;/p&gt;&#xA;&lt;h2 id=&#34;第一版设计方案&#34;&gt;第一版设计方案&lt;/h2&gt;&#xA;&lt;p&gt;我在2024年7月写了一个安全登录会话（safe Session）,基本设计思想的在Session ID in Cookie Value的基础上增加了身份验证。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Optimize http2 Web Server | Go standard library and runtime modifiable source code</title>
       <link>https://qiulaidongfeng.github.io/en/optimize-http2-web-server--go-standard-library-and-runtime-modifiable-source-code/</link>

@@ -226,6 +226,14 @@
     content: "§";
      
   }
+
+  .main h2:nth-of-type(n+2) {
+    border-top: 1px solid #000;
+  }
+
+  p {
+    word-wrap: break-word;
+  }
 </style>
 <script defer src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js" onload="Main()"></script>
@@ -359,7 +367,7 @@
           </div>
         </div>
         <div class="card-body text-center">
-          <p class="h1">34</p>
+          <p class="h1">36</p>
         </div>
       </div>
 
@@ -370,7 +378,7 @@
           </div>
         </div>
         <div class="card-body">
-          <p>一位Go语言程序员，专业的软件设计师。</p>
+          <p>一位全栈工程师。掌握用go+vue做完整web项目，从设计到部署到运维全能独自完成。</p>
           <p>有多年编程经验和网站建设经验。</p>
           <p>热爱研究http3等前沿技术。</p>
         </div>
@@ -386,7 +394,7 @@
           <p class="mt-4">博客最后更新：</p>
           <time>
             
-            2025-10-21
+            2025-11-19
             
           </time>
         </div>
@@ -407,6 +415,33 @@
     <div class="archive-year">
         <h2 class="archive-year-header mt-5">2025年</h2>
         
+        
+        <div class="archive-month mt-4">
+            <h3 class="archive-month-header">11月</h3>
+            
+            <div class="archive-posts">
+                
+                <div class="archive-entry mt-3">
+                    <div class="archive-meta">
+                        11月19日
+                    </div>
+                    <h4 class="archive-entry-title">
+                        <a href="/zh-cn/%E5%AE%89%E5%85%A8%E7%99%BB%E5%BD%95%E4%BC%9A%E8%AF%9D%E7%AC%AC%E4%B8%89%E7%89%88%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/">安全登录会话第三版设计方案——公开登录凭据也安全的机制</a>
+                    </h4>
+                </div>
+                
+                <div class="archive-entry mt-3">
+                    <div class="archive-meta">
+                        11月2日
+                    </div>
+                    <h4 class="archive-entry-title">
+                        <a href="/zh-cn/%E5%AE%89%E5%85%A8%E7%99%BB%E5%BD%95%E4%BC%9A%E8%AF%9D%E4%B8%89%E7%89%88%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E7%9A%84%E6%BC%94%E8%BF%9B%E5%8E%86%E7%A8%8B/">安全登录会话三版设计方案的演进历程</a>
+                    </h4>
+                </div>
+                
+            </div>
+            <hr>
+        </div>
         
         <div class="archive-month mt-4">
             <h3 class="archive-month-header">10月</h3>
@@ -967,16 +1002,9 @@
         if (level >= 3) numberText += '.' + h3Count;
         if (level >= 4) numberText += '.' + h4Count;
 
-        
         const headingText = $heading.text().replace(numberText, '').trim();
-        const cleanText = headingText.toLowerCase()
-          .replace(/\s+/g, '-')
-          .replace(/[^\w-]/g, '');
-
-        
-        const safeNumberText = typeof numberText === 'string' ? numberText : numberText.toString();
-        const generatedId = `heading-${safeNumberText.replace(/\./g, '-')}-${cleanText}`;
-        $heading.attr('id', generatedId);
+          
+        const generatedId = $heading.attr('id');
 
         
         const $li = $(`<li class="toc-level-${level}"></li>`);

@@ -224,6 +224,14 @@
     content: "§";
      
   }
+
+  .main h2:nth-of-type(n+2) {
+    border-top: 1px solid #000;
+  }
+
+  p {
+    word-wrap: break-word;
+  }
 </style>
 <script defer src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js" onload="Main()"></script>
@@ -359,7 +367,7 @@
           </div>
         </div>
         <div class="card-body text-center">
-          <p class="h1">34</p>
+          <p class="h1">36</p>
         </div>
       </div>
 
@@ -370,7 +378,7 @@
           </div>
         </div>
         <div class="card-body">
-          <p>一位Go语言程序员，专业的软件设计师。</p>
+          <p>一位全栈工程师。掌握用go+vue做完整web项目，从设计到部署到运维全能独自完成。</p>
           <p>有多年编程经验和网站建设经验。</p>
           <p>热爱研究http3等前沿技术。</p>
         </div>
@@ -386,7 +394,7 @@
           <p class="mt-4">博客最后更新：</p>
           <time>
             
-            2025-10-21
+            2025-11-19
             
           </time>
         </div>
@@ -409,7 +417,8 @@
   <div class="row">
     
     
-        <div class="card " onclick="window.location.assign(&#34;/zh-cn/%E5%BF%AB%E9%80%9F%E9%99%90%E6%B5%81%E8%B7%AF%E5%BE%84%E5%92%8C%E6%85%A2%E9%80%9F%E4%B8%9A%E5%8A%A1%E8%B7%AF%E5%BE%84%E8%AE%BE%E8%AE%A1%E6%8F%90%E5%8D%87web%E6%9C%8D%E5%8A%A1%E5%8F%AF%E7%94%A8%E6%80%A7/&#34;)">
+        
+<div class="card " onclick="window.location.assign(&#34;/zh-cn/%E5%BF%AB%E9%80%9F%E9%99%90%E6%B5%81%E8%B7%AF%E5%BE%84%E5%92%8C%E6%85%A2%E9%80%9F%E4%B8%9A%E5%8A%A1%E8%B7%AF%E5%BE%84%E8%AE%BE%E8%AE%A1%E6%8F%90%E5%8D%87web%E6%9C%8D%E5%8A%A1%E5%8F%AF%E7%94%A8%E6%80%A7/&#34;)">
     <div class="card-body">
         <h5 class="card-title">快速限流路径和慢速业务路径设计,提升web服务可用性</h5>
         <p class="card-text" style="font-size: 0.95rem;">分享我的快速限流路径设计经验，CDN、IP、可用资源(CPU和内存)、业务特定，层层设防，将限流效果最大化。</p>
@@ -420,7 +429,8 @@
     </div>
 </div>
     
-        <div class="card " onclick="window.location.assign(&#34;/zh-cn/ip%E9%99%90%E6%B5%81%E5%8F%AF%E4%BB%A5%E4%B8%8D%E7%94%A8redis%E5%86%85%E5%AD%98%E5%93%88%E5%B8%8C%E8%A1%A8%E5%B0%B1%E8%B6%B3%E5%A4%9F%E4%BA%86/&#34;)">
+        
+<div class="card " onclick="window.location.assign(&#34;/zh-cn/ip%E9%99%90%E6%B5%81%E5%8F%AF%E4%BB%A5%E4%B8%8D%E7%94%A8redis%E5%86%85%E5%AD%98%E5%93%88%E5%B8%8C%E8%A1%A8%E5%B0%B1%E8%B6%B3%E5%A4%9F%E4%BA%86/&#34;)">
     <div class="card-body">
         <h5 class="card-title">自己实现ip限流可以不用redis,内存哈希表就足够了</h5>
         <p class="card-text" style="font-size: 0.95rem;">分享我对限流的思考，自己用redis实现限流大可不必，它比内存哈希表性能差，如果需要多节点全局限流，用现代CDN是更好的选择。</p>
@@ -431,7 +441,8 @@
     </div>
 </div>
     
-        <div class="card " onclick="window.location.assign(&#34;/zh-cn/%E4%BC%98%E5%8C%96http2-web-server-%E4%B9%8Bgo%E6%A0%87%E5%87%86%E5%BA%93%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6%E5%8F%AF%E4%BF%AE%E6%94%B9%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81/&#34;)">
+        
+<div class="card " onclick="window.location.assign(&#34;/zh-cn/%E4%BC%98%E5%8C%96http2-web-server-%E4%B9%8Bgo%E6%A0%87%E5%87%86%E5%BA%93%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6%E5%8F%AF%E4%BF%AE%E6%94%B9%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81/&#34;)">
     <div class="card-body">
         <h5 class="card-title">优化http2 Web Server 之Go标准库和运行时可修改的源代码</h5>
         <p class="card-text" style="font-size: 0.95rem;">分享一些发现的Go HTTP2 服务器标准库与运行时源码可修改点，包含调帧大小、减内存分配、控 GC 占用、调goroutine栈大小等。</p>
@@ -442,7 +453,8 @@
     </div>
 </div>
     
-        <div class="card " onclick="window.location.assign(&#34;/en/why-not-use-tls-to-connect-to-the-database-instead-of-wireguard/&#34;)">
+        
+<div class="card " onclick="window.location.assign(&#34;/en/why-not-use-tls-to-connect-to-the-database-instead-of-wireguard/&#34;)">
     <div class="card-body">
         <h5 class="card-title">Why Not Use TLS to Connect to the Database Instead of WireGuard?</h5>
         <p class="card-text" style="font-size: 0.95rem;">TLS and WireGuard connection databases are analyzed from four dimensions: configuration frequency, quantum security, anti intrusion, and scalability. WireGuard has obvious advantages in small-scale scenarios and is an excellent alternative to TLS.</p>
@@ -453,7 +465,8 @@
     </div>
 </div>
     
-        <div class="card " onclick="window.location.assign(&#34;/zh-cn/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%A6%81%E4%BD%BF%E7%94%A8tls%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E8%80%8C%E7%94%A8wireguard%E6%9B%BF%E4%BB%A3/&#34;)">
+        
+<div class="card " onclick="window.location.assign(&#34;/zh-cn/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%A6%81%E4%BD%BF%E7%94%A8tls%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E8%80%8C%E7%94%A8wireguard%E6%9B%BF%E4%BB%A3/&#34;)">
     <div class="card-body">
         <h5 class="card-title">为什么不要使用TLS连接数据库，而用WireGuard替代？</h5>
         <p class="card-text" style="font-size: 0.95rem;">TLS 和 WireGuard 连接数据库 从配置次数、量子安全、抗入侵和扩展性四个维度分析。发现WireGuard在小规模场景下优势明显，是替代TLS的绝佳选择。</p>
@@ -464,7 +477,8 @@
     </div>
 </div>
     
-        <div class="card " onclick="window.location.assign(&#34;/zh-cn/%E5%A6%82%E4%BD%95%E5%81%9A%E5%88%B0%E9%AB%98%E5%8F%AF%E7%94%A8%E9%AB%98%E5%90%9E%E5%90%90%E7%9A%84web%E6%9C%8D%E5%8A%A1/&#34;)">
+        
+<div class="card " onclick="window.location.assign(&#34;/zh-cn/%E5%A6%82%E4%BD%95%E5%81%9A%E5%88%B0%E9%AB%98%E5%8F%AF%E7%94%A8%E9%AB%98%E5%90%9E%E5%90%90%E7%9A%84web%E6%9C%8D%E5%8A%A1/&#34;)">
     <div class="card-body">
         <h5 class="card-title">如何做到高可用高吞吐的web服务 | 全栈优化实践</h5>
         <p class="card-text" style="font-size: 0.95rem;">分享搭建高可用高吞吐 Web 服务的实战经验，涵盖服务器选型、HTTP/2 优化、内核参数调优（TCP/IP、缓冲区、连接队列）、CDN 加速、限流策略与数据库连接优化，提升Web吞吐量与稳定性。</p>
@@ -606,16 +620,9 @@
         if (level >= 3) numberText += '.' + h3Count;
         if (level >= 4) numberText += '.' + h4Count;
 
-        
         const headingText = $heading.text().replace(numberText, '').trim();
-        const cleanText = headingText.toLowerCase()
-          .replace(/\s+/g, '-')
-          .replace(/[^\w-]/g, '');
-
-        
-        const safeNumberText = typeof numberText === 'string' ? numberText : numberText.toString();
-        const generatedId = `heading-${safeNumberText.replace(/\./g, '-')}-${cleanText}`;
-        $heading.attr('id', generatedId);
+          
+        const generatedId = $heading.attr('id');
 
         
         const $li = $(`<li class="toc-level-${level}"></li>`);

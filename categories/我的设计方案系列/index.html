@@ -4,11 +4,11 @@
 
 <html lang="zh-CN" dir="ltr">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>
-如何做到高可用高吞吐的web服务 | 全栈优化实践 | 秋来冬风的博客</title>
+我的设计方案系列 | 秋来冬风的博客</title>
 
 
     
@@ -26,41 +26,40 @@
 
 
 
-<meta name="description" content="分享搭建高可用高吞吐 Web 服务的实战经验，涵盖服务器选型、HTTP/2 优化、内核参数调优（TCP/IP、缓冲区、连接队列）、CDN 加速、限流策略与数据库连接优化，提升Web吞吐量与稳定性。">
 
 
-          
-<meta name="keywords" content="web服务,高可用,高吞吐,秋来冬风,qiulaidongfeng,博客,blog">
-<link rel="canonical" href="https://qiulaidongfeng.github.io/zh-cn/%E5%A6%82%E4%BD%95%E5%81%9A%E5%88%B0%E9%AB%98%E5%8F%AF%E7%94%A8%E9%AB%98%E5%90%9E%E5%90%90%E7%9A%84web%E6%9C%8D%E5%8A%A1/" />
+
+       
+<meta name="keywords" content="秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog">
+<link rel="canonical" href="http://localhost:1313/categories/%E6%88%91%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E7%B3%BB%E5%88%97/" />
 <meta name="author" content="qiulaidongfeng(秋来冬风)">
 <meta name="copyright" content="Copyright © 2023 秋来冬风. All rights reserved.">
-<link rel="author" href="https://qiulaidongfeng.github.io/about/">
+<link rel="author" href="http://localhost:1313/about/">
 
 
 
 
-<link rel="alternate" href="https://qiulaidongfeng.github.io/zh-cn/%E5%A6%82%E4%BD%95%E5%81%9A%E5%88%B0%E9%AB%98%E5%8F%AF%E7%94%A8%E9%AB%98%E5%90%9E%E5%90%90%E7%9A%84web%E6%9C%8D%E5%8A%A1/" hreflang="zh-CN" />
+<link rel="alternate" href="http://localhost:1313/categories/%E6%88%91%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E7%B3%BB%E5%88%97/" hreflang="zh-CN" />
 
-<meta property="og:title" content="如何做到高可用高吞吐的web服务 | 全栈优化实践">
+<meta property="og:title" content="我的设计方案系列">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="秋来冬风的博客">
-<meta property="og:url" content="https://qiulaidongfeng.github.io/zh-cn/%E5%A6%82%E4%BD%95%E5%81%9A%E5%88%B0%E9%AB%98%E5%8F%AF%E7%94%A8%E9%AB%98%E5%90%9E%E5%90%90%E7%9A%84web%E6%9C%8D%E5%8A%A1/">
-<meta property="og:description" content="分享搭建高可用高吞吐 Web 服务的实战经验，涵盖服务器选型、HTTP/2 优化、内核参数调优（TCP/IP、缓冲区、连接队列）、CDN 加速、限流策略与数据库连接优化，提升Web吞吐量与稳定性。">
+<meta property="og:url" content="http://localhost:1313/categories/%E6%88%91%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E7%B3%BB%E5%88%97/">
+<meta property="og:description" content="">
 <meta property="og:locale" content="zh-CN" />
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="如何做到高可用高吞吐的web服务 | 全栈优化实践">
-<meta name="twitter:description" content="分享搭建高可用高吞吐 Web 服务的实战经验，涵盖服务器选型、HTTP/2 优化、内核参数调优（TCP/IP、缓冲区、连接队列）、CDN 加速、限流策略与数据库连接优化，提升Web吞吐量与稳定性。">
-<meta name="twitter:url" content="https://qiulaidongfeng.github.io/zh-cn/%E5%A6%82%E4%BD%95%E5%81%9A%E5%88%B0%E9%AB%98%E5%8F%AF%E7%94%A8%E9%AB%98%E5%90%9E%E5%90%90%E7%9A%84web%E6%9C%8D%E5%8A%A1/">
+<meta name="twitter:title" content="我的设计方案系列">
+<meta name="twitter:description" content="">
+<meta name="twitter:url" content="http://localhost:1313/categories/%E6%88%91%E7%9A%84%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E7%B3%BB%E5%88%97/">
 
 <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       
-      "@type": "BlogPosting",
-      "headline": "如何做到高可用高吞吐的web服务 | 全栈优化实践 | 秋来冬风的博客",
+      "@type": "CollectionPage",
       
-      "description": "分享搭建高可用高吞吐 Web 服务的实战经验，涵盖服务器选型、HTTP\/2 优化、内核参数调优（TCP\/IP、缓冲区、连接队列）、CDN 加速、限流策略与数据库连接优化，提升Web吞吐量与稳定性。",
+      "description": "",
       "author": {
         "@type": "Person",
         "name": "qiulaidongfeng(秋来冬风)",
@@ -72,10 +71,7 @@
         "url": "https://qiulaidongfeng.github.io/"
       },
       
-      "datePublished": "2025-09-24T19:40:58+08:00",
-      "articleSection": "技术博客",
-      
-      "keywords": "web服务,高可用,高吞吐,秋来冬风,qiulaidongfeng,博客,blog"
+      "keywords": "秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog"
     }
 </script>
 
@@ -88,15 +84,6 @@
   gtag('js', new Date());
 
   gtag('config', 'AW-17224273730');
-</script>
-
-
-<script>
-  gtag('event', 'conversion', {
-      'send_to': 'AW-17224273730/5jopCNeP14kbEMKelpVA',
-      'value': 0.01,
-      'currency': 'USD'
-  });
 </script>
 
 <style>
@@ -362,11 +349,11 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         
-        <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/">秋来冬风的博客</a></li>
+        <li class="breadcrumb-item"><a href="http://localhost:1313/">秋来冬风的博客</a></li>
         
-        <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/zh-cn/">所有中文内容</a></li>
+        <li class="breadcrumb-item"><a href="http://localhost:1313/categories/">Categories</a></li>
         
-        <li class="breadcrumb-item active" aria-current="page">如何做到高可用高吞吐的web服务 | 全栈优化实践</li>
+        <li class="breadcrumb-item active" aria-current="page">我的设计方案系列</li>
     </ol>
 </nav>
 
@@ -391,7 +378,7 @@
           </div>
         </div>
         <div class="card-body">
-          <p>一位全栈工程师。掌握用go+vue做完整web项目，从设计到部署到运维全能独自完成。</p>
+          <p>一位Go语言程序员，专业的软件设计师。</p>
           <p>有多年编程经验和网站建设经验。</p>
           <p>热爱研究http3等前沿技术。</p>
         </div>
@@ -421,220 +408,60 @@
     </aside>
     <div id="main" class="col-lg-8">
       
-<div class="d-flex justify-content-between">
-  <time>2025-09-24</time>
-  <p id="wordcount"></p>
-</div>
-
-<div style="background-color: white;" class="p-4">
-  <article id="content">
+  <h1>我的设计方案系列</h1>
+  
+  
+  
     
-    <h1>如何做到高可用高吞吐的web服务 | 全栈优化实践</h1>
+  
+  <div class="row">
     
-    <details class="toc">
-      <summary>目录</summary>
-      <div id="table-of-contents"></div>
-    </details>
-    <div class="main">
-      <h2 id="背景">背景</h2>
-<p>这是<a href="/categories/%E6%88%91%E7%9A%84%E9%AB%98%E5%90%9E%E5%90%90http2%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%98%E5%8C%96%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%E7%B3%BB%E5%88%97/">我的高吞吐http2服务器优化经验分享系列</a> 第一篇博客。</p>
-<p>本文分享笔者一些搭建web服务时，做到高可用且高吞吐的经验。</p>
-<h2 id="硬件角度">硬件角度</h2>
-<h3 id="服务器">服务器</h3>
-<p>通常，web服务被部署在云服务器上，而且比较可能是在成本较低的vps(虚拟专用服务器)。</p>
-<p>注意仔细查看<strong>可接受使用政策</strong>，避免使用限制严格的vps。</p>
-<p>如有长时间高占用CPU需求，不要吝啬这方面的支出。</p>
-<p>选择好的服务器至关重要，否则高可用且高吞吐的web服务几乎无从谈起。</p>
-<h3 id="cpu">CPU</h3>
-<p>尽量多核，以达到更高的吞吐量。</p>
-<h3 id="内存">内存</h3>
-<p>高内存有助于接收更多的网络请求，尽量确保物理内存充足。</p>
-<p>注意虽然在低内存时，使用适量虚拟内存有助于高可用，但无论如何，也不如增加物理内存更好。</p>
-<h3 id="磁盘">磁盘</h3>
-<p>尽量减少对磁盘的操作。</p>
-<p>比如对于静态文件服务器，可以把对外提供的文件，缓存到内存，加快速度。</p>
-<h3 id="网络">网络</h3>
-<p>注意网络带宽要够快，如果像比如只有1Mbps这样，实现高吞吐不现实。</p>
-<p>还要注意距离和网络路由，例如在中国访问美国的web服务，受限于光速的物理限制，理论上RTT(往返时延)最短也要100多ms，若路由未优化，实际 RTT 可能远高于理论值。</p>
-<h3 id="温度">温度</h3>
-<p>注意机器的温度，客户机的也要注意。</p>
-<p>如果在机体发烫时测试，可能测试得出较低的吞吐量。</p>
-<h2 id="tcpip四层模型角度">TCP/IP四层模型角度</h2>
-<style>
-.layer {
-  display: grid;
-  grid-template-columns: 1fr 3.5fr;
-}
-.layer .card:nth-child(1) .card-body:nth-child(1) {
-  display: flex;
-  justify-content: center;  /* 水平居中 */
-  align-items: center;      /* 垂直居中 */
-}
-</style>
-<div class="layer">
-  <div class="card">
+    
+        <div class="card " onclick="window.location.assign(&#34;/zh-cn/%E5%AE%89%E5%85%A8%E7%99%BB%E5%BD%95%E4%BC%9A%E8%AF%9D%E7%AC%AC%E4%B8%89%E7%89%88%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/&#34;)">
     <div class="card-body">
-      <h3 class="card-title">
-        应用层
-      </h3>
+        <h5 class="card-title">安全登录会话第三版设计方案——公开登录凭据也安全的机制</h5>
+        <p class="card-text" style="font-size: 0.95rem;">在Session的基础上，通过各种辅助验证，以及对加密的巧妙运用，做到了在安全维持登录会话的同时，自身仅存储少量数据，并且即使泄露登录会话凭据，也不太影响安全性。</p>
+        <div class="d-flex justify-content-between align-items-center">
+        
+        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/%E5%AE%89%E5%85%A8%E7%99%BB%E5%BD%95%E4%BC%9A%E8%AF%9D%E7%AC%AC%E4%B8%89%E7%89%88%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/&#34;)">阅读</button>
+        </div>
     </div>
-  </div>
-  <div class="card">
-    <div class="card-body">
-      <h4>使用高效的编程语言</h4>
-      <p>可以使用Go,Rust等容易写出高吞吐服务器的高效编程语言。</p>
-      <hr>
-      <h4>使用http2</h4>
-      <p>http2对比http1.1在服务器资源消耗方面有巨大优势，笔者实测，原本最高4000+rps的web服务，使用http2后，最高可达7000+rps，而且内存使用更少。</p>
-      <hr>
-      <h4>使用SIMD</h4>
-      <p>例如设置环境变量GOAMD64=v3，Go 编译器会在生成的二进制文件中使用 AVX2 指令（在某些情况下这可能会提升性能）。</p>
-      <hr>
-      <h4>使用大日志写缓冲区</h4>
-      <p>磁盘读写很影响吞吐量，使用大缓冲区，可尽量降低写日志等造成的性能下降。</p>
-      <hr>
-      <h4>使用浏览器缓存</h4>
-      <p>用好HTTP响应头Cache-Control，减少重复请求。</p>
-      <hr>
-      <h4>使用cdn</h4>
-      <p>通过减低源服务器负载，增强可用性。通过从距离用户近的地方响应静态文件，提高吞吐量。</p>
-      <hr>
-      <h4>使用多台服务器</h4>
-      <p>单台服务器易因单点故障（如网络中断、程序崩溃、硬件故障）失效，通过使用多台服务器来确保高可用。</p>
-      <hr>
-      <h4>配置自动重启</h4>
-      <p>服务器进程可能因各种原因崩溃退出，可配置自动重启，保证高可用。</p>
-      <hr>
-      <h4>调整GC</h4>
-      <p>对于带自动垃圾回收的编程语言，根据情况调整GC，兼顾高可用和高吞吐。</p>
-      <hr>
-      <h4>限流</h4>
-      <p>基于IP限流，令牌桶，滑动窗口等，根据应用场景选择，避免因为处理恶意请求，影响可用性。</p>
-      <hr>
-      <h4>使用透明大页</h4>
-      <p>减少TLB未命中率，提高地址转换效率，从而提升CPU性能</p>
-      <hr>
-      <h4>多核时使用SO_REUSEPORT</h4>
-      <p>允许多个 socket 绑定到同一个 IP 地址和端口，更好的负载均衡，更好利用多核。</p>
-      <hr>
-      <h4>不要使用TLS连接数据库</h4>
-      <p>使用TLS连接数据库开销很大，而且TLS的配置很复杂，如有需要，可以使用wireguard组网，然后在内网直接tcp连接数据库。</p>
-    </div>
-  </div>
 </div>
-<div class="layer">
-  <div class="card">
+    
+        <div class="card " onclick="window.location.assign(&#34;/zh-cn/%E5%AE%89%E5%85%A8%E7%99%BB%E5%BD%95%E4%BC%9A%E8%AF%9D%E4%B8%89%E7%89%88%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E7%9A%84%E6%BC%94%E8%BF%9B%E5%8E%86%E7%A8%8B/&#34;)">
     <div class="card-body">
-      <h3 class="card-title">
-        传输层
-      </h3>
+        <h5 class="card-title">安全登录会话三版设计方案的演进历程</h5>
+        <p class="card-text" style="font-size: 0.95rem;">此博客回顾我设计safesession的过程，从第一版到第二版到第三版，各增加了什么，解决了什么问题。</p>
+        <div class="d-flex justify-content-between align-items-center">
+        
+        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/%E5%AE%89%E5%85%A8%E7%99%BB%E5%BD%95%E4%BC%9A%E8%AF%9D%E4%B8%89%E7%89%88%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E7%9A%84%E6%BC%94%E8%BF%9B%E5%8E%86%E7%A8%8B/&#34;)">阅读</button>
+        </div>
     </div>
-  </div>
-  <div class="card">
-    <div class="card-body">
-      <h4>拥塞控制使用bbr</h4>
-      <p>配置net.ipv4.tcp_congestion_control = bbr，通过将网络保持在 “最佳传输速率”= 瓶颈带宽 × RTT （无需刻意规避丢包，只需让速率不超过瓶颈带宽，即可避免拥塞），在高带宽、高延迟网络环境很有帮助提升网速，降低延迟。</p>
-      <hr>
-      <h4>启用自动缓冲区调整</h4>
-      <p>配置net.ipv4.tcp_moderate_rcvbuf = 1，在高带宽、高延迟网络环境必须开启以支持更多带宽。</p>
-      <hr>
-      <h4>启用选择性确认</h4>
-      <p>配置net.ipv4.tcp_sack = 1，在丢包时避免不必要的重传。</p>
-      <hr>
-      <h4>启用 TCP 时间戳</h4>
-      <p>配置net.ipv4.tcp_timestamps = 1，可精确测量往返时延，提升高带宽、高延迟网络环境的性能。</p>
-      <hr>
-      <h4>增加允许的乱序数据包数量</h4>
-      <p>调大net.ipv4.tcp_reordering，默认为3，可改为6或更高，避免不必要的重传。</p>
-      <hr>
-      <h4>按需启用SYN Cookies</h4>
-      <p>配置net.ipv4.tcp_syncookies = 1，可确保在遭到SYN Flood攻击时，即使半连接队满，仍然可以建立新连接处理正常请求。</p>
-      <hr>
-      <h4>降低SYN-ACK重传次数</h4>
-      <p>降低net.ipv4.tcp_synack_retries，默认为5，可降低为2或3，减少无效等待，加速资源回收，并防御SYN Flood，与 tcp_syncookies 配合，攻击者创建的半连接会被更快回收。</p>
-      <hr>
-      <h4>调大连接队列</h4>
-      <p>调大net.ipv4.tcp_max_syn_backlog（半连接队列）和net.core.somaxconn（全连接队列），降低服务器在高并发时连接建立失败的几率。</p>
-      <hr>
-      <h4>调大发送/接收缓冲区</h4>
-      <p>调大net.ipv4.tcp_rmem、net.ipv4.tcp_wmem、net.core.rmem_max、net.core.wmem_max，提升高带宽、高延迟网络环境下的吞吐量。</p>
-      <hr>
-      <h4>启用 TCP 窗口缩放</h4>
-      <p>配置net.ipv4.tcp_window_scaling = 1，支持大带宽延迟积。</p>
-      <hr>
-      <h4>加快长连接的存活检测</h4>
-      <p>配置net.ipv4.tcp_keepalive_time = 300、net.ipv4.tcp_keepalive_intvl = 15、net.ipv4.tcp_keepalive_probes = 2或视情况调低，更快清理僵尸连接，释放文件描述符和内存。</p>
-      <hr>
-      <h4>启用tcp快速打开</h4>
-      <p>配置net.ipv4.tcp_fastopen = 3，加快TCP重新连接建立。需确保应用（如 Nginx、Go 服务）也支持 TFO</p>
-      <hr>
-      <h4>空闲后不重新进入慢启动</h4>
-      <p>配置net.ipv4.tcp_slow_start_after_idle = 0，适合长连接的场景（如 HTTP/2 服务），可减少拥塞窗口反复重置的性能损耗。</p>
-      <hr>
-      <h4>不使用旧的拥塞控制相关统计信息</h4>
-      <p>配置net.ipv4.tcp_no_metrics_save = 1，适应多样化的客户端网络环境，减少因历史参数不匹配导致的服务质量下降。</p>
-    </div>
-  </div>
 </div>
-<div class="layer">
-  <div class="card">
+    
+        <div class="card " onclick="window.location.assign(&#34;/zh-cn/%E7%94%A8redis%E6%9E%84%E5%BB%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/&#34;)">
     <div class="card-body">
-      <h3 class="card-title">
-        网络层
-      </h3>
+        <h5 class="card-title">用redis构建聊天室</h5>
+        <p class="card-text" style="font-size: 0.95rem;">记录我用redis构建聊天室的一个方案。</p>
+        <div class="d-flex justify-content-between align-items-center">
+        
+        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/%E7%94%A8redis%E6%9E%84%E5%BB%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/&#34;)">阅读</button>
+        </div>
     </div>
-  </div>
-  <div class="card">
-    <div class="card-body">
-      <h4>增加每次软中断处理的数据包数量</h4>
-      <p>增大net.core.netdev_budget，让每次软中断能处理更多数据包，增加吞吐量。</p>
-      <hr>
-      <h4>增加网卡接收队列的最大长度</h4>
-      <p>增大netdev_max_backlog，增强处理突发流量的能力，但不是越大越好，否则可能破坏拥塞控制，导致高延迟和低网速。</p>
-      <p>一个奇怪的现象，笔者实测，不管net.core.netdev_budget是多少，netdev_max_backlog为net.core.netdev_budget2到3倍时，网速最快，吞吐量最高。（<b>不一定在其他机器一样</b>）</p>
-      <hr>
-      <h4>增加每次软中断处理的最大时间</h4>
-      <p>增大net.core.netdev_budget_usecs，让每次软中断能处理更多数据包，增加吞吐量。</p>
-      <hr>
-      <h4>使用优化路由</h4>
-      <p>使用优化路由（如选择 CN2、GIA、BGP 多线、智能调度等优质线路）能降低延迟和丢包率，增加带宽延迟积，保障高吞吐和高可用。</p>
-    </div>
-  </div>
 </div>
-<div class="layer">
-  <div class="card">
+    
+        <div class="card " onclick="window.location.assign(&#34;/zh-cn/%E5%9C%A8go%E6%A0%87%E5%87%86%E5%BA%93%E5%A4%96%E5%AE%9E%E7%8E%B0%E6%AF%94%E6%A0%87%E5%87%86%E5%BA%93%E6%9B%B4%E5%A5%BD%E7%9A%84arena/&#34;)">
     <div class="card-body">
-      <h3 class="card-title">
-        网络接口层
-      </h3>
+        <h5 class="card-title">在go标准库外实现比go标准库更好的arena</h5>
+        <p class="card-text" style="font-size: 0.95rem;">记录我如何在go标准库外实现比go标准库更好的arena。</p>
+        <div class="d-flex justify-content-between align-items-center">
+        
+        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/%E5%9C%A8go%E6%A0%87%E5%87%86%E5%BA%93%E5%A4%96%E5%AE%9E%E7%8E%B0%E6%AF%94%E6%A0%87%E5%87%86%E5%BA%93%E6%9B%B4%E5%A5%BD%E7%9A%84arena/&#34;)">阅读</button>
+        </div>
     </div>
-  </div>
-  <div class="card">
-    <div class="card-body">
-      <h4>关闭GRO（通用接收卸载）、GSO（通用分段卸载）、TSO（TCP 分段卸载）</h4>
-      <p>在http2服务器，关掉这些网卡特性可能让吞吐量更高。因为这些是为处理大量数据设计，在多小数据包时可能增加延迟。</p>
-    </div>
-  </div>
 </div>
-    </div>
-  </div>
-</article>
-
-  <div>
-    <div>Tags:</div>
-    <ul>
-        <li><a href="/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/">网站相关</a></li>
-    </ul>
-  </div>
-
-
-  <div>
-    <div>Categories:</div>
-    <ul>
-        <li><a href="/categories/%E6%88%91%E7%9A%84%E9%AB%98%E5%90%9E%E5%90%90http2%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%98%E5%8C%96%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%E7%B3%BB%E5%88%97/">我的高吞吐http2服务器优化经验分享系列</a></li>
-    </ul>
-  </div>
-
+    
+</div>
 
     </div>
     <aside id="aside2" class="col-lg-2">

@@ -237,6 +237,14 @@
     content: "§";
      
   }
+
+  .main h2:nth-of-type(n+2) {
+    border-top: 1px solid #000;
+  }
+
+  p {
+    word-wrap: break-word;
+  }
 </style>
 <script defer src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js" onload="Main()"></script>
@@ -370,7 +378,7 @@
           </div>
         </div>
         <div class="card-body text-center">
-          <p class="h1">34</p>
+          <p class="h1">36</p>
         </div>
       </div>
 
@@ -381,7 +389,7 @@
           </div>
         </div>
         <div class="card-body">
-          <p>一位Go语言程序员，专业的软件设计师。</p>
+          <p>一位全栈工程师。掌握用go+vue做完整web项目，从设计到部署到运维全能独自完成。</p>
           <p>有多年编程经验和网站建设经验。</p>
           <p>热爱研究http3等前沿技术。</p>
         </div>
@@ -397,7 +405,7 @@
           <p class="mt-4">博客最后更新：</p>
           <time>
             
-            2025-10-21
+            2025-11-19
             
           </time>
         </div>
@@ -426,7 +434,7 @@
     <div class="main">
       <h1 class="text-center">关于我</h1>
 <section class="mt-4 p-4 card">
-    <h2>快速介绍：</h2>
+    <h2>快速了解：</h2>
     <p>一位Go语言程序员，专业的软件设计师。</p>
     <p>我给Go语言贡献过很多代码，推动了多项Go语言的提案前进，是go-assigness组成员，有Go语言的may-start-trybots权限。</p>
     <p>我有多年编程经验和网站建设经验，热爱研究http3等前沿技术。</p>
@@ -438,7 +446,7 @@
 
 <section class="mt-4 p-4 card">
     <h2>自我介绍：</h2>
-    <p>我是全栈工程师。掌握用go+vue做完整web项目</p>
+    <p>我是全栈工程师。掌握用go+vue做完整web项目，从设计到部署到运维全能独自完成。</p>
     <p>我掌握编译原理、计算机组成原理、计算机网络、操作系统原理、现代密码学等专业知识。</p>
     <p>我自己设计过编程语言并写了编译器。</p>
     <p>我有软考中级证书 ———— 软件设计师。</p>
@@ -449,6 +457,7 @@
     <h2>证书：</h2>
     <ul>
         <li>Go语言全国计算机技术与软件专业技术资格(水平)考试 ———— 中级 软件设计师</li>
+        <li>全国计算机等级考试 四级 信息安全工程师</li>
         <li>全国计算机等级考试 三级 信息安全技术</li>
         <li>全国计算机等级考试 一级 WPS Office应用</li>
     </ul>
@@ -769,16 +778,9 @@
         if (level >= 3) numberText += '.' + h3Count;
         if (level >= 4) numberText += '.' + h4Count;
 
-        
         const headingText = $heading.text().replace(numberText, '').trim();
-        const cleanText = headingText.toLowerCase()
-          .replace(/\s+/g, '-')
-          .replace(/[^\w-]/g, '');
-
-        
-        const safeNumberText = typeof numberText === 'string' ? numberText : numberText.toString();
-        const generatedId = `heading-${safeNumberText.replace(/\./g, '-')}-${cleanText}`;
-        $heading.attr('id', generatedId);
+          
+        const generatedId = $heading.attr('id');
 
         
         const $li = $(`<li class="toc-level-${level}"></li>`);
