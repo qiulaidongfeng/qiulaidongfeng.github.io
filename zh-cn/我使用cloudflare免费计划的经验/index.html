@@ -740,8 +740,12 @@ Cloudflare的使命是帮助构建更好的互联网。我们认为每个网站�
         if (level >= 4) numberText += '.' + h4Count;
 
         const headingText = $heading.text().replace(numberText, '').trim();
-          
-        const generatedId = $heading.attr('id');
+
+        let generatedId = $heading.attr('id');
+        if (generatedId == undefined) {
+          generatedId = $heading.text();
+          $heading.attr('id', generatedId);
+        }
 
         
         const $li = $(`<li class="toc-level-${level}"></li>`);

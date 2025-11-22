@@ -591,8 +591,12 @@ Cloudflare | 秋来冬风的博客</title>
         if (level >= 4) numberText += '.' + h4Count;
 
         const headingText = $heading.text().replace(numberText, '').trim();
-          
-        const generatedId = $heading.attr('id');
+
+        let generatedId = $heading.attr('id');
+        if (generatedId == undefined) {
+          generatedId = $heading.text();
+          $heading.attr('id', generatedId);
+        }
 
         
         const $li = $(`<li class="toc-level-${level}"></li>`);

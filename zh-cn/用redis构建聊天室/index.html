@@ -735,8 +735,12 @@ redis集群将数据分布到多个redis实例提供性能，上面的方案需�
         if (level >= 4) numberText += '.' + h4Count;
 
         const headingText = $heading.text().replace(numberText, '').trim();
-          
-        const generatedId = $heading.attr('id');
+
+        let generatedId = $heading.attr('id');
+        if (generatedId == undefined) {
+          generatedId = $heading.text();
+          $heading.attr('id', generatedId);
+        }
 
         
         const $li = $(`<li class="toc-level-${level}"></li>`);
