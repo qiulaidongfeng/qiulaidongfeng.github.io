@@ -6,8 +6,15 @@
     <description>Recent content in Ens on 秋来冬风的博客</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 16 Oct 2025 18:17:20 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 31 Dec 2025 01:26:29 +0800</lastBuildDate>
     <atom:link href="https://qiulaidongfeng.github.io/en/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>WireGuard Network Configuration Experience: Lower MTU for High Packet Loss, Switch Ports If It Fails, Skip Persisting iptables Rules, and Test with mtr</title>
+      <link>https://qiulaidongfeng.github.io/en/wireguard-network-configuration-experience/</link>
+      <pubDate>Wed, 31 Dec 2025 01:26:29 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/en/wireguard-network-configuration-experience/</guid>
+      <description>&lt;p&gt;AI translation.&lt;/p&gt;&#xA;&lt;p&gt;WireGuard is an excellent networking tool that can be used to build a private intranet, preventing databases such as MySQL in the production environment from being exposed to the public network.&lt;/p&gt;&#xA;&lt;p&gt;This blog shares the author&amp;rsquo;s experience with WireGuard networking.&lt;/p&gt;&#xA;&lt;h2 id=&#34;testing-with-mtr&#34;&gt;Testing with MTR&lt;/h2&gt;&#xA;&lt;p&gt;MTR is a great testing tool that can be installed and run on Linux via WSL. It is capable of measuring latency and packet loss rate over a period of time.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Optimize http2 Web Server | Go standard library and runtime modifiable source code</title>
       <link>https://qiulaidongfeng.github.io/en/optimize-http2-web-server--go-standard-library-and-runtime-modifiable-source-code/</link>

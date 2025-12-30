@@ -1,36 +1,42 @@
-<!DOCTYPE html><html lang="zh-CN" dir="ltr">
+<!DOCTYPE html><html lang="en" dir="ltr">
 
 <head>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>
-go1.24rc1发布 | 秋来冬风的博客</title><meta name="description" content="介绍go1.24值得关注的">       
-<meta name="keywords" content="go1.24,秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog">
-<link rel="canonical" href="https://qiulaidongfeng.github.io/zh-cn/go1-24rc1%E5%8F%91%E5%B8%83/" />
+WireGuard Network Configuration Experience: Lower MTU for High Packet Loss, Switch Ports If It Fails, Skip Persisting iptables Rules, and Test with mtr | 秋来冬风的博客</title><meta name="description" content="Share WireGuard network deployment experience, including using mtr to test network quality, troubleshooting quickly by changing ports, measuring path MTU with ping and adjusting WireGuard configurations to reduce packet loss rate, as well as handling iptables rules cautiously in production environments to avoid connection interruptions.">          
+<meta name="keywords" content="WireGuard,秋来冬风,qiulaidongfeng,博客,blog">
+<link rel="canonical" href="https://qiulaidongfeng.github.io/en/wireguard-network-configuration-experience/" />
 <meta name="author" content="qiulaidongfeng(秋来冬风)">
 <meta name="copyright" content="Copyright © 2023 秋来冬风. All rights reserved.">
-<link rel="author" href="https://qiulaidongfeng.github.io/about/"><link rel="alternate" href="https://qiulaidongfeng.github.io/zh-cn/go1-24rc1%E5%8F%91%E5%B8%83/" hreflang="zh-CN" />
+<link rel="author" href="https://qiulaidongfeng.github.io/about/"><link rel="alternate" href="https://qiulaidongfeng.github.io/en/wireguard-network-configuration-experience/" hreflang="en" />
 
-<meta property="og:title" content="go1.24rc1发布">
+
+  
+    
+  
+<link rel="alternate" href="https://qiulaidongfeng.github.io/zh-cn/wireguard%e7%bb%84%e7%bd%91%e7%bb%8f%e9%aa%8c-%e9%ab%98%e4%b8%a2%e5%8c%85%e9%99%8d%e4%bd%8emtu%e4%b8%8d%e6%88%90%e5%8a%9f%e6%8d%a2%e7%ab%af%e5%8f%a3%e4%b8%8d%e6%8c%81%e4%b9%85iptables%e8%a7%84%e5%88%99%e7%94%a8mtr%e6%b5%8b%e8%af%95/" hreflang="zh-CN" />
+
+<meta property="og:title" content="WireGuard Network Configuration Experience: Lower MTU for High Packet Loss, Switch Ports If It Fails, Skip Persisting iptables Rules, and Test with mtr">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="秋来冬风的博客">
-<meta property="og:url" content="https://qiulaidongfeng.github.io/zh-cn/go1-24rc1%E5%8F%91%E5%B8%83/">
-<meta property="og:description" content="介绍go1.24值得关注的">
-<meta property="og:locale" content="zh-CN" />
+<meta property="og:url" content="https://qiulaidongfeng.github.io/en/wireguard-network-configuration-experience/">
+<meta property="og:description" content="Share WireGuard network deployment experience, including using mtr to test network quality, troubleshooting quickly by changing ports, measuring path MTU with ping and adjusting WireGuard configurations to reduce packet loss rate, as well as handling iptables rules cautiously in production environments to avoid connection interruptions.">
+<meta property="og:locale" content="en" />
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="go1.24rc1发布">
-<meta name="twitter:description" content="介绍go1.24值得关注的">
-<meta name="twitter:url" content="https://qiulaidongfeng.github.io/zh-cn/go1-24rc1%E5%8F%91%E5%B8%83/">
+<meta name="twitter:title" content="WireGuard Network Configuration Experience: Lower MTU for High Packet Loss, Switch Ports If It Fails, Skip Persisting iptables Rules, and Test with mtr">
+<meta name="twitter:description" content="Share WireGuard network deployment experience, including using mtr to test network quality, troubleshooting quickly by changing ports, measuring path MTU with ping and adjusting WireGuard configurations to reduce packet loss rate, as well as handling iptables rules cautiously in production environments to avoid connection interruptions.">
+<meta name="twitter:url" content="https://qiulaidongfeng.github.io/en/wireguard-network-configuration-experience/">
 
 <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       
       "@type": "BlogPosting",
-      "headline": "go1.24rc1发布 | 秋来冬风的博客",
+      "headline": "WireGuard Network Configuration Experience: Lower MTU for High Packet Loss, Switch Ports If It Fails, Skip Persisting iptables Rules, and Test with mtr | 秋来冬风的博客",
       
-      "description": "介绍go1.24值得关注的",
+      "description": "Share WireGuard network deployment experience, including using mtr to test network quality, troubleshooting quickly by changing ports, measuring path MTU with ping and adjusting WireGuard configurations to reduce packet loss rate, as well as handling iptables rules cautiously in production environments to avoid connection interruptions.",
       "author": {
         "@type": "Person",
         "name": "qiulaidongfeng(秋来冬风)",
@@ -42,10 +48,10 @@ go1.24rc1发布 | 秋来冬风的博客</title><meta name="description" content=
         "url": "https://qiulaidongfeng.github.io/"
       },
       
-      "datePublished": "2024-12-16T22:46:29+08:00",
+      "datePublished": "2025-12-31T01:26:29+08:00",
       "articleSection": "技术博客",
       
-      "keywords": "go1.24,秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog"
+      "keywords": "WireGuard,秋来冬风,qiulaidongfeng,博客,blog"
     }
 </script>
 <style>
@@ -325,9 +331,9 @@ go1.24rc1发布 | 秋来冬风的博客</title><meta name="description" content=
         
         <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/">秋来冬风的博客</a></li>
         
-        <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/zh-cn/">所有中文内容</a></li>
+        <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/en/">Ens</a></li>
         
-        <li class="breadcrumb-item active" aria-current="page">go1.24rc1发布</li>
+        <li class="breadcrumb-item active" aria-current="page">WireGuard Network Configuration Experience: Lower MTU for High Packet Loss, Switch Ports If It Fails, Skip Persisting iptables Rules, and Test with mtr</li>
     </ol>
 </nav>
 
@@ -383,32 +389,46 @@ go1.24rc1发布 | 秋来冬风的博客</title><meta name="description" content=
     <div id="main" class="col-lg-8">
       
 <div class="d-flex justify-content-between">
-  <time>2024-12-16</time>
+  <time>2025-12-31</time>
   <p id="wordcount"></p>
 </div>
 
 <div style="background-color: white;" class="p-4">
   <article id="content">
     
-    <h1>go1.24rc1发布</h1>
+    <h1>WireGuard Network Configuration Experience: Lower MTU for High Packet Loss, Switch Ports If It Fails, Skip Persisting iptables Rules, and Test with mtr</h1>
     
     <details class="toc">
       <summary>目录</summary>
       <div id="table-of-contents"></div>
     </details>
     <div class="main">
-      <p>go1.24rc1已经发布，值得注意的是</p>
+      <p>AI translation.</p>
+<p>WireGuard is an excellent networking tool that can be used to build a private intranet, preventing databases such as MySQL in the production environment from being exposed to the public network.</p>
+<p>This blog shares the author&rsquo;s experience with WireGuard networking.</p>
+<h2 id="testing-with-mtr">Testing with MTR</h2>
+<p>MTR is a great testing tool that can be installed and run on Linux via WSL. It is capable of measuring latency and packet loss rate over a period of time.</p>
+<p>Simply put, unlike tracert on Windows, which only measures the latency and packet loss rate three times for each hop along the network path, MTR can perform measurements continuously for hours or even days, conducting a large number of tests.</p>
+<h2 id="changing-the-port">Changing the Port</h2>
+<p>WireGuard configuration is extremely straightforward. A network can be established by filling in a total of six fields in the configuration file: PrivateKey, Address and ListenPort under the [Interface] section, as well as PublicKey, AllowedIPs and Endpoint under the [Peer] section, along with opening the relevant ports in the firewall.</p>
+<p>If the network setup fails, debugging with various network tools has little significance. You can first directly try changing the port; if that doesn’t work, then use packet capture tools for debugging and troubleshooting.</p>
+<h2 id="reducing-the-mtu">Reducing the MTU</h2>
+<p>I once encountered a situation where, after successfully setting up the network, the packet loss rate was as high as over 10% with substantial latency.</p>
+<p>MTR tests showed that the direct packet loss rate to the peer was very low (0–1%), while the packet loss rate to the intranet IP after network setup was as high as over 10%.</p>
+<p>Here, it is necessary to understand the concept of Path Maximum MTU.</p>
+<p>Simply put, on the Internet, data is split into many small data packets for transmission. There are numerous routers between two terminals on the Internet that forward data packets to the next router until the packets can be directly forwarded to the destination terminal.The maximum size of data packets that can be forwarded between any two computers is the Maximum MTU. From one terminal to another, among all the computers involved in packet forwarding, the smallest value among these Maximum MTUs is the Path Maximum MTU. Any data packet exceeding this size will either be fragmented into multiple parts or discarded.This usually leads to an increase in the packet loss rate.</p>
+<h3 id="how-to-measure-path-maximum-mtu">How to Measure Path Maximum MTU</h3>
+<p>This can be run in WSL (it cannot be run on Windows):
+<code>ping -M do -s &lt;icmp payload size&gt; &lt;destination ip&gt;</code></p>
 <ul>
-<li>抗量子密钥交换（crypto/mlkem）</li>
-<li>弱指针</li>
-<li>通用哈希函数（我写的实现）</li>
-<li>泛型类型别名</li>
-<li>更快的终结器</li>
-<li>CPU开销平均降低2-3%，改进包括新的map内置实现，更高效的小object内存分配，新的运行时内部互斥实现</li>
-<li>实验性包testing/synctest用来测试并发代码</li>
-<li>sync.Map的新实现，提高了性能</li>
-<li>os.Root用来在特定目录执行文件系统操作</li>
+<li>For IPv4: Path Maximum MTU = ICMP payload size + 28</li>
+<li>For IPv6: Path Maximum MTU = ICMP payload size + 48</li>
 </ul>
+<p>Add the line MTU=Path Maximum MTU - 60 (IPv4 header (20 bytes) + UDP header (8 bytes) + WireGuard encryption header (approximately 32 bytes)) in the [Interface] section of the WireGuard configuration file. Practical tests have shown that this can effectively reduce the packet loss rate. (This applies when IPv6 is not involved in the intranet.)</p>
+<p>For example, if the Path Maximum MTU is 1420, add the line MTU=1360 to the WireGuard configuration file.
+Not Persisting iptables Rules</p>
+<p>When configuring WireGuard in a production environment, if the iptables rules are not persisted, restarting the system can reset it to the state before configuration once you suspect incorrect settings.</p>
+<p>Otherwise, in extreme cases, you may lose the ability to perform any operations due to SSH disconnection.</p>
 
     </div>
   </div>
@@ -417,8 +437,8 @@ go1.24rc1发布 | 秋来冬风的博客</title><meta name="description" content=
   <div>
     <div>Tags:</div>
     <ul>
-        <li><a href="/tags/go/">Go</a></li>
-        <li><a href="/tags/go---go1.24/">Go - Go1.24</a></li>
+        <li><a href="/tags/wireguard/">WireGuard</a></li>
+        <li><a href="/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/">网站相关</a></li>
     </ul>
   </div>
 

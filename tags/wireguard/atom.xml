@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>WireGuard on 秋来冬风的博客</title>
+    <link>https://qiulaidongfeng.github.io/tags/wireguard/</link>
+    <description>Recent content in WireGuard on 秋来冬风的博客</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 31 Dec 2025 01:26:29 +0800</lastBuildDate>
+    <atom:link href="https://qiulaidongfeng.github.io/tags/wireguard/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>WireGuard Network Configuration Experience: Lower MTU for High Packet Loss, Switch Ports If It Fails, Skip Persisting iptables Rules, and Test with mtr</title>
+      <link>https://qiulaidongfeng.github.io/en/wireguard-network-configuration-experience/</link>
+      <pubDate>Wed, 31 Dec 2025 01:26:29 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/en/wireguard-network-configuration-experience/</guid>
+      <description>&lt;p&gt;AI translation.&lt;/p&gt;&#xA;&lt;p&gt;WireGuard is an excellent networking tool that can be used to build a private intranet, preventing databases such as MySQL in the production environment from being exposed to the public network.&lt;/p&gt;&#xA;&lt;p&gt;This blog shares the author&amp;rsquo;s experience with WireGuard networking.&lt;/p&gt;&#xA;&lt;h2 id=&#34;testing-with-mtr&#34;&gt;Testing with MTR&lt;/h2&gt;&#xA;&lt;p&gt;MTR is a great testing tool that can be installed and run on Linux via WSL. It is capable of measuring latency and packet loss rate over a period of time.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>WireGuard组网经验-高丢包降低MTU,不成功换端口,不持久iptables规则,用mtr测试</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/wireguard%E7%BB%84%E7%BD%91%E7%BB%8F%E9%AA%8C-%E9%AB%98%E4%B8%A2%E5%8C%85%E9%99%8D%E4%BD%8Emtu%E4%B8%8D%E6%88%90%E5%8A%9F%E6%8D%A2%E7%AB%AF%E5%8F%A3%E4%B8%8D%E6%8C%81%E4%B9%85iptables%E8%A7%84%E5%88%99%E7%94%A8mtr%E6%B5%8B%E8%AF%95/</link>
+      <pubDate>Tue, 30 Dec 2025 02:03:41 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/wireguard%E7%BB%84%E7%BD%91%E7%BB%8F%E9%AA%8C-%E9%AB%98%E4%B8%A2%E5%8C%85%E9%99%8D%E4%BD%8Emtu%E4%B8%8D%E6%88%90%E5%8A%9F%E6%8D%A2%E7%AB%AF%E5%8F%A3%E4%B8%8D%E6%8C%81%E4%B9%85iptables%E8%A7%84%E5%88%99%E7%94%A8mtr%E6%B5%8B%E8%AF%95/</guid>
+      <description>&lt;p&gt;WireGuard是一个很好的组网工具，可以用来构建私有内网，实现不暴露生产环境Mysql等数据库到公网。&lt;/p&gt;&#xA;&lt;p&gt;本博客分享笔者的WireGuard组网经验。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>为什么不要使用TLS连接数据库，而用WireGuard替代？</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%A6%81%E4%BD%BF%E7%94%A8tls%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E8%80%8C%E7%94%A8wireguard%E6%9B%BF%E4%BB%A3/</link>
+      <pubDate>Wed, 15 Oct 2025 03:37:15 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%A6%81%E4%BD%BF%E7%94%A8tls%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E8%80%8C%E7%94%A8wireguard%E6%9B%BF%E4%BB%A3/</guid>
+      <description>&lt;p&gt;这是&lt;a href=&#34;https://qiulaidongfeng.github.io/categories/%E6%88%91%E7%9A%84%E9%AB%98%E5%90%9E%E5%90%90http2%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%98%E5%8C%96%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%E7%B3%BB%E5%88%97/&#34;&gt;我的高吞吐http2服务器优化经验分享系列&lt;/a&gt; 第二篇博客。&lt;/p&gt;&#xA;&lt;p&gt;上一篇博客提到不要使用TLS连接数据库，可以使用WireGuard替代，本文详细介绍为什么这样。&lt;/p&gt;&#xA;&lt;h2 id=&#34;配置次数&#34;&gt;配置次数&lt;/h2&gt;&#xA;&lt;p&gt;TLS工作在应用层，WireGuard工作在网络层，造成配置差异。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

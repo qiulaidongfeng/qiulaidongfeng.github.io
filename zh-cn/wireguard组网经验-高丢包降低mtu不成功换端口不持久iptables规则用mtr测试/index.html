@@ -4,33 +4,39 @@
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>
-go1.24rc1发布 | 秋来冬风的博客</title><meta name="description" content="介绍go1.24值得关注的">       
-<meta name="keywords" content="go1.24,秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog">
-<link rel="canonical" href="https://qiulaidongfeng.github.io/zh-cn/go1-24rc1%E5%8F%91%E5%B8%83/" />
+WireGuard组网经验-高丢包降低MTU,不成功换端口,不持久iptables规则,用mtr测试 | 秋来冬风的博客</title><meta name="description" content="分享WireGuard组网经验，包括使用mtr测试网络质量、通过更换端口快速排错、利用ping测量路径MTU并调整WireGuard 配置降低丢包率，以及在生产环境中谨慎处理iptables规则以避免连接中断。">          
+<meta name="keywords" content="WireGuard,秋来冬风,qiulaidongfeng,博客,blog">
+<link rel="canonical" href="https://qiulaidongfeng.github.io/zh-cn/wireguard%E7%BB%84%E7%BD%91%E7%BB%8F%E9%AA%8C-%E9%AB%98%E4%B8%A2%E5%8C%85%E9%99%8D%E4%BD%8Emtu%E4%B8%8D%E6%88%90%E5%8A%9F%E6%8D%A2%E7%AB%AF%E5%8F%A3%E4%B8%8D%E6%8C%81%E4%B9%85iptables%E8%A7%84%E5%88%99%E7%94%A8mtr%E6%B5%8B%E8%AF%95/" />
 <meta name="author" content="qiulaidongfeng(秋来冬风)">
 <meta name="copyright" content="Copyright © 2023 秋来冬风. All rights reserved.">
-<link rel="author" href="https://qiulaidongfeng.github.io/about/"><link rel="alternate" href="https://qiulaidongfeng.github.io/zh-cn/go1-24rc1%E5%8F%91%E5%B8%83/" hreflang="zh-CN" />
+<link rel="author" href="https://qiulaidongfeng.github.io/about/"><link rel="alternate" href="https://qiulaidongfeng.github.io/zh-cn/wireguard%E7%BB%84%E7%BD%91%E7%BB%8F%E9%AA%8C-%E9%AB%98%E4%B8%A2%E5%8C%85%E9%99%8D%E4%BD%8Emtu%E4%B8%8D%E6%88%90%E5%8A%9F%E6%8D%A2%E7%AB%AF%E5%8F%A3%E4%B8%8D%E6%8C%81%E4%B9%85iptables%E8%A7%84%E5%88%99%E7%94%A8mtr%E6%B5%8B%E8%AF%95/" hreflang="zh-CN" />
 
-<meta property="og:title" content="go1.24rc1发布">
+
+  
+    
+  
+<link rel="alternate" href="https://qiulaidongfeng.github.io/en/wireguard-network-configuration-experience/" hreflang="en" />
+
+<meta property="og:title" content="WireGuard组网经验-高丢包降低MTU,不成功换端口,不持久iptables规则,用mtr测试">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="秋来冬风的博客">
-<meta property="og:url" content="https://qiulaidongfeng.github.io/zh-cn/go1-24rc1%E5%8F%91%E5%B8%83/">
-<meta property="og:description" content="介绍go1.24值得关注的">
+<meta property="og:url" content="https://qiulaidongfeng.github.io/zh-cn/wireguard%E7%BB%84%E7%BD%91%E7%BB%8F%E9%AA%8C-%E9%AB%98%E4%B8%A2%E5%8C%85%E9%99%8D%E4%BD%8Emtu%E4%B8%8D%E6%88%90%E5%8A%9F%E6%8D%A2%E7%AB%AF%E5%8F%A3%E4%B8%8D%E6%8C%81%E4%B9%85iptables%E8%A7%84%E5%88%99%E7%94%A8mtr%E6%B5%8B%E8%AF%95/">
+<meta property="og:description" content="分享WireGuard组网经验，包括使用mtr测试网络质量、通过更换端口快速排错、利用ping测量路径MTU并调整WireGuard 配置降低丢包率，以及在生产环境中谨慎处理iptables规则以避免连接中断。">
 <meta property="og:locale" content="zh-CN" />
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="go1.24rc1发布">
-<meta name="twitter:description" content="介绍go1.24值得关注的">
-<meta name="twitter:url" content="https://qiulaidongfeng.github.io/zh-cn/go1-24rc1%E5%8F%91%E5%B8%83/">
+<meta name="twitter:title" content="WireGuard组网经验-高丢包降低MTU,不成功换端口,不持久iptables规则,用mtr测试">
+<meta name="twitter:description" content="分享WireGuard组网经验，包括使用mtr测试网络质量、通过更换端口快速排错、利用ping测量路径MTU并调整WireGuard 配置降低丢包率，以及在生产环境中谨慎处理iptables规则以避免连接中断。">
+<meta name="twitter:url" content="https://qiulaidongfeng.github.io/zh-cn/wireguard%E7%BB%84%E7%BD%91%E7%BB%8F%E9%AA%8C-%E9%AB%98%E4%B8%A2%E5%8C%85%E9%99%8D%E4%BD%8Emtu%E4%B8%8D%E6%88%90%E5%8A%9F%E6%8D%A2%E7%AB%AF%E5%8F%A3%E4%B8%8D%E6%8C%81%E4%B9%85iptables%E8%A7%84%E5%88%99%E7%94%A8mtr%E6%B5%8B%E8%AF%95/">
 
 <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       
       "@type": "BlogPosting",
-      "headline": "go1.24rc1发布 | 秋来冬风的博客",
+      "headline": "WireGuard组网经验-高丢包降低MTU,不成功换端口,不持久iptables规则,用mtr测试 | 秋来冬风的博客",
       
-      "description": "介绍go1.24值得关注的",
+      "description": "分享WireGuard组网经验，包括使用mtr测试网络质量、通过更换端口快速排错、利用ping测量路径MTU并调整WireGuard 配置降低丢包率，以及在生产环境中谨慎处理iptables规则以避免连接中断。",
       "author": {
         "@type": "Person",
         "name": "qiulaidongfeng(秋来冬风)",
@@ -42,10 +48,10 @@ go1.24rc1发布 | 秋来冬风的博客</title><meta name="description" content=
         "url": "https://qiulaidongfeng.github.io/"
       },
       
-      "datePublished": "2024-12-16T22:46:29+08:00",
+      "datePublished": "2025-12-30T02:03:41+08:00",
       "articleSection": "技术博客",
       
-      "keywords": "go1.24,秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog"
+      "keywords": "WireGuard,秋来冬风,qiulaidongfeng,博客,blog"
     }
 </script>
 <style>
@@ -327,7 +333,7 @@ go1.24rc1发布 | 秋来冬风的博客</title><meta name="description" content=
         
         <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/zh-cn/">所有中文内容</a></li>
         
-        <li class="breadcrumb-item active" aria-current="page">go1.24rc1发布</li>
+        <li class="breadcrumb-item active" aria-current="page">WireGuard组网经验-高丢包降低MTU,不成功换端口,不持久iptables规则,用mtr测试</li>
     </ol>
 </nav>
 
@@ -383,32 +389,47 @@ go1.24rc1发布 | 秋来冬风的博客</title><meta name="description" content=
     <div id="main" class="col-lg-8">
       
 <div class="d-flex justify-content-between">
-  <time>2024-12-16</time>
+  <time>2025-12-30</time>
   <p id="wordcount"></p>
 </div>
 
 <div style="background-color: white;" class="p-4">
   <article id="content">
     
-    <h1>go1.24rc1发布</h1>
+    <h1>WireGuard组网经验-高丢包降低MTU,不成功换端口,不持久iptables规则,用mtr测试</h1>
     
     <details class="toc">
       <summary>目录</summary>
       <div id="table-of-contents"></div>
     </details>
     <div class="main">
-      <p>go1.24rc1已经发布，值得注意的是</p>
+      <p>WireGuard是一个很好的组网工具，可以用来构建私有内网，实现不暴露生产环境Mysql等数据库到公网。</p>
+<p>本博客分享笔者的WireGuard组网经验。</p>
+<h2 id="用mtr测试">用mtr测试</h2>
+<p>mtr是一个很好的测试工具，可以通过wsl在linux里安装运行。能够测量一段时间的延迟和丢包率。</p>
+<p>简单的说，和win的<strong>tracert只测量网络路径上每一跳3次延迟和丢包率相比</strong>，<strong>mtr</strong>可以测量几个小时甚至几天，<strong>测很多次</strong>。</p>
+<h2 id="换端口">换端口</h2>
+<p>WireGuard的配置非常简单，配置文件写好<code>[Interface]</code>的PrivateKey、Address、ListenPort和<code>[Peer]</code>的PublicKey、AllowedIPs、Endpoint总共6个字段加上防火墙开放相关端口即可组网。</p>
+<p>如果组网失败，运用各种网络工具调试意义不大，<strong>可以先直接尝试换个端口尝试</strong>，实在不行再运用抓包工具等调试排查。</p>
+<h2 id="降低mtu">降低MTU</h2>
+<p>我曾经遇到组网成功后丢包率高达10+%，延迟很高。</p>
+<p>mtr测试发现直接测peer（对端）的丢包率很低（0-1%），组网后测内网ip的丢包率才高达10+%的。</p>
+<p>这里需要了解<strong>路径最大MTU</strong>的概念，</p>
+<p>简单的说，在互联网中，<strong>数据被分成许多很小的数据包传输</strong>，互联网在两个终端之间有很多路由器转发数据包到下一个路由器，直到能直接将数据包转发给目的终端。
+<strong>每两个计算机之间能转发的最大数据包大小是最大MTU</strong>，从一个终端到另一个终端，所有参与数据包转发的计算机里，这些最大MTU中最小的一个是路径最大MTU。<strong>任何数据包超过这个大小，要么分成多份，要么丢包</strong>。
+这通常导致丢包率增加。</p>
+<h3 id="如何测量路径最大mtu">如何测量路径最大MTU</h3>
+<p>可以在wsl里运行（win不能运行）</p>
+<p><code>ping -M do -s &lt;icmp载荷大小&gt; &lt;目的ip&gt;</code></p>
 <ul>
-<li>抗量子密钥交换（crypto/mlkem）</li>
-<li>弱指针</li>
-<li>通用哈希函数（我写的实现）</li>
-<li>泛型类型别名</li>
-<li>更快的终结器</li>
-<li>CPU开销平均降低2-3%，改进包括新的map内置实现，更高效的小object内存分配，新的运行时内部互斥实现</li>
-<li>实验性包testing/synctest用来测试并发代码</li>
-<li>sync.Map的新实现，提高了性能</li>
-<li>os.Root用来在特定目录执行文件系统操作</li>
+<li>对于ipv4: icmp载荷大小+28为路径最大MTU</li>
+<li>对于ipv6: icmp载荷大小+48为路径最大MTU</li>
 </ul>
+<p>在WireGuarg的配置文件[Interface] 部分加上一行 <code>MTU=路径最大MTU-60（ipv4 头（20 字节）+ UDP 头（8 字节）+ WireGuard 加密头（约 32 字节））</code> 实测可以有效降低丢包率。（如果内网不涉及ipv6的情况）</p>
+<p>例如路径最大MTU为1420，那在WireGuarg的配置文件加上一行 <code>MTU=1360</code>。</p>
+<h2 id="不持久iptables规则">不持久iptables规则</h2>
+<p>生产环境配置WireGuard时，如果没有持久化iptables规则，一旦怀疑设置错误，重启即可重置到设置前。</p>
+<p>否则在可能在极端情况，由于ssh断开连接，直接难以进行任何操作。</p>
 
     </div>
   </div>
@@ -417,8 +438,8 @@ go1.24rc1发布 | 秋来冬风的博客</title><meta name="description" content=
   <div>
     <div>Tags:</div>
     <ul>
-        <li><a href="/tags/go/">Go</a></li>
-        <li><a href="/tags/go---go1.24/">Go - Go1.24</a></li>
+        <li><a href="/tags/wireguard/">WireGuard</a></li>
+        <li><a href="/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/">网站相关</a></li>
     </ul>
   </div>
 
