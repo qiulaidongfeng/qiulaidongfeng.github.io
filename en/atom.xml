@@ -6,8 +6,15 @@
     <description>Recent content in Ens on 秋来冬风的博客</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 31 Dec 2025 01:26:29 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 11 Jan 2026 23:49:21 +0800</lastBuildDate>
     <atom:link href="https://qiulaidongfeng.github.io/en/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go1.26 Is Worth Paying Attention To</title>
+      <link>https://qiulaidongfeng.github.io/en/go1.26-is-worth-paying-attention-to/</link>
+      <pubDate>Sun, 11 Jan 2026 23:49:21 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/en/go1.26-is-worth-paying-attention-to/</guid>
+      <description>&lt;p&gt;Go 1.26 is scheduled to be released in February 2026. This article shares the changes that the author deems noteworthy.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;The new function supports passing expressions, simplifying pointer creation.&lt;/li&gt;&#xA;&lt;li&gt;The overhead of cgo calls is reduced by approximately 30%.&lt;/li&gt;&#xA;&lt;li&gt;greenteagc is enabled by default, bringing lower GC overhead.&lt;/li&gt;&#xA;&lt;li&gt;TLS enables two post-quantum key exchange mechanisms, SecP256r1MLKEM768 and SecP384r1MLKEM1024, by default.&lt;/li&gt;&#xA;&lt;li&gt;The overhead of certain heap allocations smaller than 512 bytes is reduced by up to 30%.&lt;/li&gt;&#xA;&lt;li&gt;Two experimental packages add APIs related to forward secrecy and SIMD.&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
+    </item>
     <item>
       <title>WireGuard Network Configuration Experience: Lower MTU for High Packet Loss, Switch Ports If It Fails, Skip Persisting iptables Rules, and Test with mtr</title>
       <link>https://qiulaidongfeng.github.io/en/wireguard-network-configuration-experience/</link>

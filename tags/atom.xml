@@ -6,27 +6,41 @@
     <description>Recent content in Tags on 秋来冬风的博客</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 31 Dec 2025 01:26:29 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 11 Jan 2026 23:49:21 +0800</lastBuildDate>
     <atom:link href="https://qiulaidongfeng.github.io/tags/atom.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>WireGuard</title>
-      <link>https://qiulaidongfeng.github.io/tags/wireguard/</link>
-      <pubDate>Wed, 31 Dec 2025 01:26:29 +0800</pubDate>
-      <guid>https://qiulaidongfeng.github.io/tags/wireguard/</guid>
+      <title>Go</title>
+      <link>https://qiulaidongfeng.github.io/tags/go/</link>
+      <pubDate>Sun, 11 Jan 2026 23:49:21 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/tags/go/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Go - Go1.26</title>
+      <link>https://qiulaidongfeng.github.io/tags/go---go1.26/</link>
+      <pubDate>Sun, 11 Jan 2026 23:49:21 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/tags/go---go1.26/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Quic</title>
+      <link>https://qiulaidongfeng.github.io/tags/quic/</link>
+      <pubDate>Sun, 11 Jan 2026 17:47:07 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/tags/quic/</guid>
       <description></description>
     </item>
     <item>
       <title>网站相关</title>
       <link>https://qiulaidongfeng.github.io/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/</link>
-      <pubDate>Wed, 31 Dec 2025 01:26:29 +0800</pubDate>
+      <pubDate>Sun, 11 Jan 2026 17:47:07 +0800</pubDate>
       <guid>https://qiulaidongfeng.github.io/tags/%E7%BD%91%E7%AB%99%E7%9B%B8%E5%85%B3/</guid>
       <description></description>
     </item>
     <item>
-      <title>Go</title>
-      <link>https://qiulaidongfeng.github.io/tags/go/</link>
-      <pubDate>Thu, 27 Nov 2025 01:31:02 +0800</pubDate>
-      <guid>https://qiulaidongfeng.github.io/tags/go/</guid>
+      <title>WireGuard</title>
+      <link>https://qiulaidongfeng.github.io/tags/wireguard/</link>
+      <pubDate>Wed, 31 Dec 2025 01:26:29 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/tags/wireguard/</guid>
       <description></description>
     </item>
     <item>

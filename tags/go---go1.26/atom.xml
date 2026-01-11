@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Go - Go1.26 on 秋来冬风的博客</title>
+    <link>https://qiulaidongfeng.github.io/tags/go---go1.26/</link>
+    <description>Recent content in Go - Go1.26 on 秋来冬风的博客</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 11 Jan 2026 23:49:21 +0800</lastBuildDate>
+    <atom:link href="https://qiulaidongfeng.github.io/tags/go---go1.26/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go1.26 Is Worth Paying Attention To</title>
+      <link>https://qiulaidongfeng.github.io/en/go1.26-is-worth-paying-attention-to/</link>
+      <pubDate>Sun, 11 Jan 2026 23:49:21 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/en/go1.26-is-worth-paying-attention-to/</guid>
+      <description>&lt;p&gt;Go 1.26 is scheduled to be released in February 2026. This article shares the changes that the author deems noteworthy.&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;The new function supports passing expressions, simplifying pointer creation.&lt;/li&gt;&#xA;&lt;li&gt;The overhead of cgo calls is reduced by approximately 30%.&lt;/li&gt;&#xA;&lt;li&gt;greenteagc is enabled by default, bringing lower GC overhead.&lt;/li&gt;&#xA;&lt;li&gt;TLS enables two post-quantum key exchange mechanisms, SecP256r1MLKEM768 and SecP384r1MLKEM1024, by default.&lt;/li&gt;&#xA;&lt;li&gt;The overhead of certain heap allocations smaller than 512 bytes is reduced by up to 30%.&lt;/li&gt;&#xA;&lt;li&gt;Two experimental packages add APIs related to forward secrecy and SIMD.&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
+    </item>
+    <item>
+      <title>Go1.26值得关注的</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/go1.26%E5%80%BC%E5%BE%97%E5%85%B3%E6%B3%A8%E7%9A%84/</link>
+      <pubDate>Sun, 11 Jan 2026 23:17:58 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/go1.26%E5%80%BC%E5%BE%97%E5%85%B3%E6%B3%A8%E7%9A%84/</guid>
+      <description>&lt;p&gt;go1.26预计2026年2月发布，本文分享笔者认为值得关注的改变。&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;new函数支持传表达式，简化创建指针。&lt;/li&gt;&#xA;&lt;li&gt;cgo调用开销下降约30%。&lt;/li&gt;&#xA;&lt;li&gt;greenteagc默认启动，带来更低的gc开销。&lt;/li&gt;&#xA;&lt;li&gt;tls默认启用SecP256r1MLKEM768和SecP384r1MLKEM1024两种后量子密钥交互机制。&lt;/li&gt;&#xA;&lt;li&gt;某些小于512字节的堆分配开销降低多达30%。&lt;/li&gt;&#xA;&lt;li&gt;两个实验性的包增加了前向保密和simd相关的API。&lt;/li&gt;&#xA;&lt;/ol&gt;</description>
+    </item>
+  </channel>
+</rss>
