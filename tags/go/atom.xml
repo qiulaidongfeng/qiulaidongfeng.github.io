@@ -6,8 +6,57 @@
     <description>Recent content in Go on 秋来冬风的博客</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 11 Jan 2026 23:49:21 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 16 Feb 2026 22:19:08 +0800</lastBuildDate>
     <atom:link href="https://qiulaidongfeng.github.io/tags/go/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>自定义小部件,Fyne笔记第7篇</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/fyne/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B0%8F%E9%83%A8%E4%BB%B6fyne%E7%AC%94%E8%AE%B0%E7%AC%AC7%E7%AF%87/</link>
+      <pubDate>Mon, 16 Feb 2026 22:19:08 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/fyne/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B0%8F%E9%83%A8%E4%BB%B6fyne%E7%AC%94%E8%AE%B0%E7%AC%AC7%E7%AF%87/</guid>
+      <description>&lt;p&gt;这是我的Fyne学习笔记系列第7篇。&lt;/p&gt;&#xA;&lt;p&gt;Fyne默认的按钮卡片等小部件让开发简单的App非常容易，但实际开发者，有复杂的需求，Fyne提供了自定义小部件的接口。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>自定义布局,Fyne笔记第6篇</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/fyne/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B8%83%E5%B1%80fyne%E7%AC%94%E8%AE%B0%E7%AC%AC6%E7%AF%87/</link>
+      <pubDate>Sun, 01 Feb 2026 03:14:39 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/fyne/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B8%83%E5%B1%80fyne%E7%AC%94%E8%AE%B0%E7%AC%AC6%E7%AF%87/</guid>
+      <description>&lt;p&gt;这是我的Fyne学习笔记系列第6篇。&lt;/p&gt;&#xA;&lt;p&gt;Fyne自带的容器已经提供了不少的布局。但在实际开发中，还是存在需要其他布局的场景。&lt;/p&gt;&#xA;&lt;p&gt;Fyne的布局是一个接口&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Layout&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;interface&lt;/span&gt; {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#a6e22e&#34;&gt;Layout&lt;/span&gt;([]&lt;span style=&#34;color:#a6e22e&#34;&gt;CanvasObject&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;Size&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#a6e22e&#34;&gt;MinSize&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;objects&lt;/span&gt; []&lt;span style=&#34;color:#a6e22e&#34;&gt;CanvasObject&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;Size&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;意味着可以自定义实现。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>对话框介绍,Fyne笔记第5篇</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/fyne/%E5%AF%B9%E8%AF%9D%E6%A1%86%E4%BB%8B%E7%BB%8Dfyne%E7%AC%94%E8%AE%B0%E7%AC%AC5%E7%AF%87/</link>
+      <pubDate>Sat, 31 Jan 2026 18:30:23 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/fyne/%E5%AF%B9%E8%AF%9D%E6%A1%86%E4%BB%8B%E7%BB%8Dfyne%E7%AC%94%E8%AE%B0%E7%AC%AC5%E7%AF%87/</guid>
+      <description>&lt;p&gt;这是我的Fyne学习笔记系列第5篇。&lt;/p&gt;&#xA;&lt;p&gt;Fyne提供了多种非常有用的对话框，以下是常用的介绍。&lt;/p&gt;&#xA;&lt;h2 id=&#34;确认框&#34;&gt;确认框&lt;/h2&gt;&#xA;&lt;p&gt;类似js的confirm，不过看函数签名&lt;/p&gt;&#xA;&lt;p&gt;&lt;code&gt;dialog.ShowConfirm(title, message string, callback func(bool), parent fyne.Window)&lt;/code&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>常用容器介绍,Fyne笔记第4篇</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/fyne/%E5%B8%B8%E7%94%A8%E5%AE%B9%E5%99%A8%E4%BB%8B%E7%BB%8Dfyne%E7%AC%94%E8%AE%B0%E7%AC%AC4%E7%AF%87/</link>
+      <pubDate>Fri, 30 Jan 2026 16:55:15 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/fyne/%E5%B8%B8%E7%94%A8%E5%AE%B9%E5%99%A8%E4%BB%8B%E7%BB%8Dfyne%E7%AC%94%E8%AE%B0%E7%AC%AC4%E7%AF%87/</guid>
+      <description>&lt;p&gt;这是我的Fyne学习笔记系列第4篇。&lt;/p&gt;&#xA;&lt;p&gt;Fyne提供了丰富的容器来对widget实现不同的展示效果。以下介绍一些常用的容器&lt;/p&gt;&#xA;&lt;h2 id=&#34;垂直盒子&#34;&gt;垂直盒子&lt;/h2&gt;&#xA;&lt;p&gt;调用&lt;code&gt;container.NewVBox&lt;/code&gt;将要垂直排列的小部件放进入即可。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>常用小部件介绍,Fyne笔记第3篇</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/fyne/%E5%B8%B8%E7%94%A8%E5%B0%8F%E9%83%A8%E4%BB%B6fyne%E7%AC%94%E8%AE%B0%E7%AC%AC3%E7%AF%87/</link>
+      <pubDate>Thu, 29 Jan 2026 02:24:41 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/fyne/%E5%B8%B8%E7%94%A8%E5%B0%8F%E9%83%A8%E4%BB%B6fyne%E7%AC%94%E8%AE%B0%E7%AC%AC3%E7%AF%87/</guid>
+      <description>&lt;p&gt;这是我的Fyne学习笔记系列第3篇。&lt;/p&gt;&#xA;&lt;h2 id=&#34;基本概念&#34;&gt;基本概念&lt;/h2&gt;&#xA;&lt;p&gt;Fyne中任何可以添加到画布的图形都实现CanvasObject接口。当一个窗口中要放多个CanvasObject时，因为并排、居中、竖着列等放置需求，就有需要实现这个接口的容器，它本身不显示图形，通过布局专门控制其他图形的放置。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>App和Windows,Fyne笔记第2篇</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/fyne/app%E5%92%8Cwindowsfyne%E7%AC%94%E8%AE%B0%E7%AC%AC2%E7%AF%87/</link>
+      <pubDate>Thu, 29 Jan 2026 00:26:17 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/fyne/app%E5%92%8Cwindowsfyne%E7%AC%94%E8%AE%B0%E7%AC%AC2%E7%AF%87/</guid>
+      <description>&lt;p&gt;这是我的Fyne学习笔记系列第2篇。&lt;/p&gt;&#xA;&lt;h2 id=&#34;app&#34;&gt;App&lt;/h2&gt;&#xA;&lt;p&gt;在Fyne里，许多关键的类型是接口定义的，有些特定功能X有两个方法，SetX是设置，X是获取。&lt;/p&gt;&#xA;&lt;p&gt;App类型本身是一个包含多个方法的接口。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>环境要求与程序基本概念,Fyne学习笔记第1篇</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/fyne/%E7%8E%AF%E5%A2%83%E8%A6%81%E6%B1%82%E4%B8%8E%E7%A8%8B%E5%BA%8F%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5fyne%E7%AC%94%E8%AE%B0%E7%AC%AC1%E7%AF%87/</link>
+      <pubDate>Tue, 27 Jan 2026 17:23:57 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/fyne/%E7%8E%AF%E5%A2%83%E8%A6%81%E6%B1%82%E4%B8%8E%E7%A8%8B%E5%BA%8F%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5fyne%E7%AC%94%E8%AE%B0%E7%AC%AC1%E7%AF%87/</guid>
+      <description>&lt;p&gt;这是我的Fyne学习笔记系列第1篇。&lt;/p&gt;&#xA;&lt;p&gt;Fyne是go一个非常好的GUI框架，通过OpenGL作为其主要的图形渲染后端，支持五大平台（windows,linux,macos,android,ios）构建一样的图形软件，并不完整支持wasm来写网页。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Go1.26 Is Worth Paying Attention To</title>
       <link>https://qiulaidongfeng.github.io/en/go1.26-is-worth-paying-attention-to/</link>
