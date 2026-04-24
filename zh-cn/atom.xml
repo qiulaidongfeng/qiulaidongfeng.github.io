@@ -6,8 +6,15 @@
     <description>Recent content in Zh-Cns on 秋来冬风的博客</description>
     <generator>Hugo</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 16 Feb 2026 22:19:08 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 24 Apr 2026 20:29:39 +0800</lastBuildDate>
     <atom:link href="https://qiulaidongfeng.github.io/zh-cn/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>我的博客评论区设计方案（基于sqlite3）</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E5%8C%BA%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/</link>
+      <pubDate>Fri, 24 Apr 2026 20:29:39 +0800</pubDate>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E5%8C%BA%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/</guid>
+      <description>&lt;p&gt;我很早之前就打算给我的博客添加评论区，具体历程如下&lt;/p&gt;&#xA;&lt;h2 id=&#34;设计核心目标&#34;&gt;设计核心目标&lt;/h2&gt;&#xA;&lt;p&gt;我的博客评论区具有以下设计目标&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;私有化部署（数据完全可控）&lt;/li&gt;&#xA;&lt;li&gt;发评论无需登录&lt;/li&gt;&#xA;&lt;li&gt;低硬件开销&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;排除的方案&#34;&gt;排除的方案&lt;/h2&gt;&#xA;&lt;p&gt;以Giscus为例基于GitHub的方案，不支持私有化部署，所有排除。后续搜索了许多方案，始终没有找到满意的。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>自定义小部件,Fyne笔记第7篇</title>
       <link>https://qiulaidongfeng.github.io/zh-cn/fyne/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B0%8F%E9%83%A8%E4%BB%B6fyne%E7%AC%94%E8%AE%B0%E7%AC%AC7%E7%AF%87/</link>

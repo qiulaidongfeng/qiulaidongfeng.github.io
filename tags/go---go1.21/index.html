@@ -195,9 +195,12 @@ Go - Go1.21 | 秋来冬风的博客</title>
     margin-bottom: 0;
   }
 </style>
-<script defer src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js" onload="Main()"></script>
+<script data-cfasync="false" defer src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script data-cfasync="false" defer src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js" onload="Main()"></script>
 <script async src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    let AfterMain;
+</script>
 <script>
     function countChars(container) {
         let total = 0;
@@ -337,7 +340,7 @@ Go - Go1.21 | 秋来冬风的博客</title>
           </div>
         </div>
         <div class="card-body text-center">
-          <p class="h1">50</p>
+          <p class="h1">51</p>
         </div>
       </div>
 
@@ -364,7 +367,7 @@ Go - Go1.21 | 秋来冬风的博客</title>
           <p class="mt-4">博客最后更新：</p>
           <time>
             
-            2026-02-16
+            2026-04-24
             
           </time>
         </div>
@@ -719,6 +722,10 @@ Go - Go1.21 | 秋来冬风的博客</title>
       })
       $("#history").append(clear);
     });
+
+    $(function(){
+      AfterMain();
+    })
   }
 </script>
 <script async src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" onload="obs()"></script>

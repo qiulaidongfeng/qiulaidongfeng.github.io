@@ -4,32 +4,33 @@
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>
-我的高吞吐http2服务器优化经验分享系列 | 秋来冬风的博客</title>       
-<meta name="keywords" content="秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog">
-<link rel="canonical" href="https://qiulaidongfeng.github.io/categories/%E6%88%91%E7%9A%84%E9%AB%98%E5%90%9E%E5%90%90http2%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%98%E5%8C%96%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%E7%B3%BB%E5%88%97/" />
+我的博客评论区设计方案（基于sqlite3） | 秋来冬风的博客</title><meta name="description" content="介绍我基于sqlite3的评论区博客设计方案，实现私有化部署，且硬件开销小。">          
+<meta name="keywords" content="评论,sqlite3,秋来冬风,qiulaidongfeng,博客,blog">
+<link rel="canonical" href="https://qiulaidongfeng.github.io/zh-cn/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E5%8C%BA%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/" />
 <meta name="author" content="qiulaidongfeng(秋来冬风)">
 <meta name="copyright" content="Copyright © 2023 秋来冬风. All rights reserved.">
-<link rel="author" href="https://qiulaidongfeng.github.io/about/"><link rel="alternate" href="https://qiulaidongfeng.github.io/categories/%E6%88%91%E7%9A%84%E9%AB%98%E5%90%9E%E5%90%90http2%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%98%E5%8C%96%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%E7%B3%BB%E5%88%97/" hreflang="zh-CN" />
+<link rel="author" href="https://qiulaidongfeng.github.io/about/"><link rel="alternate" href="https://qiulaidongfeng.github.io/zh-cn/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E5%8C%BA%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/" hreflang="zh-CN" />
 
-<meta property="og:title" content="我的高吞吐http2服务器优化经验分享系列">
+<meta property="og:title" content="我的博客评论区设计方案（基于sqlite3）">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="秋来冬风的博客">
-<meta property="og:url" content="https://qiulaidongfeng.github.io/categories/%E6%88%91%E7%9A%84%E9%AB%98%E5%90%9E%E5%90%90http2%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%98%E5%8C%96%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%E7%B3%BB%E5%88%97/">
-<meta property="og:description" content="">
+<meta property="og:url" content="https://qiulaidongfeng.github.io/zh-cn/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E5%8C%BA%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/">
+<meta property="og:description" content="介绍我基于sqlite3的评论区博客设计方案，实现私有化部署，且硬件开销小。">
 <meta property="og:locale" content="zh-CN" />
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="我的高吞吐http2服务器优化经验分享系列">
-<meta name="twitter:description" content="">
-<meta name="twitter:url" content="https://qiulaidongfeng.github.io/categories/%E6%88%91%E7%9A%84%E9%AB%98%E5%90%9E%E5%90%90http2%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%BC%98%E5%8C%96%E7%BB%8F%E9%AA%8C%E5%88%86%E4%BA%AB%E7%B3%BB%E5%88%97/">
+<meta name="twitter:title" content="我的博客评论区设计方案（基于sqlite3）">
+<meta name="twitter:description" content="介绍我基于sqlite3的评论区博客设计方案，实现私有化部署，且硬件开销小。">
+<meta name="twitter:url" content="https://qiulaidongfeng.github.io/zh-cn/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E5%8C%BA%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/">
 
 <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       
-      "@type": "CollectionPage",
+      "@type": "BlogPosting",
+      "headline": "我的博客评论区设计方案（基于sqlite3） | 秋来冬风的博客",
       
-      "description": "",
+      "description": "介绍我基于sqlite3的评论区博客设计方案，实现私有化部署，且硬件开销小。",
       "author": {
         "@type": "Person",
         "name": "qiulaidongfeng(秋来冬风)",
@@ -41,7 +42,10 @@
         "url": "https://qiulaidongfeng.github.io/"
       },
       
-      "keywords": "秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog"
+      "datePublished": "2026-04-24T20:29:39+08:00",
+      "articleSection": "技术博客",
+      
+      "keywords": "评论,sqlite3,秋来冬风,qiulaidongfeng,博客,blog"
     }
 </script>
 <style>
@@ -324,9 +328,9 @@
         
         <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/">秋来冬风的博客</a></li>
         
-        <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/categories/">Categories</a></li>
+        <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/zh-cn/">所有中文内容</a></li>
         
-        <li class="breadcrumb-item active" aria-current="page">我的高吞吐http2服务器优化经验分享系列</li>
+        <li class="breadcrumb-item active" aria-current="page">我的博客评论区设计方案（基于sqlite3）</li>
     </ol>
 </nav>
 
@@ -381,88 +385,354 @@
     </aside>
     <div id="main" class="col-lg-8">
       
-  <h1>我的高吞吐http2服务器优化经验分享系列</h1>
+<div class="d-flex justify-content-between">
+  <time>2026-04-24</time>
+  <p id="wordcount"></p>
+</div>
+
+<div style="background-color: white;" class="p-4">
+  <article id="content">
+    
+    <h1>我的博客评论区设计方案（基于sqlite3）</h1>
+    
+    <details class="toc">
+      <summary>目录</summary>
+      <div id="table-of-contents"></div>
+    </details>
+    <div class="main">
+      <p>我很早之前就打算给我的博客添加评论区，具体历程如下</p>
+<h2 id="设计核心目标">设计核心目标</h2>
+<p>我的博客评论区具有以下设计目标</p>
+<ul>
+<li>私有化部署（数据完全可控）</li>
+<li>发评论无需登录</li>
+<li>低硬件开销</li>
+</ul>
+<h2 id="排除的方案">排除的方案</h2>
+<p>以Giscus为例基于GitHub的方案，不支持私有化部署，所有排除。后续搜索了许多方案，始终没有找到满意的。</p>
+<p>2026年3月，我决定自己写一个，2026年4月下旬写好。</p>
+<h2 id="我的设计">我的设计</h2>
+<h3 id="数据库选择">数据库选择</h3>
+<p>考虑到博客评论区的并发量极小，我选择使用sqlite3</p>
+<h3 id="数据表定义">数据表定义</h3>
+<p>我的设计中，有三个数据表</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#f92672">`</span>ids<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>id<span style="color:#f92672">`</span> integer <span style="color:#66d9ef">DEFAULT</span> <span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> (<span style="color:#f92672">`</span>id<span style="color:#f92672">`</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#f92672">`</span>entries<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>content<span style="color:#f92672">`</span> text,<span style="color:#f92672">`</span>time<span style="color:#f92672">`</span> datetime,<span style="color:#f92672">`</span>ip<span style="color:#f92672">`</span> text,
+</span></span><span style="display:flex;"><span><span style="color:#f92672">`</span>id<span style="color:#f92672">`</span> text,<span style="color:#f92672">`</span>reply_id<span style="color:#f92672">`</span> text,<span style="color:#f92672">`</span>blog_id<span style="color:#f92672">`</span> text,<span style="color:#f92672">`</span>status<span style="color:#f92672">`</span> integer,
+</span></span><span style="display:flex;"><span><span style="color:#f92672">`</span>user_agent<span style="color:#f92672">`</span> text,<span style="color:#f92672">`</span>name<span style="color:#f92672">`</span> text,<span style="color:#f92672">`</span>email<span style="color:#f92672">`</span> text,<span style="color:#f92672">`</span>Device_ID<span style="color:#f92672">`</span> text,
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span> (<span style="color:#f92672">`</span>id<span style="color:#f92672">`</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> <span style="color:#f92672">`</span>author_infos<span style="color:#f92672">`</span> (<span style="color:#f92672">`</span>name<span style="color:#f92672">`</span> text,<span style="color:#f92672">`</span>email<span style="color:#f92672">`</span> text,<span style="color:#f92672">`</span>Device_ID<span style="color:#f92672">`</span> text);
+</span></span></code></pre></div><p>首先每条评论都有唯一标识id，blog_id指示属于那篇博客，然后reply_id字段标识是否是对之前评论的回复。
+time记录每条评论的发送时间,name是发送者昵称。</p>
+<p>还有一些由于安全相关的字段，ip,user_agent,email,Device_ID，用来检测快速发送大量评论和使用不同身份的异常情况。</p>
+<p>status是用来标识是否隐藏评论的。</p>
+<p>实践中，blog_id是encodeURIComponent(标题)，评论的id通过id表全局递增生成。其它字段前后端合作收集。</p>
+<p>故意把作者的（email,name,Device_ID）在每条评论都保留，便于改名不修改旧评论的历史信息。</p>
+<h3 id="限制规则">限制规则</h3>
+<p>必须通过浏览器完整性检查。</p>
+<p>一个Device_ID只能绑定一个（email,name）二元组。首次发送评论时绑定。这是为了让使用虚假身份发评论更难。</p>
+<p>一个ip五分钟只能最多发送5条评论，对于合理情况，似乎这个限制已经足够了。</p>
+<h2 id="附">附</h2>
+<p>后端开源在：
+<a href="https://github.com/qiulaidongfeng/comment">https://github.com/qiulaidongfeng/comment</a> 和 <a href="https://gitee.com/qiulaidongfeng/comment">https://gitee.com/qiulaidongfeng/comment</a></p>
+
+    </div>
+  </article>
+</div>
+
+<div class="mt-3" style="background-color: #F5F5F5;">
+  <p class="h4 text-center">评论区</p>
+  <div id="commentContainer">
+    <p class="p-3">评论加载中</p>
+  </div>
+
   
-  
-  
-    
-  
-  <div class="row">
-    
-    
-        
-<div class="card " onclick="window.location.assign(&#34;/zh-cn/%E5%BF%AB%E9%80%9F%E9%99%90%E6%B5%81%E8%B7%AF%E5%BE%84%E5%92%8C%E6%85%A2%E9%80%9F%E4%B8%9A%E5%8A%A1%E8%B7%AF%E5%BE%84%E8%AE%BE%E8%AE%A1%E6%8F%90%E5%8D%87web%E6%9C%8D%E5%8A%A1%E5%8F%AF%E7%94%A8%E6%80%A7/&#34;)">
-    <div class="card-body">
-        <h5 class="card-title">快速限流路径和慢速业务路径设计,提升web服务可用性</h5>
-        <p class="card-text" style="font-size: 0.95rem;">分享我的快速限流路径设计经验，CDN、IP、可用资源(CPU和内存)、业务特定，层层设防，将限流效果最大化。</p>
-        <div class="d-flex justify-content-between align-items-center">
-        
-        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/%E5%BF%AB%E9%80%9F%E9%99%90%E6%B5%81%E8%B7%AF%E5%BE%84%E5%92%8C%E6%85%A2%E9%80%9F%E4%B8%9A%E5%8A%A1%E8%B7%AF%E5%BE%84%E8%AE%BE%E8%AE%A1%E6%8F%90%E5%8D%87web%E6%9C%8D%E5%8A%A1%E5%8F%AF%E7%94%A8%E6%80%A7/&#34;)">阅读</button>
-        </div>
+  <div class="card mb-3 p-3">
+    <div class="row g-2 mb-2">
+      <div class="col-md-6">
+        <input type="text" class="form-control form-control-sm" id="c_name" placeholder="昵称" required>
+      </div>
+      <div class="col-md-6">
+        <input type="email" class="form-control form-control-sm" id="c_email" placeholder="邮箱" required>
+      </div>
     </div>
-</div>
-    
-        
-<div class="card " onclick="window.location.assign(&#34;/zh-cn/ip%E9%99%90%E6%B5%81%E5%8F%AF%E4%BB%A5%E4%B8%8D%E7%94%A8redis%E5%86%85%E5%AD%98%E5%93%88%E5%B8%8C%E8%A1%A8%E5%B0%B1%E8%B6%B3%E5%A4%9F%E4%BA%86/&#34;)">
-    <div class="card-body">
-        <h5 class="card-title">自己实现ip限流可以不用redis,内存哈希表就足够了</h5>
-        <p class="card-text" style="font-size: 0.95rem;">分享我对限流的思考，自己用redis实现限流大可不必，它比内存哈希表性能差，如果需要多节点全局限流，用现代CDN是更好的选择。</p>
-        <div class="d-flex justify-content-between align-items-center">
-        
-        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/ip%E9%99%90%E6%B5%81%E5%8F%AF%E4%BB%A5%E4%B8%8D%E7%94%A8redis%E5%86%85%E5%AD%98%E5%93%88%E5%B8%8C%E8%A1%A8%E5%B0%B1%E8%B6%B3%E5%A4%9F%E4%BA%86/&#34;)">阅读</button>
-        </div>
+    <input type="hidden" id="c_device_id" value="">
+    <textarea class="form-control form-control-sm mb-2" id="c_content" rows="3" placeholder="请输入评论内容"
+      required></textarea>
+    <input type="hidden" id="c_rid" value="">
+    <div class="d-flex justify-content-between align-items-center">
+      <button class="btn btn-sm btn-primary" id="submitComment">提交评论</button>
     </div>
+  </div>
 </div>
+
+<script>
+  let isSubmitting = false;
+  let BLOG_ID = "我的博客评论区设计方案（基于sqlite3）";
+  let m = new Map();
+  BLOG_ID = encodeURIComponent(BLOG_ID);
+  function loadAllComment() {
+    $.ajax({
+      url: "https:\/\/comment.qiulaidongfeng.uk/comment",
+      type: "GET",
+      headers: {
+        bid: BLOG_ID
+      },
+      dataType: "json",
+      success: function (res) {
+        
+        $('#commentContainer').empty();
+
+        if (res.length === 0) {
+          $('#commentContainer').html('<p class="text-center text-muted py-2">暂无评论</p>');
+          return;
+        }
+        
+        renderCommentTree(res);
+        m.clear();
+      },
+      error: function (xhr) {
+        $('#commentContainer').html('<p class="text-center text-muted p-3">评论加载失败</p>');
+        console.error("评论加载失败", xhr);
+      }
+    });
+  }
+
+  function renderCommentTree(list) {
+    console.log(list);
     
-        
-<div class="card " onclick="window.location.assign(&#34;/zh-cn/%E4%BC%98%E5%8C%96http2-web-server-%E4%B9%8Bgo%E6%A0%87%E5%87%86%E5%BA%93%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6%E5%8F%AF%E4%BF%AE%E6%94%B9%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81/&#34;)">
-    <div class="card-body">
-        <h5 class="card-title">优化http2 Web Server 之Go标准库和运行时可修改的源代码</h5>
-        <p class="card-text" style="font-size: 0.95rem;">分享一些发现的Go HTTP2 服务器标准库与运行时源码可修改点，包含调帧大小、减内存分配、控 GC 占用、调goroutine栈大小等。</p>
-        <div class="d-flex justify-content-between align-items-center">
-        
-        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/%E4%BC%98%E5%8C%96http2-web-server-%E4%B9%8Bgo%E6%A0%87%E5%87%86%E5%BA%93%E5%92%8C%E8%BF%90%E8%A1%8C%E6%97%B6%E5%8F%AF%E4%BF%AE%E6%94%B9%E7%9A%84%E6%BA%90%E4%BB%A3%E7%A0%81/&#34;)">阅读</button>
-        </div>
+    const topList = list.filter(item => item.ReplyID == "");
+    console.log(topList)
+
+    topList.forEach(item => {
+      if (m.get(item.ID) != undefined) {
+        return
+      }
+      m.set(item.ID, true);
+      const html = buildCommentHtml(item);
+      $('#commentContainer').append(html);
+      
+      renderChildReply(item.ID, list);
+    });
+  }
+
+  function renderChildReply(parentId, list) {
+    const childList = list.filter(item => item.ReplyID === parentId);
+    if (childList.length === 0) return;
+    console.log(parentId, childList)
+    childList.forEach(child => {
+      if (m.get(child.ID) != undefined) {
+        return
+      }
+      m.set(child.ID, true);
+      const html = buildReplyHtml(child);
+      $(`.item[data-id="${parentId}"]`).find(".reply").eq(0).append(html);
+      
+      renderChildReply(child.ID, list);
+    });
+  }
+
+  function buildCommentHtml(data) {
+    const time = formatTime(data.Time);
+    return `
+  <div class="card mb-2 item" data-id="${data.ID}">
+    <div class="card-body p-3">
+      <div class="mb-1">
+        <span class="fw-bold me-2">${escapeHtml(data.Author.Name)}</span>
+        <span class="text-muted small">${time}</span>
+        <span class="text-muted small">评论ID：${data.ID}</span>
+      </div>
+      <p class="text-secondary my-2">${escapeHtml(data.Content)}</p>
+      <button class="btn btn-sm btn-link p-0 text-primary text-decoration-none reply-btn" data-rid="${data.ID}">回复</button>
+      <div class="reply">
+      </div>
     </div>
-</div>
-    
-        
-<div class="card " onclick="window.location.assign(&#34;/en/why-not-use-tls-to-connect-to-the-database-instead-of-wireguard/&#34;)">
-    <div class="card-body">
-        <h5 class="card-title">Why Not Use TLS to Connect to the Database Instead of WireGuard?</h5>
-        <p class="card-text" style="font-size: 0.95rem;">TLS and WireGuard connection databases are analyzed from four dimensions: configuration frequency, quantum security, anti intrusion, and scalability. WireGuard has obvious advantages in small-scale scenarios and is an excellent alternative to TLS.</p>
-        <div class="d-flex justify-content-between align-items-center">
-        
-        <button class="btn btn-primary" onclick="window.location.assign(&#34;/en/why-not-use-tls-to-connect-to-the-database-instead-of-wireguard/&#34;)">阅读</button>
-        </div>
+  </div>
+  `;
+  }
+
+  function buildReplyHtml(data) {
+    const time = formatTime(data.Time);
+    return `
+  <div class="card-body item" data-id="${data.ID}">
+    <div class="mb-1">
+      <span class="fw-bold me-2">${escapeHtml(data.Author.Name)}</span>
+      <span class="text-muted small">${time}</span>
+      <span class="text-muted small">评论ID：${data.ID}</span>
+      <span class="text-muted small">回复评论ID：${data.ReplyID}</span>
     </div>
-</div>
-    
-        
-<div class="card " onclick="window.location.assign(&#34;/zh-cn/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%A6%81%E4%BD%BF%E7%94%A8tls%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E8%80%8C%E7%94%A8wireguard%E6%9B%BF%E4%BB%A3/&#34;)">
-    <div class="card-body">
-        <h5 class="card-title">为什么不要使用TLS连接数据库，而用WireGuard替代？</h5>
-        <p class="card-text" style="font-size: 0.95rem;">TLS 和 WireGuard 连接数据库 从配置次数、量子安全、抗入侵和扩展性四个维度分析。发现WireGuard在小规模场景下优势明显，是替代TLS的绝佳选择。</p>
-        <div class="d-flex justify-content-between align-items-center">
-        
-        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%A6%81%E4%BD%BF%E7%94%A8tls%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93%E8%80%8C%E7%94%A8wireguard%E6%9B%BF%E4%BB%A3/&#34;)">阅读</button>
-        </div>
+    <p class="text-secondary my-2">${escapeHtml(data.Content)}</p>
+    <button class="btn btn-sm btn-link p-0 text-primary text-decoration-none reply-btn" data-rid="${data.ID}">回复</button>
+    <div class="reply">
     </div>
-</div>
+  </div>
+  `;
+  }
+
+  async function getFingerprint() {
+    let features = [];
+    features.push(navigator.platform || '');
+    features.push(navigator.oscpu || '');
+    features.push(navigator.language || navigator.userLanguage || '');
+    features.push(screen.width + 'x' + screen.height + 'x' + screen.colorDepth);
+    features.push(navigator.hardwareConcurrency || '');
+    features.push(navigator.cookieEnabled ? '1' : '0');
+    features.push('ontouchstart' in window ? '1' : '0');
+    features.push(navigator.deviceMemory || '');
+
     
-        
-<div class="card " onclick="window.location.assign(&#34;/zh-cn/%E5%A6%82%E4%BD%95%E5%81%9A%E5%88%B0%E9%AB%98%E5%8F%AF%E7%94%A8%E9%AB%98%E5%90%9E%E5%90%90%E7%9A%84web%E6%9C%8D%E5%8A%A1/&#34;)">
-    <div class="card-body">
-        <h5 class="card-title">如何做到高可用高吞吐的web服务 | 全栈优化实践</h5>
-        <p class="card-text" style="font-size: 0.95rem;">分享搭建高可用高吞吐 Web 服务的实战经验，涵盖服务器选型、HTTP/2 优化、内核参数调优（TCP/IP、缓冲区、连接队列）、CDN 加速、限流策略与数据库连接优化，提升Web吞吐量与稳定性。</p>
-        <div class="d-flex justify-content-between align-items-center">
-        
-        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/%E5%A6%82%E4%BD%95%E5%81%9A%E5%88%B0%E9%AB%98%E5%8F%AF%E7%94%A8%E9%AB%98%E5%90%9E%E5%90%90%E7%9A%84web%E6%9C%8D%E5%8A%A1/&#34;)">阅读</button>
-        </div>
-    </div>
-</div>
+    const canvas = document.createElement('canvas');
+    canvas.width = 300;
+    canvas.height = 200;
+    const ctx = canvas.getContext('2d');
+    ctx.arc(128, 128, 100, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.fillStyle = '#e5e5e5';
+    ctx.fillRect(0, 0, 300, 200);
+    ctx.fillStyle = '#333';
+    ctx.font = '16px "SimHei", Arial';
+    ctx.fillText("zsrtyuhijk nbcvxtryk]d/?g`b+gd2423yrtjyku f", 10, 40);
+    ctx.beginPath();
+    ctx.moveTo(50, 100);
+    ctx.lineTo(250, 100);
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = '#666';
+    ctx.stroke();
+    ctx.fillStyle = '#f00';
+    ctx.beginPath();
+    ctx.arc(150, 150, 30, 0, Math.PI * 2);
+    ctx.fill();
+    const canvasData = canvas.toDataURL('image/png').replace(/^data:image\/png;base64,/, '');
+    features.push(canvasData);
+
     
-</div>
+    const rawStr = features.join('|');
+
+    
+    const encoder = new TextEncoder();
+    const data = encoder.encode(rawStr);
+    const hashBuffer = await crypto.subtle.digest('SHA-512', data);
+
+    
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const fingerprint = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+    return fingerprint;
+  }
+
+
+  function sendComment() {
+    if (isSubmitting) return;
+    isSubmitting = true;
+    $('#submitComment').prop('disabled', true).text('提交中...');
+    const name = $('#c_name').val().trim();
+    const email = $('#c_email').val().trim();
+    const content = $('#c_content').val().trim();
+    const rid = $('#c_rid').val().trim();
+    if (!name) {
+      alert("请输入昵称");
+      resetSubmitBtn();
+      return;
+    }
+    if (!email || !email.includes('@') || !email.includes('.')) {
+      alert("请输入正确邮箱");
+      resetSubmitBtn();
+      return;
+    }
+    if (!content) {
+      alert("请输入评论内容");
+      resetSubmitBtn();
+      return;
+    }
+    (async () => {
+      const fp = await getFingerprint();
+      console.log(fp);
+      const DEVICE_ID = fp;
+      $('#c_device_id').val(DEVICE_ID);
+
+      const formData = {
+        name: name,
+        email: email,
+        device_id: DEVICE_ID,
+        bid: BLOG_ID,
+        rid: rid,
+        comment: content
+      };
+
+      console.log("send");
+      $.ajax({
+        url: "https:\/\/comment.qiulaidongfeng.uk/send_comment",
+        type: "POST",
+        data: formData,
+        success: function (msg) {
+          
+          $('#c_content').val('');
+          $('#c_rid').val('');
+          
+          loadAllComment();
+          resetSubmitBtn();
+        },
+        error: function (xhr) {
+          resetSubmitBtn();
+          alert(xhr.responseText + "如有疑问，请联系作者");
+        }
+      })
+    })();
+  }
+
+  function resetSubmitBtn() {
+    isSubmitting = false;
+    $('#submitComment').prop('disabled', false).text('提交评论');
+  }
+
+  function formatTime(isoStr) {
+    const d = new Date(isoStr);
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    const h = String(d.getHours()).padStart(2, '0');
+    const min = String(d.getMinutes()).padStart(2, '0');
+    const s = String(d.getSeconds()).padStart(2, '0');
+    return `${y}-${m}-${day} ${h}:${min}:${s}`;
+  }
+
+  function escapeHtml(str) {
+    return $('<div>').text(str).html();
+  }
+
+</script>
+
+<script>
+  AfterMain = function () {
+    loadAllComment();
+    $('#submitComment').on('click', sendComment);
+    $(document).on('click', '.reply-btn', function () {
+      const rid = $(this).data('rid');
+      const username = $(this).parent().find('.fw-bold').text().trim();
+      
+      $('#c_rid').val(rid);
+      
+      $('#c_content')[0].scrollIntoView({ behavior: 'smooth' });
+      $('#c_content').focus();
+    });
+
+  }
+</script>
+
+
+
+
+  <div>
+    <div>Categories:</div>
+    <ul>
+        <li><a href="/categories/%E6%88%91%E7%9A%84%E4%B8%AD%E6%96%87%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E7%B3%BB%E5%88%97/">我的中文设计方案系列</a></li>
+    </ul>
+  </div>
+
 
     </div>
     <aside id="aside2" class="col-lg-2">
