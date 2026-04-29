@@ -4,32 +4,33 @@
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>
-我的中文设计方案系列 | 秋来冬风的博客</title>       
-<meta name="keywords" content="秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog">
-<link rel="canonical" href="https://qiulaidongfeng.github.io/categories/%E6%88%91%E7%9A%84%E4%B8%AD%E6%96%87%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E7%B3%BB%E5%88%97/" />
+如何进行浏览器完整性检查 | 秋来冬风的博客</title><meta name="description" content="介绍了我的一些检查HTTP流量是否非来自真人的经验。">          
+<meta name="keywords" content="浏览器完整性检查,秋来冬风,qiulaidongfeng,博客,blog">
+<link rel="canonical" href="https://qiulaidongfeng.github.io/zh-cn/%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AE%8C%E6%95%B4%E6%80%A7%E6%A3%80%E6%9F%A5/" />
 <meta name="author" content="qiulaidongfeng(秋来冬风)">
 <meta name="copyright" content="Copyright © 2023 秋来冬风. All rights reserved.">
-<link rel="author" href="https://qiulaidongfeng.github.io/about/"><link rel="alternate" href="https://qiulaidongfeng.github.io/categories/%E6%88%91%E7%9A%84%E4%B8%AD%E6%96%87%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E7%B3%BB%E5%88%97/" hreflang="zh-CN" />
+<link rel="author" href="https://qiulaidongfeng.github.io/about/"><link rel="alternate" href="https://qiulaidongfeng.github.io/zh-cn/%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AE%8C%E6%95%B4%E6%80%A7%E6%A3%80%E6%9F%A5/" hreflang="zh-CN" />
 
-<meta property="og:title" content="我的中文设计方案系列">
+<meta property="og:title" content="如何进行浏览器完整性检查">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="秋来冬风的博客">
-<meta property="og:url" content="https://qiulaidongfeng.github.io/categories/%E6%88%91%E7%9A%84%E4%B8%AD%E6%96%87%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E7%B3%BB%E5%88%97/">
-<meta property="og:description" content="">
+<meta property="og:url" content="https://qiulaidongfeng.github.io/zh-cn/%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AE%8C%E6%95%B4%E6%80%A7%E6%A3%80%E6%9F%A5/">
+<meta property="og:description" content="介绍了我的一些检查HTTP流量是否非来自真人的经验。">
 <meta property="og:locale" content="zh-CN" />
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="我的中文设计方案系列">
-<meta name="twitter:description" content="">
-<meta name="twitter:url" content="https://qiulaidongfeng.github.io/categories/%E6%88%91%E7%9A%84%E4%B8%AD%E6%96%87%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E7%B3%BB%E5%88%97/">
+<meta name="twitter:title" content="如何进行浏览器完整性检查">
+<meta name="twitter:description" content="介绍了我的一些检查HTTP流量是否非来自真人的经验。">
+<meta name="twitter:url" content="https://qiulaidongfeng.github.io/zh-cn/%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AE%8C%E6%95%B4%E6%80%A7%E6%A3%80%E6%9F%A5/">
 
 <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       
-      "@type": "CollectionPage",
+      "@type": "BlogPosting",
+      "headline": "如何进行浏览器完整性检查 | 秋来冬风的博客",
       
-      "description": "",
+      "description": "介绍了我的一些检查HTTP流量是否非来自真人的经验。",
       "author": {
         "@type": "Person",
         "name": "qiulaidongfeng(秋来冬风)",
@@ -41,7 +42,10 @@
         "url": "https://qiulaidongfeng.github.io/"
       },
       
-      "keywords": "秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog"
+      "datePublished": "2026-04-29T16:12:58+08:00",
+      "articleSection": "技术博客",
+      
+      "keywords": "浏览器完整性检查,秋来冬风,qiulaidongfeng,博客,blog"
     }
 </script>
 <style>
@@ -324,9 +328,9 @@
         
         <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/">秋来冬风的博客</a></li>
         
-        <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/categories/">Categories</a></li>
+        <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/zh-cn/">所有中文内容</a></li>
         
-        <li class="breadcrumb-item active" aria-current="page">我的中文设计方案系列</li>
+        <li class="breadcrumb-item active" aria-current="page">如何进行浏览器完整性检查</li>
     </ol>
 </nav>
 
@@ -381,76 +385,361 @@
     </aside>
     <div id="main" class="col-lg-8">
       
-  <h1>我的中文设计方案系列</h1>
+<div class="d-flex justify-content-between">
+  <time>2026-04-29</time>
+  <p id="wordcount"></p>
+</div>
+
+<div style="background-color: white;" class="p-4">
+  <article id="content">
+    
+    <h1>如何进行浏览器完整性检查</h1>
+    
+    <details class="toc">
+      <summary>目录</summary>
+      <div id="table-of-contents"></div>
+    </details>
+    <div class="main">
+      <p>我的<a href="/zh-cn/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E5%8C%BA%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88.md">上一篇博客</a>,提到了浏览器完整性检查，本文对此进行探讨。</p>
+<h2 id="context">Context</h2>
+<p>在本文中，浏览器完整性检查是指识别非来自人操作浏览器来的HTTP流量。</p>
+<h2 id="相关理论">相关理论</h2>
+<p>人操作浏览器，典型场景是发送一个GET或POST请求，然后得到一个html响应内容。</p>
+<p>这在期间有许多的特征可以用来检测请求流量是否来自人，而非机器发出。</p>
+<p>例如</p>
+<ul>
+<li>特定HTTP头（Accect等）</li>
+<li>特定能力（能执行指定js脚本）</li>
+</ul>
+<p>等</p>
+<h2 id="一些检测方法">一些检测方法</h2>
+<h3 id="示例">示例</h3>
+<p>这是一个示例，进行简单的浏览器完整性检查</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>		<span style="color:#a6e22e">ua</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">GetHeader</span>(<span style="color:#e6db74">&#34;User-Agent&#34;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">u</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">useragent</span>.<span style="color:#a6e22e">Parse</span>(<span style="color:#a6e22e">ua</span>) <span style="color:#75715e">// &#34;github.com/mileusna/useragent&#34;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">Name</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#f92672">||</span> <span style="color:#a6e22e">u</span>.<span style="color:#a6e22e">OS</span> <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;&#34;</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">String</span>(<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">StatusForbidden</span>, <span style="color:#e6db74">&#34;User-Agent验证未通过&#34;</span>)
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Abort</span>()
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">//TODO:进行更多验证</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> (!<span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">Contains</span>(<span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Request</span>.<span style="color:#a6e22e">Header</span>.<span style="color:#a6e22e">Get</span>(<span style="color:#e6db74">&#34;Accept&#34;</span>), <span style="color:#e6db74">&#34;text/html&#34;</span>) <span style="color:#f92672">&amp;&amp;</span> !<span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">Contains</span>(<span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Request</span>.<span style="color:#a6e22e">Header</span>.<span style="color:#a6e22e">Get</span>(<span style="color:#e6db74">&#34;Accept&#34;</span>), <span style="color:#e6db74">&#34;*/*&#34;</span>)) <span style="color:#f92672">||</span>
+</span></span><span style="display:flex;"><span>			!<span style="color:#a6e22e">strings</span>.<span style="color:#a6e22e">Contains</span>(<span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Request</span>.<span style="color:#a6e22e">Header</span>.<span style="color:#a6e22e">Get</span>(<span style="color:#e6db74">&#34;Accept-Encoding&#34;</span>), <span style="color:#e6db74">&#34;gzip&#34;</span>) <span style="color:#f92672">||</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Request</span>.<span style="color:#a6e22e">Header</span>.<span style="color:#a6e22e">Get</span>(<span style="color:#e6db74">&#34;Accept-Language&#34;</span>) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;&#34;</span> <span style="color:#f92672">||</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Request</span>.<span style="color:#a6e22e">Header</span>.<span style="color:#a6e22e">Get</span>(<span style="color:#e6db74">&#34;Sec-Fetch-Site&#34;</span>) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;&#34;</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">String</span>(<span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">StatusForbidden</span>, <span style="color:#e6db74">&#34;浏览器完整性验证未通过&#34;</span>)
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Abort</span>()
+</span></span><span style="display:flex;"><span>			<span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>		}
+</span></span></code></pre></div><h3 id="http头">HTTP头</h3>
+<p>通过以下这些HTTP头可以用来进行浏览器完整性检查</p>
+<ul>
+<li>User-Agent：这是最常用的，用来提升请求来源，浏览器通常设置为类似<code>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36 Edg/147.0.0.0</code>的字符串，而各个编程语言则默认设置为类似<code>Go-http-client/1.1</code>这种标明了自己身份的字符串，尽管可以修改伪装，但这仍然是很有用的一种检测方法。</li>
+<li>Accept：通过浏览器包含text/html，表面它可以接收网页，OPTIONS请求时则包含*/*，对于伪装了User-Agent的流量，可能不会伪装其它标头</li>
+<li>Accept-Encoding，Sec-Fetch-Site，Accept-Language，Sec-Ch-Ua，Sec-Ch-Ua-Mobile，Sec-Ch-Ua-Platform，Sec-Fetch-Dest,Sec-Fetch-Mode是一些相对在伪装非来自人的机器流量时，更冷门的HTTP头，但在真实浏览器中通常是存在且有相应含义内容的。</li>
+<li>Referer: 浏览器里跳转而来的请求，通常有这个HTTP头，这可以用来排除一些不是来自真人操作浏览器的网络API调用。</li>
+<li>自定义头：可以通过自定义一些HTTP头，更好的帮助服务器检查流量。比如设置GET请求后js设置一个CSRF-TOKEN，POST请求时检查Cookie中是否包含此。</li>
+</ul>
+<h3 id="执行js能力">执行js能力</h3>
+<p>如果是真实的用户操作浏览器，一般不会禁用js（特殊情况不讨论），而使用各种编程语言实现的爬虫，默认不具备执行js的能力，往往需要外部库，或调用无头浏览器。
+利用这一点，我们可以进行浏览器完整性检查。</p>
+<p>一些思路如下</p>
+<ul>
+<li>响应请求前返回js脚本执行一些hash运算，比如服务器给字符串x，请求者算SHA512(x)并返回结果给服务器,检查是否能正确执行js脚本</li>
+<li>检查js的navigator.webdriver是否true</li>
+</ul>
+<h3 id="检查tls指纹">检查TLS指纹</h3>
+<p>TLS指纹也是一种浏览器完整性检查方法，不过需要收集来自非真实浏览器的TLS指纹做黑名单，或来自真实真实浏览器的TLS指纹做黑名单，两个都不简单，故此不是很推荐常规使用。</p>
+
+    </div>
+  </article>
+</div>
+
+<div class="mt-3" style="background-color: #F5F5F5;">
+  <p class="h4 text-center">评论区</p>
+  <div id="commentContainer">
+    <p class="p-3">评论加载中</p>
+  </div>
+
   
-  
-  
-    
-  
-  <div class="row">
-    
-    
-        
-<div class="card " onclick="window.location.assign(&#34;/zh-cn/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E5%8C%BA%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/&#34;)">
-    <div class="card-body">
-        <h5 class="card-title">我的博客评论区设计方案（基于sqlite3）</h5>
-        <p class="card-text" style="font-size: 0.95rem;">介绍我基于sqlite3的评论区博客设计方案，实现私有化部署，且硬件开销小。</p>
-        <div class="d-flex justify-content-between align-items-center">
-        
-        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E5%8C%BA%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/&#34;)">阅读</button>
-        </div>
+  <div class="card mb-3 p-3">
+    <div class="row g-2 mb-2">
+      <div class="col-md-6">
+        <input type="text" class="form-control form-control-sm" id="c_name" placeholder="昵称" required>
+      </div>
+      <div class="col-md-6">
+        <input type="email" class="form-control form-control-sm" id="c_email" placeholder="邮箱" required>
+      </div>
     </div>
-</div>
-    
-        
-<div class="card " onclick="window.location.assign(&#34;/zh-cn/%E5%AE%89%E5%85%A8%E7%99%BB%E5%BD%95%E4%BC%9A%E8%AF%9D%E7%AC%AC%E4%B8%89%E7%89%88%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/&#34;)">
-    <div class="card-body">
-        <h5 class="card-title">安全登录会话第三版设计方案——公开登录凭据也安全的机制</h5>
-        <p class="card-text" style="font-size: 0.95rem;">在Session的基础上，通过各种辅助验证，以及对加密的巧妙运用，做到了在安全维持登录会话的同时，自身仅存储少量数据，并且即使泄露登录会话凭据，也不太影响安全性。</p>
-        <div class="d-flex justify-content-between align-items-center">
-        
-        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/%E5%AE%89%E5%85%A8%E7%99%BB%E5%BD%95%E4%BC%9A%E8%AF%9D%E7%AC%AC%E4%B8%89%E7%89%88%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/&#34;)">阅读</button>
-        </div>
+    <input type="hidden" id="c_device_id" value="">
+    <textarea class="form-control form-control-sm mb-2" id="c_content" rows="3" placeholder="请输入评论内容"
+      required></textarea>
+    <input type="hidden" id="c_rid" value="">
+    <div class="d-flex justify-content-between align-items-center">
+      <button class="btn btn-sm btn-primary" id="submitComment">提交评论</button>
     </div>
+  </div>
 </div>
+
+<script>
+  let isSubmitting = false;
+  let BLOG_ID = "如何进行浏览器完整性检查";
+  let m = new Map();
+  BLOG_ID = encodeURIComponent(BLOG_ID);
+  function loadAllComment() {
+    $.ajax({
+      url: "https:\/\/comment.qiulaidongfeng.uk/comment",
+      type: "GET",
+      headers: {
+        bid: BLOG_ID
+      },
+      dataType: "json",
+      success: function (res) {
+        
+        $('#commentContainer').empty();
+
+        if (res.length === 0) {
+          $('#commentContainer').html('<p class="text-center text-muted py-2">暂无评论</p>');
+          return;
+        }
+        
+        renderCommentTree(res);
+        m.clear();
+      },
+      error: function (xhr) {
+        $('#commentContainer').html('<p class="text-center text-muted p-3">评论加载失败</p>');
+        console.error("评论加载失败", xhr);
+      }
+    });
+  }
+
+  function renderCommentTree(list) {
+    console.log(list);
     
-        
-<div class="card " onclick="window.location.assign(&#34;/zh-cn/%E5%AE%89%E5%85%A8%E7%99%BB%E5%BD%95%E4%BC%9A%E8%AF%9D%E4%B8%89%E7%89%88%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E7%9A%84%E6%BC%94%E8%BF%9B%E5%8E%86%E7%A8%8B/&#34;)">
-    <div class="card-body">
-        <h5 class="card-title">安全登录会话三版设计方案的演进历程</h5>
-        <p class="card-text" style="font-size: 0.95rem;">此博客回顾我设计safesession的过程，从第一版到第二版到第三版，各增加了什么，解决了什么问题。</p>
-        <div class="d-flex justify-content-between align-items-center">
-        
-        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/%E5%AE%89%E5%85%A8%E7%99%BB%E5%BD%95%E4%BC%9A%E8%AF%9D%E4%B8%89%E7%89%88%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E7%9A%84%E6%BC%94%E8%BF%9B%E5%8E%86%E7%A8%8B/&#34;)">阅读</button>
-        </div>
+    const topList = list.filter(item => item.ReplyID == "");
+    console.log(topList)
+
+    topList.forEach(item => {
+      if (m.get(item.ID) != undefined) {
+        return
+      }
+      m.set(item.ID, true);
+      const html = buildCommentHtml(item);
+      $('#commentContainer').append(html);
+      
+      renderChildReply(item.ID, list);
+    });
+  }
+
+  function renderChildReply(parentId, list) {
+    const childList = list.filter(item => item.ReplyID === parentId);
+    if (childList.length === 0) return;
+    console.log(parentId, childList)
+    childList.forEach(child => {
+      if (m.get(child.ID) != undefined) {
+        return
+      }
+      m.set(child.ID, true);
+      const html = buildReplyHtml(child);
+      $(`.item[data-id="${parentId}"]`).find(".reply").eq(0).append(html);
+      
+      renderChildReply(child.ID, list);
+    });
+  }
+
+  function buildCommentHtml(data) {
+    const time = formatTime(data.Time);
+    return `
+  <div class="card mb-2 item" data-id="${data.ID}">
+    <div class="card-body p-3">
+      <div class="mb-1">
+        <span class="fw-bold me-2">${escapeHtml(data.Author.Name)}</span>
+        <span class="text-muted small">${time}</span>
+        <span class="text-muted small">评论ID：${data.ID}</span>
+      </div>
+      <p class="text-secondary my-2">${escapeHtml(data.Content)}</p>
+      <button class="btn btn-sm btn-link p-0 text-primary text-decoration-none reply-btn" data-rid="${data.ID}">回复</button>
+      <div class="reply">
+      </div>
     </div>
-</div>
-    
-        
-<div class="card " onclick="window.location.assign(&#34;/zh-cn/%E7%94%A8redis%E6%9E%84%E5%BB%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/&#34;)">
-    <div class="card-body">
-        <h5 class="card-title">用redis构建聊天室</h5>
-        <p class="card-text" style="font-size: 0.95rem;">记录我用redis构建聊天室的一个方案。</p>
-        <div class="d-flex justify-content-between align-items-center">
-        
-        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/%E7%94%A8redis%E6%9E%84%E5%BB%BA%E8%81%8A%E5%A4%A9%E5%AE%A4/&#34;)">阅读</button>
-        </div>
+  </div>
+  `;
+  }
+
+  function buildReplyHtml(data) {
+    const time = formatTime(data.Time);
+    return `
+  <div class="card-body item" data-id="${data.ID}">
+    <div class="mb-1">
+      <span class="fw-bold me-2">${escapeHtml(data.Author.Name)}</span>
+      <span class="text-muted small">${time}</span>
+      <span class="text-muted small">评论ID：${data.ID}</span>
+      <span class="text-muted small">回复评论ID：${data.ReplyID}</span>
     </div>
-</div>
-    
-        
-<div class="card " onclick="window.location.assign(&#34;/zh-cn/%E5%9C%A8go%E6%A0%87%E5%87%86%E5%BA%93%E5%A4%96%E5%AE%9E%E7%8E%B0%E6%AF%94%E6%A0%87%E5%87%86%E5%BA%93%E6%9B%B4%E5%A5%BD%E7%9A%84arena/&#34;)">
-    <div class="card-body">
-        <h5 class="card-title">在go标准库外实现比go标准库更好的arena</h5>
-        <p class="card-text" style="font-size: 0.95rem;">记录我如何在go标准库外实现比go标准库更好的arena。</p>
-        <div class="d-flex justify-content-between align-items-center">
-        
-        <button class="btn btn-primary" onclick="window.location.assign(&#34;/zh-cn/%E5%9C%A8go%E6%A0%87%E5%87%86%E5%BA%93%E5%A4%96%E5%AE%9E%E7%8E%B0%E6%AF%94%E6%A0%87%E5%87%86%E5%BA%93%E6%9B%B4%E5%A5%BD%E7%9A%84arena/&#34;)">阅读</button>
-        </div>
+    <p class="text-secondary my-2">${escapeHtml(data.Content)}</p>
+    <button class="btn btn-sm btn-link p-0 text-primary text-decoration-none reply-btn" data-rid="${data.ID}">回复</button>
+    <div class="reply">
     </div>
-</div>
+  </div>
+  `;
+  }
+
+  async function getFingerprint() {
+    let features = [];
+    features.push(navigator.platform || '');
+    features.push(navigator.oscpu || '');
+    features.push(navigator.language || navigator.userLanguage || '');
+    features.push(screen.width + 'x' + screen.height + 'x' + screen.colorDepth);
+    features.push(navigator.hardwareConcurrency || '');
+    features.push(navigator.cookieEnabled ? '1' : '0');
+    features.push('ontouchstart' in window ? '1' : '0');
+    features.push(navigator.deviceMemory || '');
+
     
-</div>
+    const canvas = document.createElement('canvas');
+    canvas.width = 300;
+    canvas.height = 200;
+    const ctx = canvas.getContext('2d');
+    ctx.arc(128, 128, 100, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#ffffff';
+    ctx.beginPath();
+    ctx.fillStyle = '#e5e5e5';
+    ctx.fillRect(0, 0, 300, 200);
+    ctx.fillStyle = '#333';
+    ctx.font = '16px "SimHei", Arial';
+    ctx.fillText("zsrtyuhijk nbcvxtryk]d/?g`b+gd2423yrtjyku f", 10, 40);
+    ctx.beginPath();
+    ctx.moveTo(50, 100);
+    ctx.lineTo(250, 100);
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = '#666';
+    ctx.stroke();
+    ctx.fillStyle = '#f00';
+    ctx.beginPath();
+    ctx.arc(150, 150, 30, 0, Math.PI * 2);
+    ctx.fill();
+    const canvasData = canvas.toDataURL('image/png').replace(/^data:image\/png;base64,/, '');
+    features.push(canvasData);
+
+    
+    const rawStr = features.join('|');
+
+    
+    const encoder = new TextEncoder();
+    const data = encoder.encode(rawStr);
+    const hashBuffer = await crypto.subtle.digest('SHA-512', data);
+
+    
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const fingerprint = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
+    return fingerprint;
+  }
+
+
+  function sendComment() {
+    if (isSubmitting) return;
+    isSubmitting = true;
+    $('#submitComment').prop('disabled', true).text('提交中...');
+    const name = $('#c_name').val().trim();
+    const email = $('#c_email').val().trim();
+    const content = $('#c_content').val().trim();
+    const rid = $('#c_rid').val().trim();
+    if (!name) {
+      alert("请输入昵称");
+      resetSubmitBtn();
+      return;
+    }
+    if (!email || !email.includes('@') || !email.includes('.')) {
+      alert("请输入正确邮箱");
+      resetSubmitBtn();
+      return;
+    }
+    if (!content) {
+      alert("请输入评论内容");
+      resetSubmitBtn();
+      return;
+    }
+    (async () => {
+      const fp = await getFingerprint();
+      console.log(fp);
+      const DEVICE_ID = fp;
+      $('#c_device_id').val(DEVICE_ID);
+
+      const formData = {
+        name: name,
+        email: email,
+        device_id: DEVICE_ID,
+        bid: BLOG_ID,
+        rid: rid,
+        comment: content
+      };
+
+      console.log("send");
+      $.ajax({
+        url: "https:\/\/comment.qiulaidongfeng.uk/send_comment",
+        type: "POST",
+        data: formData,
+        success: function (msg) {
+          
+          $('#c_content').val('');
+          $('#c_rid').val('');
+          
+          loadAllComment();
+          resetSubmitBtn();
+        },
+        error: function (xhr) {
+          resetSubmitBtn();
+          alert(xhr.responseText + "如有疑问，请联系作者");
+        }
+      })
+    })();
+  }
+
+  function resetSubmitBtn() {
+    isSubmitting = false;
+    $('#submitComment').prop('disabled', false).text('提交评论');
+  }
+
+  function formatTime(isoStr) {
+    const d = new Date(isoStr);
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    const h = String(d.getHours()).padStart(2, '0');
+    const min = String(d.getMinutes()).padStart(2, '0');
+    const s = String(d.getSeconds()).padStart(2, '0');
+    return `${y}-${m}-${day} ${h}:${min}:${s}`;
+  }
+
+  function escapeHtml(str) {
+    return $('<div>').text(str).html();
+  }
+
+</script>
+
+<script>
+  AfterMain = function () {
+    loadAllComment();
+    $('#submitComment').on('click', sendComment);
+    $(document).on('click', '.reply-btn', function () {
+      const rid = $(this).data('rid');
+      const username = $(this).parent().find('.fw-bold').text().trim();
+      
+      $('#c_rid').val(rid);
+      
+      $('#c_content')[0].scrollIntoView({ behavior: 'smooth' });
+      $('#c_content').focus();
+    });
+
+  }
+</script>
+
+
+
+
+
 
     </div>
     <aside id="aside2" class="col-lg-2">
