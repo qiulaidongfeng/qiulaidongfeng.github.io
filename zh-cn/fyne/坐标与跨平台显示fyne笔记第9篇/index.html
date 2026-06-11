@@ -4,33 +4,33 @@
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>
-App和Windows,Fyne笔记第2篇 | 秋来冬风的博客</title><meta name="description" content="介绍App和Window这两个Fyne的关键接口，在实际GUI开发中的常见用处。">       
+坐标与跨平台显示,Fyne笔记第9篇 | 秋来冬风的博客</title><meta name="description" content="分享Fyne的坐标和尺寸的知识点。">       
 <meta name="keywords" content="Fyne,秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog">
-<link rel="canonical" href="https://qiulaidongfeng.github.io/zh-cn/fyne/app%E5%92%8Cwindowsfyne%E7%AC%94%E8%AE%B0%E7%AC%AC2%E7%AF%87/" />
+<link rel="canonical" href="https://qiulaidongfeng.github.io/zh-cn/fyne/%E5%9D%90%E6%A0%87%E4%B8%8E%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%98%BE%E7%A4%BAfyne%E7%AC%94%E8%AE%B0%E7%AC%AC9%E7%AF%87/" />
 <meta name="author" content="qiulaidongfeng(秋来冬风)">
 <meta name="copyright" content="Copyright © 2023 秋来冬风. All rights reserved.">
-<link rel="author" href="https://qiulaidongfeng.github.io/about/"><link rel="alternate" href="https://qiulaidongfeng.github.io/zh-cn/fyne/app%E5%92%8Cwindowsfyne%E7%AC%94%E8%AE%B0%E7%AC%AC2%E7%AF%87/" hreflang="zh-CN" />
+<link rel="author" href="https://qiulaidongfeng.github.io/about/"><link rel="alternate" href="https://qiulaidongfeng.github.io/zh-cn/fyne/%E5%9D%90%E6%A0%87%E4%B8%8E%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%98%BE%E7%A4%BAfyne%E7%AC%94%E8%AE%B0%E7%AC%AC9%E7%AF%87/" hreflang="zh-CN" />
 
-<meta property="og:title" content="App和Windows,Fyne笔记第2篇">
+<meta property="og:title" content="坐标与跨平台显示,Fyne笔记第9篇">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="秋来冬风的博客">
-<meta property="og:url" content="https://qiulaidongfeng.github.io/zh-cn/fyne/app%E5%92%8Cwindowsfyne%E7%AC%94%E8%AE%B0%E7%AC%AC2%E7%AF%87/">
-<meta property="og:description" content="介绍App和Window这两个Fyne的关键接口，在实际GUI开发中的常见用处。">
+<meta property="og:url" content="https://qiulaidongfeng.github.io/zh-cn/fyne/%E5%9D%90%E6%A0%87%E4%B8%8E%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%98%BE%E7%A4%BAfyne%E7%AC%94%E8%AE%B0%E7%AC%AC9%E7%AF%87/">
+<meta property="og:description" content="分享Fyne的坐标和尺寸的知识点。">
 <meta property="og:locale" content="zh-CN" />
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="App和Windows,Fyne笔记第2篇">
-<meta name="twitter:description" content="介绍App和Window这两个Fyne的关键接口，在实际GUI开发中的常见用处。">
-<meta name="twitter:url" content="https://qiulaidongfeng.github.io/zh-cn/fyne/app%E5%92%8Cwindowsfyne%E7%AC%94%E8%AE%B0%E7%AC%AC2%E7%AF%87/">
+<meta name="twitter:title" content="坐标与跨平台显示,Fyne笔记第9篇">
+<meta name="twitter:description" content="分享Fyne的坐标和尺寸的知识点。">
+<meta name="twitter:url" content="https://qiulaidongfeng.github.io/zh-cn/fyne/%E5%9D%90%E6%A0%87%E4%B8%8E%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%98%BE%E7%A4%BAfyne%E7%AC%94%E8%AE%B0%E7%AC%AC9%E7%AF%87/">
 
 <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       
       "@type": "BlogPosting",
-      "headline": "App和Windows,Fyne笔记第2篇 | 秋来冬风的博客",
+      "headline": "坐标与跨平台显示,Fyne笔记第9篇 | 秋来冬风的博客",
       
-      "description": "介绍App和Window这两个Fyne的关键接口，在实际GUI开发中的常见用处。",
+      "description": "分享Fyne的坐标和尺寸的知识点。",
       "author": {
         "@type": "Person",
         "name": "qiulaidongfeng(秋来冬风)",
@@ -42,7 +42,7 @@ App和Windows,Fyne笔记第2篇 | 秋来冬风的博客</title><meta name="descr
         "url": "https://qiulaidongfeng.github.io/"
       },
       
-      "datePublished": "2026-01-29T00:26:17+08:00",
+      "datePublished": "2026-06-10T09:07:38+08:00",
       "articleSection": "技术博客",
       
       "keywords": "Fyne,秋来冬风,qiulaidongfeng,Go语言,golang,博客,blog"
@@ -330,7 +330,7 @@ App和Windows,Fyne笔记第2篇 | 秋来冬风的博客</title><meta name="descr
         
         <li class="breadcrumb-item"><a href="https://qiulaidongfeng.github.io/zh-cn/">所有中文内容</a></li>
         
-        <li class="breadcrumb-item active" aria-current="page">App和Windows,Fyne笔记第2篇</li>
+        <li class="breadcrumb-item active" aria-current="page">坐标与跨平台显示,Fyne笔记第9篇</li>
     </ol>
 </nav>
 
@@ -386,151 +386,30 @@ App和Windows,Fyne笔记第2篇 | 秋来冬风的博客</title><meta name="descr
     <div id="main" class="col-lg-8">
       
 <div class="d-flex justify-content-between">
-  <time>2026-01-29</time>
+  <time>2026-06-10</time>
   <p id="wordcount"></p>
 </div>
 
 <div style="background-color: white;" class="p-4">
   <article id="content">
     
-    <h1>App和Windows,Fyne笔记第2篇</h1>
+    <h1>坐标与跨平台显示,Fyne笔记第9篇</h1>
     
     <details class="toc">
       <summary>目录</summary>
       <div id="table-of-contents"></div>
     </details>
     <div class="main">
-      <p>这是我的Fyne学习笔记系列第2篇。</p>
-<h2 id="app">App</h2>
-<p>在Fyne里，许多关键的类型是接口定义的，有些特定功能X有两个方法，SetX是设置，X是获取。</p>
-<p>App类型本身是一个包含多个方法的接口。</p>
-<p>除了上一篇已经写过的NewWindow来创建窗口，还有这些与整个程序相关的功能的方法：</p>
-<h3 id="打开浏览器">打开浏览器</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">a</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">New</span>() <span style="color:#75715e">//fyne.io/fyne/v2/app</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">u</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">url</span>.<span style="color:#a6e22e">Parse</span>(<span style="color:#e6db74">&#34;https://to-link.com&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">OpenURL</span>(<span style="color:#a6e22e">u</span>) 
-</span></span></code></pre></div><p>可以将指定链接在系统默认浏览器打开。</p>
-<h3 id="应用程序图标">应用程序图标</h3>
-<p>例如Windows的任务栏，Android的桌面对每个程序都有一个应用程序图标。</p>
-<p>app对此提供X/SetX风格的API来获取/设置。</p>
-<p>方法签名是</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>	<span style="color:#a6e22e">Icon</span>() <span style="color:#a6e22e">Resource</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">SetIcon</span>(<span style="color:#a6e22e">Resource</span>)
-</span></span></code></pre></div><p>Resource也是一个接口，有两个方法获取资源名和资源内容（[]byte）。</p>
-<h3 id="事件循环">事件循环</h3>
-<p><code>Run</code>方法启动UI渲染等的事件循环，<code>Quit</code>方法结束事件循环并正常关闭所有Window退出。</p>
-<p>注意<code>Quit</code>在移动设备会终止事件循环，从前使得页面无响应，但不会退出。</p>
-<h3 id="系统相关">系统相关</h3>
-<h4 id="发送通知">发送通知</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">SendNotification</span>(<span style="color:#a6e22e">fyne</span>.<span style="color:#a6e22e">NewNotification</span>(<span style="color:#e6db74">&#34;title&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>))
-</span></span></code></pre></div><p>可以发出一个系统通知，在windows是右下角小卡片的Toast通知，在安卓是悬浮通知和状态栏通知。</p>
-<h4 id="剪切板">剪切板</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">Clipboard</span>().<span style="color:#a6e22e">Content</span>() <span style="color:#75715e">// string type</span>
-</span></span></code></pre></div><p>可以获取系统剪切板的内容</p>
-<p><code>Clipboard</code>返回值也是一个X/SetX风格方法的接口，所以也可以设置剪切板内容。</p>
-<h4 id="文件操作">文件操作</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">Storage</span>()
-</span></span></code></pre></div><p>返回一个支持对系统文件进行打开，读写，创建，删除等操作的接口。不过在电脑go std的os包也够用，似乎这个接口在移动设置更有用。</p>
-<h4 id="用户配置">用户配置</h4>
-<p><code>Preferences</code>方法返回一个接口，可以将自定义用户配置以键值对的json格式，存在系统用户目录里。</p>
-<h3 id="生命周期">生命周期</h3>
-<p><code>Lifecycle</code>方法返回一个接口，可以设置前后台切换与启动停止四种情况发生时的hook。</p>
-<p>例如</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span>	<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">Lifecycle</span>().<span style="color:#a6e22e">SetOnStopped</span>(<span style="color:#66d9ef">func</span>() {
-</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">SendNotification</span>(<span style="color:#a6e22e">fyne</span>.<span style="color:#a6e22e">NewNotification</span>(<span style="color:#e6db74">&#34;通知&#34;</span>, <span style="color:#e6db74">&#34;程序关闭&#34;</span>))
-</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">3</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
-</span></span><span style="display:flex;"><span>	})
-</span></span></code></pre></div><p>可以实现程序在退出前通知用户的效果。</p>
-<p>还是一些方法不太实用，不做笔记。</p>
-<h2 id="window">Window</h2>
-<h3 id="标题">标题</h3>
-<p>Title也是一个X/SetX风格的方法，可以设置和获取通常窗口标题,Windows系统通常在左上角显示。</p>
-<h3 id="全屏">全屏</h3>
-<p>FullScreen也是一个X/SetX风格的方法，可以设置是否全屏并获取当前状态。</p>
-<p>注意：在安卓窗口默认全屏。</p>
-<h3 id="大小">大小</h3>
-<h4 id="固定大小">固定大小</h4>
-<p>FixedSize也是一个X/SetX风格的方法，可以设置和获取是否允许用户调整窗口大小。</p>
-<h4 id="调整大小">调整大小</h4>
-<p><code>Resize</code>方法可以调整窗口大小。</p>
-<p>示例</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#a6e22e">w</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">NewWindow</span>(<span style="color:#e6db74">&#34;Hello World&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">w</span>.<span style="color:#a6e22e">Resize</span>(<span style="color:#a6e22e">fyne</span>.<span style="color:#a6e22e">NewSize</span>(<span style="color:#ae81ff">100</span>,<span style="color:#ae81ff">100</span>))
-</span></span></code></pre></div><h3 id="布局">布局</h3>
-<h4 id="居中">居中</h4>
-<p><code>CenterOnScreen</code>可以将窗口放在屏幕正中间。</p>
-<h4 id="内边距">内边距</h4>
-<p>Padded也是一个X/SetX风格的方法，设置和获取窗口是否设置内边距，以防止组件与窗口边缘接触</p>
-<h3 id="setmaster">SetMaster</h3>
-<p>这个方法指示当该窗口关闭时，App退出。</p>
-<h3 id="mainmenu">MainMenu</h3>
-<p>这也是一个X/SetX风格的方法，可以设置获取类似Vs Code那种屏幕顶部的，文件，编辑等顶级菜单。</p>
-<p>完整示例</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
-</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;fmt&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;fyne.io/fyne/v2&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;fyne.io/fyne/v2/app&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;fyne.io/fyne/v2/container&#34;</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;fyne.io/fyne/v2/widget&#34;</span>
-</span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 1. 创建Fyne应用实例和窗口</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">myApp</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">New</span>()
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">myWindow</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">myApp</span>.<span style="color:#a6e22e">NewWindow</span>(<span style="color:#e6db74">&#34;Fyne Top Level Menu 示例&#34;</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">myWindow</span>.<span style="color:#a6e22e">Resize</span>(<span style="color:#a6e22e">fyne</span>.<span style="color:#a6e22e">NewSize</span>(<span style="color:#ae81ff">400</span>, <span style="color:#ae81ff">300</span>))
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 2. 构造「文件」顶层菜单的菜单项</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 新建：Label+Action回调</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">itemNew</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">fyne</span>.<span style="color:#a6e22e">NewMenuItem</span>(<span style="color:#e6db74">&#34;新建&#34;</span>, <span style="color:#66d9ef">func</span>() {
-</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;点击了【文件】→【新建】&#34;</span>)
-</span></span><span style="display:flex;"><span>	})
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 保存：Label+Action回调</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">itemSave</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">fyne</span>.<span style="color:#a6e22e">NewMenuItem</span>(<span style="color:#e6db74">&#34;保存&#34;</span>, <span style="color:#66d9ef">func</span>() {
-</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;点击了【文件】→【保存】&#34;</span>)
-</span></span><span style="display:flex;"><span>	})
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 退出：Label+Action回调（关闭应用）</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">itemQuit</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">fyne</span>.<span style="color:#a6e22e">NewMenuItem</span>(<span style="color:#e6db74">&#34;退出&#34;</span>, <span style="color:#66d9ef">func</span>() {
-</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">myApp</span>.<span style="color:#a6e22e">Quit</span>()
-</span></span><span style="display:flex;"><span>	})
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 构造「文件」顶层菜单：fyne.NewMenu(菜单名称, 菜单项1, 菜单项2, ...)</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">menuFile</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">fyne</span>.<span style="color:#a6e22e">NewMenu</span>(<span style="color:#e6db74">&#34;文件&#34;</span>, <span style="color:#a6e22e">itemNew</span>, <span style="color:#a6e22e">itemSave</span>, <span style="color:#a6e22e">itemQuit</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 3. 构造「编辑」顶层菜单的菜单项</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">itemCopy</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">fyne</span>.<span style="color:#a6e22e">NewMenuItem</span>(<span style="color:#e6db74">&#34;复制&#34;</span>, <span style="color:#66d9ef">func</span>() {
-</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;点击了【编辑】→【复制】&#34;</span>)
-</span></span><span style="display:flex;"><span>	})
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">itemPaste</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">fyne</span>.<span style="color:#a6e22e">NewMenuItem</span>(<span style="color:#e6db74">&#34;粘贴&#34;</span>, <span style="color:#66d9ef">func</span>() {
-</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;点击了【编辑】→【粘贴】&#34;</span>)
-</span></span><span style="display:flex;"><span>	})
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 构造「编辑」顶层菜单</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">menuEdit</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">fyne</span>.<span style="color:#a6e22e">NewMenu</span>(<span style="color:#e6db74">&#34;编辑&#34;</span>, <span style="color:#a6e22e">itemCopy</span>, <span style="color:#a6e22e">itemPaste</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 4. 构造根菜单（主菜单）并设置为应用的顶层菜单</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// fyne.NewMainMenu(顶层菜单1, 顶层菜单2, ...)：专门用于创建顶层菜单的根容器</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">mainMenu</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">fyne</span>.<span style="color:#a6e22e">NewMainMenu</span>(<span style="color:#a6e22e">menuFile</span>, <span style="color:#a6e22e">menuEdit</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// 5. 设置窗口内容并运行</span>
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">content</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">container</span>.<span style="color:#a6e22e">NewVBox</span>(<span style="color:#a6e22e">widget</span>.<span style="color:#a6e22e">NewLabel</span>(<span style="color:#e6db74">&#34;Fyne顶层菜单示例：点击窗口顶部的菜单试试！&#34;</span>))
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">myWindow</span>.<span style="color:#a6e22e">SetContent</span>(<span style="color:#a6e22e">content</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">myWindow</span>.<span style="color:#a6e22e">SetMainMenu</span>(<span style="color:#a6e22e">mainMenu</span>)
-</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">myWindow</span>.<span style="color:#a6e22e">ShowAndRun</span>()
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>通过</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#a6e22e">desk</span>, <span style="color:#a6e22e">ok</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span>.(<span style="color:#a6e22e">desktop</span>.<span style="color:#a6e22e">App</span>); <span style="color:#a6e22e">ok</span> { <span style="color:#75715e">// &#34;fyne.io/fyne/v2/driver/desktop&#34;</span>
-</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">desk</span>.<span style="color:#a6e22e">SetSystemTrayMenu</span>(<span style="color:#a6e22e">menuFile</span>)
-</span></span><span style="display:flex;"><span>	}
-</span></span></code></pre></div><p>还可以设置系统托盘菜单，仅限桌面操作系统。</p>
-<h3 id="关闭hook">关闭hook</h3>
-<p><code>SetOnClosed</code>和<code>SetCloseIntercept</code>设置hook在窗口已关闭与窗口被点击右上角X后时运行。</p>
-<p><code>SetCloseIntercept</code>使用这个方法，如果想单独关闭窗口，必须自行调用<code>Window.Close</code>方法。</p>
-<h3 id="显示操作">显示操作</h3>
-<p><code>Show</code>、<code>Hide</code>、<code>Close</code>、<code>ShowAndRun</code>四个方法就像字面意思那样改变窗口的显示情况。</p>
-<p>Content也是一个X/SetX风格的方法，处理显示的内容。</p>
-<p><code>Canvas</code>提供绘图的画布上下文，可以利用它为窗口设置按键处理程序等。</p>
+      <p>在Fyne中，NewPos和NewSize是两个重要的函数，表示这创建坐标和跨平台显示的大小，本文介绍这背后的知识点。</p>
+<h2 id="坐标">坐标</h2>
+<p>在fyne中，(x, y) 是相对于左上角的，(0, 0) 表示最左最上。</p>
+<p>同时这个左上角是相对父元素的。</p>
+<p>意味着如果在一个居中的容器内，(0, 0)表示这个容器的左上角，而不是窗口的左上角。</p>
+<h2 id="尺寸">尺寸</h2>
+<p>在fyne中，宽高是一种以120 DPI(每英寸点数，是衡量像素 / 打印密度的单位) 为基准的相对值。</p>
+<p>具体是，在120 DPI的屏幕，fyne.NewSize(1,1)，表示宽高各1像素，在其他屏幕，则会进行相应的缩放。这对跨平台显示至关重要。</p>
+<p>在多显示器的设备，从一块屏幕被拖动到另一块屏幕，Fyne程序会自动缩放。</p>
+<p>值得一提的是，标准小部件外边距为4，内边距为8。</p>
 
     </div>
   </article>
@@ -564,7 +443,7 @@ App和Windows,Fyne笔记第2篇 | 秋来冬风的博客</title><meta name="descr
 
 <script>
   let isSubmitting = false;
-  let BLOG_ID = "App和Windows,Fyne笔记第2篇";
+  let BLOG_ID = "坐标与跨平台显示,Fyne笔记第9篇";
   let m = new Map();
   BLOG_ID = encodeURIComponent(BLOG_ID);
   function loadAllComment() {

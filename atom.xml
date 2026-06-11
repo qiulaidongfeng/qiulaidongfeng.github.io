@@ -8,8 +8,32 @@
     <language>zh-CN</language>
     <managingEditor>秋来冬风</managingEditor>
     <webMaster>秋来冬风</webMaster>
-    <lastBuildDate>Wed, 29 Apr 2026 16:12:58 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 10 Jun 2026 18:34:16 +0800</lastBuildDate>
     <atom:link href="https://qiulaidongfeng.github.io/atom.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>自定义主题,Fyne笔记第10篇</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/fyne/%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98fyne%E7%AC%94%E8%AE%B0%E7%AC%AC10%E7%AF%87/</link>
+      <pubDate>Wed, 10 Jun 2026 18:34:16 +0800</pubDate>
+      <author>秋来冬风</author>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/fyne/%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98fyne%E7%AC%94%E8%AE%B0%E7%AC%AC10%E7%AF%87/</guid>
+      <description>&lt;p&gt;在其它应用中，用户也许见过切换黑白主题等场景，本文以此为切入点介绍如何在Fyne自定义主题。&lt;/p&gt;&#xA;&lt;h2 id=&#34;分析接口&#34;&gt;分析接口&lt;/h2&gt;&#xA;&lt;p&gt;首先我们先看看fyne如何定义主题的接口&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Theme&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;interface&lt;/span&gt; {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#a6e22e&#34;&gt;Color&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;ThemeColorName&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;ThemeVariant&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;color&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Color&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#a6e22e&#34;&gt;Font&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;TextStyle&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;Resource&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#a6e22e&#34;&gt;Icon&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;ThemeIconName&lt;/span&gt;) &lt;span style=&#34;color:#a6e22e&#34;&gt;Resource&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#a6e22e&#34;&gt;Size&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;ThemeSizeName&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;float32&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;简单来说就是看情况给对于的颜色，字体，图标和尺寸。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>坐标与跨平台显示,Fyne笔记第9篇</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/fyne/%E5%9D%90%E6%A0%87%E4%B8%8E%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%98%BE%E7%A4%BAfyne%E7%AC%94%E8%AE%B0%E7%AC%AC9%E7%AF%87/</link>
+      <pubDate>Wed, 10 Jun 2026 09:07:38 +0800</pubDate>
+      <author>秋来冬风</author>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/fyne/%E5%9D%90%E6%A0%87%E4%B8%8E%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%98%BE%E7%A4%BAfyne%E7%AC%94%E8%AE%B0%E7%AC%AC9%E7%AF%87/</guid>
+      <description>&lt;p&gt;在Fyne中，NewPos和NewSize是两个重要的函数，表示这创建坐标和跨平台显示的大小，本文介绍这背后的知识点。&lt;/p&gt;&#xA;&lt;h2 id=&#34;坐标&#34;&gt;坐标&lt;/h2&gt;&#xA;&lt;p&gt;在fyne中，(x, y) 是相对于左上角的，(0, 0) 表示最左最上。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>小部件动画,Fyne笔记第8篇。</title>
+      <link>https://qiulaidongfeng.github.io/zh-cn/fyne/%E5%B0%8F%E9%83%A8%E4%BB%B6%E5%8A%A8%E7%94%BBfyne%E7%AC%94%E8%AE%B0%E7%AC%AC8%E7%AF%87/</link>
+      <pubDate>Tue, 09 Jun 2026 21:39:36 +0800</pubDate>
+      <author>秋来冬风</author>
+      <guid>https://qiulaidongfeng.github.io/zh-cn/fyne/%E5%B0%8F%E9%83%A8%E4%BB%B6%E5%8A%A8%E7%94%BBfyne%E7%AC%94%E8%AE%B0%E7%AC%AC8%E7%AF%87/</guid>
+      <description>&lt;p&gt;这是我的Fyne学习笔记系列第8篇。&lt;/p&gt;&#xA;&lt;p&gt;熟悉前端的朋友可能对css丰富的动画印象深刻，相比之下fyne的动画则显得不同。&lt;/p&gt;&#xA;&lt;p&gt;让我们从它的定义入手&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;type&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;Animation&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;struct&lt;/span&gt; {&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#a6e22e&#34;&gt;AutoReverse&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;bool&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#a6e22e&#34;&gt;Curve&lt;/span&gt;       &lt;span style=&#34;color:#a6e22e&#34;&gt;AnimationCurve&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;// func(float32) float32&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#a6e22e&#34;&gt;Duration&lt;/span&gt;    &lt;span style=&#34;color:#a6e22e&#34;&gt;time&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Duration&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#a6e22e&#34;&gt;RepeatCount&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&#x9;&lt;span style=&#34;color:#a6e22e&#34;&gt;Tick&lt;/span&gt;        &lt;span style=&#34;color:#66d9ef&#34;&gt;func&lt;/span&gt;(&lt;span style=&#34;color:#66d9ef&#34;&gt;float32&lt;/span&gt;)&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;AutoReverse配置动画是否动态反转，Duration控制动画总时间，RepeatCount控制动画重复次数，默认为1&lt;/p&gt;</description>
+    </item>
     <item>
       <title>如何进行浏览器完整性检查</title>
       <link>https://qiulaidongfeng.github.io/zh-cn/%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AE%8C%E6%95%B4%E6%80%A7%E6%A3%80%E6%9F%A5/</link>

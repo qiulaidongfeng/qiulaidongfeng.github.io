@@ -4,19 +4,43 @@
   
   <url>
     <loc>https://qiulaidongfeng.github.io/</loc>
-    <lastmod>2026-04-29T16:12:58+08:00</lastmod>
+    <lastmod>2026-06-10T18:34:16+08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://qiulaidongfeng.github.io/categories/</loc>
+    <lastmod>2026-06-10T18:34:16+08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://qiulaidongfeng.github.io/categories/fyne%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2026-06-10T18:34:16+08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://qiulaidongfeng.github.io/tags/go/</loc>
+    <lastmod>2026-06-10T18:34:16+08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://qiulaidongfeng.github.io/tags/</loc>
+    <lastmod>2026-06-10T18:34:16+08:00</lastmod>
   </url>
   <url>
     <loc>https://qiulaidongfeng.github.io/zh-cn/</loc>
-    <lastmod>2026-04-29T16:12:58+08:00</lastmod>
+    <lastmod>2026-06-10T18:34:16+08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://qiulaidongfeng.github.io/zh-cn/fyne/%E8%87%AA%E5%AE%9A%E4%B9%89%E4%B8%BB%E9%A2%98fyne%E7%AC%94%E8%AE%B0%E7%AC%AC10%E7%AF%87/</loc>
+    <lastmod>2026-06-10T18:34:16+08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://qiulaidongfeng.github.io/zh-cn/fyne/%E5%9D%90%E6%A0%87%E4%B8%8E%E8%B7%A8%E5%B9%B3%E5%8F%B0%E6%98%BE%E7%A4%BAfyne%E7%AC%94%E8%AE%B0%E7%AC%AC9%E7%AF%87/</loc>
+    <lastmod>2026-06-10T09:07:38+08:00</lastmod>
+  </url>
+  <url>
+    <loc>https://qiulaidongfeng.github.io/zh-cn/fyne/%E5%B0%8F%E9%83%A8%E4%BB%B6%E5%8A%A8%E7%94%BBfyne%E7%AC%94%E8%AE%B0%E7%AC%AC8%E7%AF%87/</loc>
+    <lastmod>2026-06-09T21:39:36+08:00</lastmod>
   </url>
   <url>
     <loc>https://qiulaidongfeng.github.io/zh-cn/%E5%A6%82%E4%BD%95%E8%BF%9B%E8%A1%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AE%8C%E6%95%B4%E6%80%A7%E6%A3%80%E6%9F%A5/</loc>
     <lastmod>2026-04-29T16:12:58+08:00</lastmod>
-  </url>
-  <url>
-    <loc>https://qiulaidongfeng.github.io/categories/</loc>
-    <lastmod>2026-04-24T20:29:39+08:00</lastmod>
   </url>
   <url>
     <loc>https://qiulaidongfeng.github.io/categories/%E6%88%91%E7%9A%84%E4%B8%AD%E6%96%87%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88%E7%B3%BB%E5%88%97/</loc>
@@ -25,18 +49,6 @@
   <url>
     <loc>https://qiulaidongfeng.github.io/zh-cn/%E6%88%91%E7%9A%84%E5%8D%9A%E5%AE%A2%E8%AF%84%E8%AE%BA%E5%8C%BA%E8%AE%BE%E8%AE%A1%E6%96%B9%E6%A1%88/</loc>
     <lastmod>2026-04-24T20:29:39+08:00</lastmod>
-  </url>
-  <url>
-    <loc>https://qiulaidongfeng.github.io/categories/fyne%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
-    <lastmod>2026-02-16T22:19:08+08:00</lastmod>
-  </url>
-  <url>
-    <loc>https://qiulaidongfeng.github.io/tags/go/</loc>
-    <lastmod>2026-02-16T22:19:08+08:00</lastmod>
-  </url>
-  <url>
-    <loc>https://qiulaidongfeng.github.io/tags/</loc>
-    <lastmod>2026-02-16T22:19:08+08:00</lastmod>
   </url>
   <url>
     <loc>https://qiulaidongfeng.github.io/zh-cn/fyne/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%B0%8F%E9%83%A8%E4%BB%B6fyne%E7%AC%94%E8%AE%B0%E7%AC%AC7%E7%AF%87/</loc>
